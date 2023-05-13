@@ -5,6 +5,7 @@ import Hero from "../components/Hero/hero";
 import clientPromise from "../lib/mongodb";
 
 export default function Home({ texts, images, cards }: any) {
+
   return (
     <>
       <Head>
