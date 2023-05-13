@@ -1,7 +1,7 @@
-const App =  () => {
-  return(
+const App = () => {
+  return (
     <div>
-      <h2>app</h2>
+      <h2>probando push 2</h2>
     </div>
   );
 };
