@@ -1,8 +1,18 @@
+import { Box, Button, TextField, Typography } from "@mui/material";
+
 const App = () => {
   return (
-    <div>
-      <h2>probando push 2</h2>
-    </div>
+    <>
+      <Box>
+        <Button variant="primary">
+          <Typography variant="button3">Button</Typography>  
+        </Button>
+        <Typography variant="button3">Button</Typography>  
+        <Button variant="secondary">Button</Button>
+        <Button variant="tertiary">Button</Button>
+        <TextField variant="outlined" placeholder="hola"> </TextField>
+      </Box>
+    </>
   );
 };
 
