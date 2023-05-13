@@ -1,10 +1,10 @@
 
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
 import axios from "axios";
-import * as yup from "yup"
-import { useState } from 'react';
+import * as yup from "yup";
+import { useState } from "react";
 
 
 const schema = yup.object({
@@ -17,12 +17,12 @@ const schema = yup.object({
   password: yup
     .string()
     .required("La contraseña es requerida")
-    .min(6, 'La contraseña debe tener al menos 6 caracteres')
-    .max(20, 'La contraseña no puede tener más de 20 caracteres')
-    .matches(/^(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{6,20}$/, 'La contraseña debe contener al menos 1 carácter especial, una mayúscula y un número'),
+    .min(6, "La contraseña debe tener al menos 6 caracteres")
+    .max(20, "La contraseña no puede tener más de 20 caracteres")
+    .matches(/^(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{6,20}$/, "La contraseña debe contener al menos 1 carácter especial, una mayúscula y un número"),
   confirmPassword: yup.string()
-    .oneOf([yup.ref('password'), undefined], 'Las contraseñas no coinciden')
-    .required('La confirmación de contraseña es obligatoria'),
+    .oneOf([yup.ref("password"), undefined], "Las contraseñas no coinciden")
+    .required("La confirmación de contraseña es obligatoria"),
 }).required();
 type FormData = yup.InferType<typeof schema>;
 
@@ -38,6 +38,8 @@ const Register = () => {
     try {
       await axios
         .post("https://digitalmoney.ctd.academy/api/users", {
+
+        
           dni:  parseInt(data.dni),
           email: data.email,
           firstname: data.name,
@@ -47,12 +49,12 @@ const Register = () => {
         })
         .then(function (response) {
           console.log(response);
-          setError(false)
+          setError(false);
           router.push("/");
-        })
+        });
     } catch (error) {
       console.log(error);
-      setError(true)
+      setError(true);
     }
   };
 
@@ -86,9 +88,9 @@ const Register = () => {
         </form>
       </div>
     </main>
-  )
+  );
 
-}
-export default Register
+};
+export default Register;
 
 
