@@ -8,19 +8,13 @@ import { useState } from "react";
 
 const schema = yup
   .object({
-    password: yup
-      .string()
-      .required("La contraseña es requerida")
-      .min(
-        8,
-        "La contraseña es demasiado corta - debe tener al menos 8 caracteres."
-      ),
+    password: yup.string().required("La contraseña es requerida"),
   })
   .required();
 type FormData = yup.InferType<typeof schema>;
 
 const Password = () => {
-    const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
   const router = useRouter();
   const { query } = useRouter();
   const {
@@ -33,19 +27,19 @@ const Password = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
-    await axios
-      .post("http://localhost:3000/api/login", {
-        email: query.email,
-        password: data.password,
-      })
-      .then(function (response) {
-        console.log(response);
-        setError(false)
-        router.push("/");
-      })
-    }catch (error){
-        console.log(error);
-        setError(true)
+      await axios
+        .post("https://digitalmoney.ctd.academy/api/login", {
+          email: query.email,
+          password: data.password,
+        })
+        .then(function (response) {
+          console.log(response);
+          setError(false);
+          router.push("/");
+        });
+    } catch (error) {
+      console.log(error);
+      setError(true);
     }
   };
 
@@ -53,7 +47,7 @@ const Password = () => {
     <div>
       <h2>Ingresá tu contraseña</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register("password")} />
+        <input type="password" {...register("password")} />
         <p> {errors.password?.message}</p>
         {error && <p>Contraseña incorrecta. Vuelve a intentarlo</p>}
         <input type="submit" value="Continuar" />
