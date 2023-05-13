@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import CardHero from "../CardHero/cardHero";
 
-const Hero = () => {
+const Hero = ({ images }: any) => {
   return (
     <Grid className={styles.grid} >
       <Box className={styles.textBox}>
@@ -23,7 +23,7 @@ const Hero = () => {
         </Typography>
       </Box>
       <Box className={styles.cardsBox}>
-        <CardHero title={"Transferí dinero"} description={"Desde Digital Money House vas a poder transferir dinero a otras cuentas, asi como también recibir transferencias y nuclear tu capital en nuestra billetera virtual "} />
+        <CardHero title={images[1].title} description={"Desde Digital Money House vas a poder transferir dinero a otras cuentas, asi como también recibir transferencias y nuclear tu capital en nuestra billetera virtual "} />
         <CardHero title={"Pago de servicios"} description={"Pagá mensualmente los servicios en 3 simples clicks. Facil, rápido y conveniente. Olvidate de las facturas en papel"} />
       </Box>
 
