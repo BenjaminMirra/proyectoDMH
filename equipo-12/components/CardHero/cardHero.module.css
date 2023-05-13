@@ -1,0 +1,40 @@
+.cardHero {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 53px;
+    width: 400px;
+    height: 186px;
+    background: #FFFFFF;
+    border-radius: 30px;
+}
+
+.cardHeroContent {
+    margin: 0;
+    padding: 0;
+}
+
+.title {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.description {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+}
+
+.hr {
+    width: 100%;
+    border: 1px solid #C1FD35;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
