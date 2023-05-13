@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "./header.module.css";
-import imageLogo from "../../utils/image/imageLogo.svg";
+import imageLogo from "../../utils/images/imageLogo.svg";
 import Button from "@mui/material/Button";
 import Link from "next/link";
 
