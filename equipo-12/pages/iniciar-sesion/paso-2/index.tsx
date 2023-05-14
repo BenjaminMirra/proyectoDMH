@@ -8,7 +8,7 @@ import { useState } from "react";
 import Head from "next/head";
 import Header from "../../../components/Header/header";
 import Footer from "../../../components/Footer/footer";
-import { Grid } from "@mui/material";
+import { Button, Grid, TextField } from "@mui/material";
 import styles from "../../../styles/login.module.css"
 
 const schema = yup
@@ -60,10 +60,10 @@ const Password = () => {
       <Grid className={styles.gridGeneralContainer}>
       <h2>Ingresá tu contraseña</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="password" {...register("password")} />
+        <TextField id="outlined-basic"  variant="outlined" className={styles.inputForm} type="password" {...register("password")} />
         <p> {errors.password?.message}</p>
         {error && <p>Contraseña incorrecta. Vuelve a intentarlo</p>}
-        <input type="submit" value="Continuar" />
+        <Button variant="secondary" type="submit">Continuar</Button>
       </form>
     </Grid>
       <Footer />

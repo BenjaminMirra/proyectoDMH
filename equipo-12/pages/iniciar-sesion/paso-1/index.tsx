@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import Header from "../../../components/Header/header";
 import Footer from "../../../components/Footer/footer";
 import Head from "next/head";
-import { Grid } from "@mui/material";
+import { Button, Grid, Input, TextField } from "@mui/material";
 import styles from "../../../styles/login.module.css"
 
 const schema = yup
@@ -33,6 +33,11 @@ const Username = () => {
       pathname: "/iniciar-sesion/paso-2",
       query: { email: data.email },
     });
+
+    const onClick = () => {
+      router.push("/");
+    };
+    
   return (
     <>
     <Head>
@@ -45,11 +50,12 @@ const Username = () => {
       <Grid className={styles.gridGeneralContainer}>
       <h2>¡Hola! Ingresá tu e-mail</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register("email")} />
-        <p> {errors.email?.message}</p>
-        <input type="submit" value="Continuar" />
+        <TextField id="outlined-basic"  variant="outlined" className={styles.inputForm} {...register("email")} />
+        <p className={styles.pError}> {errors.email?.message}</p>
+        <Button variant="secondary" type="submit">Continuar</Button>
       </form>
-      <Link href="#">Crear cuenta</Link>
+      <Button variant="tertiary" onClick={()=>onClick()}>Crear cuenta</Button>
+
     </Grid>
       <Footer />
     </main>
