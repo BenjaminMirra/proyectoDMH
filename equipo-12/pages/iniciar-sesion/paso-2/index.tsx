@@ -5,6 +5,11 @@ import * as yup from "yup";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useState } from "react";
+import Head from "next/head";
+import Header from "../../../components/Header/header";
+import Footer from "../../../components/Footer/footer";
+import { Grid } from "@mui/material";
+import styles from "../../../styles/login.module.css"
 
 const schema = yup
   .object({
@@ -44,7 +49,15 @@ const Password = () => {
   };
 
   return (
-    <div>
+    <>
+    <Head>
+      <title>Digital Money House</title>
+      <meta name="iniciar-sesion" content="Digital Money House" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </Head>
+    <main>
+      <Header />
+      <Grid className={styles.gridGeneralContainer}>
       <h2>Ingresá tu contraseña</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input type="password" {...register("password")} />
@@ -52,7 +65,10 @@ const Password = () => {
         {error && <p>Contraseña incorrecta. Vuelve a intentarlo</p>}
         <input type="submit" value="Continuar" />
       </form>
-    </div>
+    </Grid>
+      <Footer />
+    </main>
+  </>
   );
 };
 
