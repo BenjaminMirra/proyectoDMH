@@ -4,27 +4,27 @@ import Grid from "@mui/material/Grid";
 //import CardHero from '../CardHero/cardHero';
 import Typography from "@mui/material/Typography";
 import CardHero from "../CardHero/cardHero";
+import { useEffect } from "react";
 
-const Hero = ({ images }: any) => {
+const Hero = ({ cards, images, texts }: any) => {
+
+  useEffect(() => {
+    console.log(texts);
+  }, [texts]);
+
   return (
     <Grid className={styles.grid} >
       <Box className={styles.textBox}>
         <Typography className={styles.firstTitleHero}>
-          De ahora en
-        </Typography>
-        <Typography className={styles.firstTitleHero}>
-          adelante, hacés
-        </Typography>
-        <Typography className={styles.firstTitleHero}>
-          más con tu dinero
+          {texts[0]?.titles[0]?.title}
         </Typography>
         <Typography className={styles.secondTitleHero}>
-          Tu nueva <span style={{ fontWeight: "bolder" }}>billetera</span> virtual
+          {texts[0]?.titles[1]?.title}
         </Typography>
       </Box>
       <Box className={styles.cardsBox}>
-        <CardHero title={images[1].title} description={"Desde Digital Money House vas a poder transferir dinero a otras cuentas, asi como también recibir transferencias y nuclear tu capital en nuestra billetera virtual "} />
-        <CardHero title={"Pago de servicios"} description={"Pagá mensualmente los servicios en 3 simples clicks. Facil, rápido y conveniente. Olvidate de las facturas en papel"} />
+        <CardHero title={cards[0]?.cards[0]?.title} description={cards[0]?.cards[0]?.description} />
+        <CardHero title={cards[0]?.cards[1]?.title} description={cards[0]?.cards[0]?.description} />
       </Box>
 
       <Box className={styles.yellowBox}>
