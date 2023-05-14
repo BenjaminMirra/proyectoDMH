@@ -3,8 +3,12 @@ import Header from "./../components/Header/header";
 import Footer from "./../components/Footer/footer";
 import Hero from "../components/Hero/hero";
 import clientPromise from "../lib/mongodb";
+import { useEffect } from "react";
 
 export default function Home({ texts, images, cards }: any) {
+  
+  
+
 
   return (
     <>
@@ -58,5 +62,6 @@ export async function getServerSideProps() {
     };
   } catch (e) {
     console.error(e);
+    return { props: {ok: false, reason: "No se puede acceder a la Base de Datos"}}
   }
 }
