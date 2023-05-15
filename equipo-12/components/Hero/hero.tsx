@@ -6,14 +6,13 @@ import Typography from "@mui/material/Typography";
 import CardHero from "../CardHero/cardHero";
 import { useEffect } from "react";
 
-const Hero = ({ cards, images, texts }: any) => {
-
+const Hero = ({ cards, texts }: any) => {
   useEffect(() => {
     console.log(texts);
   }, [texts]);
 
   return (
-    <Grid className={styles.grid} >
+    <Grid className={styles.grid}>
       <Box className={styles.textBox}>
         <Typography className={styles.firstTitleHero}>
           {texts[0]?.titles[0]?.title}
@@ -23,16 +22,19 @@ const Hero = ({ cards, images, texts }: any) => {
         </Typography>
       </Box>
       <Box className={styles.cardsBox}>
-        <CardHero title={cards[0]?.cards[0]?.title} description={cards[0]?.cards[0]?.description} />
-        <CardHero title={cards[0]?.cards[1]?.title} description={cards[0]?.cards[0]?.description} />
+        <CardHero
+          title={cards[0]?.cards[0]?.title}
+          description={cards[0]?.cards[0]?.description}
+        />
+        <CardHero
+          title={cards[0]?.cards[1]?.title}
+          description={cards[0]?.cards[0]?.description}
+        />
       </Box>
 
-      <Box className={styles.yellowBox}>
-      </Box>
+      <Box className={styles.yellowBox}></Box>
     </Grid>
   );
-}
-
-  ;
+};
 
 export default Hero;

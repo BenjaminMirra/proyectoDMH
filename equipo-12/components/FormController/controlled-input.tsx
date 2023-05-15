@@ -1,4 +1,4 @@
-import { Control, Controller } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import { TextField, Typography, Box, TextFieldVariants } from "@mui/material";
 
 interface InputType {
