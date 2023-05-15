@@ -22,6 +22,7 @@ const Register = () => {
           justifyContent: "center",
           width: "100%",
           backgroundColor: "#201F22",
+          padding: "25px",
         }}
       >
         <Typography
