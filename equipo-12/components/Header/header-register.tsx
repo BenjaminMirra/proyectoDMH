@@ -19,7 +19,14 @@ const HeaderRegister = () => {
           padding: "10px 20px",
         }}
       >
-        <Link href="/">
+        <Link
+          href="/"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <Image src={logoDark} alt="logo" />
         </Link>
         <Box>

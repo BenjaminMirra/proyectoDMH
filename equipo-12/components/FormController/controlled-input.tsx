@@ -1,13 +1,22 @@
-import { Controller } from "react-hook-form";
+import { Controller, Control, FieldValues } from "react-hook-form";
 import { TextField, Typography, Box, TextFieldVariants } from "@mui/material";
-
-interface InputType {
-  control: any;
+import { SxProps } from "@mui/system";
+interface MyFormValues extends FieldValues {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  dni: string;
+  confirmPassword: string;
+  phone: string;
+}
+interface InputType<T extends FieldValues> {
+  control: Control<T>;
   name: string;
   type: string;
   label: string;
   defaultValue?: string;
-  sx?: any;
+  sx?: SxProps;
   errorMessage?: string;
   variant?: TextFieldVariants;
 }
@@ -21,7 +30,7 @@ const ControlledInput = ({
   sx,
   errorMessage,
   variant,
-}: InputType) => {
+}: InputType<MyFormValues>) => {
   return (
     <Box
       sx={{
