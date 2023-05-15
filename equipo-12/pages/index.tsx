@@ -3,9 +3,13 @@ import Header from "./../components/Header/header";
 import Footer from "./../components/Footer/footer";
 import Hero from "../components/Hero/hero";
 import clientPromise from "../lib/mongodb";
+import { useEffect } from "react";
+
+export default function Home({ texts, images, cards }: any) {
+  
+  
 
 
-export default function Home({ images }: any) {
   return (
     <>
       <Head>
@@ -16,7 +20,7 @@ export default function Home({ images }: any) {
       </Head>
       <main>
         <Header />
-        <Hero images={images} />
+        <Hero texts={texts} images={images} cards={cards} />
         <Footer />
       </main>
     </>
@@ -26,19 +30,38 @@ export default function Home({ images }: any) {
 export async function getServerSideProps() {
   try {
     const client = await clientPromise;
-    const db = client.db("images");
+    const db = client.db("data");
+
+    const texts = await db
+      .collection("texts")
+      .find({})
+      .sort({ metacritic: -1 })
+      .limit(2)
+      .toArray();
+
+    const cards = await db
+      .collection("cards")
+      .find({})
+      .sort({ metacritic: -1 })
+      .limit(2)
+      .toArray();
 
     const images = await db
       .collection("images")
       .find({})
       .sort({ metacritic: -1 })
-      .limit(20)
+      .limit(2)
       .toArray();
 
     return {
-      props: { images: JSON.parse(JSON.stringify(images)) },
+      props: {
+        texts: JSON.parse(JSON.stringify(texts)),
+        images: JSON.parse(JSON.stringify(images)),
+        cards: JSON.parse(JSON.stringify(cards))
+      }
     };
   } catch (e) {
     console.error(e);
+    return { props: {ok: false, reason: "No se puede acceder a la Base de Datos"}}
   }
 }

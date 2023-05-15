@@ -6,14 +6,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const client = await clientPromise;
     const db = client.db("data");
 
-    const images = await db
-      .collection("images")
+    const texts = await db
+      .collection("texts")
       .find({})
       .sort({ metacritic: -1 })
       .limit(2)
       .toArray();
 
-    res.json(images);
+    res.json(texts);
   } catch (e) {
     console.error(e);
   }
