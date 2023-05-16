@@ -30,7 +30,7 @@ const HeaderRegister = () => {
           <Image src={logoDark} alt="logo" />
         </Link>
         <Box>
-          <Link href="/iniciar-sesion">
+          <Link href="/iniciar-sesion/paso-1">
             <Button
               sx={{
                 backgroundColor: "#3A393E",
