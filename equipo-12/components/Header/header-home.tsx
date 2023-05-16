@@ -8,15 +8,17 @@ const HeaderHome = () => {
   return (
     <div className={styles.header}>
       <div>
-        <Image
-          src={imageLogo}
-          alt="logo"
-          width={86}
-          height={33}
-        />
+        <Link href="/">
+          <Image
+            src={imageLogo}
+            alt="logo"
+            width={86}
+            height={33}
+          />
+        </Link>
       </div>
       <div className={styles.buttonContainer}>
-        <Link href="/iniciar-sesion">
+        <Link href="/iniciar-sesion/paso-1">
           <Button
             sx={{
               padding: "40px 20px",

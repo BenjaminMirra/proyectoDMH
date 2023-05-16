@@ -15,20 +15,20 @@ const HeroDesktop = ({ cards, texts }: any) => {
     <Grid className={styles.grid}>
       <Box className={styles.textBox}>
         <Typography className={styles.firstTitleHero}>
-          {texts[0]?.titles[0]?.title}
+          {/* {texts[0]?.titles[0]?.title} */}
         </Typography>
         <Typography className={styles.secondTitleHero}>
-          {texts[0]?.titles[1]?.title}
+          {/* {texts[0]?.titles[1]?.title} */}
         </Typography>
       </Box>
       <Box className={styles.cardsBox}>
         <CardHero
-          title={cards[0]?.cards[0]?.title}
-          description={cards[0]?.cards[0]?.description}
+        // title={cards[0]?.cards[0]?.title}
+        // description={cards[0]?.cards[0]?.description}
         />
         <CardHero
-          title={cards[0]?.cards[1]?.title}
-          description={cards[0]?.cards[0]?.description}
+        // title={cards[0]?.cards[1]?.title}
+        // description={cards[0]?.cards[0]?.description}
         />
       </Box>
       <Box className={styles.yellowBox}>
