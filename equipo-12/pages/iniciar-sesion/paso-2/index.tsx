@@ -5,11 +5,10 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { ReactElement, useState } from "react";
 import Head from "next/head";
-import Header from "../../../components/Header/header";
-import Footer from "../../../components/Footer/footer";
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import styles from "../../../styles/login.module.css";
 import ControlledInput from "../../../components/FormController/controlled-input";
+import LayoutLogin from "../../../layout/layout-login";
 
 const schema = yup
   .object({
@@ -56,8 +55,9 @@ const Password = () => {
         <meta name="iniciar-sesion" content="Digital Money House" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <main>
-        <Header />
+      <main style={{
+        width: "100%"
+      }}>
         <Grid className={styles.gridGeneralContainer}>
           <h2>Ingresá tu contraseña</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -77,9 +77,9 @@ const Password = () => {
                   height: "31px",
                 },
                 "& .css-1av9oub-MuiInputBase-root-MuiFilledInput-root::after, & .css-1av9oub-MuiInputBase-root-MuiFilledInput-root::before":
-                  {
-                    display: "none",
-                  },
+                {
+                  display: "none",
+                },
                 "& .css-1yuncik-MuiFormLabel-root-MuiInputLabel-root": {
                   transform: "translate(12px, 20px) scale(1)",
                 },
@@ -100,7 +100,7 @@ const Password = () => {
                     color: "#CC0000",
                     fontSize: "14px",
                     fontStyle: "italic",
-                    marginTop:"65px"
+                    marginTop: "65px"
                   }}
                 >
                   Contraseña incorrecta. Vuelve a intentarlo
@@ -112,7 +112,6 @@ const Password = () => {
             </Box>
           </form>
         </Grid>
-        <Footer />
       </main>
     </>
   );

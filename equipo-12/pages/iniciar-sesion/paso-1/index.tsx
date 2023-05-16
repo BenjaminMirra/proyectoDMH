@@ -6,6 +6,9 @@ import Head from "next/head";
 import { Box, Button, Grid, Input, TextField } from "@mui/material";
 import styles from "../../../styles/login.module.css";
 import ControlledInput from "../../../components/FormController/controlled-input";
+import LayoutLogin from "../../../layout/layout-login";
+import { ReactElement } from "react";
+import { NextPageWithLayout } from "../../_app";
 
 const schema = yup
   .object({
@@ -44,35 +47,36 @@ const Username: NextPageWithLayout<any> = () => {
         <meta name="iniciar-sesion" content="Digital Money House" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <main>
-        <Header />
+      <main style={{
+        width: "100%"
+      }}>
         <Grid className={styles.gridGeneralContainer}>
           <h2>¡Hola! Ingresá tu e-mail</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
-          <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(1, 1fr)",
-          gridTemplateRows: "1fr 1fr 0.25fr 1fr 1fr",
-          gridColumnGap: "62px",
-          gridRowGap: "40px",
-          "& button ": {
-            borderRadius: "10px",
-          },
-          "& input": {
-            backgroundColor: "#FFFF",
-            borderRadius: "10px",
-            height: "31px",
-          },
-          "& .css-1av9oub-MuiInputBase-root-MuiFilledInput-root::after, & .css-1av9oub-MuiInputBase-root-MuiFilledInput-root::before":
-            {
-              display: "none",
-            },
-          "& .css-1yuncik-MuiFormLabel-root-MuiInputLabel-root": {
-            transform: "translate(12px, 20px) scale(1)",
-          },
-        }}
-      >
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "repeat(1, 1fr)",
+                gridTemplateRows: "1fr 1fr 0.25fr 1fr 1fr",
+                gridColumnGap: "62px",
+                gridRowGap: "40px",
+                "& button ": {
+                  borderRadius: "10px",
+                },
+                "& input": {
+                  backgroundColor: "#FFFF",
+                  borderRadius: "10px",
+                  height: "31px",
+                },
+                "& .css-1av9oub-MuiInputBase-root-MuiFilledInput-root::after, & .css-1av9oub-MuiInputBase-root-MuiFilledInput-root::before":
+                {
+                  display: "none",
+                },
+                "& .css-1yuncik-MuiFormLabel-root-MuiInputLabel-root": {
+                  transform: "translate(12px, 20px) scale(1)",
+                },
+              }}
+            >
               <ControlledInput
                 name="email"
                 control={control}
@@ -87,14 +91,13 @@ const Username: NextPageWithLayout<any> = () => {
               <Button variant="secondary" type="submit">
                 Continuar
               </Button>
- 
-          <Button variant="tertiary" onClick={() => onClick()}>
-            Crear cuenta
-          </Button>
-          </Box>
+
+              <Button variant="tertiary" onClick={() => onClick()}>
+                Crear cuenta
+              </Button>
+            </Box>
           </form>
         </Grid>
-        <Footer />
       </main>
     </>
   );
