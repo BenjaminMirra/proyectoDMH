@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 15.5px;
+    background-color: #181818;
+}
+
+.buttonContainer {
+    display: flex;
+    width: 250px;
+    height: 100%;
+    gap: 20px;
+}
+
+.buttonContainer button {
+    height: 40px !important;
+    padding: 0px !important;
+    font-size: 14px !important;
+}
