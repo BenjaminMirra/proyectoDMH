@@ -18,7 +18,7 @@ const HeaderHome = () => {
         </Link>
       </div>
       <div className={styles.buttonContainer}>
-        <Link href="/iniciar-sesion">
+        <Link href="/iniciar-sesion/paso-1">
           <Button
             sx={{
               padding: "40px 20px",
