@@ -1,9 +1,14 @@
 import Image from "next/image";
+import styles from "./header.module.css";
+import imageLogo from "../../utils/images/imageLogo.svg";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import logoDark from "../../utils/images/logoDark.svg";
 import { Button, Box } from "@mui/material";
-import Link from "next/link";
 
-const HeaderRegister = () => {
+const Header = () => {
+  const router = useRouter();
+
   return (
     <Box
       sx={{
@@ -30,26 +35,23 @@ const HeaderRegister = () => {
           <Image src={logoDark} alt="logo" />
         </Link>
         <Box>
-          <Link href="/iniciar-sesion/paso-1">
-            <Button
-              sx={{
-                backgroundColor: "#3A393E",
-                color: "#FFFF",
-                height: "40px !important",
-                width: "200px !important",
-                "&:hover": {
-                  backgroundColor: "#201F22",
-                  color: "#C1FD35",
-                },
-              }}
-            >
-              Iniciar sesion
-            </Button>
-          </Link>
+          {router.pathname === "/iniciar-sesion/paso-1" ||
+          router.pathname === "/iniciar-sesion/paso-2" ? (
+            <></>
+          ) : (
+            <>
+              <Link href="/iniciar-sesion/paso-1">
+                <Button variant="primary">Ingresar</Button>
+              </Link>
+              <Link href="/crear-cuenta">
+                <Button variant="secondary">Crear Cuenta</Button>
+              </Link>
+            </>
+          )}
         </Box>
       </Box>
     </Box>
   );
 };
 
-export default HeaderRegister;
+export default Header;
