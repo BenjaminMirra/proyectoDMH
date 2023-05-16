@@ -1,12 +1,10 @@
 import Image from "next/image";
-import styles from "./header.module.css";
-import imageLogo from "../../utils/images/imageLogo.svg";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import logoDark from "../../utils/images/logoDark.svg";
 import { Button, Box } from "@mui/material";
 
-const Header = () => {
+const HeaderLogin = () => {
   const router = useRouter();
 
   return (
@@ -36,7 +34,7 @@ const Header = () => {
         </Link>
         <Box>
           {router.pathname === "/iniciar-sesion/paso-1" ||
-          router.pathname === "/iniciar-sesion/paso-2" ? (
+            router.pathname === "/iniciar-sesion/paso-2" ? (
             <></>
           ) : (
             <>
@@ -54,4 +52,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderLogin;

@@ -1,10 +1,9 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Link from "next/link";
 import * as yup from "yup";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import Head from "next/head";
 import Header from "../../../components/Header/header";
 import Footer from "../../../components/Footer/footer";
@@ -117,6 +116,10 @@ const Password = () => {
       </main>
     </>
   );
+};
+
+Password.getLayout = function getLayout(page: ReactElement) {
+  return <LayoutLogin>{page}</LayoutLogin>;
 };
 
 export default Password;

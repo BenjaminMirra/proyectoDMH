@@ -1,10 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Link from "next/link";
 import * as yup from "yup";
 import { useRouter } from "next/router";
-import Header from "../../../components/Header/header";
-import Footer from "../../../components/Footer/footer";
 import Head from "next/head";
 import { Box, Button, Grid, Input, TextField } from "@mui/material";
 import styles from "../../../styles/login.module.css";
@@ -20,7 +17,7 @@ const schema = yup
   .required();
 type FormData = yup.InferType<typeof schema>;
 
-const Username = () => {
+const Username: NextPageWithLayout<any> = () => {
   const router = useRouter();
   const {
     handleSubmit,
@@ -101,6 +98,10 @@ const Username = () => {
       </main>
     </>
   );
+};
+
+Username.getLayout = function getLayout(page: ReactElement) {
+  return <LayoutLogin>{page}</LayoutLogin>;
 };
 
 export default Username;

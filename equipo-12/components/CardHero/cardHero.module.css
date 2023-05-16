@@ -6,8 +6,8 @@
     padding-top: 30px;
     padding-bottom: 30px;
     padding-right: 53px;
-    width: 400px;
-    height: 186px;
+    width: 500px;
+    height: 246px;
     background: #FFFFFF;
     border-radius: 30px;
 }
@@ -37,4 +37,37 @@
     border: 1px solid #C1FD35;
     margin-top: 12px;
     margin-bottom: 12px;
+}
+
+@media (max-width: 1024px) {
+
+    .cardHero {
+        width: 597px;
+        height: 224px;
+        padding-right: 31px;
+        padding-top: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .cardHero {
+        width: 90%;
+        height: 190px;
+    }
+
+    .cardHeroContent {
+        padding-top: 1px;
+        padding-bottom: 3px;
+        padding-left: 20px;
+        padding-right: 9px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .description {
+        font-size: 16px;
+    }
 }
