@@ -9,8 +9,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const images = await db
       .collection("images")
       .find({})
-      .sort({ metacritic: -1 })
-      .limit(2)
       .toArray();
 
     res.json(images);
