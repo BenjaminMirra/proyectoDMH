@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import ControlledInput from "./controlled-input";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
