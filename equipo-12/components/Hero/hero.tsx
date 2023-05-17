@@ -30,7 +30,7 @@ export const Hero = ({ texts, images, cards }: any) => {
     } else {
       setHeroDisplayed(<HeroDesktop texts={texts} images={images} cards={cards} />);
     }
-  }, [windowWidth]);
+  }, [windowWidth, texts, images, cards]);
   return (
     <>
       {heroDisplayed}

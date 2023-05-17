@@ -11,6 +11,18 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       .find({})
       .toArray();
 
+    const transformedCards = cards.map((card) => {
+      const transformedData = {
+        titles: card.cards.map((item: any) => ({
+          title: item.title,
+          description: item.description,
+        })),
+      };
+      return transformedData;
+    });
+
+    res.json(transformedCards);
+
     res.json(cards);
   } catch (e) {
     console.error(e);

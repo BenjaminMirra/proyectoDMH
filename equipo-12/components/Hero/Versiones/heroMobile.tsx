@@ -10,21 +10,21 @@ const HeroMobile = ({ cards, texts }: any) => {
     <Grid className={styles.grid}>
       <Box className={styles.textBox}>
         <Typography className={styles.firstTitleHero}>
-          {texts[0]?.titles[0]?.title}
+          {texts ? texts[0]?.titles[0] : ""}
         </Typography>
         <hr className={styles.barra} />
         <Typography className={styles.secondTitleHero}>
-          {texts[0]?.titles[1]?.title}
+          {texts ? texts[0]?.titles[1] : ""}
         </Typography>
       </Box>
       <Box className={styles.cardsBox}>
         <CardHero
-          title={cards[0]?.cards[0]?.title}
-          description={cards[0]?.cards[0]?.description}
+          title={cards ? cards[0].titles[1].title : ""}
+          description={cards ? cards[0].titles[1].description : ""}
         />
         <CardHero
-          title={cards[0]?.cards[1]?.title}
-          description={cards[0]?.cards[0]?.description}
+          title={cards ? cards[0].titles[1].title : ""}
+          description={cards ? cards[0].titles[1].description : ""}
         />
       </Box>
       <Box className={styles.yellowBox}>
