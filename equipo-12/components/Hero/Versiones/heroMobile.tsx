@@ -23,8 +23,8 @@ const HeroMobile = ({ cards }: any) => {
       </Box>
       <Box className={styles.cardsBox}>
         <CardHero
-          title={cards ? cards[0].titles[1].title : ""}
-          description={cards ? cards[0].titles[1].description : ""}
+          title={cards ? cards[0].titles[0].title : ""}
+          description={cards ? cards[0].titles[0].description : ""}
         />
         <CardHero
           title={cards ? cards[0].titles[1].title : ""}
