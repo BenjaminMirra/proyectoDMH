@@ -8,8 +8,8 @@ import { useEffect } from "react";
 const HeroDesktop = ({ cards, texts }: any) => {
 
   useEffect(() => {
-    if (cards) {
-      console.log(cards[0].titles[0]);
+    if (texts) {
+      console.log(texts);
     }
   }, [texts]);
 
@@ -17,10 +17,10 @@ const HeroDesktop = ({ cards, texts }: any) => {
     <Grid className={styles.grid}>
       <Box className={styles.textBox}>
         <Typography className={styles.firstTitleHero}>
-          {texts ? texts[0]?.titles[0] : ""}
+          {texts ? texts[0]?.titles[0] : "hola"}
         </Typography>
         <Typography className={styles.secondTitleHero}>
-          {texts ? texts[0]?.titles[1] : ""}
+          Tu nueva <span style={{ fontWeight: "bold" }}>billetera virtual</span>
         </Typography>
       </Box>
       <Box className={styles.cardsBox}>

@@ -4,17 +4,21 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import CardHero from "../../CardHero/cardHero";
 
-const HeroMobile = ({ cards, texts }: any) => {
+const HeroMobile = ({ cards }: any) => {
 
   return (
     <Grid className={styles.grid}>
       <Box className={styles.textBox}>
         <Typography className={styles.firstTitleHero}>
-          {texts ? texts[0]?.titles[0] : ""}
+          De ahora<br />
+          en adelante,<br />
+          hacés más<br />
+          con tu dinero
         </Typography>
         <hr className={styles.barra} />
         <Typography className={styles.secondTitleHero}>
-          {texts ? texts[0]?.titles[1] : ""}
+          Tu nueva<br />
+          <span style={{ fontWeight: "bold" }}>billetera virtual</span>
         </Typography>
       </Box>
       <Box className={styles.cardsBox}>

@@ -19,7 +19,7 @@ const HeroTablet = ({ cards, texts }: any) => {
           {texts ? texts[0]?.titles[0] : ""}
         </Typography>
         <Typography className={styles.secondTitleHero}>
-          {texts ? texts[0]?.titles[1] : ""}
+          Tu nueva <span style={{ fontWeight: "bold" }}>billetera virtual</span>
         </Typography>
       </Box>
       <Box className={styles.cardsBox}>

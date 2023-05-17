@@ -39,18 +39,19 @@
 }
 
 .textBox {
+    white-space: pre-line;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    padding-left: 50px;
+    padding-left: 20px;
     padding-bottom: 200px;
     padding-top: 84px;
 }
 
 .firstTitleHero {
-    width: 55%;
+    width: 100%;
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
@@ -60,7 +61,7 @@
 }
 
 .secondTitleHero {
-    width: 55%;
+    width: 100%;
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
