@@ -2,10 +2,12 @@ import { Typography } from "@mui/material";
 import Head from "next/head";
 import LayoutRegister from "../../layout/layout-register";
 import FormRegister from "../../components/FormController/form-register";
+import { NextPageWithLayout } from "../_app";
+import { ReactElement } from "react";
 
-const Register = () => {
+const Register: NextPageWithLayout<any> = () => {
   return (
-    <LayoutRegister>
+    <>
       <Head>
         <title>Registro DMH</title>
         <meta name="description" content="Registro Digital Money House" />
@@ -37,7 +39,12 @@ const Register = () => {
         </Typography>
         <FormRegister />
       </main>
-    </LayoutRegister>
+    </>
   );
 };
+
+Register.getLayout = function getLayout(page: ReactElement) {
+  return <LayoutRegister>{page}</LayoutRegister>;
+};
+
 export default Register;

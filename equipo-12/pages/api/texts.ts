@@ -8,9 +8,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const texts = await db
       .collection("texts")
-      .find({})
-      .sort({ metacritic: -1 })
-      .limit(2)
+      .find()
       .toArray();
 
     res.json(texts);
