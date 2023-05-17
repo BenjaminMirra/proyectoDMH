@@ -1,40 +1,40 @@
-import styles from "./hero.module.css";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-//import CardHero from '../CardHero/cardHero';
-import Typography from "@mui/material/Typography";
-import CardHero from "../CardHero/cardHero";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import HeroDesktop from "./Versiones/heroDesktop";
+import HeroMobile from "./Versiones/heroMobile";
+import HeroTablet from "./Versiones/heroTablet";
 
-const Hero = ({ cards, texts }: any) => {
+export const Hero = ({ texts, images, cards }: any) => {
+
+  const [heroDisplayed, setHeroDisplayed] = useState(<HeroDesktop />);
+  const [windowWidth, setWindowWidth] = useState(1500);
+
   useEffect(() => {
-    console.log(texts);
-  }, [texts]);
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
 
+    // Agrega el listener de redimensionamiento del lado del cliente
+    window.addEventListener("resize", handleResize);
+
+    // Limpia el listener cuando el componente se desmonta
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (windowWidth < 768) {
+      setHeroDisplayed(<HeroMobile texts={texts} images={images} cards={cards} />);
+    } else if (windowWidth < 1025) {
+      setHeroDisplayed(<HeroTablet texts={texts} images={images} cards={cards} />);
+    } else {
+      setHeroDisplayed(<HeroDesktop texts={texts} images={images} cards={cards} />);
+    }
+  }, [windowWidth]);
   return (
-    <Grid className={styles.grid}>
-      <Box className={styles.textBox}>
-        <Typography className={styles.firstTitleHero}>
-          {texts[0]?.titles[0]?.title}
-        </Typography>
-        <Typography className={styles.secondTitleHero}>
-          {texts[0]?.titles[1]?.title}
-        </Typography>
-      </Box>
-      <Box className={styles.cardsBox}>
-        <CardHero
-          title={cards[0]?.cards[0]?.title}
-          description={cards[0]?.cards[0]?.description}
-        />
-        <CardHero
-          title={cards[0]?.cards[1]?.title}
-          description={cards[0]?.cards[0]?.description}
-        />
-      </Box>
-
-      <Box className={styles.yellowBox}></Box>
-    </Grid>
+    <>
+      {heroDisplayed}
+    </>
+    //
   );
 };
-
-export default Hero;
