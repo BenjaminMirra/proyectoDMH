@@ -107,7 +107,7 @@ export const theme = createTheme({
           },
         },
         {
-          props: { variant: "primary", size:"large" },
+          props: { variant: "primary", size: "large" },
           style: {
             width: "300px",
             height: "50px",
@@ -118,7 +118,7 @@ export const theme = createTheme({
           }
         },
         {
-          props: { variant: "primary", size:"medium" },
+          props: { variant: "primary", size: "medium" },
           style: {
             width: "140px",
             height: "40px",
@@ -149,7 +149,7 @@ export const theme = createTheme({
           }
         },
         {
-          props: { variant: "secondary", size:"large" },
+          props: { variant: "secondary", size: "large" },
           style: {
             width: "300px",
             height: "50px",
@@ -160,7 +160,7 @@ export const theme = createTheme({
           }
         },
         {
-          props: { variant: "secondary", size:"medium" },
+          props: { variant: "secondary", size: "medium" },
           style: {
             width: "140px",
             height: "40px",
