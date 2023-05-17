@@ -5,6 +5,20 @@ declare module "@mui/material/Button" {
     primary: true;
     secondary: true;
     tertiary: true;
+    header: true;
+  }
+}
+
+
+declare module "@mui/material/styles" {
+  interface Palette {
+    tertiary: Palette["primary"];
+    quaternary: Palette["primary"];
+  }
+
+  interface PaletteOptions {
+    tertiary?: PaletteOptions["primary"];
+    quaternary?: PaletteOptions["primary"];
   }
 }
 
@@ -24,9 +38,11 @@ export const theme = createTheme({
     secondary: {
       main: "#C1FD35",
     },
-    background: {
-      default: "#3A393E",
-      paper: "#EEEAEA",
+    tertiary: {
+      main: "EEEAEA"
+    },
+    quaternary: {
+      main: "#3A393E",
     },
   },
   spacing: 8,
@@ -59,34 +75,12 @@ export const theme = createTheme({
     button: {
       fontSize: "14pt",
       fontWeight: "700",
-      width: "300px",
-      height: "50px",
       textTransform: "capitalize",
-      "@media (min-width:600px)": {
-        width: "360px",
-        height: "64px",
-      },
     },
   },
   components: {
     MuiTypography: {
       variants: [
-        {
-          props: { variant: "button2" },
-          style: {
-            fontSize: "16pt",
-            fontWeight: "700",
-          },
-        },
-        {
-          props: { variant: "button3" },
-          style: {
-            fontSize: "16pt",
-            fontWeight: "600",
-            textDecoration: "underline",
-            fontFamily: "Open Sans",
-          },
-        },
         {
           props: { variant: "error" },
           style: {
@@ -113,7 +107,25 @@ export const theme = createTheme({
           },
         },
         {
-          props: { variant: "secondary" },
+          props: { variant: "primary", size:"large" },
+          style: {
+            width: "300px",
+            height: "50px",
+            "@media (min-width:600px)": {
+              width: "360px",
+              height: "64px",
+            },
+          }
+        },
+        {
+          props: { variant: "primary", size:"medium" },
+          style: {
+            width: "140px",
+            height: "40px",
+          }
+        },
+        {
+          props: { variant: "primary", color: "secondary" },
           style: {
             color: "#201F22",
             backgroundColor: "#C1FD35",
@@ -122,10 +134,10 @@ export const theme = createTheme({
               backgroundColor: "#a3d52e",
               borderColor: "#a3d52e",
             },
-          },
+          }
         },
         {
-          props: { variant: "tertiary" },
+          props: { variant: "secondary" },
           style: {
             color: "#201F22",
             backgroundColor: "#CECECE",
@@ -134,7 +146,25 @@ export const theme = createTheme({
               backgroundColor: "#bababa",
               borderColor: "#bababa",
             },
-          },
+          }
+        },
+        {
+          props: { variant: "secondary", size:"large" },
+          style: {
+            width: "300px",
+            height: "50px",
+            "@media (min-width:600px)": {
+              width: "360px",
+              height: "64px",
+            },
+          }
+        },
+        {
+          props: { variant: "secondary", size:"medium" },
+          style: {
+            width: "140px",
+            height: "40px",
+          }
         },
       ],
     },
