@@ -49,12 +49,28 @@ export async function getServerSideProps() {
       .limit(2)
       .toArray();
 
+    const transformedTexts = texts.map((text) => {
+      const titles = text.titles.map((title: any) => title.title);
+      return { titles };
+    });
+
     const cards = await db
       .collection("cards")
       .find({})
       .sort({ metacritic: -1 })
       .limit(2)
       .toArray();
+
+    const transformedCards = cards.map((card) => {
+      const transformedData = {
+        titles: card.cards.map((item: any) => ({
+          title: item.title,
+          description: item.description,
+        })),
+      };
+      return transformedData;
+    });
+
 
     const images = await db
       .collection("images")
@@ -65,9 +81,9 @@ export async function getServerSideProps() {
 
     return {
       props: {
-        texts: JSON.parse(JSON.stringify(texts)),
+        texts: transformedTexts,
         images: JSON.parse(JSON.stringify(images)),
-        cards: JSON.parse(JSON.stringify(cards)),
+        cards: transformedCards,
       },
     };
   } catch (e) {

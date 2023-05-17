@@ -24,13 +24,13 @@ export const Hero = ({ texts, images, cards }: any) => {
 
   useEffect(() => {
     if (windowWidth < 768) {
-      setHeroDisplayed(<HeroMobile texts={texts} images={images} cards={cards} />);
+      setHeroDisplayed(<HeroMobile images={images} cards={cards} />);
     } else if (windowWidth < 1025) {
       setHeroDisplayed(<HeroTablet texts={texts} images={images} cards={cards} />);
     } else {
-      setHeroDisplayed(<HeroDesktop texts={texts} images={images} cards={cards} />);
+      setHeroDisplayed(<HeroDesktop texts={texts} cards={cards} />);
     }
-  }, [windowWidth]);
+  }, [windowWidth, texts, images, cards]);
   return (
     <>
       {heroDisplayed}
