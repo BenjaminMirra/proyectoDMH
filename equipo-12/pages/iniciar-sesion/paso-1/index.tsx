@@ -3,11 +3,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { Button, Grid, TextField } from "@mui/material";
+import { Box, Button, Grid, Input, TextField } from "@mui/material";
 import styles from "../../../styles/login.module.css";
-import { NextPageWithLayout } from "../../_app";
+import ControlledInput from "../../../components/FormController/controlled-input";
 import LayoutLogin from "../../../layout/layout-login";
 import { ReactElement } from "react";
+import { NextPageWithLayout } from "../../_app";
 
 const schema = yup
   .object({
@@ -22,12 +23,13 @@ type FormData = yup.InferType<typeof schema>;
 const Username: NextPageWithLayout<any> = () => {
   const router = useRouter();
   const {
-    register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
+    control,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
+
   const onSubmit = (data: FormData) =>
     router.push({
       pathname: "/iniciar-sesion/paso-2",
@@ -42,7 +44,7 @@ const Username: NextPageWithLayout<any> = () => {
     <>
       <Head>
         <title>Digital Money House</title>
-        <meta name="Iniciar Sesión DMH" content="Digital Money House" />
+        <meta name="iniciar-sesion" content="Digital Money House" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main style={{
@@ -51,12 +53,50 @@ const Username: NextPageWithLayout<any> = () => {
         <Grid className={styles.gridGeneralContainer}>
           <h2>¡Hola! Ingresá tu e-mail</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <TextField id="outlined-basic" variant="outlined" className={styles.inputForm} {...register("email")} />
-            <p className={styles.pError}> {errors.email?.message}</p>
-            <Button variant="secondary" type="submit">Continuar</Button>
-          </form>
-          <Button variant="tertiary" onClick={() => onClick()}>Crear cuenta</Button>
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "repeat(1, 1fr)",
+                gridTemplateRows: "1fr 1fr 0.25fr 1fr 1fr",
+                gridColumnGap: "62px",
+                gridRowGap: "40px",
+                "& button ": {
+                  borderRadius: "10px",
+                },
+                "& input": {
+                  backgroundColor: "#FFFF",
+                  borderRadius: "10px",
+                  height: "31px",
+                },
+                "& .css-1av9oub-MuiInputBase-root-MuiFilledInput-root::after, & .css-1av9oub-MuiInputBase-root-MuiFilledInput-root::before":
+                {
+                  display: "none",
+                },
+                "& .css-1yuncik-MuiFormLabel-root-MuiInputLabel-root": {
+                  transform: "translate(12px, 20px) scale(1)",
+                },
+              }}
+            >
+              <ControlledInput
+                name="email"
+                control={control}
+                type="text"
+                label="Correo electronico*"
+                errorMessage={errors["email"]?.message}
+                variant="filled"
+              />
 
+              {/*  <TextField id="filled-basic"  variant="filled" className={styles.inputForm} {...register("email")} />
+        <p className={styles.pError}> {errors.email?.message}</p> */}
+              <Button variant="secondary" type="submit">
+                Continuar
+              </Button>
+
+              <Button variant="tertiary" onClick={() => onClick()}>
+                Crear cuenta
+              </Button>
+            </Box>
+          </form>
         </Grid>
       </main>
     </>
