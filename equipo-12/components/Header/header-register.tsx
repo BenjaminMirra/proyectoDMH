@@ -16,7 +16,7 @@ const HeaderRegister = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "10px 20px",
+          padding: "12px 20px",
         }}
       >
         <Link
@@ -32,14 +32,14 @@ const HeaderRegister = () => {
         <Box>
           <Link href="/iniciar-sesion/paso-1">
             <Button
+              variant="primary"
+              size="small"
               sx={{
-                backgroundColor: "#3A393E",
-                color: "#FFFF",
-                height: "40px !important",
-                width: "200px !important",
+                backgroundColor: "var(--dark-grey)",
+                color: "var(--main-text-color)",
                 "&:hover": {
-                  backgroundColor: "#201F22",
-                  color: "#C1FD35",
+                  backgroundColor: "var(--main-bg-color)",
+                  color: "var(--lime-green)",
                 },
               }}
             >

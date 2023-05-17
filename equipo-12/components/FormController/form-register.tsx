@@ -54,37 +54,45 @@ const FormRegister = () => {
           password: data.password,
           phone: data.phone,
         })
-        .then(function (response) {
-          console.log(response);
-          router.push("/");
+        .then(() => {
+          router.push("/registro-exitoso");
         });
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      style={{
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
-          gridTemplateRows: "1fr 1fr 1fr 1fr",
-          gridColumnGap: "62px",
-          gridRowGap: "40px",
-          "& button ": {
-            borderRadius: "10px",
-          },
-          "& input": {
-            backgroundColor: "#FFFF",
-            borderRadius: "10px",
-            height: "31px",
-          },
-          "& .css-1av9oub-MuiInputBase-root-MuiFilledInput-root::after, & .css-1av9oub-MuiInputBase-root-MuiFilledInput-root::before":
-            {
-              display: "none",
+          "@media only screen and (max-width: 768px)": {
+            gridRowGap: "20px",
+            gridTemplateColumns: "minmax(50px, 300px)",
+            gridTemplateRows: "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
+            "& .css-1yuncik-MuiFormLabel-root-MuiInputLabel-root": {
+              transform: "translate(12px, 15px) scale(1)",
             },
-          "& .css-1yuncik-MuiFormLabel-root-MuiInputLabel-root": {
-            transform: "translate(12px, 20px) scale(1)",
+          },
+          "@media only screen and (min-width: 768px)": {
+            gridColumnGap: "57px",
+            gridRowGap: "40px",
+            gridTemplateColumns: "minmax(50px, 330px) minmax(50px, 330px)",
+            gridTemplateRows: "1fr 1fr 1fr 1fr",
+            "& .css-1yuncik-MuiFormLabel-root-MuiInputLabel-root": {
+              transform: "translate(12px, 20px) scale(1)",
+            },
+          },
+          "@media only screen and (min-width: 1024px)": {
+            gridColumnGap: "62px",
+            gridTemplateColumns: "minmax(50px, 360px) minmax(50px, 360px)",
           },
         }}
       >
@@ -95,6 +103,7 @@ const FormRegister = () => {
           label="Nombre*"
           errorMessage={errors["firstName"]?.message}
           variant="filled"
+          size="medium"
         />
         <ControlledInput
           name="lastName"
@@ -103,6 +112,7 @@ const FormRegister = () => {
           label="Apellido*"
           errorMessage={errors["lastName"]?.message}
           variant="filled"
+          size="medium"
         />
         <ControlledInput
           name="dni"
@@ -111,6 +121,7 @@ const FormRegister = () => {
           label="DNI*"
           errorMessage={errors["dni"]?.message}
           variant="filled"
+          size="medium"
         />
         <ControlledInput
           name="email"
@@ -119,6 +130,7 @@ const FormRegister = () => {
           label="Correo electronico*"
           errorMessage={errors["email"]?.message}
           variant="filled"
+          size="medium"
         />
         <ControlledInput
           name="password"
@@ -127,6 +139,7 @@ const FormRegister = () => {
           label="Contraseña*"
           errorMessage={errors["password"]?.message}
           variant="filled"
+          size="medium"
         />
         <ControlledInput
           name="confirmPassword"
@@ -135,14 +148,16 @@ const FormRegister = () => {
           label="Confirmar contraseña*"
           errorMessage={errors["confirmPassword"]?.message}
           variant="filled"
+          size="medium"
         />
         <ControlledInput
           name="phone"
           control={control}
-          type="number"
+          type="tel"
           label="Telefono*"
           errorMessage={errors["phone"]?.message}
           variant="filled"
+          size="medium"
         />
         <Button
           variant="primary"
@@ -150,6 +165,14 @@ const FormRegister = () => {
           size="large"
           type="submit"
           disabled={isSubmitting}
+          sx={{
+            "@media only screen and (max-width: 768px)": {
+              marginTop: "10px",
+            },
+            "@media only screen and (min-width: 768px)": {
+              marginTop: "0px",
+            },
+          }}
         >
           Crear Cuenta
         </Button>

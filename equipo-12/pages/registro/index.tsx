@@ -24,14 +24,19 @@ const Register: NextPageWithLayout<any> = () => {
           justifyContent: "center",
           width: "100%",
           backgroundColor: "var(--main-bg-color)",
-          padding: "25px",
+          padding: "45px",
         }}
       >
         <Typography
           variant="h2"
           sx={{
-            marginBottom: "40px",
             color: "var(--main-text-color)",
+            "@media only screen and (max-width: 768px)": {
+              marginBottom: "35px",
+            },
+            "@media only screen and (min-width: 768px)": {
+              marginBottom: "40px",
+            },
           }}
         >
           Crear Cuenta

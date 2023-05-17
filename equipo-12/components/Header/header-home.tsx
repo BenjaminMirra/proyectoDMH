@@ -17,7 +17,7 @@ const HeaderHome = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "10px 20px",
+          padding: "12px 20px",
         }}
       >
         <Box>
@@ -39,10 +39,12 @@ const HeaderHome = () => {
           }}
         >
           <Link href="/iniciar-sesion/paso-1">
-            <Button variant="primary">Ingresar</Button>
+            <Button variant="primary" size="small">
+              Ingresar
+            </Button>
           </Link>
           <Link href="/registro">
-            <Button variant="primary" color="secondary">
+            <Button variant="primary" color="secondary" size="small">
               Crear Cuenta
             </Button>
           </Link>

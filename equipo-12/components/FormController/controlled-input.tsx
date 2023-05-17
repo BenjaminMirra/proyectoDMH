@@ -19,6 +19,7 @@ interface InputType<T extends FieldValues> {
   sx?: SxProps;
   errorMessage?: string;
   variant?: TextFieldVariants;
+  size?: "small" | "medium";
 }
 
 const ControlledInput = ({
@@ -30,6 +31,7 @@ const ControlledInput = ({
   sx,
   errorMessage,
   variant,
+  size,
 }: InputType<MyFormValues>) => {
   return (
     <Box
@@ -51,11 +53,7 @@ const ControlledInput = ({
             sx={sx}
             variant={variant}
             onChange={onChange}
-            InputProps={{
-              sx: {
-                height: "100%",
-              },
-            }}
+            size={size}
             fullWidth
           />
         )}

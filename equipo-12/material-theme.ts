@@ -83,14 +83,18 @@ export const theme = createTheme({
         {
           props: { variant: "error" },
           style: {
-            fontSize: "15px",
             fontWeight: "400",
             color: "#EE3838",
             fontStyle: "italic",
             display: "block",
             position: "absolute",
-            top: "100%",
             left: "0",
+            "@media only screen and (max-width: 768px)": {
+              fontSize: "12px",
+            },
+            "@media only screen and (min-width: 768px)": {
+              fontSize: "15px",
+            },
           },
         },
       ],
@@ -106,17 +110,6 @@ export const theme = createTheme({
             padding: "0",
             "&:hover": {
               backgroundColor: "#403e44",
-            },
-          },
-        },
-        {
-          props: { variant: "primary", size: "large" },
-          style: {
-            width: "300px",
-            height: "50px",
-            "@media (min-width:600px)": {
-              width: "360px",
-              height: "64px",
             },
           },
         },
@@ -152,24 +145,56 @@ export const theme = createTheme({
           },
         },
         {
-          props: { variant: "secondary", size: "large" },
-          style: {
-            width: "300px",
-            height: "50px",
-            "@media (min-width:600px)": {
-              width: "360px",
-              height: "64px",
-            },
-          },
-        },
-        {
           props: { variant: "secondary", size: "medium" },
           style: {
             width: "140px",
             height: "40px",
           },
         },
+        {
+          props: { size: "small" },
+          style: {
+            borderRadius: "5px",
+            height: "40px",
+            width: "100%",
+            padding: "0px 30px",
+          },
+        },
+        {
+          props: { size: "large" },
+          style: {
+            borderRadius: "10px",
+            width: "100%",
+            "@media only screen and (max-width: 768px)": {
+              height: "50px",
+              maxWidth: "300px",
+            },
+            "@media only screen and (min-width: 768px)": {
+              height: "64px",
+              maxWidth: "360px",
+            },
+          },
+        },
       ],
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          width: "100%",
+          maxWidth: "360px",
+          input: {
+            borderRadius: "10px",
+            backgroundColor: "var(--main-text-color)",
+            color: "var(--main-bg-color)",
+            "@media only screen and (max-width: 768px)": {
+              height: "17px",
+            },
+            "@media only screen and (min-width: 768px)": {
+              height: "31px",
+            },
+          },
+        },
+      },
     },
   },
 });

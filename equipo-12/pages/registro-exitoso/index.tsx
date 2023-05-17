@@ -1,15 +1,18 @@
 import { Box, Button, Typography } from "@mui/material";
 import Head from "next/head";
-import LayoutRegister from "../../layout/layout-register";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Link from "next/link";
+import LayoutLogin from "../../layout/layout-login";
 
 const SuccessRegister = () => {
   return (
-    <LayoutRegister>
+    <LayoutLogin>
       <Head>
-        <title>Registro DMH</title>
-        <meta name="description" content="Registro Digital Money House" />
+        <title>Registro exitoso!</title>
+        <meta
+          name="description"
+          content="Registro exitoso Digital Money House"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="" />
       </Head>
@@ -22,7 +25,7 @@ const SuccessRegister = () => {
           alignItems: "center",
           justifyContent: "center",
           width: "100%",
-          backgroundColor: "#201F22",
+          backgroundColor: "var(--main-bg-color)",
           padding: "25px",
         }}
       >
@@ -37,14 +40,23 @@ const SuccessRegister = () => {
         </Typography>
         <Box
           sx={{
-            width: "35%",
             textAlign: "center",
+            "@media only screen and (max-width: 768px)": {
+              width: "80%",
+            },
+            "@media only screen and (min-width: 768px)": {
+              width: "60%",
+            },
+            "@media only screen and (min-width: 1366px)": {
+              width: "35%",
+            },
           }}
         >
           <CheckCircleOutlineIcon
             sx={{
               color: "#C1FD35",
-              fontSize: "70px",
+              fontSize: "100px",
+              fontWeight: "200",
               marginBottom: "30px",
             }}
           />
@@ -59,11 +71,21 @@ const SuccessRegister = () => {
             favor revisalo para iniciar sesión
           </Typography>
         </Box>
-        <Link href="/">
-          <Button variant="secondary">Continuar</Button>
+        <Link
+          href="/"
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            textDecoration: "none",
+          }}
+        >
+          <Button variant="primary" color="secondary" size="large" fullWidth>
+            Continuar
+          </Button>
         </Link>
       </main>
-    </LayoutRegister>
+    </LayoutLogin>
   );
 };
 export default SuccessRegister;

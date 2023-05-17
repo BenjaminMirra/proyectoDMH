@@ -3,12 +3,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { Box, Button, Grid, Input, TextField } from "@mui/material";
-import styles from "../../../styles/login.module.css";
+import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
 import LayoutLogin from "../../../layout/layout-login";
 import { ReactElement } from "react";
 import { NextPageWithLayout } from "../../_app";
+import Link from "next/link";
 
 const schema = yup
   .object({
@@ -24,7 +24,7 @@ const Username: NextPageWithLayout<any> = () => {
   const router = useRouter();
   const {
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     control,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
@@ -36,10 +36,6 @@ const Username: NextPageWithLayout<any> = () => {
       query: { email: data.email },
     });
 
-  const onClick = () => {
-    router.push("/registro");
-  };
-
   return (
     <>
       <Head>
@@ -49,57 +45,78 @@ const Username: NextPageWithLayout<any> = () => {
       </Head>
       <main
         style={{
+          margin: "0 auto",
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
           width: "100%",
+          backgroundColor: "var(--main-bg-color)",
+          padding: "45px",
         }}
       >
-        <Grid className={styles.gridGeneralContainer}>
-          <h2>¡Hola! Ingresá tu e-mail</h2>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Box
-              sx={{
-                display: "grid",
-                gridTemplateColumns: "repeat(1, 1fr)",
-                gridTemplateRows: "1fr 1fr 0.25fr 1fr 1fr",
-                gridColumnGap: "62px",
-                gridRowGap: "40px",
-                "& button ": {
-                  borderRadius: "10px",
+        <Typography
+          variant="h2"
+          sx={{
+            color: "var(--main-text-color)",
+            "@media only screen and (max-width: 768px)": {
+              marginBottom: "35px",
+            },
+            "@media only screen and (min-width: 768px)": {
+              marginBottom: "40px",
+            },
+          }}
+        >
+          ¡Hola! Ingresá tu e-mail
+        </Typography>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateRows: "1fr 1fr 1fr",
+              gridRowGap: "20px",
+              "@media only screen and (max-width: 768px)": {
+                gridRowGap: "20px",
+                gridTemplateColumns: "minmax(50px, 300px)",
+                "& .css-1yuncik-MuiFormLabel-root-MuiInputLabel-root": {
+                  transform: "translate(12px, 15px) scale(1)",
                 },
-                "& input": {
-                  backgroundColor: "#FFFF",
-                  borderRadius: "10px",
-                  height: "31px",
-                },
-                "& .css-1av9oub-MuiInputBase-root-MuiFilledInput-root::after, & .css-1av9oub-MuiInputBase-root-MuiFilledInput-root::before":
-                  {
-                    display: "none",
-                  },
+              },
+              "@media only screen and (min-width: 768px)": {
+                gridTemplateColumns: "minmax(50px, 360px)",
                 "& .css-1yuncik-MuiFormLabel-root-MuiInputLabel-root": {
                   transform: "translate(12px, 20px) scale(1)",
                 },
+              },
+            }}
+          >
+            <ControlledInput
+              name="email"
+              control={control}
+              type="text"
+              label="Correo electronico*"
+              errorMessage={errors["email"]?.message}
+              variant="filled"
+            />
+            <Button
+              variant="primary"
+              color="secondary"
+              size="large"
+              type="submit"
+              sx={{
+                marginTop: "10px",
               }}
             >
-              <ControlledInput
-                name="email"
-                control={control}
-                type="text"
-                label="Correo electronico*"
-                errorMessage={errors["email"]?.message}
-                variant="filled"
-              />
-
-              {/*  <TextField id="filled-basic"  variant="filled" className={styles.inputForm} {...register("email")} />
-        <p className={styles.pError}> {errors.email?.message}</p> */}
-              <Button variant="secondary" type="submit">
-                Continuar
-              </Button>
-
-              <Button variant="tertiary" onClick={() => onClick()}>
+              Continuar
+            </Button>
+            <Link href="/registro">
+              <Button variant="primary" size="large">
                 Crear cuenta
               </Button>
-            </Box>
-          </form>
-        </Grid>
+            </Link>
+          </Box>
+        </form>
       </main>
     </>
   );

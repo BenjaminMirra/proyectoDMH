@@ -2,18 +2,30 @@ import { Box, Typography } from "@mui/material";
 
 const Footer = () => {
   return (
-    <Box sx={{
-      display: "flex",
-      justifyContent: "left",
-      alignItems: "center",
-      paddingLeft: "20px",
-      height: "64px",
-      backgroundColor: "#3A3A3A"
-    }}>
-      <Typography variant="subtitle1" sx={{ color: "#C1FD35" }}>
+    <Box
+      sx={{
+        backgroundColor: "var(--dark-grey)",
+      }}
+    >
+      <Typography
+        variant="subtitle2"
+        sx={{
+          color: "var(--lime-green)",
+          height: "64px",
+          display: "flex",
+          alignItems: "center",
+          "@media only screen and (max-width: 768px)": {
+            justifyContent: "center",
+          },
+          "@media only screen and (min-width: 768px)": {
+            paddingLeft: "20px",
+            justifyContent: "left",
+          },
+        }}
+      >
         © 2022 Digital Money House
       </Typography>
-    </Box >
+    </Box>
   );
 };
 

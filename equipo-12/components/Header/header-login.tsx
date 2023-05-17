@@ -1,16 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import logoDark from "../../utils/images/logoDark.svg";
-import { Button, Box } from "@mui/material";
+import { Box } from "@mui/material";
 
 const HeaderLogin = () => {
-  const router = useRouter();
-
   return (
     <Box
       sx={{
-        backgroundColor: "#C1FD35",
+        backgroundColor: "var(--lime-green)",
       }}
     >
       <Box
@@ -19,7 +16,7 @@ const HeaderLogin = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "10px 20px",
+          padding: "15.5px 20px",
         }}
       >
         <Link
@@ -32,21 +29,6 @@ const HeaderLogin = () => {
         >
           <Image src={logoDark} alt="logo" />
         </Link>
-        <Box>
-          {router.pathname === "/iniciar-sesion/paso-1" ||
-          router.pathname === "/iniciar-sesion/paso-2" ? (
-              <></>
-            ) : (
-              <>
-                <Link href="/iniciar-sesion/paso-1">
-                  <Button variant="primary">Ingresar</Button>
-                </Link>
-                <Link href="/registro">
-                  <Button variant="secondary">Crear Cuenta</Button>
-                </Link>
-              </>
-            )}
-        </Box>
       </Box>
     </Box>
   );

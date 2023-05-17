@@ -5,8 +5,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { ReactElement, useState } from "react";
 import Head from "next/head";
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
-import styles from "../../../styles/login.module.css";
+import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
 import LayoutLogin from "../../../layout/layout-login";
 
@@ -22,7 +21,6 @@ const Password = () => {
   const router = useRouter();
   const { query } = useRouter();
   const {
-    register,
     handleSubmit,
     formState: { errors },
     control,
@@ -55,63 +53,79 @@ const Password = () => {
         <meta name="iniciar-sesion" content="Digital Money House" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <main style={{
-        width: "100%"
-      }}>
-        <Grid className={styles.gridGeneralContainer}>
-          <h2>Ingresá tu contraseña</h2>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Box
-              sx={{
-                display: "grid",
-                gridTemplateColumns: "repeat(1, 1fr)",
-                gridTemplateRows: "1fr 1fr 0.25fr 1fr 1fr",
-                gridColumnGap: "62px",
-                gridRowGap: "40px",
-                "& button ": {
-                  borderRadius: "10px",
+      <main
+        style={{
+          margin: "0 auto",
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          backgroundColor: "var(--main-bg-color)",
+          padding: "45px",
+        }}
+      >
+        <Typography
+          variant="h2"
+          sx={{
+            color: "var(--main-text-color)",
+            "@media only screen and (max-width: 768px)": {
+              marginBottom: "35px",
+            },
+            "@media only screen and (min-width: 768px)": {
+              marginBottom: "40px",
+            },
+          }}
+        >
+          Ingresá tu contraseña
+        </Typography>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateRows: "1fr 1fr",
+              gridRowGap: "20px",
+              "@media only screen and (max-width: 768px)": {
+                gridRowGap: "20px",
+                gridTemplateColumns: "minmax(50px, 300px)",
+                "& .css-1yuncik-MuiFormLabel-root-MuiInputLabel-root": {
+                  transform: "translate(12px, 15px) scale(1)",
                 },
-                "& input": {
-                  backgroundColor: "#FFFF",
-                  borderRadius: "10px",
-                  height: "31px",
-                },
-                "& .css-1av9oub-MuiInputBase-root-MuiFilledInput-root::after, & .css-1av9oub-MuiInputBase-root-MuiFilledInput-root::before":
-                {
-                  display: "none",
-                },
+              },
+              "@media only screen and (min-width: 768px)": {
+                gridTemplateColumns: "minmax(50px, 360px)",
                 "& .css-1yuncik-MuiFormLabel-root-MuiInputLabel-root": {
                   transform: "translate(12px, 20px) scale(1)",
                 },
+              },
+            }}
+          >
+            <ControlledInput
+              name="password"
+              control={control}
+              type="password"
+              label="Contraseña*"
+              errorMessage={
+                errorLogin
+                  ? "Contraseña incorrecta. Vuelve a intentarlo"
+                  : errors["password"]?.message
+              }
+              variant="filled"
+            />
+            <Button
+              variant="primary"
+              color="secondary"
+              size="large"
+              type="submit"
+              sx={{
+                marginTop: "10px",
               }}
             >
-              <ControlledInput
-                name="password"
-                control={control}
-                type="password"
-                label="Contraseña*"
-                errorMessage={errors["password"]?.message}
-                variant="filled"
-              />
-              {errorLogin && (
-                <Typography
-                  sx={{
-                    position: "absolute",
-                    color: "#CC0000",
-                    fontSize: "14px",
-                    fontStyle: "italic",
-                    marginTop: "65px"
-                  }}
-                >
-                  Contraseña incorrecta. Vuelve a intentarlo
-                </Typography>
-              )}
-              <Button variant="secondary" type="submit">
-                Continuar
-              </Button>
-            </Box>
-          </form>
-        </Grid>
+              Continuar
+            </Button>
+          </Box>
+        </form>
       </main>
     </>
   );
