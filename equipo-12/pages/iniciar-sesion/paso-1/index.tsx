@@ -37,7 +37,7 @@ const Username: NextPageWithLayout<any> = () => {
     });
 
   const onClick = () => {
-    router.push("/");
+    router.push("/registro");
   };
 
   return (
@@ -47,9 +47,11 @@ const Username: NextPageWithLayout<any> = () => {
         <meta name="iniciar-sesion" content="Digital Money House" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <main style={{
-        width: "100%"
-      }}>
+      <main
+        style={{
+          width: "100%",
+        }}
+      >
         <Grid className={styles.gridGeneralContainer}>
           <h2>¡Hola! Ingresá tu e-mail</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -69,9 +71,9 @@ const Username: NextPageWithLayout<any> = () => {
                   height: "31px",
                 },
                 "& .css-1av9oub-MuiInputBase-root-MuiFilledInput-root::after, & .css-1av9oub-MuiInputBase-root-MuiFilledInput-root::before":
-                {
-                  display: "none",
-                },
+                  {
+                    display: "none",
+                  },
                 "& .css-1yuncik-MuiFormLabel-root-MuiInputLabel-root": {
                   transform: "translate(12px, 20px) scale(1)",
                 },

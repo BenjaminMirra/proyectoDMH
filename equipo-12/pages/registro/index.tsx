@@ -23,7 +23,7 @@ const Register: NextPageWithLayout<any> = () => {
           alignItems: "center",
           justifyContent: "center",
           width: "100%",
-          backgroundColor: "#201F22",
+          backgroundColor: "var(--main-bg-color)",
           padding: "25px",
         }}
       >
@@ -31,8 +31,7 @@ const Register: NextPageWithLayout<any> = () => {
           variant="h2"
           sx={{
             marginBottom: "40px",
-            color: "#FFFF",
-            fontSize: "20px",
+            color: "var(--main-text-color)",
           }}
         >
           Crear Cuenta

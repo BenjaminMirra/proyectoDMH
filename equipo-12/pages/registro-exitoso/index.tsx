@@ -1,7 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import Head from "next/head";
 import LayoutRegister from "../../layout/layout-register";
-import FormRegister from "../../components/FormController/form-register";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Link from "next/link";
 

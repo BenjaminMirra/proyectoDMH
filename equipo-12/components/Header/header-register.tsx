@@ -7,7 +7,7 @@ const HeaderRegister = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#C1FD35",
+        backgroundColor: "var(--lime-green)",
       }}
     >
       <Box

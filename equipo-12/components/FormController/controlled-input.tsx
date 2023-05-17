@@ -60,19 +60,7 @@ const ControlledInput = ({
           />
         )}
       />
-      {errorMessage && (
-        <Typography
-          sx={{
-            position: "absolute",
-            color: "#CC0000",
-            top: "100%",
-            fontSize: "14px",
-            fontStyle: "italic",
-          }}
-        >
-          {errorMessage}
-        </Typography>
-      )}
+      {errorMessage && <Typography variant="error">{errorMessage}</Typography>}
     </Box>
   );
 };

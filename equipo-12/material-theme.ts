@@ -9,7 +9,6 @@ declare module "@mui/material/Button" {
   }
 }
 
-
 declare module "@mui/material/styles" {
   interface Palette {
     tertiary: Palette["primary"];
@@ -39,7 +38,7 @@ export const theme = createTheme({
       main: "#C1FD35",
     },
     tertiary: {
-      main: "EEEAEA"
+      main: "EEEAEA",
     },
     quaternary: {
       main: "#3A393E",
@@ -84,10 +83,14 @@ export const theme = createTheme({
         {
           props: { variant: "error" },
           style: {
-            fontSize: "16pt",
-            fontWeight: "500",
-            color: "red",
+            fontSize: "15px",
+            fontWeight: "400",
+            color: "#EE3838",
             fontStyle: "italic",
+            display: "block",
+            position: "absolute",
+            top: "100%",
+            left: "0",
           },
         },
       ],
@@ -115,14 +118,14 @@ export const theme = createTheme({
               width: "360px",
               height: "64px",
             },
-          }
+          },
         },
         {
           props: { variant: "primary", size: "medium" },
           style: {
             width: "140px",
             height: "40px",
-          }
+          },
         },
         {
           props: { variant: "primary", color: "secondary" },
@@ -134,7 +137,7 @@ export const theme = createTheme({
               backgroundColor: "#a3d52e",
               borderColor: "#a3d52e",
             },
-          }
+          },
         },
         {
           props: { variant: "secondary" },
@@ -146,7 +149,7 @@ export const theme = createTheme({
               backgroundColor: "#bababa",
               borderColor: "#bababa",
             },
-          }
+          },
         },
         {
           props: { variant: "secondary", size: "large" },
@@ -157,14 +160,14 @@ export const theme = createTheme({
               width: "360px",
               height: "64px",
             },
-          }
+          },
         },
         {
           props: { variant: "secondary", size: "medium" },
           style: {
             width: "140px",
             height: "40px",
-          }
+          },
         },
       ],
     },

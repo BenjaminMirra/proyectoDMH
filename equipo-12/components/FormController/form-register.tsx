@@ -68,7 +68,7 @@ const FormRegister = () => {
         sx={{
           display: "grid",
           gridTemplateColumns: "repeat(2, 1fr)",
-          gridTemplateRows: "1fr 1fr 0.25fr 1fr 1fr",
+          gridTemplateRows: "1fr 1fr 1fr 1fr",
           gridColumnGap: "62px",
           gridRowGap: "40px",
           "& button ": {
@@ -120,17 +120,6 @@ const FormRegister = () => {
           errorMessage={errors["email"]?.message}
           variant="filled"
         />
-        <Typography
-          sx={{
-            gridArea: "3 / 1 / 4 / 3",
-            color: "#FFFF",
-            textAlign: "center",
-            fontSize: "15px",
-          }}
-        >
-          Usa entre 6 y 20 carácteres debe contener al menos al menos 1 carácter
-          especial, una mayúscula y un número
-        </Typography>
         <ControlledInput
           name="password"
           control={control}
@@ -155,7 +144,13 @@ const FormRegister = () => {
           errorMessage={errors["phone"]?.message}
           variant="filled"
         />
-        <Button variant="secondary" type="submit" disabled={isSubmitting}>
+        <Button
+          variant="primary"
+          color="secondary"
+          size="large"
+          type="submit"
+          disabled={isSubmitting}
+        >
           Crear Cuenta
         </Button>
       </Box>
