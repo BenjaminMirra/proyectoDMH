@@ -7,10 +7,7 @@ import CardHero from "../../CardHero/cardHero";
 const HeroDesktop = ({ cards, texts, images }: any) => {
 
   return (
-    <Grid className={styles.grid}
-      sx={{
-        backgroundImage: `url(${images[0]?.images[0].url})`
-      }}>
+    <Grid className={styles.grid}>
       <Box className={styles.textBox}>
         <Typography className={styles.firstTitleHero}>
           {texts ? texts[0]?.titles[0] : "hola"}
