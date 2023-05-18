@@ -40,8 +40,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
         })
         .then(function (response) {
           localStorage.setItem("token", response.data.token);
-          console.log("primero: ");
-          console.log(response);
+
           axios
             .request({
               method: "GET",
@@ -53,8 +52,6 @@ const Password: NextPageWithLayout<PropsType> = () => {
               data: "",
             })
             .then((response) => {
-              console.log("segundo: ");
-              console.log(response);
               localStorage.setItem("userId", response.data.user_id);
             });
 

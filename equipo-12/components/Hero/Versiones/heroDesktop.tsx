@@ -3,12 +3,14 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import CardHero from "../../CardHero/cardHero";
-import { useEffect } from "react";
 
-const HeroDesktop = ({ cards, texts }: any) => {
+const HeroDesktop = ({ cards, texts, images }: any) => {
 
   return (
-    <Grid className={styles.grid}>
+    <Grid className={styles.grid}
+      sx={{
+        backgroundImage: `url(${images[0]?.images[0].url})`
+      }}>
       <Box className={styles.textBox}>
         <Typography className={styles.firstTitleHero}>
           {texts ? texts[0]?.titles[0] : "hola"}

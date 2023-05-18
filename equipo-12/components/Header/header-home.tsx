@@ -32,7 +32,6 @@ const HeaderHome = () => {
             name: response.data.firstname,
             lastName: response.data.lastname
           });
-          console.log(userData);
         })
         .catch((error) => {
           console.log(error);
