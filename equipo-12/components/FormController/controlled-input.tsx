@@ -1,28 +1,26 @@
-import { Controller, Control, FieldValues } from "react-hook-form";
+import {
+  Controller,
+  Control,
+  FieldValues,
+  Path,
+  PathValue,
+} from "react-hook-form";
 import { TextField, Typography, Box, TextFieldVariants } from "@mui/material";
 import { SxProps } from "@mui/system";
-interface MyFormValues extends FieldValues {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  dni: string;
-  confirmPassword: string;
-  phone: string;
-}
-interface InputType<T extends FieldValues> {
+
+interface InputType<T extends FieldValues = FieldValues> {
   control: Control<T>;
-  name: string;
+  name: Path<T>;
   type: string;
   label: string;
-  defaultValue?: string;
+  defaultValue?: PathValue<T, Path<T>>;
   sx?: SxProps;
   errorMessage?: string;
   variant?: TextFieldVariants;
   size?: "small" | "medium";
 }
 
-const ControlledInput = ({
+const ControlledInput = <T extends FieldValues = FieldValues>({
   control,
   name,
   type,
@@ -32,7 +30,7 @@ const ControlledInput = ({
   errorMessage,
   variant,
   size,
-}: InputType<MyFormValues>) => {
+}: InputType<T>) => {
   return (
     <Box
       sx={{
@@ -42,7 +40,7 @@ const ControlledInput = ({
       <Controller
         name={name}
         control={control}
-        defaultValue={defaultValue || ""}
+        defaultValue={defaultValue}
         render={({ field: { name, value, onChange }, field }) => (
           <TextField
             {...field}

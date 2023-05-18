@@ -6,9 +6,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const client = await clientPromise;
     const db = client.db("data");
 
-    const texts = await db
-      .collection("texts")
-      .find().toArray();
+    const texts = await db.collection("texts").find().toArray();
 
     const transformedTexts = texts.map((text) => {
       const titles = text.titles.map((title: any) => title.title);

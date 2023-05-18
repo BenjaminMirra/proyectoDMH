@@ -6,7 +6,7 @@ import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
 import LayoutLogin from "../../../layout/layout-login";
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 import { NextPageWithLayout } from "../../_app";
 import Link from "next/link";
 
@@ -20,7 +20,11 @@ const schema = yup
   .required();
 type FormData = yup.InferType<typeof schema>;
 
-const Username: NextPageWithLayout<any> = () => {
+interface PropsType {
+  children?: ReactNode;
+}
+
+const Username: NextPageWithLayout<PropsType> = () => {
   const router = useRouter();
   const {
     handleSubmit,

@@ -6,7 +6,6 @@ import CardHero from "../../CardHero/cardHero";
 import { useEffect } from "react";
 
 const HeroDesktop = ({ cards, texts }: any) => {
-
   useEffect(() => {
     if (texts) {
       console.log(texts);
@@ -33,8 +32,7 @@ const HeroDesktop = ({ cards, texts }: any) => {
           description={cards ? cards[0].titles[1].description : ""}
         />
       </Box>
-      <Box className={styles.yellowBox}>
-      </Box>
+      <Box className={styles.yellowBox}></Box>
     </Grid>
   );
 };

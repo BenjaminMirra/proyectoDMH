@@ -5,8 +5,11 @@ import LayoutHome from "../layout/layout-home";
 import { ReactElement } from "react";
 import { NextPageWithLayout } from "./_app";
 
-const Home: NextPageWithLayout<any> = ({ texts, images, cards }: any) => {
+interface PropsType {
+  children?: ReactElement;
+}
 
+const Home: NextPageWithLayout<PropsType> = ({ texts, images, cards }: any) => {
   return (
     <>
       <Head>
@@ -26,7 +29,8 @@ const Home: NextPageWithLayout<any> = ({ texts, images, cards }: any) => {
           justifyContent: "center",
           width: "100%",
           backgroundColor: "#201F22",
-        }}>
+        }}
+      >
         <Hero texts={texts} images={images} cards={cards} />
       </main>
     </>
@@ -70,7 +74,6 @@ export async function getServerSideProps() {
       };
       return transformedData;
     });
-
 
     const images = await db
       .collection("images")

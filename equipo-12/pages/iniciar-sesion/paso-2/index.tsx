@@ -3,11 +3,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { ReactElement, useState } from "react";
+import { ReactElement, ReactNode, useState } from "react";
 import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
 import LayoutLogin from "../../../layout/layout-login";
+import { NextPageWithLayout } from "../../_app";
 
 const schema = yup
   .object({
@@ -15,8 +16,10 @@ const schema = yup
   })
   .required();
 type FormData = yup.InferType<typeof schema>;
-
-const Password = () => {
+interface PropsType {
+  children?: ReactNode;
+}
+const Password: NextPageWithLayout<PropsType> = () => {
   const [errorLogin, setErrorLogin] = useState(false);
   const router = useRouter();
   const { query } = useRouter();
@@ -39,21 +42,21 @@ const Password = () => {
           localStorage.setItem("token", response.data.token);
           console.log("primero: ");
           console.log(response);
-          axios.request({
-            method: "GET",
-            url: "https://digitalmoney.ctd.academy/api/account",
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": response.data.token
-            },
-            data: ""
-          }).then((response) => {
-            console.log("segundo: ");
-            console.log(response);
-            localStorage.setItem(
-              "userId", response.data.user_id,
-            );
-          });
+          axios
+            .request({
+              method: "GET",
+              url: "https://digitalmoney.ctd.academy/api/account",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: response.data.token,
+              },
+              data: "",
+            })
+            .then((response) => {
+              console.log("segundo: ");
+              console.log(response);
+              localStorage.setItem("userId", response.data.user_id);
+            });
 
           setErrorLogin(false);
           router.push("/");
