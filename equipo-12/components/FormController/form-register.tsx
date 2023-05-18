@@ -8,27 +8,27 @@ import * as yup from "yup";
 
 const schema = yup
   .object({
-    firstName: yup.string().required("El nombre es requerido"),
-    lastName: yup.string().required("El apellido es requerido"),
-    dni: yup.string().required("El DNI es requerido"),
+    firstName: yup.string().required("El nombre es requerido."),
+    lastName: yup.string().required("El apellido es requerido."),
+    dni: yup.string().required("El DNI es requerido."),
     email: yup
       .string()
-      .email("Ingrese un correo electrónico válido")
-      .required("El correo electrónico es obligatorio"),
+      .email("Ingrese un correo electrónico válido.")
+      .required("El correo electrónico es obligatorio."),
     password: yup
       .string()
-      .required("La contraseña es requerida")
-      .min(6, "La contraseña debe tener al menos 6 caracteres")
-      .max(20, "La contraseña no puede tener más de 20 caracteres")
+      .required("La contraseña es requerida.")
+      .min(6, "La contraseña debe tener al menos 6 caracteres.")
+      .max(20, "La contraseña no puede tener más de 20 caracteres.")
       .matches(
-        /^(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{6,20}$/,
-        "La contraseña debe contener al menos 1 carácter especial, una mayúscula y un número"
+        /^(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*[A-Z])(?=.*[0-9]).{6,20}$/,
+        "La contraseña debe contener al menos 1 caracter especial, una mayúscula y un número."
       ),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref("password"), undefined], "Las contraseñas no coinciden")
-      .required("La confirmación de contraseña es obligatoria"),
-    phone: yup.string().required("El Telefono es requerido"),
+      .required("La confirmación de contraseña es obligatoria."),
+    phone: yup.string().required("El Telefono es requerido."),
   })
   .required();
 type FormData = yup.InferType<typeof schema>;

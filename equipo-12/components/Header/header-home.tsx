@@ -3,8 +3,43 @@ import imageLogo from "../../utils/images/imageLogo.svg";
 import Button from "@mui/material/Button";
 import Link from "next/link";
 import { Box } from "@mui/material";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const HeaderHome = () => {
+
+  const [userData, setUserData] = useState({
+    name: "",
+    lastName: ""
+  });
+
+  useEffect(() => {
+    if (localStorage.getItem("userId") !== null) {
+      const userId = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
+      const config = {
+        method: "get",
+        url: `https://digitalmoney.ctd.academy/api/users/${userId}`,
+        headers: {
+          "Authorization": `${token}`
+        },
+        data: ""
+      };
+
+      axios.request(config)
+        .then((response) => {
+          setUserData({
+            name: response.data.firstname,
+            lastName: response.data.lastname
+          });
+          console.log(userData);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, []);
+
   return (
     <Box
       sx={{
@@ -37,17 +72,23 @@ const HeaderHome = () => {
             display: "flex",
             gap: "20px",
           }}
-        >
-          <Link href="/iniciar-sesion/paso-1">
-            <Button variant="primary" size="small">
-              Ingresar
-            </Button>
-          </Link>
-          <Link href="/registro">
-            <Button variant="primary" color="secondary" size="small">
-              Crear Cuenta
-            </Button>
-          </Link>
+        >:
+          {userData.name === "" ?
+            <>
+              <Link href="/iniciar-sesion/paso-1">
+                <Button variant="primary" size="small">
+                  Ingresar
+                </Button>
+              </Link>
+              <Link href="/registro">
+                <Button variant="primary" color="secondary" size="small">
+                  Crear Cuenta
+                </Button>
+              </Link>
+            </>
+            :
+            <p style={{ color: "white" }}>{userData.name} {userData.lastName}</p>
+          }
         </Box>
       </Box>
     </Box>

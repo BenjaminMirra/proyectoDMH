@@ -36,7 +36,25 @@ const Password = () => {
           password: data.password,
         })
         .then(function (response) {
+          localStorage.setItem("token", response.data.token);
+          console.log("primero: ");
           console.log(response);
+          axios.request({
+            method: "GET",
+            url: "https://digitalmoney.ctd.academy/api/account",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": response.data.token
+            },
+            data: ""
+          }).then((response) => {
+            console.log("segundo: ");
+            console.log(response);
+            localStorage.setItem(
+              "userId", response.data.user_id,
+            );
+          });
+
           setErrorLogin(false);
           router.push("/");
         });
