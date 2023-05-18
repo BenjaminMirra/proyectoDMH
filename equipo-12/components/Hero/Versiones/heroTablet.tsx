@@ -7,11 +7,6 @@ import { useEffect } from "react";
 
 const HeroTablet = ({ cards, texts }: any) => {
 
-  useEffect(() => {
-    console.log(texts);
-  }, [texts]);
-
-
   return (
     <Grid className={styles.grid}>
       <Box className={styles.textBox}>

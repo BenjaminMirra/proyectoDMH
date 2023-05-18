@@ -12,9 +12,9 @@ export const Hero = ({ texts, images, cards }: any) => {
 
   useEffect(() => {
     if (width <= 768) {
-      setHeroDisplayed(<HeroMobile images={images} cards={cards} />);
+      setHeroDisplayed(<HeroMobile cards={cards} />);
     } else if (width < 1025) {
-      setHeroDisplayed(<HeroTablet texts={texts} images={images} cards={cards} />);
+      setHeroDisplayed(<HeroTablet texts={texts} cards={cards} />);
     } else {
       setHeroDisplayed(<HeroDesktop texts={texts} cards={cards} />);
     }

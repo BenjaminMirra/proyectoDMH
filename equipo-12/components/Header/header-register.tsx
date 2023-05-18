@@ -4,6 +4,7 @@ import { Button, Box } from "@mui/material";
 import Link from "next/link";
 
 const HeaderRegister = () => {
+
   return (
     <Box
       sx={{

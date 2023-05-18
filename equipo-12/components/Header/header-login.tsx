@@ -4,6 +4,7 @@ import logoDark from "../../utils/images/logoDark.svg";
 import { Box } from "@mui/material";
 
 const HeaderLogin = () => {
+
   return (
     <Box
       sx={{

@@ -6,11 +6,6 @@ import CardHero from "../../CardHero/cardHero";
 import { useEffect } from "react";
 
 const HeroDesktop = ({ cards, texts }: any) => {
-  useEffect(() => {
-    if (texts) {
-      console.log(texts);
-    }
-  }, [texts]);
 
   return (
     <Grid className={styles.grid}>

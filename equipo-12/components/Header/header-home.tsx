@@ -2,7 +2,7 @@ import Image from "next/image";
 import imageLogo from "../../utils/images/imageLogo.svg";
 import Button from "@mui/material/Button";
 import Link from "next/link";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -72,7 +72,7 @@ const HeaderHome = () => {
             display: "flex",
             gap: "20px",
           }}
-        >:
+        >
           {userData.name === "" ?
             <>
               <Link href="/iniciar-sesion/paso-1">
@@ -87,11 +87,49 @@ const HeaderHome = () => {
               </Link>
             </>
             :
-            <p style={{ color: "white" }}>{userData.name} {userData.lastName}</p>
+            <>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: "#C1FD35",
+                  color: "var( --main-bg-color)",
+                  padding: "5px",
+                  borderRadius: "10px",
+                }}>
+                <Typography
+                  variant="h4"
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    lineHeight: "24px",
+                    color: "var( --main-bg-color)",
+                  }}>
+                  {userData.name.charAt(0)}{userData.lastName.charAt(0)}
+                </Typography>
+              </Box>
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  "@media (max-width: 768px)": {
+                    display: "none",
+                  },
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontWeight: "700",
+                  fontSize: "16px",
+                  color: "var(--main-text-color)",
+                }}
+              >Hola, {userData.name} {userData.lastName}
+              </Typography>
+            </>
           }
         </Box>
       </Box>
-    </Box>
+    </Box >
   );
 };
 
