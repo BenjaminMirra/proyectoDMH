@@ -54,8 +54,8 @@ const Token: NextPageWithLayout<PropsType> = () => {
                   .post("https://digitalmoney.ctd.academy/api/users", {
                     dni: parseInt(response.data.user.dni),
                     email: response.data.user.email,
-                    firstname: response.data.user.firstName,
-                    lastname: response.data.user.lastName,
+                    firstname: response.data.user.firstname,
+                    lastname: response.data.user.lastname,
                     password: response.data.user.password,
                     phone: response.data.user.phone,
                   })
@@ -67,7 +67,6 @@ const Token: NextPageWithLayout<PropsType> = () => {
                       })
                       .then(function (response) {
                         localStorage.setItem("token", response.data.token);
-
                         axios
                           .request({
                             method: "GET",
@@ -92,30 +91,6 @@ const Token: NextPageWithLayout<PropsType> = () => {
             console.log("token incorrecto");
           }
         });
-
-      // await axios
-      //   .post("https://digitalmoney.ctd.academy/api/login", {
-      //     email: query.email,
-      //     password: data.password,
-      //   })
-      //   .then(function (response) {
-      //     localStorage.setItem("token", response.data.token);
-      //     axios
-      //       .request({
-      //         method: "GET",
-      //         url: "https://digitalmoney.ctd.academy/api/account",
-      //         headers: {
-      //           "Content-Type": "application/json",
-      //           Authorization: response.data.token,
-      //         },
-      //         data: "",
-      //       })
-      //       .then((response) => {
-      //         localStorage.setItem("userId", response.data.user_id);
-      //       });
-      //     setErrorLogin(false);
-      //     router.push("/");
-      //   });
     } catch (error) {
       console.log(error);
       setErrorLogin(true);

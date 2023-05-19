@@ -25,7 +25,7 @@ const HeaderHome = () => {
         },
         data: "",
       };
-
+      console.log(userData);
       axios
         .request(config)
         .then((response) => {
@@ -39,6 +39,7 @@ const HeaderHome = () => {
           console.log(error);
         });
     }
+    console.log(userData);
   }, []);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
