@@ -9,6 +9,7 @@ import LayoutLogin from "../../../layout/layout-login";
 import { ReactElement, ReactNode } from "react";
 import { NextPageWithLayout } from "../../_app";
 import Link from "next/link";
+import { useUserContext } from "../../../provider/userProvider";
 
 const schema = yup
   .object({
@@ -34,11 +35,14 @@ const Username: NextPageWithLayout<PropsType> = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: FormData) =>
+  const { setUser } = useUserContext();
+
+  const onSubmit = (data: FormData) => {
+    setUser({ email: data.email, password: "" });
     router.push({
       pathname: "/iniciar-sesion/paso-2",
-      query: { email: data.email },
     });
+  };
 
   return (
     <>
