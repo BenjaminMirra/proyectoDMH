@@ -156,8 +156,10 @@ export const theme = createTheme({
           style: {
             borderRadius: "5px",
             height: "40px",
-            width: "100%",
-            padding: "0px 30px",
+            padding: "0px 10px",
+            "@media only screen and (max-width: 768px)": {
+              fontSize: "14px",
+            },
           },
         },
         {
