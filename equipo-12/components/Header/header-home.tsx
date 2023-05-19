@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Box, Fade, Menu, MenuItem, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import TemporaryDrawer from "../Drawer/Drawer";
 
 const HeaderHome = () => {
   const [logged, setLogged] = useState(false);
@@ -58,7 +57,7 @@ const HeaderHome = () => {
   };
 
   const handleIsAuthMenu = () => {
-    if (logged) {
+    if (logged && userData.name != "") {
       ////const { nombre, apellido } = JSON.parse(localStorage.getItem('user'));
       return (
         <>
@@ -109,8 +108,9 @@ const HeaderHome = () => {
             >
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
+            
           </Box>
-
+                    
           <Typography
             variant="subtitle2"
             sx={{
