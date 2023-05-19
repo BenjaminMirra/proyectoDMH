@@ -7,10 +7,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const HeaderHome = () => {
-
   const [userData, setUserData] = useState({
     name: "",
-    lastName: ""
+    lastName: "",
   });
 
   useEffect(() => {
@@ -21,16 +20,17 @@ const HeaderHome = () => {
         method: "get",
         url: `https://digitalmoney.ctd.academy/api/users/${userId}`,
         headers: {
-          "Authorization": `${token}`
+          Authorization: `${token}`,
         },
-        data: ""
+        data: "",
       };
 
-      axios.request(config)
+      axios
+        .request(config)
         .then((response) => {
           setUserData({
             name: response.data.firstname,
-            lastName: response.data.lastname
+            lastName: response.data.lastname,
           });
         })
         .catch((error) => {
@@ -72,7 +72,7 @@ const HeaderHome = () => {
             gap: "20px",
           }}
         >
-          {userData.name === "" ?
+          {userData.name === "" ? (
             <>
               <Link href="/iniciar-sesion/paso-1">
                 <Button variant="primary" size="small">
@@ -85,7 +85,7 @@ const HeaderHome = () => {
                 </Button>
               </Link>
             </>
-            :
+          ) : (
             <>
               <Box
                 sx={{
@@ -96,7 +96,8 @@ const HeaderHome = () => {
                   color: "var( --main-bg-color)",
                   padding: "5px",
                   borderRadius: "10px",
-                }}>
+                }}
+              >
                 <Typography
                   variant="h4"
                   sx={{
@@ -105,8 +106,10 @@ const HeaderHome = () => {
                     justifyContent: "center",
                     lineHeight: "24px",
                     color: "var( --main-bg-color)",
-                  }}>
-                  {userData.name.charAt(0)}{userData.lastName.charAt(0)}
+                  }}
+                >
+                  {userData.name.charAt(0)}
+                  {userData.lastName.charAt(0)}
                 </Typography>
               </Box>
               <Typography
@@ -122,13 +125,14 @@ const HeaderHome = () => {
                   fontSize: "16px",
                   color: "var(--main-text-color)",
                 }}
-              >Hola, {userData.name} {userData.lastName}
+              >
+                Hola, {userData.name} {userData.lastName}
               </Typography>
             </>
-          }
+          )}
         </Box>
       </Box>
-    </Box >
+    </Box>
   );
 };
 

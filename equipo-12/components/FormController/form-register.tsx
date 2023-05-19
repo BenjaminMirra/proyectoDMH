@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import * as yup from "yup";
+import sendConfirmationEmail from "../../lib/mail";
 
 const schema = yup
   .object({
@@ -45,18 +46,8 @@ const FormRegister = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
-      await axios
-        .post("https://digitalmoney.ctd.academy/api/users", {
-          dni: parseInt(data.dni),
-          email: data.email,
-          firstname: data.firstName,
-          lastname: data.lastName,
-          password: data.password,
-          phone: data.phone,
-        })
-        .then(() => {
-          router.push("/registro-exitoso");
-        });
+      await sendConfirmationEmail(data);
+      router.push("/");
     } catch (error) {
       console.log(error);
     }
