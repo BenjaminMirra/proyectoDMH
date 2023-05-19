@@ -29,6 +29,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "config/nodemailer.js"
-  ],
+, "pages/api/recuperar.ts"  ],
   "exclude": ["node_modules"]
 }

@@ -2,28 +2,29 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
-import axios from "axios";
 import { ReactElement, ReactNode, useState } from "react";
 import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
-import ControlledInput from "../../../components/FormController/controlled-input";
-import LayoutLogin from "../../../layout/layout-login";
-import { NextPageWithLayout } from "../../_app";
+import ControlledInput from "../../components/FormController/controlled-input";
+import { NextPageWithLayout } from "../_app";
+import LayoutLogin from "../../layout/layout-login";
+import * as crypto from "crypto-js";
 import Link from "next/link";
-import { useUserContext } from "../../../provider/userProvider";
 
 const schema = yup
   .object({
     password: yup.string().required("La contraseña es requerida"),
+    repassword: yup.string().required("La contraseña es requerida"),
   })
   .required();
 type FormData = yup.InferType<typeof schema>;
 interface PropsType {
   children?: ReactNode;
 }
-const Password: NextPageWithLayout<PropsType> = () => {
+const RecuperarClave: NextPageWithLayout<PropsType> = () => {
   const [errorLogin, setErrorLogin] = useState(false);
   const router = useRouter();
+  const { query } = useRouter();
   const {
     handleSubmit,
     formState: { errors },
@@ -32,52 +33,11 @@ const Password: NextPageWithLayout<PropsType> = () => {
     resolver: yupResolver(schema),
   });
 
-  const { user, setUser } = useUserContext();
-
-  const onSubmit = async (data: FormData) => {
-    try {
-      setUser({ email: user.email, password: data.password });
-      await axios
-        .post("https://digitalmoney.ctd.academy/api/login", {
-          email: user.email,
-          password: data.password,
-        })
-        .then(function (response) {
-          localStorage.setItem("token", response.data.token);
-
-          axios
-            .request({
-              method: "GET",
-              url: "https://digitalmoney.ctd.academy/api/account",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: response.data.token,
-              },
-              data: "",
-            })
-            .then((response) => {
-              localStorage.setItem("userId", response.data.user_id);
-            });
-
-          setErrorLogin(false);
-          router.push("/");
-        });
-    } catch (error) {
-      console.log(error);
-      setErrorLogin(true);
-    }
+  const onSubmit = async () => {
+    console.log(query);
+    return;
   };
 
-  const onChangePass = async () => {
-    try {
-      await axios
-        .post("/api/recuperar", {
-          email: user.email,
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
 
   return (
@@ -112,7 +72,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
             },
           }}
         >
-          Ingresá tu contraseña
+          Modificar tu contraseña
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box
@@ -139,45 +99,39 @@ const Password: NextPageWithLayout<PropsType> = () => {
               name="password"
               control={control}
               type="password"
-              label="Contraseña*"
+              label="Ingresa nueva contraseña*"
               errorMessage={
                 errorLogin
-                  ? "Contraseña incorrecta. Vuelve a intentarlo"
+                  ? ""
                   : errors["password"]?.message
               }
               variant="filled"
             />
-            <Button
-              variant="primary"
-              color="secondary"
-              size="large"
-              type="submit"
-              sx={{
-                marginTop: "10px",
-              }}
-            >
-              Continuar
-            </Button>
-            <Box sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center"
-            }}>
-              <Link href="/recupero-pendiente" onClick={onChangePass}>
-                <Typography
-                  variant="subtitle2"
-                  sx={{
-                    color: "var(--main-text-color)",
-                    cursor: "pointer",
-                    textDecoration: "none",
-                    "&:hover": {
-                      color: "var(--lime-green)",
-                    },
-                  }}>
-                  ¿Olvidaste tu contraseña?
-                </Typography>
-              </Link>
-            </Box>
+            <ControlledInput
+              name="repassword"
+              control={control}
+              type="password"
+              label="Repetir contraseña*"
+              errorMessage={
+                errorLogin
+                  ? ""
+                  : errors["password"]?.message
+              }
+              variant="filled"
+            />
+            <Link href="/recupero-exitoso">
+              <Button
+                variant="primary"
+                color="secondary"
+                size="large"
+                type="submit"
+                sx={{
+                  marginTop: "10px",
+                }}
+              >
+                Recuperar contraseña
+              </Button>
+            </Link>
           </Box>
         </form>
       </main>
@@ -185,8 +139,8 @@ const Password: NextPageWithLayout<PropsType> = () => {
   );
 };
 
-Password.getLayout = function getLayout(page: ReactElement) {
+RecuperarClave.getLayout = function getLayout(page: ReactElement) {
   return <LayoutLogin>{page}</LayoutLogin>;
 };
 
-export default Password;
+export default RecuperarClave;
