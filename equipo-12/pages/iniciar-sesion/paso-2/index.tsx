@@ -163,13 +163,12 @@ const Password: NextPageWithLayout<PropsType> = () => {
               justifyContent: "center",
               alignItems: "center"
             }}>
-              <Link href="/recupero-pendiente" onClick={onChangePass}>
+              <Link style={{textDecoration: "none"}} href="/recupero-pendiente" onClick={onChangePass}>
                 <Typography
                   variant="subtitle2"
                   sx={{
                     color: "var(--main-text-color)",
                     cursor: "pointer",
-                    textDecoration: "none",
                     "&:hover": {
                       color: "var(--lime-green)",
                     },
