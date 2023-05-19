@@ -16,7 +16,7 @@ const HeaderHome = () => {
   useEffect(() => {
     if (localStorage.getItem("userId") !== null) {
       const userId = localStorage.getItem("userId");
-      const token = localStorage.getItem("token");      
+      const token = localStorage.getItem("token");
       const config = {
         method: "get",
         url: `https://digitalmoney.ctd.academy/api/users/${userId}`,
@@ -25,7 +25,7 @@ const HeaderHome = () => {
         },
         data: "",
       };
-
+      console.log(userData);
       axios
         .request(config)
         .then((response) => {
@@ -39,6 +39,7 @@ const HeaderHome = () => {
           console.log(error);
         });
     }
+    console.log(userData);
   }, []);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -77,7 +78,7 @@ const HeaderHome = () => {
               aria-controls={open ? "fade-menu" : undefined}
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
-              onClick={handleClick}      
+              onClick={handleClick}
             >
               <Typography
                 variant="h4"
@@ -103,14 +104,13 @@ const HeaderHome = () => {
               TransitionComponent={Fade}
               onClick={handleClose}
               sx={{
-                margin:"5px"
+                margin: "5px",
               }}
             >
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
-            
           </Box>
-                    
+
           <Typography
             variant="subtitle2"
             sx={{
@@ -178,10 +178,10 @@ const HeaderHome = () => {
           sx={{
             display: "flex",
             gap: "20px",
-            color:"white"
+            color: "white",
           }}
         >
-          {handleIsAuthMenu()}          
+          {handleIsAuthMenu()}
         </Box>
       </Box>
     </Box>

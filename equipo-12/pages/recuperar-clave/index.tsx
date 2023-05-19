@@ -2,31 +2,29 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
+import { ReactElement, ReactNode, useState } from "react";
 import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
-import ControlledInput from "../../../components/FormController/controlled-input";
-import LayoutLogin from "../../../layout/layout-login";
-import { ReactElement, ReactNode } from "react";
-import { NextPageWithLayout } from "../../_app";
+import ControlledInput from "../../components/FormController/controlled-input";
+import { NextPageWithLayout } from "../_app";
+import LayoutLogin from "../../layout/layout-login";
+import * as crypto from "crypto-js";
 import Link from "next/link";
-import { useUserContext } from "../../../provider/userProvider";
 
 const schema = yup
   .object({
-    email: yup
-      .string()
-      .required("Se requiere de un correo electronico")
-      .email("Se solicita un correo electronico valido"),
+    password: yup.string().required("La contraseña es requerida"),
+    repassword: yup.string().required("La contraseña es requerida"),
   })
   .required();
 type FormData = yup.InferType<typeof schema>;
-
 interface PropsType {
   children?: ReactNode;
 }
-
-const Username: NextPageWithLayout<PropsType> = () => {
+const RecuperarClave: NextPageWithLayout<PropsType> = () => {
+  const [errorLogin, setErrorLogin] = useState(false);
   const router = useRouter();
+  const { query } = useRouter();
   const {
     handleSubmit,
     formState: { errors },
@@ -35,14 +33,12 @@ const Username: NextPageWithLayout<PropsType> = () => {
     resolver: yupResolver(schema),
   });
 
-  const { setUser } = useUserContext();
-
-  const onSubmit = (data: FormData) => {
-    setUser({ email: data.email, password: "" });
-    router.push({
-      pathname: "/iniciar-sesion/paso-2",
-    });
+  const onSubmit = async () => {
+    console.log(query);
+    return;
   };
+
+
 
   return (
     <>
@@ -76,13 +72,13 @@ const Username: NextPageWithLayout<PropsType> = () => {
             },
           }}
         >
-          ¡Hola! Ingresá tu e-mail
+          Modificar tu contraseña
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box
             sx={{
               display: "grid",
-              gridTemplateRows: "1fr 1fr 1fr",
+              gridTemplateRows: "1fr 1fr",
               gridRowGap: "20px",
               "@media only screen and (max-width: 768px)": {
                 gridRowGap: "20px",
@@ -100,27 +96,40 @@ const Username: NextPageWithLayout<PropsType> = () => {
             }}
           >
             <ControlledInput
-              name="email"
+              name="password"
               control={control}
-              type="text"
-              label="Correo electronico*"
-              errorMessage={errors["email"]?.message}
+              type="password"
+              label="Ingresa nueva contraseña*"
+              errorMessage={
+                errorLogin
+                  ? ""
+                  : errors["password"]?.message
+              }
               variant="filled"
             />
-            <Button
-              variant="primary"
-              color="secondary"
-              size="large"
-              type="submit"
-              sx={{
-                marginTop: "10px",
-              }}
-            >
-              Continuar
-            </Button>
-            <Link href="/registro">
-              <Button variant="primary" size="large">
-                Crear cuenta
+            <ControlledInput
+              name="repassword"
+              control={control}
+              type="password"
+              label="Repetir contraseña*"
+              errorMessage={
+                errorLogin
+                  ? ""
+                  : errors["password"]?.message
+              }
+              variant="filled"
+            />
+            <Link href="/recupero-exitoso">
+              <Button
+                variant="primary"
+                color="secondary"
+                size="large"
+                type="submit"
+                sx={{
+                  marginTop: "10px",
+                }}
+              >
+                Recuperar contraseña
               </Button>
             </Link>
           </Box>
@@ -130,8 +139,8 @@ const Username: NextPageWithLayout<PropsType> = () => {
   );
 };
 
-Username.getLayout = function getLayout(page: ReactElement) {
+RecuperarClave.getLayout = function getLayout(page: ReactElement) {
   return <LayoutLogin>{page}</LayoutLogin>;
 };
 
-export default Username;
+export default RecuperarClave;

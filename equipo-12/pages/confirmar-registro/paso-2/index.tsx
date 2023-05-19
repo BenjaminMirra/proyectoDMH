@@ -2,30 +2,26 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
+import axios from "axios";
+import { ReactElement, ReactNode, useState } from "react";
 import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
 import LayoutLogin from "../../../layout/layout-login";
-import { ReactElement, ReactNode } from "react";
 import { NextPageWithLayout } from "../../_app";
-import Link from "next/link";
 import { useUserContext } from "../../../provider/userProvider";
 
 const schema = yup
   .object({
-    email: yup
-      .string()
-      .required("Se requiere de un correo electronico")
-      .email("Se solicita un correo electronico valido"),
+    password: yup.string().required("La contraseña es requerida"),
   })
   .required();
 type FormData = yup.InferType<typeof schema>;
-
 interface PropsType {
   children?: ReactNode;
 }
-
-const Username: NextPageWithLayout<PropsType> = () => {
+const Password: NextPageWithLayout<PropsType> = () => {
+  const [errorLogin, setErrorLogin] = useState(false);
   const router = useRouter();
   const {
     handleSubmit,
@@ -34,13 +30,11 @@ const Username: NextPageWithLayout<PropsType> = () => {
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
-
-  const { setUser } = useUserContext();
-
+  const { user, setUser } = useUserContext();
   const onSubmit = (data: FormData) => {
-    setUser({ email: data.email, password: "" });
+    setUser({ email: user.email, password: data.password });
     router.push({
-      pathname: "/iniciar-sesion/paso-2",
+      pathname: "/confirmar-registro/paso-3",
     });
   };
 
@@ -76,13 +70,13 @@ const Username: NextPageWithLayout<PropsType> = () => {
             },
           }}
         >
-          ¡Hola! Ingresá tu e-mail
+          Ingresá tu contraseña
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box
             sx={{
               display: "grid",
-              gridTemplateRows: "1fr 1fr 1fr",
+              gridTemplateRows: "1fr 1fr",
               gridRowGap: "20px",
               "@media only screen and (max-width: 768px)": {
                 gridRowGap: "20px",
@@ -100,11 +94,16 @@ const Username: NextPageWithLayout<PropsType> = () => {
             }}
           >
             <ControlledInput
-              name="email"
+              name="password"
               control={control}
-              type="text"
-              label="Correo electronico*"
-              errorMessage={errors["email"]?.message}
+              type="password"
+              label="Contraseña*"
+              defaultValue=""
+              errorMessage={
+                errorLogin
+                  ? "Contraseña incorrecta. Vuelve a intentarlo"
+                  : errors["password"]?.message
+              }
               variant="filled"
             />
             <Button
@@ -118,11 +117,6 @@ const Username: NextPageWithLayout<PropsType> = () => {
             >
               Continuar
             </Button>
-            <Link href="/registro">
-              <Button variant="primary" size="large">
-                Crear cuenta
-              </Button>
-            </Link>
           </Box>
         </form>
       </main>
@@ -130,8 +124,8 @@ const Username: NextPageWithLayout<PropsType> = () => {
   );
 };
 
-Username.getLayout = function getLayout(page: ReactElement) {
+Password.getLayout = function getLayout(page: ReactElement) {
   return <LayoutLogin>{page}</LayoutLogin>;
 };
 
-export default Username;
+export default Password;

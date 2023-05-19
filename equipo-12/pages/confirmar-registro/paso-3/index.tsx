@@ -2,31 +2,29 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
+import axios from "axios";
+import { ReactElement, ReactNode, useState } from "react";
 import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
 import LayoutLogin from "../../../layout/layout-login";
-import { ReactElement, ReactNode } from "react";
 import { NextPageWithLayout } from "../../_app";
-import Link from "next/link";
 import { useUserContext } from "../../../provider/userProvider";
 
 const schema = yup
   .object({
-    email: yup
-      .string()
-      .required("Se requiere de un correo electronico")
-      .email("Se solicita un correo electronico valido"),
+    authToken: yup.string().min(6),
   })
   .required();
 type FormData = yup.InferType<typeof schema>;
-
 interface PropsType {
   children?: ReactNode;
 }
 
-const Username: NextPageWithLayout<PropsType> = () => {
+const Token: NextPageWithLayout<PropsType> = () => {
+  const [errorLogin, setErrorLogin] = useState(false);
   const router = useRouter();
+  const { query } = useRouter();
   const {
     handleSubmit,
     formState: { errors },
@@ -34,14 +32,69 @@ const Username: NextPageWithLayout<PropsType> = () => {
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
-
-  const { setUser } = useUserContext();
-
-  const onSubmit = (data: FormData) => {
-    setUser({ email: data.email, password: "" });
-    router.push({
-      pathname: "/iniciar-sesion/paso-2",
-    });
+  const { user } = useUserContext();
+  const onSubmit = async (data: FormData) => {
+    try {
+      await axios
+        .get("/api/confirmation", {
+          params: {
+            email: user.email,
+          },
+        })
+        .then((response) => {
+          if (response.data.codigo == data.authToken) {
+            axios
+              .put("/api/confirmation", {
+                params: {
+                  email: user.email,
+                },
+              })
+              .then((response) => {
+                axios
+                  .post("https://digitalmoney.ctd.academy/api/users", {
+                    dni: parseInt(response.data.user.dni),
+                    email: response.data.user.email,
+                    firstname: response.data.user.firstname,
+                    lastname: response.data.user.lastname,
+                    password: response.data.user.password,
+                    phone: response.data.user.phone,
+                  })
+                  .then(() => {
+                    axios
+                      .post("https://digitalmoney.ctd.academy/api/login", {
+                        email: response.data.user.email,
+                        password: response.data.user.password,
+                      })
+                      .then(function (response) {
+                        localStorage.setItem("token", response.data.token);
+                        axios
+                          .request({
+                            method: "GET",
+                            url: "https://digitalmoney.ctd.academy/api/account",
+                            headers: {
+                              "Content-Type": "application/json",
+                              Authorization: response.data.token,
+                            },
+                            data: "",
+                          })
+                          .then((response) => {
+                            localStorage.setItem(
+                              "userId",
+                              response.data.user_id
+                            );
+                          });
+                        router.push("/");
+                      });
+                  });
+              });
+          } else {
+            console.log("token incorrecto");
+          }
+        });
+    } catch (error) {
+      console.log(error);
+      setErrorLogin(true);
+    }
   };
 
   return (
@@ -76,13 +129,13 @@ const Username: NextPageWithLayout<PropsType> = () => {
             },
           }}
         >
-          ¡Hola! Ingresá tu e-mail
+          Ingresá tu token
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box
             sx={{
               display: "grid",
-              gridTemplateRows: "1fr 1fr 1fr",
+              gridTemplateRows: "1fr 1fr",
               gridRowGap: "20px",
               "@media only screen and (max-width: 768px)": {
                 gridRowGap: "20px",
@@ -100,11 +153,11 @@ const Username: NextPageWithLayout<PropsType> = () => {
             }}
           >
             <ControlledInput
-              name="email"
+              name="authToken"
               control={control}
               type="text"
-              label="Correo electronico*"
-              errorMessage={errors["email"]?.message}
+              label="Token*"
+              defaultValue=""
               variant="filled"
             />
             <Button
@@ -118,11 +171,6 @@ const Username: NextPageWithLayout<PropsType> = () => {
             >
               Continuar
             </Button>
-            <Link href="/registro">
-              <Button variant="primary" size="large">
-                Crear cuenta
-              </Button>
-            </Link>
           </Box>
         </form>
       </main>
@@ -130,8 +178,8 @@ const Username: NextPageWithLayout<PropsType> = () => {
   );
 };
 
-Username.getLayout = function getLayout(page: ReactElement) {
+Token.getLayout = function getLayout(page: ReactElement) {
   return <LayoutLogin>{page}</LayoutLogin>;
 };
 
-export default Username;
+export default Token;

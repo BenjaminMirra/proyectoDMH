@@ -9,6 +9,8 @@ import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
 import LayoutLogin from "../../../layout/layout-login";
 import { NextPageWithLayout } from "../../_app";
+import Link from "next/link";
+import { useUserContext } from "../../../provider/userProvider";
 
 const schema = yup
   .object({
@@ -22,7 +24,6 @@ interface PropsType {
 const Password: NextPageWithLayout<PropsType> = () => {
   const [errorLogin, setErrorLogin] = useState(false);
   const router = useRouter();
-  const { query } = useRouter();
   const {
     handleSubmit,
     formState: { errors },
@@ -31,11 +32,14 @@ const Password: NextPageWithLayout<PropsType> = () => {
     resolver: yupResolver(schema),
   });
 
+  const { user, setUser } = useUserContext();
+
   const onSubmit = async (data: FormData) => {
     try {
+      setUser({ email: user.email, password: data.password });
       await axios
         .post("https://digitalmoney.ctd.academy/api/login", {
-          email: query.email,
+          email: user.email,
           password: data.password,
         })
         .then(function (response) {
@@ -63,6 +67,18 @@ const Password: NextPageWithLayout<PropsType> = () => {
       setErrorLogin(true);
     }
   };
+
+  const onChangePass = async () => {
+    try {
+      await axios
+        .post("/api/recuperar", {
+          email: user.email,
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   return (
     <>
@@ -142,6 +158,25 @@ const Password: NextPageWithLayout<PropsType> = () => {
             >
               Continuar
             </Button>
+            <Box sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}>
+              <Link style={{textDecoration: "none"}} href="/recupero-pendiente" onClick={onChangePass}>
+                <Typography
+                  variant="subtitle2"
+                  sx={{
+                    color: "var(--main-text-color)",
+                    cursor: "pointer",
+                    "&:hover": {
+                      color: "var(--lime-green)",
+                    },
+                  }}>
+                  ¿Olvidaste tu contraseña?
+                </Typography>
+              </Link>
+            </Box>
           </Box>
         </form>
       </main>

@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
@@ -8,7 +8,6 @@ import ControlledInput from "../../../components/FormController/controlled-input
 import LayoutLogin from "../../../layout/layout-login";
 import { ReactElement, ReactNode } from "react";
 import { NextPageWithLayout } from "../../_app";
-import Link from "next/link";
 import { useUserContext } from "../../../provider/userProvider";
 
 const schema = yup
@@ -40,7 +39,7 @@ const Username: NextPageWithLayout<PropsType> = () => {
   const onSubmit = (data: FormData) => {
     setUser({ email: data.email, password: "" });
     router.push({
-      pathname: "/iniciar-sesion/paso-2",
+      pathname: "/confirmar-registro/paso-2",
     });
   };
 
@@ -104,6 +103,7 @@ const Username: NextPageWithLayout<PropsType> = () => {
               control={control}
               type="text"
               label="Correo electronico*"
+              defaultValue=""
               errorMessage={errors["email"]?.message}
               variant="filled"
             />
@@ -118,11 +118,6 @@ const Username: NextPageWithLayout<PropsType> = () => {
             >
               Continuar
             </Button>
-            <Link href="/registro">
-              <Button variant="primary" size="large">
-                Crear cuenta
-              </Button>
-            </Link>
           </Box>
         </form>
       </main>
