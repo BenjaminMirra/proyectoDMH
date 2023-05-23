@@ -163,7 +163,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
               justifyContent: "center",
               alignItems: "center"
             }}>
-              <Link style={{textDecoration: "none"}} href="/recupero-pendiente" onClick={onChangePass}>
+              {/* <Link style={{textDecoration: "none"}} href="/recupero-pendiente" onClick={onChangePass}>
                 <Typography
                   variant="subtitle2"
                   sx={{
@@ -175,7 +175,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
                   }}>
                   ¿Olvidaste tu contraseña?
                 </Typography>
-              </Link>
+              </Link> */}
             </Box>
           </Box>
         </form>
