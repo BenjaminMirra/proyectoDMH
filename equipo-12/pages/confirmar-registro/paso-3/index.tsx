@@ -89,6 +89,7 @@ const Token: NextPageWithLayout<PropsType> = () => {
               });
           } else {
             console.log("token incorrecto");
+            setErrorLogin(true);
           }
         });
     } catch (error) {
@@ -159,6 +160,11 @@ const Token: NextPageWithLayout<PropsType> = () => {
               label="Token*"
               defaultValue=""
               variant="filled"
+              errorMessage={
+                errorLogin
+                  ? "Token incorrecto. Vuelve a intentarlo"
+                  : errors["authToken"]?.message
+              }
             />
             <Button
               variant="primary"

@@ -107,7 +107,7 @@ const HeaderHome = () => {
                 margin: "5px",
               }}
             >
-              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
             </Menu>
           </Box>
 

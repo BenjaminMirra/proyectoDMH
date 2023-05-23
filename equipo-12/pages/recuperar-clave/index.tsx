@@ -13,8 +13,19 @@ import Link from "next/link";
 
 const schema = yup
   .object({
-    password: yup.string().required("La contraseña es requerida"),
-    repassword: yup.string().required("La contraseña es requerida"),
+    password: yup
+      .string()
+      .required("La contraseña es requerida.")
+      .min(6, "La contraseña debe tener al menos 6 caracteres.")
+      .max(20, "La contraseña no puede tener más de 20 caracteres.")
+      .matches(
+        /^(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*[A-Z])(?=.*[0-9]).{6,20}$/,
+        "La contraseña debe contener al menos 1 caracter especial, una mayúscula y un número."
+      ),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref("password"), undefined], "Las contraseñas no coinciden")
+      .required("La confirmación de contraseña es obligatoria."),
   })
   .required();
 type FormData = yup.InferType<typeof schema>;
@@ -22,12 +33,12 @@ interface PropsType {
   children?: ReactNode;
 }
 const RecuperarClave: NextPageWithLayout<PropsType> = () => {
-  const [errorLogin, setErrorLogin] = useState(false);
+  //const [errorLogin, setErrorLogin] = useState(false);
   const router = useRouter();
   const { query } = useRouter();
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     control,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
@@ -35,10 +46,9 @@ const RecuperarClave: NextPageWithLayout<PropsType> = () => {
 
   const onSubmit = async () => {
     console.log(query);
+    router.push("/recupero-exitoso");
     return;
   };
-
-
 
   return (
     <>
@@ -100,38 +110,31 @@ const RecuperarClave: NextPageWithLayout<PropsType> = () => {
               control={control}
               type="password"
               label="Ingresa nueva contraseña*"
-              errorMessage={
-                errorLogin
-                  ? ""
-                  : errors["password"]?.message
-              }
+              //errorMessage={errorLogin ? "" : errors["password"]?.message}
+              errorMessage={errors["password"]?.message}
               variant="filled"
             />
             <ControlledInput
-              name="repassword"
+              name="confirmPassword"
               control={control}
               type="password"
               label="Repetir contraseña*"
-              errorMessage={
-                errorLogin
-                  ? ""
-                  : errors["password"]?.message
-              }
+              //errorMessage={errorLogin ? "" : errors["confirmPassword"]?.message}
+              errorMessage={errors["confirmPassword"]?.message}
               variant="filled"
             />
-            <Link href="/recupero-exitoso">
-              <Button
-                variant="primary"
-                color="secondary"
-                size="large"
-                type="submit"
-                sx={{
-                  marginTop: "10px",
-                }}
-              >
-                Recuperar contraseña
-              </Button>
-            </Link>
+            <Button
+              variant="primary"
+              color="secondary"
+              size="large"
+              type="submit"
+              disabled={isSubmitting}
+              sx={{
+                marginTop: "10px",
+              }}
+            >
+              Recuperar contraseña
+            </Button>
           </Box>
         </form>
       </main>

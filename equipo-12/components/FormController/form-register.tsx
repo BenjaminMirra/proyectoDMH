@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "./controlled-input";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import * as yup from "yup";
 import sendConfirmationEmail from "../../lib/mail";
+import { useState } from "react";
 
 const schema = yup
   .object({
@@ -35,6 +36,7 @@ const schema = yup
 type FormData = yup.InferType<typeof schema>;
 
 const FormRegister = () => {
+  const [accountExists, setAccountExists] = useState(false);
   const router = useRouter();
   const {
     handleSubmit,
@@ -58,6 +60,8 @@ const FormRegister = () => {
       style={{
         width: "100%",
         display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
         justifyContent: "center",
       }}
     >
@@ -168,6 +172,14 @@ const FormRegister = () => {
           Crear Cuenta
         </Button>
       </Box>
+      {accountExists && (
+        <Typography
+          variant="subtitle2"
+          sx={{ color: "rgb(255, 0, 0)", marginTop: "25px" }}
+        >
+          Esta cuenta ya existe
+        </Typography>
+      )}
     </form>
   );
 };
