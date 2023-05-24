@@ -19,6 +19,7 @@ interface InputType<T extends FieldValues = FieldValues> {
   variant?: TextFieldVariants;
   size?: "small" | "medium";
   id?:string | number;
+  value?:string;
   onFocusCapture?:({ target }: any) => void
 }
 

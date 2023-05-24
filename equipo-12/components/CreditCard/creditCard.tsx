@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { FormEvent, MouseEvent, useEffect, useState } from "react";
 import * as yup from "yup";
 import Card from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
@@ -15,7 +15,7 @@ import {
 import Link from "next/link";
 import ControlledInput from "../FormController/controlled-input";
 
-const schema = yup
+/* const schema = yup
   .object({
     name: yup.string().required("El nombre es requerido."),
     numberCard: yup.number().required("El número de tarjeta es requerido."),
@@ -23,28 +23,44 @@ const schema = yup
     cvc: yup.number().required("El número de tarjeta es requerido."),
   })
   .required();
-type FormData = yup.InferType<typeof schema>;
+type FormData = yup.InferType<typeof schema>; */
 
 const CreditCard = () => {
-  const {
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    control,
-  } = useForm<FormData>({
-    resolver: yupResolver(schema),
-  });
+  const [isDisabled, setIsDisabled] = useState(false);
   const [cvc, setCvc] = useState("");
   const [expiry, setExpiry] = useState("");
   const [focused, setFocused] = useState("");
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+  const [ state, setState] = useState({
+    number: "",
+    name: "",
+    expiry: "",
+    cvc: ""
+  });
+
+  useEffect(() => {
+    setState({
+      number: number,
+      name: name,
+      expiry: expiry,
+      cvc: cvc
+    });
+
+  }, [number,name,expiry,cvc]);
+  
+
 
   const handleInputFocus = ({ target }: any) => {
     setFocused(target.id);
   };
 
-  const onSubmit = async (data: FormData) => {
-    console.log(data);
+  const onSubmit = async (e:FormEvent<HTMLFormElement> | MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+
+    console.log(JSON.stringify(state));
+    alert(JSON.stringify(state));
+    
   };
 
   return (
@@ -64,7 +80,7 @@ const CreditCard = () => {
         callback={console.log}
       />
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={(e)=>onSubmit(e)}
         style={{
           width: "100%",
           display: "flex",
@@ -102,21 +118,22 @@ const CreditCard = () => {
         >
           <InputMask
             mask="9999 9999 9999 9999"
-            value={number}
             onChange={(e: any) => setNumber(e.target.value)}
             disabled={false}
             maskChar=" "
           >
             {() => (
-              /*             <ControlledInput
-              control={control}
-              name="numberCard"
-              type="number"
-              id="number"
-              label="Número de la tarjeta*"
-              onFocusCapture={()=>handleInputFocus}
-            /> */
+              /*       <ControlledInput
+                control={control}
+                name="numberCard"
+                type="number"
+                id="number"
+                value={number}
+                label="Número de la tarjeta*"
+                onFocusCapture={handleInputFocus}
+              /> */
               <TextField
+                name="numberCard"
                 id="number"
                 label="Número de la tarjeta*"
                 onFocusCapture={handleInputFocus}
@@ -132,6 +149,7 @@ const CreditCard = () => {
           >
             {() => (
               <TextField
+                name="validateDate"
                 label="Fecha de vencimiento*"
                 onFocusCapture={handleInputFocus}
               />
@@ -139,6 +157,7 @@ const CreditCard = () => {
           </InputMask>
 
           <TextField
+            name="name"
             label="Nombre y apellido*"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -154,6 +173,7 @@ const CreditCard = () => {
           >
             {() => (
               <TextField
+                name="cvc"
                 id="cvc"
                 label="Código de seguridad*"
                 onFocusCapture={handleInputFocus}
@@ -173,6 +193,9 @@ const CreditCard = () => {
               color="secondary"
               size="large"
               fullWidth
+              disabled={isDisabled}
+              onClick={(e)=>onSubmit(e)}
+              onFocusCapture={handleInputFocus}
             >
               Continuar
             </Button>
