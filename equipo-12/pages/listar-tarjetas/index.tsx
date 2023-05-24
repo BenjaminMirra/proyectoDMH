@@ -1,14 +1,47 @@
-import { Box, Button, Typography } from "@mui/material";
 import Head from "next/head";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import Link from "next/link";
-import LayoutLogin from "../../layout/layout-login";
+import LayoutHome from "../../layout/layout-home";
+import { ReactElement } from "react";
+import { NextPageWithLayout } from "./../_app";
+import InteractiveList from "../../components/ListCard/listCard";
 
-const ListCards = () => {
+
+
+interface PropsType {
+    children?: ReactElement;
+  }
+  
+const ListCards: NextPageWithLayout<PropsType> = ({ texts, images, cards }: any) => {
   return (
-    <div>
-        Breanch ListCards Create
-    </div>
+    <>
+      <Head>
+        <title>Digital Money House</title>
+        <meta name="description" content="Digital Money House" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main
+        style={{
+          padding: "0px",
+          margin: "0 auto",
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          backgroundColor: "#201F22",
+        }}
+      >
+        <InteractiveList />
+      </main>
+    </>
   );
 };
+
+
+  
+ListCards.getLayout = function getLayout(page: ReactElement) {
+  return <LayoutHome>{page}</LayoutHome>;
+};
+
 export default ListCards;
