@@ -1,3 +1,5 @@
+import axios from "axios";
+
 interface DataType {
   email: string;
   firstName: string;
@@ -12,6 +14,5 @@ const sendConfirmationEmail = async (data: DataType) =>
       Accept: "application/json",
     },
     body: JSON.stringify(data),
-  });
-
+  }).then((response) => console.log(response));
 export default sendConfirmationEmail;
