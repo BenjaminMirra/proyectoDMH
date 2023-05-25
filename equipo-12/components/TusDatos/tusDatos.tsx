@@ -3,15 +3,12 @@ import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import InfoDato from "./infoDato";
-import { useEffect } from "react";
+import { UserInfoType } from "../../types/userInfo";
+interface Props {
+  userInfo: UserInfoType
+}
 
-const TusDatos = ({ userInfo }: any) => {
-
-  useEffect(() => {
-    if (userInfo) {
-      console.log(userInfo);
-    }
-  }, [userInfo]);
+const TusDatos = ({ userInfo }: Props) => {
 
   return (
     <>
@@ -41,11 +38,11 @@ const TusDatos = ({ userInfo }: any) => {
                   }} variant="h4">
                     Tus Datos
                   </Typography>
-                  <InfoDato input="Email" data={userInfo?.email} change={false} />
-                  <InfoDato input="Nombre y Apellido" data={`${userInfo?.firstname} ${userInfo?.lastname}`} change={true} />
-                  <InfoDato input="CUIT" data={`20-${userInfo?.dni}-5`} change={true} />
-                  <InfoDato input="Teléfono" data={userInfo?.phone} change={true} />
-                  <InfoDato input="Contraseña" data="******" change={true} />
+                  <InfoDato dataKey={Object.keys(userInfo)[4]} input="Email" data={userInfo?.email} change={true} />
+                  <InfoDato dataKey={Object.keys(userInfo)[1] + "," + Object.keys(userInfo)[2]} input="Nombre y Apellido" data={`${userInfo?.firstname} ${userInfo?.lastname}`} change={true} />
+                  <InfoDato dataKey={Object.keys(userInfo)[3]} input="DNI" data={`${userInfo?.dni}`} change={false} />
+                  <InfoDato dataKey={Object.keys(userInfo)[5]} input="Teléfono" data={userInfo?.phone} change={true} />
+                  <InfoDato dataKey={"password"} input="Contraseña" data="********" change={true} />
                 </CardContent>
               </Card>
             </Box >

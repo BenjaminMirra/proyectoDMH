@@ -26,19 +26,27 @@ const Perfil = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [userInfo]);
 
   return (
-    <Box sx={{
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100vh",
-      width: "100vw",
-    }}>
-      <TusDatos userInfo={userInfo} />
-    </Box>
+    <>
+      {
+        userInfo ?
+          <Box sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+            width: "100vw",
+          }
+          } >
+            <TusDatos userInfo={userInfo} />
+          </Box >
+          :
+          <>
+          </>}
+    </>
   );
 };
 

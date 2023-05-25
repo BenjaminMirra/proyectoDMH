@@ -1,11 +1,69 @@
 import { Box, Typography, Grid, Input } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DoneIcon from "@mui/icons-material/Done";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const InfoDato = ({ input, data, change }: any) => {
+interface Props {
+  dataKey: string;
+  input: string;
+  data: string;
+  change: boolean;
+}
 
+const InfoDato = ({ dataKey, input, data, change }: Props) => {
   const [edit, setEdit] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [infoData, setInfoData] = useState({});
+
+  useEffect(() => {
+    if (edit) {
+      const dataInputs = inputValue.split(" ");
+      if (dataKey === "email") {
+        setInfoData({
+          email: inputValue
+        });
+      } else if (dataKey === "firstname,lastname") {
+        setInfoData({
+          firstname: dataInputs[0],
+          lastname: dataInputs[1]
+        });
+      } else if (dataKey === "password") {
+        setInfoData({
+          password: inputValue
+        });
+      } else {
+        setInfoData({
+          phone: inputValue
+        });
+      }
+    }
+  }, [edit, inputValue, dataKey]);
+
+
+  const onHandleSubmit = () => {
+
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+
+    const config = {
+      method: "patch",
+      url: `https://digitalmoney.ctd.academy/api/users/${userId}`,
+      headers: {
+        "Authorization": token,
+        "Content-Type": "application/json"
+      },
+      data: infoData
+    };
+
+    axios.request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -22,20 +80,23 @@ const InfoDato = ({ input, data, change }: any) => {
             </Typography>
           </Grid>
           <Grid item xs={2} sm={4} md={4}>
-            {edit ?
-              <>
-                <Input placeholder="" defaultValue={data}></Input>
-              </> :
-              <>
-                <Typography
-                  sx={{
-                    display: "flex",
-                    color: "rgba(0,0,0,0.5)"
-                  }}
-                  variant="subtitle2">
-                  {data}
-                </Typography>
-              </>
+            {
+              edit ?
+                <>
+                  < Input onChange={(e) => {
+                    setInputValue(e.target.value);
+                  }} name="name" defaultValue={data} sx={{ width: "300px" }} />
+                </> :
+                <>
+                  <Typography
+                    sx={{
+                      display: "flex",
+                      color: "rgba(0,0,0,0.5)"
+                    }}
+                    variant="subtitle2">
+                    {data}
+                  </Typography>
+                </>
             }
           </Grid>
           <Grid sx={{
@@ -49,6 +110,7 @@ const InfoDato = ({ input, data, change }: any) => {
                   < DoneIcon color="success"
                     onClick={() => {
                       setEdit(!edit);
+                      onHandleSubmit();
                     }} />
                 </> :
                 <>
@@ -61,7 +123,7 @@ const InfoDato = ({ input, data, change }: any) => {
               </>
             }
           </Grid>
-        </Grid>
+        </Grid >
       </Box >
       <hr />
     </>
