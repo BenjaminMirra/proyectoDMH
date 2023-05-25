@@ -2,7 +2,8 @@ import Head from "next/head";
 import LayoutHome from "../../layout/layout-home";
 import { ReactElement } from "react";
 import { NextPageWithLayout } from "./../_app";
-import InteractiveList from "../../components/ListCard/listCard";
+import AddCard from "../../components/ListCard/addCard";
+import ListCard from "../../components/ListCard/listCard";
 
 
 
@@ -32,7 +33,8 @@ const ListCards: NextPageWithLayout<PropsType> = ({ texts, images, cards }: any)
           backgroundColor: "#201F22",
         }}
       >
-        <InteractiveList />
+        <AddCard />
+        <ListCard />
       </main>
     </>
   );

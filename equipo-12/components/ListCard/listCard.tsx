@@ -28,7 +28,7 @@ const Demo = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
 
-export default function InteractiveList() {
+const ListCard = () => {
   const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = React.useState(false);
 
@@ -148,3 +148,5 @@ export default function InteractiveList() {
     </Box>
   );
 }
+
+export default ListCard;
