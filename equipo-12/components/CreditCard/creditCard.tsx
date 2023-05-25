@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import ControlledInput from "../FormController/controlled-input";
+import axios from "axios";
 
 /* const schema = yup
   .object({
@@ -27,16 +28,17 @@ type FormData = yup.InferType<typeof schema>; */
 
 const CreditCard = () => {
   const [isDisabled, setIsDisabled] = useState(false);
+  const [idAccount, setIdAccount] = useState();
   const [cvc, setCvc] = useState("");
   const [expiry, setExpiry] = useState("");
   const [focused, setFocused] = useState("");
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
-  const [ state, setState] = useState({
+  const [state, setState] = useState({
     number: "",
     name: "",
     expiry: "",
-    cvc: ""
+    cvc: "",
   });
 
   useEffect(() => {
@@ -44,30 +46,61 @@ const CreditCard = () => {
       number: number,
       name: name,
       expiry: expiry,
-      cvc: cvc
+      cvc: cvc,
     });
-
-  }, [number,name,expiry,cvc]);
-  
-
+  }, [number, name, expiry, cvc]);
 
   const handleInputFocus = ({ target }: any) => {
     setFocused(target.id);
   };
 
-  const onSubmit = async (e:FormEvent<HTMLFormElement> | MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onSubmit = async (
+    e: FormEvent<HTMLFormElement> | MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
+    const token = localStorage.getItem("token");
+
+    await axios("https://digitalmoney.ctd.academy/api/account", {
+      headers: {
+        Authorization: token,
+      },
+    }).then((response) => {
+      setIdAccount(response.data?.id);
+      console.log(idAccount);
+      console.log(typeof idAccount);
+    });
 
     console.log(JSON.stringify(state));
-    alert(JSON.stringify(state));
-    
+    /* alert(JSON.stringify(state)); */
+    try {
+      await axios
+        .post(
+          `https://digitalmoney.ctd.academy/api/accounts/${idAccount}/cards`,
+          {
+            cod: parseInt(cvc),
+            "expiration_date": expiry,
+            "first_last_name": name,
+            "number_id": parseInt(number),
+          },
+          {
+            headers: {              
+              Authorization: token,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <>
       <Card
         locale={{
-          valid: "MM/YY",
+          valid: "MM/YYYY",
         }}
         placeholders={{
           name: "NOMBRE DEL TITULAR",
@@ -80,7 +113,7 @@ const CreditCard = () => {
         callback={console.log}
       />
       <form
-        onSubmit={(e)=>onSubmit(e)}
+        onSubmit={(e) => onSubmit(e)}
         style={{
           width: "100%",
           display: "flex",
@@ -141,7 +174,7 @@ const CreditCard = () => {
             )}
           </InputMask>
           <InputMask
-            mask="99/99"
+            mask="99/9999"
             value={expiry}
             onChange={(e: any) => setExpiry(e.target.value)}
             disabled={false}
@@ -194,7 +227,7 @@ const CreditCard = () => {
               size="large"
               fullWidth
               disabled={isDisabled}
-              onClick={(e)=>onSubmit(e)}
+              onClick={(e) => onSubmit(e)}
               onFocusCapture={handleInputFocus}
             >
               Continuar
