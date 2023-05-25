@@ -4,6 +4,7 @@ import { ReactElement } from "react";
 import { NextPageWithLayout } from "./../_app";
 import AddCard from "../../components/ListCard/addCard";
 import ListCard from "../../components/ListCard/listCard";
+import { Box } from "@mui/material";
 
 
 
@@ -14,33 +15,23 @@ interface PropsType {
 const ListCards: NextPageWithLayout<PropsType> = ({ texts, images, cards }: any) => {
   return (
     <>
-      <Head>
-        <title>Digital Money House</title>
-        <meta name="description" content="Digital Money House" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main
-        style={{
-          padding: "0px",
-          margin: "0 auto",
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "100%",
-          backgroundColor: "#201F22",
-        }}
-      >
+<Box sx={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      height: "100vh",
+      width: "100vw",
+    }}>
         <AddCard />
-        <ListCard />
-      </main>
+    </Box>
+   
     </>
   );
 };
 
 
+//<ListCard />
   
 ListCards.getLayout = function getLayout(page: ReactElement) {
   return <LayoutHome>{page}</LayoutHome>;
