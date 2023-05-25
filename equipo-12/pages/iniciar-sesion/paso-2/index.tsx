@@ -7,10 +7,10 @@ import { ReactElement, ReactNode, useState } from "react";
 import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
-import LayoutLogin from "../../../layout/layout-login";
 import { NextPageWithLayout } from "../../_app";
 import Link from "next/link";
 import { useUserContext } from "../../../provider/userProvider";
+import Layout from "../../../layout/layout";
 
 const schema = yup
   .object({
@@ -185,7 +185,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
 };
 
 Password.getLayout = function getLayout(page: ReactElement) {
-  return <LayoutLogin>{page}</LayoutLogin>;
+  return <Layout variant="login">{page}</Layout>;
 };
 
 export default Password;

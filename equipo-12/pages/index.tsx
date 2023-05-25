@@ -1,9 +1,9 @@
 import Head from "next/head";
 import clientPromise from "../lib/mongodb";
 import { Hero } from "../components/Hero/hero";
-import LayoutHome from "../layout/layout-home";
 import { ReactElement } from "react";
 import { NextPageWithLayout } from "./_app";
+import Layout from "../layout/layout";
 
 interface PropsType {
   children?: ReactElement;
@@ -38,7 +38,7 @@ const Home: NextPageWithLayout<PropsType> = ({ texts, images, cards }: any) => {
 };
 
 Home.getLayout = function getLayout(page: ReactElement) {
-  return <LayoutHome>{page}</LayoutHome>;
+  return <Layout variant="home">{page}</Layout>;
 };
 
 export async function getServerSideProps() {
