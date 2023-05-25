@@ -15,18 +15,25 @@ interface PropsType {
 const ListCards: NextPageWithLayout<PropsType> = ({ texts, images, cards }: any) => {
   return (
     <>
-<Box sx={{
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "flex-start",
-      alignItems: "center",
-      height: "100vh",
-      width: "100vw",
-    }}>
-        <AddCard />
-    </Box>
+      <Box sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        height: "100vh",
+        width: "100vw",
+      }}>
+        <Box sx={{ marginBottom: "1rem" }}>
+          <AddCard />
+        </Box>
+        <Box>
+          <ListCard />
+        </Box>        
+      </Box>
    
-    </>
+   
+   
+    </>    
   );
 };
 
