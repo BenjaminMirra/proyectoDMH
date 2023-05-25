@@ -51,7 +51,19 @@ const HeaderHome = () => {
     setAnchorEl(null);
   };
 
-  const handleLogout = () => {
+  const handleLogout = async() => {
+    const token = localStorage.getItem("token");
+    try {
+      await axios("https://digitalmoney.ctd.academy/api/logout", {
+        headers: {
+          Authorization: token,
+        },
+      }).then((response) => {
+        console.log(response);
+      });
+    } catch (error){
+      console.log(error);
+    }
     setAnchorEl(null);
     localStorage.removeItem("token");
     setLogged(false);

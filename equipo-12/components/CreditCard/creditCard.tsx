@@ -26,8 +26,9 @@ import axios from "axios";
   .required();
 type FormData = yup.InferType<typeof schema>; */
 
-const CreditCard = () => {
-  const [isDisabled, setIsDisabled] = useState(false);
+const CreditCard = () => {  
+  const [isDisabled, setIsDisabled] = useState(false);  
+  const [limit10, setLimit10] = useState(false);
   const [idAccount, setIdAccount] = useState();
   const [cvc, setCvc] = useState("");
   const [expiry, setExpiry] = useState("");
@@ -40,6 +41,19 @@ const CreditCard = () => {
     expiry: "",
     cvc: "",
   });
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    axios("https://digitalmoney.ctd.academy/api/account", {
+      headers: {
+        Authorization: token,
+      },
+    }).then((response) => {
+      setIdAccount(response.data?.id);
+      console.log(idAccount);
+      console.log(typeof idAccount);
+    });
+  }, [idAccount]);
+  
 
   useEffect(() => {
     setState({
@@ -59,17 +73,6 @@ const CreditCard = () => {
   ) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
-
-    await axios("https://digitalmoney.ctd.academy/api/account", {
-      headers: {
-        Authorization: token,
-      },
-    }).then((response) => {
-      setIdAccount(response.data?.id);
-      console.log(idAccount);
-      console.log(typeof idAccount);
-    });
-
     console.log(JSON.stringify(state));
     /* alert(JSON.stringify(state)); */
     try {
