@@ -1,9 +1,15 @@
 import Box from "@mui/material/Box";
 import TusDatos from "../../components/TusDatos/tusDatos";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { ReactElement, ReactNode, useEffect, useState } from "react";
+import Layout from "../../layout/layout";
+import { NextPageWithLayout } from "../_app";
 
-const Perfil = () => {
+interface PropsType {
+  children?: ReactNode;
+}
+
+const Perfil: NextPageWithLayout<PropsType> = () => {
 
   const [userInfo, setUserInfo] = useState();
 
@@ -38,7 +44,6 @@ const Perfil = () => {
             justifyContent: "center",
             alignItems: "center",
             height: "100vh",
-            width: "100vw",
           }
           } >
             <TusDatos userInfo={userInfo} />
@@ -48,6 +53,10 @@ const Perfil = () => {
           </>}
     </>
   );
+};
+
+Perfil.getLayout = function getLayout(page: ReactElement) {
+  return <Layout variant="home">{page}</Layout>;
 };
 
 export default Perfil;
