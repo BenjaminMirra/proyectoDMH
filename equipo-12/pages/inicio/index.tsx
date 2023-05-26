@@ -1,11 +1,11 @@
 import { Avatar, Box, Button, Card, Divider, InputAdornment, List, ListItem, ListItemAvatar, ListItemText, TextField, Typography } from "@mui/material";
-import LayoutHome from "../../layout/layout-home";
 import { ReactElement } from "react";
 import Link from "next/link";
 import SearchIcon from "@mui/icons-material/Search";
 import { useStyles } from "../../material-theme";
 import React from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import Layout from "../../layout/layout";
 
 
 const Inicio = () => {
@@ -165,7 +165,7 @@ const Inicio = () => {
 };
 
 Inicio.getLayout = function getLayout(page: ReactElement) {
-  return <LayoutHome>{page}</LayoutHome>;
+  return <Layout  variant="home">{page}</Layout>;
 };
 
 export default Inicio;
