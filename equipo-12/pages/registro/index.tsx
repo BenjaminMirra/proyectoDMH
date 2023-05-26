@@ -1,9 +1,9 @@
 import { Typography } from "@mui/material";
 import Head from "next/head";
-import LayoutRegister from "../../layout/layout-register";
 import FormRegister from "../../components/FormController/form-register";
 import { NextPageWithLayout } from "../_app";
 import { ReactElement, ReactNode } from "react";
+import Layout from "../../layout/layout";
 interface PropsType {
   children?: ReactNode;
 }
@@ -51,7 +51,7 @@ const Register: NextPageWithLayout<PropsType> = () => {
 };
 
 Register.getLayout = function getLayout(page: ReactElement) {
-  return <LayoutRegister>{page}</LayoutRegister>;
+  return <Layout variant="register">{page}</Layout>;
 };
 
 export default Register;

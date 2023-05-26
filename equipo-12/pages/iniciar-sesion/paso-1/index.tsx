@@ -5,11 +5,11 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
-import LayoutLogin from "../../../layout/layout-login";
 import { ReactElement, ReactNode } from "react";
 import { NextPageWithLayout } from "../../_app";
 import Link from "next/link";
 import { useUserContext } from "../../../provider/userProvider";
+import Layout from "../../../layout/layout";
 
 const schema = yup
   .object({
@@ -131,7 +131,7 @@ const Username: NextPageWithLayout<PropsType> = () => {
 };
 
 Username.getLayout = function getLayout(page: ReactElement) {
-  return <LayoutLogin>{page}</LayoutLogin>;
+  return <Layout variant="login">{page}</Layout>;
 };
 
 export default Username;
