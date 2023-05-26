@@ -1,18 +1,38 @@
 import Head from "next/head";
 import LayoutHome from "../../layout/layout-home";
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { NextPageWithLayout } from "./../_app";
 import AddCard from "../../components/ListCard/addCard";
-import ListCard from "../../components/ListCard/listCard";
+import ListCards from "../../components/ListCard/listCard";
 import { Box } from "@mui/material";
+import axios from "axios";
+import router from "next/router";
 
+const ListCard = () => {
+  const [userInfo, setUserInfo] = useState();
 
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    const token = localStorage.getItem("token");
+    const config = {
+      method: "get",
+      url: `https://digitalmoney.ctd.academy/api/users/${userId}`,
+      headers: {
+        "Authorization": token,
+        "Content-Type": "application/json"
+      },
+    };
 
-interface PropsType {
-    children?: ReactElement;
-  }
-  
-const ListCards: NextPageWithLayout<PropsType> = ({ texts, images, cards }: any) => {
+    axios.request(config)
+      .then((response) => {
+        setUserInfo(response.data);
+      })
+      .catch((error) => {
+        router.push("/");
+        console.log(error);
+      });
+  }, []);
+
   return (
     <>
       <Box sx={{
@@ -26,22 +46,20 @@ const ListCards: NextPageWithLayout<PropsType> = ({ texts, images, cards }: any)
         <Box sx={{ marginBottom: "1rem" }}>
           <AddCard />
         </Box>
-        <Box>
-          <ListCard />
-        </Box>        
+        <Box sx={{ marginBottom: "1rem" }}>
+          <ListCards userInfo = {userInfo}/>
+        </Box>
+
       </Box>
-   
-   
-   
-    </>    
+
+
+
+    </>
   );
 };
 
-
-//<ListCard />
-  
-ListCards.getLayout = function getLayout(page: ReactElement) {
+ListCard.getLayout = function getLayout(page: ReactElement) {
   return <LayoutHome>{page}</LayoutHome>;
 };
 
-export default ListCards;
+export default ListCard;

@@ -143,7 +143,7 @@ const HeaderHome = () => {
             </Button>
           </Link>
           <Link href="/listar-tarjetas">
-            <Button variant="primary" color="secondary" size="small">
+            <Button variant="primary" color="secondary" size="small" >
               Lista Tarjetas
             </Button>
           </Link>
