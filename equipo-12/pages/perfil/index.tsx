@@ -36,6 +36,9 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
 
   return (
     <>
+      <Box sx={{ width: "25%", height: "100%", backgroundColor: "#C1FD35" }}>
+
+      </Box>
       {
         userInfo ?
           <Box sx={{
