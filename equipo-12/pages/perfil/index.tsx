@@ -43,7 +43,7 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            height: "100vh",
+            width: "100%",
           }
           } >
             <TusDatos userInfo={userInfo} />
