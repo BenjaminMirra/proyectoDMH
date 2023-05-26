@@ -60,7 +60,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
             });
 
           setErrorLogin(false);
-          router.push("/");
+          router.push("/inicio");
         });
     } catch (error) {
       console.log(error);
