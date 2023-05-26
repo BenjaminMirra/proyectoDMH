@@ -8,7 +8,6 @@ import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
 import { NextPageWithLayout } from "../../_app";
-import Link from "next/link";
 import { useUserContext } from "../../../provider/userProvider";
 import Layout from "../../../layout/layout";
 
@@ -60,7 +59,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
             });
 
           setErrorLogin(false);
-          router.push("/");
+          router.push("/inicio");
         });
     } catch (error) {
       console.log(error);
@@ -68,16 +67,6 @@ const Password: NextPageWithLayout<PropsType> = () => {
     }
   };
 
-  const onChangePass = async () => {
-    try {
-      await axios
-        .post("/api/recuperar", {
-          email: user.email,
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
 
   return (

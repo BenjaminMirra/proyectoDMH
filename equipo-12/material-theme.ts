@@ -1,11 +1,12 @@
 import { createTheme } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 declare module "@mui/material/Button" {
   interface ButtonPropsVariantOverrides {
     primary: true;
     secondary: true;
-    tertiary: true;
     header: true;
+    xxl: true
   }
 }
 
@@ -38,7 +39,7 @@ export const theme = createTheme({
       main: "#C1FD35",
     },
     tertiary: {
-      main: "EEEAEA",
+      main: "#EEEAEA",
     },
     quaternary: {
       main: "#3A393E",
@@ -107,6 +108,7 @@ export const theme = createTheme({
             color: "#C1FD35",
             backgroundColor: "#201F22",
             border: "solid 1px #C1FD35",
+            boxShadow:"0px 4px 4px #0000004c",
             padding: "0",
             "&:hover": {
               backgroundColor: "#403e44",
@@ -126,6 +128,7 @@ export const theme = createTheme({
             color: "#201F22",
             backgroundColor: "#C1FD35",
             border: "solid 1px #C1FD35",
+            boxShadow:"0px 4px 4px #0000004c",
             "&:hover": {
               backgroundColor: "#a3d52e",
               borderColor: "#a3d52e",
@@ -138,6 +141,7 @@ export const theme = createTheme({
             color: "#201F22",
             backgroundColor: "#CECECE",
             border: "solid 1px #CECECE",
+            boxShadow:"0px 4px 4px #0000004c",
             "&:hover": {
               backgroundColor: "#bababa",
               borderColor: "#bababa",
@@ -177,8 +181,41 @@ export const theme = createTheme({
             },
           },
         },
+        {
+          props: { variant:"xxl"},
+          style: {
+            color: "#201F22",
+            backgroundColor: "#C1FD35",
+            border: "solid 1px #C1FD35",
+            boxShadow:"0px 4px 4px #0000004c",
+            padding:"20px",
+            "&:hover": {
+              backgroundColor: "#a3d52e",
+              borderColor: "#a3d52e",
+            },
+          },
+        }
       ],
     },
+    MuiCard:{
+      variants:[
+        {
+          props: { variant:"outlined"},
+          style: {
+            backgroundColor:"#201F22", 
+            color:"#EEEAEA", 
+            padding:"30px 50px", 
+            display:"flex",
+            flexDirection:"column",
+            alignItems:"self-start" ,
+            gap:"20px", 
+            borderRadius:"10px", 
+            boxShadow:"0px 4px 4px #0000004c"
+          }
+        }
+      ]
+    }
+    ,
     MuiTextField: {
       styleOverrides: {
         root: {
@@ -200,3 +237,30 @@ export const theme = createTheme({
     },
   },
 });
+
+export const useStyles = makeStyles((theme: { spacing: (arg0: number) => any; palette: { primary: { main: any; }; }; }) => ({
+  textField: {
+    width: "100%",
+    "& .MuiOutlinedInput-root": {
+      borderRadius: theme.spacing(1),
+      boxShadow:"0px 4px 4px #0000004c",
+      backgroundColor: "#f1f1f1",
+      "& fieldset": {
+        borderColor: "#dddddd",
+      },
+      "&:hover fieldset": {
+        borderColor: "#aaaaaa",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: theme.palette.primary.main,
+      },
+    },
+    "& .MuiInputBase-input": {
+      padding: theme.spacing(1),
+    },
+    "& .MuiInputAdornment-root": {
+      marginRight: theme.spacing(1),
+      color: "#888888",
+    },
+  },
+}));

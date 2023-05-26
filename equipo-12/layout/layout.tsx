@@ -16,18 +16,18 @@ const Layout: FC<Props> = ({ variant, children }: Props) => {
   let HeaderComponent;
 
   switch (variant) {
-    case "home":
-      HeaderComponent = HeaderHome;
-      break;
-    case "login":
-      HeaderComponent = HeaderLogin;
-      break;
-    case "register":
-      HeaderComponent = HeaderRegister;
-      break;
-    default:
-      HeaderComponent = null;
-      break;
+  case "home":
+    HeaderComponent = HeaderHome;
+    break;
+  case "login":
+    HeaderComponent = HeaderLogin;
+    break;
+  case "register":
+    HeaderComponent = HeaderRegister;
+    break;
+  default:
+    HeaderComponent = null;
+    break;
   }
 
   return (
