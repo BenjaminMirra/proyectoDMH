@@ -55,7 +55,14 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
   return (
     <>
       <Box
-        sx={{ width: "25%", height: "100%", backgroundColor: "#C1FD35" }}
+        sx={{
+          width: "25%",
+          height: "100%",
+          backgroundColor: "#C1FD35",
+          "@media (max-width: 768px)": {
+            display: "none",
+          },
+        }}
       ></Box>
       {userInfo && userAccount ? (
         <Box

@@ -20,6 +20,10 @@ const TusDatos = ({ userInfo }: Props) => {
               justifyContent: "center",
               alignItems: "center",
               width: "100%",
+              "@media (max-width: 768px)": {
+                paddingRight: "30px",
+                paddingLeft: "30px",
+              },
             }}
           >
             <Card
@@ -56,8 +60,8 @@ const TusDatos = ({ userInfo }: Props) => {
                 />
                 <InfoDato
                   dataKey={Object.keys(userInfo)[3]}
-                  input="DNI"
-                  data={`${userInfo?.dni}`}
+                  input="CUIT"
+                  data={`20-${userInfo?.dni}-5`}
                   change={false}
                 />
                 <InfoDato
