@@ -13,23 +13,16 @@ import {
   TextFieldVariants,
   Grid,
   Paper,
+  Alert,
 } from "@mui/material";
 import Link from "next/link";
 import ControlledInput from "../FormController/controlled-input";
 import axios from "axios";
 import { styled } from "@mui/material/styles";
-
-/* const schema = yup
-  .object({
-    name: yup.string().required("El nombre es requerido."),
-    numberCard: yup.number().required("El número de tarjeta es requerido."),
-    validateDate: yup.number().required("El número de tarjeta es requerido."),
-    cvc: yup.number().required("El número de tarjeta es requerido."),
-  })
-  .required();
-type FormData = yup.InferType<typeof schema>; */
+import catchError from "../../services/creditCard/handle-credit-cards-errors";
 
 const CreditCard = () => {
+  const [error, setError] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   const [limit10, setLimit10] = useState(false);
   const [idAccount, setIdAccount] = useState();
@@ -44,6 +37,7 @@ const CreditCard = () => {
     expiry: "",
     cvc: "",
   });
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios("https://digitalmoney.ctd.academy/api/account", {
@@ -69,34 +63,39 @@ const CreditCard = () => {
     setFocused(target.id);
   };
 
-  const onSubmit = async (
-    e: FormEvent<HTMLFormElement> | MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    e.preventDefault();
-    const token = localStorage.getItem("token");
-    console.log(JSON.stringify(state));
-    /* alert(JSON.stringify(state)); */
-    try {
-      await axios
-        .post(
-          `https://digitalmoney.ctd.academy/api/accounts/${idAccount}/cards`,
-          {
-            cod: parseInt(cvc),
-            expiration_date: expiry,
-            first_last_name: name,
-            number_id: parseInt(number),
-          },
-          {
-            headers: {
-              Authorization: token,
+  const onSubmit = async () => {
+
+    if (state.cvc === "" || state.name === "" || state.number === "") {
+      setError("Por favor, complete todos los campos");
+    } else {
+      const token = localStorage.getItem("token");
+      console.log(JSON.stringify(state));
+
+      try {
+        await axios
+          .post(
+            `https://digitalmoney.ctd.academy/api/accounts/${idAccount}/cards`,
+            {
+              cod: parseInt(cvc),
+              expiration_date: expiry,
+              first_last_name: name,
+              number_id: parseInt(number),
             },
-          }
-        )
-        .then((response) => {
-          console.log(response);
-        });
-    } catch (error) {
-      console.log(error);
+            {
+              headers: {
+                Authorization: token,
+              },
+            }
+          )
+          .then((response) => {
+            console.log(response);
+          });
+      } catch (error) {
+        console.log(error);
+        const errorMessage = catchError(error);
+        setError(errorMessage);
+        return;
+      }
     }
   };
 
@@ -124,8 +123,18 @@ const CreditCard = () => {
         focused={focused}
         callback={console.log}
       />
+      {error !== "" && (
+        <Alert
+          severity="error"
+          sx={{
+            marginTop: "30px",
+          }}
+        >
+          {error}
+        </Alert>
+      )}
       <form
-        onSubmit={(e) => onSubmit(e)}
+        onSubmit={onSubmit}
         style={{
           width: "100%",
           display: "flex",
@@ -228,8 +237,8 @@ const CreditCard = () => {
           <Box
             sx={{
               "@media only screen and (min-width: 768px)": {
-                gridColumn:"span 2",
-                maxWidth:"100%"
+                gridColumn: "span 2",
+                maxWidth: "100%",
               },
               "@media only screen and (min-width: 1024px)": {
                 gridColumn: "2",
@@ -249,7 +258,7 @@ const CreditCard = () => {
                 size="large"
                 fullWidth
                 disabled={isDisabled}
-                onClick={(e) => onSubmit(e)}
+                onClick={onSubmit}
                 onFocusCapture={handleInputFocus}
               >
                 Continuar
