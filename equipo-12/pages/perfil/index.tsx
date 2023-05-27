@@ -4,56 +4,78 @@ import axios from "axios";
 import { ReactElement, ReactNode, useEffect, useState } from "react";
 import Layout from "../../layout/layout";
 import { NextPageWithLayout } from "../_app";
+import BannerGestionPago from "../../components/GestionPago/banner-gestion-pago";
+import AliasCVU from "../../components/AliasCVU/alias-cvu";
 
 interface PropsType {
   children?: ReactNode;
 }
 
 const Perfil: NextPageWithLayout<PropsType> = () => {
-
   const [userInfo, setUserInfo] = useState();
+  const [userAccount, setUserAccount] = useState();
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
-    const config = {
+    const configInfo = {
       method: "get",
       url: `https://digitalmoney.ctd.academy/api/users/${userId}`,
       headers: {
-        "Authorization": token,
-        "Content-Type": "application/json"
+        Authorization: token,
+        "Content-Type": "application/json",
       },
     };
-
-    axios.request(config)
+    const configAccount = {
+      method: "get",
+      url: "https://digitalmoney.ctd.academy/api/account",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+    };
+    axios
+      .request(configInfo)
       .then((response) => {
         setUserInfo(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [userInfo]);
+    axios
+      .request(configAccount)
+      .then((response) => {
+        setUserAccount(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [userInfo, userAccount]);
 
   return (
     <>
-      <Box sx={{ width: "25%", height: "100%", backgroundColor: "#C1FD35" }}>
-
-      </Box>
-      {
-        userInfo ?
-          <Box sx={{
+      <Box
+        sx={{ width: "25%", height: "100%", backgroundColor: "#C1FD35" }}
+      ></Box>
+      {userInfo && userAccount ? (
+        <Box
+          sx={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            margin: "0 80px",
             width: "100%",
-          }
-          } >
-            <TusDatos userInfo={userInfo} />
-          </Box >
-          :
-          <>
-          </>}
+            gap: "20px",
+          }}
+        >
+          <TusDatos userInfo={userInfo} />
+          <BannerGestionPago />
+          <AliasCVU userAccount={userAccount} />
+        </Box>
+      ) : (
+        <></>
+      )}
     </>
   );
 };

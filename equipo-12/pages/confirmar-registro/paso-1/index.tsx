@@ -1,14 +1,14 @@
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
-import LayoutLogin from "../../../layout/layout-login";
 import { ReactElement, ReactNode } from "react";
 import { NextPageWithLayout } from "../../_app";
 import { useUserContext } from "../../../provider/userProvider";
+import Layout from "../../../layout/layout";
 
 const schema = yup
   .object({
@@ -126,7 +126,7 @@ const Username: NextPageWithLayout<PropsType> = () => {
 };
 
 Username.getLayout = function getLayout(page: ReactElement) {
-  return <LayoutLogin>{page}</LayoutLogin>;
+  return <Layout variant="login">{page}</Layout>;
 };
 
 export default Username;

@@ -2,11 +2,12 @@ import { Box, Button, Typography } from "@mui/material";
 import Head from "next/head";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Link from "next/link";
-import LayoutLogin from "../../layout/layout-login";
+import { ReactElement } from "react";
+import Layout from "../../layout/layout";
 
 const SuccessRegister = () => {
   return (
-    <LayoutLogin>
+    <>
       <Head>
         <title>Registro exitoso!</title>
         <meta
@@ -85,7 +86,12 @@ const SuccessRegister = () => {
           </Button>
         </Link>
       </main>
-    </LayoutLogin>
+    </>
   );
 };
+
+SuccessRegister.getLayout = function getLayout(page: ReactElement) {
+  return <Layout variant="home">{page}</Layout>;
+};
+
 export default SuccessRegister;
