@@ -10,9 +10,6 @@ const AddCard = () => {
                 flexDirection: "column",
                 justifyContent: "flex-start",
                 alignItems: "center",
-                paddingTop: "10px",
-                paddingLeft: "80px",
-                paddingRight: "80px",
                 width: "100%",
             }
             }>
@@ -22,11 +19,14 @@ const AddCard = () => {
                     background: "#201F22",
                     boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
                     borderRadius: "10px",
+                    paddingLeft: "20px",
+                    paddingRight: "20px",
+                    paddingTop: "20px"
                 }}>
                     <CardContent>
                         <Typography sx={{
                             color: "#FFFFFF",
-                            paddingBottom: "20px"
+                            paddingLeft: "15px"
                         }} variant="h6">
                             Agregá tu tarjeta de débito o crédito
                         </Typography>
@@ -39,36 +39,34 @@ const AddCard = () => {
                         width: "100%",
                     }
                     }>
-                        <Typography
-                            sx={{
-                                color: "#C1FD35",
-                                paddingBottom: "5px"
-                            }} variant="h6"
-                            style={{ textTransform: 'none' }}
-                        >
-                            <CardContent sx={{
-                                display: "flex",
-                                flexDirection: "row",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                width: "100%",
-                            }
-                            }>
+                        <CardContent sx={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "flex-start",
+                            alignItems: "center",
+                            width: "100%",
+                            color: "#C1FD35",
+                        }
+                        }>
 
-                                <AddCircleOutlineIcon className={styles.icon}/>
+                            <AddCircleOutlineIcon className={styles.icon} sx={{ fontSize: "24px", }} />
+                            <Typography
+                                sx={{
+                                    paddingLeft: "10px"
+                                }} variant="h6"
+                                style={{ textTransform: 'none' }}
+                            >
                                 Nueva tarjeta
-                            </CardContent>
+                            </Typography>
+                        </CardContent>
 
-                        </Typography>
                         <Typography
                             sx={{
                                 color: "#C1FD35",
-                                paddingBottom: "5px"
                             }} variant="h6"
                             style={{ textTransform: 'none' }}
                         >
-                           <ArrowForwardIcon />
-
+                            <ArrowForwardIcon sx={{ fontSize: "24px" }} />
                         </Typography>
                     </CardContent>
                 </Card>

@@ -142,11 +142,6 @@ const HeaderHome = () => {
               Crear Cuenta
             </Button>
           </Link>
-          <Link href="/listar-tarjetas">
-            <Button variant="primary" color="secondary" size="small" >
-              Lista Tarjetas
-            </Button>
-          </Link>
         </>
       );
     }
