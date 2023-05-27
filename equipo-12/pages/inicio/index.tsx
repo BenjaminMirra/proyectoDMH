@@ -1,13 +1,12 @@
 import { Avatar, Box, Button, Card, Divider, InputAdornment, List, ListItem, ListItemAvatar, ListItemText, TextField, Typography } from "@mui/material";
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement } from "react";
 import Link from "next/link";
 import SearchIcon from "@mui/icons-material/Search";
 import { useStyles } from "../../material-theme";
 import React from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Layout from "../../layout/layout";
-import type { InferGetStaticPropsType, GetStaticProps } from "next";
-import axios from "axios";
+
 
 const Inicio = () => {
   const classes = useStyles();
