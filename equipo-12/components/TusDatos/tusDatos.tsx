@@ -40,7 +40,7 @@ const TusDatos = ({ userInfo }: Props) => {
                   </Typography>
                   <InfoDato dataKey={Object.keys(userInfo)[4]} input="Email" data={userInfo?.email} change={true} />
                   <InfoDato dataKey={Object.keys(userInfo)[1] + "," + Object.keys(userInfo)[2]} input="Nombre y Apellido" data={`${userInfo?.firstname} ${userInfo?.lastname}`} change={true} />
-                  <InfoDato dataKey={Object.keys(userInfo)[3]} input="DNI" data={`${userInfo?.dni}`} change={false} />
+                  <InfoDato dataKey={Object.keys(userInfo)[3]} input="CUIT" data={`20-${userInfo?.dni}-5`} change={false} />
                   <InfoDato dataKey={Object.keys(userInfo)[5]} input="Teléfono" data={userInfo?.phone} change={true} />
                   <InfoDato dataKey={"password"} input="Contraseña" data="********" change={true} />
                 </CardContent>

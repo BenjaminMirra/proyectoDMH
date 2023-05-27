@@ -3,6 +3,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DoneIcon from "@mui/icons-material/Done";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import useDeviceSize from "../../hooks/useDeviceSize";
 
 interface Props {
   dataKey: string;
@@ -15,6 +16,7 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
   const [edit, setEdit] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [infoData, setInfoData] = useState({});
+  const [width] = useDeviceSize();
 
   useEffect(() => {
     if (edit) {
@@ -73,57 +75,129 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
         paddingBottom: "7px",
         paddingTop: "9px"
       }}>
-        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-          <Grid item xs={2} sm={4} md={4}>
-            <Typography>
-              {input}
-            </Typography>
-          </Grid>
-          <Grid item xs={2} sm={4} md={4}>
-            {
-              edit ?
-                <>
-                  < Input onChange={(e) => {
-                    setInputValue(e.target.value);
-                  }} name="name" defaultValue={data} sx={{ width: "300px" }} />
-                </> :
-                <>
-                  <Typography
-                    sx={{
-                      display: "flex",
-                      color: "rgba(0,0,0,0.5)"
-                    }}
-                    variant="subtitle2">
-                    {data}
-                  </Typography>
-                </>
-            }
-          </Grid>
-          <Grid sx={{
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center"
-          }} item xs={2} sm={4} md={4}>
-            {change ?
-              edit ?
-                <>
-                  < DoneIcon color="success"
-                    onClick={() => {
-                      setEdit(!edit);
-                      onHandleSubmit();
-                    }} />
-                </> :
-                <>
-                  <EditIcon onClick={() => {
-                    setEdit(!edit);
-                  }} color="disabled" />
-                </>
-              :
-              <>
-              </>
-            }
-          </Grid>
-        </Grid >
+        {width > 768 ?
+          width <= 1024 ?
+            <Box sx={{
+              display: "flex",
+              width: "100%",
+              justifyContent: "space-around"
+            }}>
+              <Box sx={{
+                width: "60%",
+              }}
+              >
+                <Typography>
+                  {input}
+                </Typography>
+              </Box>
+              <Box sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center"
+              }}>
+                {
+                  edit ?
+                    <>
+                      < Input onChange={(e) => {
+                        setInputValue(e.target.value);
+                      }} name="name" defaultValue={data} sx={{}} />
+                    </> :
+                    <>
+                      <Typography
+                        sx={{
+                          display: "flex",
+                          color: "rgba(0,0,0,0.5)"
+                        }}
+                        variant="subtitle2">
+                        {data}
+                      </Typography>
+                    </>
+                }
+              </Box>
+              <Box sx={{
+                width: "10%",
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "center",
+              }}>
+                {change ?
+                  edit ?
+                    <>
+                      < DoneIcon color="success"
+                        onClick={() => {
+                          setEdit(!edit);
+                          onHandleSubmit();
+                        }} />
+                    </> :
+                    <>
+                      <EditIcon onClick={() => {
+                        setEdit(!edit);
+                      }} color="disabled" />
+                    </>
+                  :
+                  <>
+                  </>
+                }
+              </Box>
+
+
+            </Box>
+            :
+            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 8, md: 12 }}>
+              <Grid item xs={1} sm={4} md={4}>
+                <Typography>
+                  {input}
+                </Typography>
+              </Grid>
+              <Grid item xs={1} sm={4} md={4}>
+                {
+                  edit ?
+                    <>
+                      < Input onChange={(e) => {
+                        setInputValue(e.target.value);
+                      }} name="name" defaultValue={data} sx={{ width: "300px" }} />
+                    </> :
+                    <>
+                      <Typography
+                        sx={{
+                          display: "flex",
+                          color: "rgba(0,0,0,0.5)"
+                        }}
+                        variant="subtitle2">
+                        {data}
+                      </Typography>
+                    </>
+                }
+              </Grid>
+              <Grid sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "center"
+              }} item xs={1} sm={4} md={4}>
+                {change ?
+                  edit ?
+                    <>
+                      < DoneIcon color="success"
+                        onClick={() => {
+                          setEdit(!edit);
+                          onHandleSubmit();
+                        }} />
+                    </> :
+                    <>
+                      <EditIcon onClick={() => {
+                        setEdit(!edit);
+                      }} color="disabled" />
+                    </>
+                  :
+                  <>
+                  </>
+                }
+              </Grid>
+            </Grid >
+          :
+          <></>
+        }
       </Box >
       <hr />
     </>
