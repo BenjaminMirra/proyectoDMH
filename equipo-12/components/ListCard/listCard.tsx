@@ -20,14 +20,14 @@ const ListCard = styled("div")(({ theme }) => ({
 const ListCards = () => {
   const [idAccount, setIdAccount] = useState<number>(0);
   useEffect(() => {
-      const token = localStorage.getItem("token");
-      axios("https://digitalmoney.ctd.academy/api/account", {
-          headers: {
-              Authorization: token,
-          },
-      }).then((response) => {
-          setIdAccount(response.data?.id);
-      });
+    const token = localStorage.getItem("token");
+    axios("https://digitalmoney.ctd.academy/api/account", {
+      headers: {
+        Authorization: token,
+      },
+    }).then((response) => {
+      setIdAccount(response.data?.id);
+    });
   }, [idAccount]);
 
   const listItems = GenerateListCard(idAccount);
@@ -54,7 +54,7 @@ const ListCards = () => {
       </Box>
     </Box>
   );
-}
+};
 
 export default ListCards;
 
