@@ -196,7 +196,64 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
               </Grid>
             </Grid >
           :
-          <></>
+          <Box sx={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "space-around"
+          }}>
+            <Box sx={{
+              width: "100%",
+            }}
+            >
+              <Typography>
+                {input}
+              </Typography>
+              {
+                edit ?
+                  <>
+                    < Input onChange={(e) => {
+                      setInputValue(e.target.value);
+                    }} name="name" defaultValue={data} sx={{}} />
+                  </> :
+                  <>
+                    <Typography
+                      sx={{
+                        display: "flex",
+                        color: "rgba(0,0,0,0.5)"
+                      }}
+                      variant="subtitle2">
+                      {data}
+                    </Typography>
+                  </>
+              }
+            </Box>
+            <Box sx={{
+              width: "100%",
+              height: "100$",
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "end",
+            }}>
+              {change ?
+                edit ?
+                  <>
+                    < DoneIcon color="success"
+                      onClick={() => {
+                        setEdit(!edit);
+                        onHandleSubmit();
+                      }} />
+                  </> :
+                  <>
+                    <EditIcon onClick={() => {
+                      setEdit(!edit);
+                    }} color="disabled" />
+                  </>
+                :
+                <>
+                </>
+              }
+            </Box>
+          </Box>
         }
       </Box >
       <hr />

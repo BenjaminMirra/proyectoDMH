@@ -23,6 +23,10 @@ const TusDatos = ({ userInfo }: Props) => {
               paddingLeft: "80px",
               paddingRight: "80px",
               width: "100%",
+              "@media (max-width: 768px)": {
+                paddingRight: "30px",
+                paddingLeft: "30px"
+              },
             }
             }>
               <Card sx={{
