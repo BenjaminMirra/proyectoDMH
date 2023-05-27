@@ -6,6 +6,7 @@ import Layout from "../../layout/layout";
 import { NextPageWithLayout } from "../_app";
 import BannerGestionPago from "../../components/GestionPago/banner-gestion-pago";
 import AliasCVU from "../../components/AliasCVU/alias-cvu";
+import { CircularProgress } from "@mui/material";
 
 interface PropsType {
   children?: ReactNode;
@@ -71,9 +72,13 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            margin: "0 80px",
+            paddingLeft: "80px",
+            paddingRight: "80px",
             width: "100%",
             gap: "20px",
+            paddingBottom: "40px",
+            backgroundColor: "var(--light-grey)",
+            paddingTop: "40px",
           }}
         >
           <TusDatos userInfo={userInfo} />
@@ -81,7 +86,18 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
           <AliasCVU userAccount={userAccount} />
         </Box>
       ) : (
-        <></>
+        <Box sx={{
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center"
+        }}>
+          <CircularProgress sx={{
+            color: "var(--lime-green)"
+          }} />
+        </Box>
       )}
     </>
   );
