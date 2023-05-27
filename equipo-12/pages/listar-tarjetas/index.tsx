@@ -7,26 +7,31 @@ import { Box } from "@mui/material";
 const ListCard = () => {
   return (
     <>
+
       <Box sx={{
-        height: "82vh",
+        height: "100vh",
         width: "100vw",
-        backgroundColor:"#EEEAEA"
-      }}>
-        <Box sx={{ marginBottom: "1rem",
-        paddingTop:"20px",
-        paddingRight:"50px",
-        paddingLeft:"50px"
+        backgroundColor: "#EEEAEA"
       }}
       >
+        <Box sx={{
+          marginBottom: "1rem",
+          paddingTop: "20px",
+          paddingRight: "50px",
+          paddingLeft: "50px"
+        }}
+        >
           <AddCard />
         </Box>
-        <Box sx={{ marginBottom: "1rem",
-        paddingTop:"20px",
-        paddingRight:"50px",
-        paddingLeft:"50px"}}>
-          <ListCards />
+        <Box sx={{
+          marginBottom: "1rem",
+          paddingTop: "20px",
+          paddingRight: "50px",
+          paddingLeft: "50px",
+        }} >
+            <ListCards />
+          </Box>
         </Box>
-      </Box>
     </>
   );
 };

@@ -14,87 +14,47 @@ const ListCard = styled("div")(({ theme }) => ({
   minWidth: "100%",
   boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
   borderRadius: "10px",
-  paddingBottom:"20px",
+  paddingBottom: "20px",
 }));
 
 const ListCards = () => {
-  const [listCard, setListCard] = useState<ListItemData[]>();
-  const [idAccount, setIdAccount] = useState();
+  const [idAccount, setIdAccount] = useState<number>(0);
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    axios("https://digitalmoney.ctd.academy/api/account", {
-      headers: {
-        Authorization: token,
-      },
-    }).then((response) => {
-      setIdAccount(response.data?.id);
-      console.log(idAccount);
-    });
+      const token = localStorage.getItem("token");
+      axios("https://digitalmoney.ctd.academy/api/account", {
+          headers: {
+              Authorization: token,
+          },
+      }).then((response) => {
+          setIdAccount(response.data?.id);
+      });
   }, [idAccount]);
 
-  useEffect(() => {
-    if (localStorage.getItem("userId") !== null) {
-      const token = localStorage.getItem("token");
-      const config = {
-        method: "get",
-        url: `https://digitalmoney.ctd.academy/api/accounts/393/cards`,
-        headers: {
-          Authorization: token,
-        },
-        data: "",
-      };
-      axios
-        .request(config)
-        .then((response) => {
-          setListCard(
-            response.data
-          );
-          console.log("id_account " + idAccount);
-          console.log("id_account " + JSON.stringify(response.data));
-        })
-        .catch((error) => {
-          console.log(error);
-          router.push("/");
-        });
-    }
-  }, []);
-
-  const listItems = GenerateListCard(listCard);
+  const listItems = GenerateListCard(idAccount);
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12} md={40}>
-        <Box >
-          <ListCard  >
-            <List>
-              <Typography sx={{ mt: 4, 
-                                mb: 2,
-                                paddingLeft:"20px" }} variant="h6" component="div">
-                Tus tarjetas
-              </Typography>
-              {listItems}
-            </List>
-          </ListCard>
-        </Box>
-      </Grid>
-    </Grid>
+    <Box display="flex" flexDirection="column" height="100%" width="100%">
+      <Box flex="1">
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={40}>
+
+            <ListCard  >
+              <List>
+                <Typography sx={{
+                  mt: 4,
+                  mb: 2,
+                  paddingLeft: "20px"
+                }} variant="h6" component="div">
+                  Tus tarjetas
+                </Typography>
+                {listItems}
+              </List>
+            </ListCard>
+          </Grid>
+        </Grid>
+      </Box>
+    </Box>
   );
 }
 
 export default ListCards;
 
-/*
-
-   <Box sx={{
-          height: '200px',
-          overflow: 'auto',
-          '&::-webkit-scrollbar': {
-            width: '6px',
-          },
-          '&::-webkit-scrollbar-track': {
-            background: '#f1f1f1',
-          },
-          '&::-webkit-scrollbar-thumb': {
-            background: '#888',
-          },
-        }}>
-*/
