@@ -11,10 +11,13 @@ import {
   Button,
   Box,
   TextFieldVariants,
+  Grid,
+  Paper,
 } from "@mui/material";
 import Link from "next/link";
 import ControlledInput from "../FormController/controlled-input";
 import axios from "axios";
+import { styled } from "@mui/material/styles";
 
 /* const schema = yup
   .object({
@@ -26,8 +29,8 @@ import axios from "axios";
   .required();
 type FormData = yup.InferType<typeof schema>; */
 
-const CreditCard = () => {  
-  const [isDisabled, setIsDisabled] = useState(false);  
+const CreditCard = () => {
+  const [isDisabled, setIsDisabled] = useState(false);
   const [limit10, setLimit10] = useState(false);
   const [idAccount, setIdAccount] = useState();
   const [cvc, setCvc] = useState("");
@@ -50,10 +53,8 @@ const CreditCard = () => {
     }).then((response) => {
       setIdAccount(response.data?.id);
       console.log(idAccount);
-      console.log(typeof idAccount);
     });
   }, [idAccount]);
-  
 
   useEffect(() => {
     setState({
@@ -81,12 +82,12 @@ const CreditCard = () => {
           `https://digitalmoney.ctd.academy/api/accounts/${idAccount}/cards`,
           {
             cod: parseInt(cvc),
-            "expiration_date": expiry,
-            "first_last_name": name,
-            "number_id": parseInt(number),
+            expiration_date: expiry,
+            first_last_name: name,
+            number_id: parseInt(number),
           },
           {
-            headers: {              
+            headers: {
               Authorization: token,
             },
           }
@@ -98,6 +99,14 @@ const CreditCard = () => {
       console.log(error);
     }
   };
+
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  }));
 
   return (
     <>
@@ -216,26 +225,37 @@ const CreditCard = () => {
               />
             )}
           </InputMask>
-
-          <Link
-            href="#"
-            style={{
-              width: "100%",
-              textDecoration: "none",
+          <Box
+            sx={{
+              "@media only screen and (min-width: 768px)": {
+                gridColumn:"span 2",
+                maxWidth:"100%"
+              },
+              "@media only screen and (min-width: 1024px)": {
+                gridColumn: "2",
+              },
             }}
           >
-            <Button
-              variant="secondary"
-              color="secondary"
-              size="large"
-              fullWidth
-              disabled={isDisabled}
-              onClick={(e) => onSubmit(e)}
-              onFocusCapture={handleInputFocus}
+            <Link
+              href="#"
+              style={{
+                width: "100%",
+                textDecoration: "none",
+              }}
             >
-              Continuar
-            </Button>
-          </Link>
+              <Button
+                variant="secondary"
+                color="secondary"
+                size="large"
+                fullWidth
+                disabled={isDisabled}
+                onClick={(e) => onSubmit(e)}
+                onFocusCapture={handleInputFocus}
+              >
+                Continuar
+              </Button>
+            </Link>
+          </Box>
         </Box>
       </form>
     </>
