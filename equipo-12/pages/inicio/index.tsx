@@ -7,7 +7,6 @@ import React from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Layout from "../../layout/layout";
 
-
 const Inicio = () => {
   const classes = useStyles();
 
@@ -56,18 +55,18 @@ const Inicio = () => {
         </form>
         <Box sx={{ width: "100%", backgroundColor: "#FFF", borderRadius: "10px" }}>
           <List sx={{ width: "100%", }}>
-            <ListItem sx={{padding:"20px"}}>
+            <ListItem sx={{ padding: "20px" }}>
               <Typography variant="h4" sx={{}}>Tu actividad</Typography>
             </ListItem>
-            <ListItem alignItems="flex-start" sx={{flexDirection:"row", display:"flex"}}>
+            <ListItem alignItems="flex-start" sx={{ flexDirection: "row", display: "flex" }}>
               <ListItemAvatar>
                 <Avatar alt="R" sx={{ backgroundColor: "#C1FD35", color: "#000" }} src="/static/images/avatar/1.jpg" />
               </ListItemAvatar>
               <ListItemText
-                sx={{display:"flex", justifyContent:"space-between", alignItems:"center"}}
+                sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
                 primary="Transferiste a Rodrigo"
                 secondary={
-                  <Box sx={{display:"flex", flexDirection:"column", alignItems:"flex-end"}}>
+                  <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
                     <Typography
                       sx={{ display: "inline" }}
                       component="span"
@@ -82,15 +81,15 @@ const Inicio = () => {
               />
             </ListItem>
             <Divider variant="inset" component="li" />
-            <ListItem alignItems="flex-start" sx={{flexDirection:"row", display:"flex"}}>
+            <ListItem alignItems="flex-start" sx={{ flexDirection: "row", display: "flex" }}>
               <ListItemAvatar>
                 <Avatar alt="R" sx={{ backgroundColor: "#C1FD35", color: "#000" }} src="/static/images/avatar/1.jpg" />
               </ListItemAvatar>
               <ListItemText
-                sx={{display:"flex", justifyContent:"space-between", alignItems:"center"}}
+                sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
                 primary="Transferiste a Rodrigo"
                 secondary={
-                  <Box sx={{display:"flex", flexDirection:"column", alignItems:"flex-end"}}>
+                  <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
                     <Typography
                       sx={{ display: "inline" }}
                       component="span"
@@ -105,15 +104,15 @@ const Inicio = () => {
               />
             </ListItem>
             <Divider variant="inset" component="li" />
-            <ListItem alignItems="flex-start" sx={{flexDirection:"row", display:"flex"}}>
+            <ListItem alignItems="flex-start" sx={{ flexDirection: "row", display: "flex" }}>
               <ListItemAvatar>
                 <Avatar alt="R" sx={{ backgroundColor: "#C1FD35", color: "#000" }} src="/static/images/avatar/1.jpg" />
               </ListItemAvatar>
               <ListItemText
-                sx={{display:"flex", justifyContent:"space-between", alignItems:"center"}}
+                sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
                 primary="Transferiste a Rodrigo"
                 secondary={
-                  <Box sx={{display:"flex", flexDirection:"column", alignItems:"flex-end"}}>
+                  <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
                     <Typography
                       sx={{ display: "inline" }}
                       component="span"
@@ -128,15 +127,15 @@ const Inicio = () => {
               />
             </ListItem>
             <Divider variant="inset" component="li" />
-            <ListItem alignItems="flex-start" sx={{flexDirection:"row", display:"flex"}}>
+            <ListItem alignItems="flex-start" sx={{ flexDirection: "row", display: "flex" }}>
               <ListItemAvatar>
                 <Avatar alt="R" sx={{ backgroundColor: "#C1FD35", color: "#000" }} src="/static/images/avatar/1.jpg" />
               </ListItemAvatar>
               <ListItemText
-                sx={{display:"flex", justifyContent:"space-between", alignItems:"center"}}
+                sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
                 primary="Transferiste a Rodrigo"
                 secondary={
-                  <Box sx={{display:"flex", flexDirection:"column", alignItems:"flex-end"}}>
+                  <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
                     <Typography
                       sx={{ display: "inline" }}
                       component="span"
@@ -151,8 +150,8 @@ const Inicio = () => {
               />
             </ListItem>
             <Divider variant="inset" component="li" />
-            <ListItem sx={{padding:"20px"}} >
-              <Link href="/" style={{display:"flex", width:"100%", justifyContent:"space-between", color:"#000"}}>
+            <ListItem sx={{ padding: "20px" }} >
+              <Link href="/" style={{ display: "flex", width: "100%", justifyContent: "space-between", color: "#000" }}>
                 <Typography variant="h4" sx={{}}>Ver toda tu actividad</Typography>
                 <ArrowForwardIcon></ArrowForwardIcon>
               </Link>
@@ -165,7 +164,7 @@ const Inicio = () => {
 };
 
 Inicio.getLayout = function getLayout(page: ReactElement) {
-  return <Layout  variant="home">{page}</Layout>;
+  return <Layout variant="home">{page}</Layout>;
 };
 
 export default Inicio;
