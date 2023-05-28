@@ -7,9 +7,9 @@ import { ReactElement, ReactNode, useState } from "react";
 import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
-import Layout from "../../../layout/layout";
 import { NextPageWithLayout } from "../../_app";
 import { useUserContext } from "../../../provider/userProvider";
+import Layout from "../../../layout/layout";
 
 const schema = yup
   .object({
@@ -24,7 +24,6 @@ interface PropsType {
 const Token: NextPageWithLayout<PropsType> = () => {
   const [errorLogin, setErrorLogin] = useState(false);
   const router = useRouter();
-  const { query } = useRouter();
   const {
     handleSubmit,
     formState: { errors },

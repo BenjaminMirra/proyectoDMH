@@ -3,8 +3,9 @@ import Head from "next/head";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Link from "next/link";
 import { ReactElement, ReactNode } from "react";
-import { NextPageWithLayout } from "../_app";
 import Layout from "../../layout/layout";
+import { NextPageWithLayout } from "../_app";
+
 interface PropsType {
   children?: ReactNode;
 }
@@ -95,7 +96,7 @@ const SuccessRegister: NextPageWithLayout<PropsType> = () => {
 };
 
 SuccessRegister.getLayout = function getLayout(page: ReactElement) {
-  return <Layout variant="login">{page}</Layout>;
+  return <Layout variant="home">{page}</Layout>;
 };
 
 export default SuccessRegister;
