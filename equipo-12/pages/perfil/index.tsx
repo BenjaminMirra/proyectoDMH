@@ -1,57 +1,22 @@
 import Box from "@mui/material/Box";
 import TusDatos from "../../components/TusDatos/tusDatos";
 import axios from "axios";
-import { ReactElement, ReactNode, useEffect, useState } from "react";
+import { ReactElement, ReactNode, useEffect } from "react";
 import Layout from "../../layout/layout";
 import { NextPageWithLayout } from "../_app";
 import BannerGestionPago from "../../components/GestionPago/banner-gestion-pago";
 import AliasCVU from "../../components/AliasCVU/alias-cvu";
 import { CircularProgress } from "@mui/material";
+import useUser from "../../hooks/useUser";
+import useAccount from "../../hooks/useAccount";
 
 interface PropsType {
   children?: ReactNode;
 }
 
 const Perfil: NextPageWithLayout<PropsType> = () => {
-  const [userInfo, setUserInfo] = useState();
-  const [userAccount, setUserAccount] = useState();
-
-  useEffect(() => {
-    const userId = localStorage.getItem("userId");
-    const token = localStorage.getItem("token");
-    const configInfo = {
-      method: "get",
-      url: `https://digitalmoney.ctd.academy/api/users/${userId}`,
-      headers: {
-        Authorization: token,
-        "Content-Type": "application/json",
-      },
-    };
-    const configAccount = {
-      method: "get",
-      url: "https://digitalmoney.ctd.academy/api/account",
-      headers: {
-        Authorization: token,
-        "Content-Type": "application/json",
-      },
-    };
-    axios
-      .request(configInfo)
-      .then((response) => {
-        setUserInfo(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    axios
-      .request(configAccount)
-      .then((response) => {
-        setUserAccount(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [userInfo, userAccount]);
+  const [userInfo] = useUser();
+  const [userAccount] = useAccount();
 
   return (
     <>
@@ -95,7 +60,7 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
           alignItems: "center"
         }}>
           <CircularProgress sx={{
-            color: "var(--lime-green)"
+            color: "var(--lime-green)",
           }} />
         </Box>
       )}
