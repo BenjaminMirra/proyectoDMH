@@ -62,98 +62,23 @@ const Inicio: NextPageWithLayout<PropsType> = () => {
             <ListItem sx={{ padding: "20px" }}>
               <Typography variant="h4" sx={{}}>Tu actividad</Typography>
             </ListItem>
-            <ListItem alignItems="flex-start" sx={{ flexDirection: "row", display: "flex" }}>
+            <ListItem alignItems="flex-start" sx={{ display: "flex", alignItems: "center" }}>
               <ListItemAvatar>
                 <Avatar alt="R" sx={{ backgroundColor: "#C1FD35", color: "#000" }} />
               </ListItemAvatar>
               <ListItemText
                 sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
                 primary="Transferiste a Rodrigo"
-                secondary={
-                  <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
-                    <Typography
-                      sx={{ display: "inline" }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      -$ 1265,57
-                    </Typography>
-                    {"sábado"}
-                  </Box>
-                }
-              />
-            </ListItem>
-            <Divider variant="inset" component="li" />
-            <ListItem alignItems="flex-start" sx={{ flexDirection: "row", display: "flex" }}>
-              <ListItemAvatar>
-                <Avatar alt="R" sx={{ backgroundColor: "#C1FD35", color: "#000" }} src="/static/images/avatar/1.jpg" />
-              </ListItemAvatar>
+              >
+
+              </ListItemText>
               <ListItemText
-                sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
-                primary="Transferiste a Rodrigo"
-                secondary={
-                  <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
-                    <Typography
-                      sx={{ display: "inline" }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      -$ 1265,57
-                    </Typography>
-                    {"sábado"}
-                  </Box>
-                }
+                sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-end" }}
+                primary="-$ 1265,57"
+                secondary="sabado"
               />
             </ListItem>
-            <Divider variant="inset" component="li" />
-            <ListItem alignItems="flex-start" sx={{ flexDirection: "row", display: "flex" }}>
-              <ListItemAvatar>
-                <Avatar alt="R" sx={{ backgroundColor: "#C1FD35", color: "#000" }} src="/static/images/avatar/1.jpg" />
-              </ListItemAvatar>
-              <ListItemText
-                sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
-                primary="Transferiste a Rodrigo"
-                secondary={
-                  <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
-                    <Typography
-                      sx={{ display: "inline" }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      -$ 1265,57
-                    </Typography>
-                    {"sábado"}
-                  </Box>
-                }
-              />
-            </ListItem>
-            <Divider variant="inset" component="li" />
-            <ListItem alignItems="flex-start" sx={{ flexDirection: "row", display: "flex" }}>
-              <ListItemAvatar>
-                <Avatar alt="R" sx={{ backgroundColor: "#C1FD35", color: "#000" }} src="/static/images/avatar/1.jpg" />
-              </ListItemAvatar>
-              <ListItemText
-                sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
-                primary="Transferiste a Rodrigo"
-                secondary={
-                  <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
-                    <Typography
-                      sx={{ display: "inline" }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      -$ 1265,57
-                    </Typography>
-                    {"sábado"}
-                  </Box>
-                }
-              />
-            </ListItem>
-            <Divider variant="inset" component="li" />
+            <Divider variant="middle"></Divider>
             <ListItem sx={{ padding: "20px" }} >
               <Link href="/" style={{ display: "flex", width: "100%", justifyContent: "space-between", color: "#000" }}>
                 <Typography variant="h4" sx={{}}>Ver toda tu actividad</Typography>
