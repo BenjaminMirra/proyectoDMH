@@ -1,15 +1,16 @@
 import Head from "next/head";
 import clientPromise from "../lib/mongodb";
 import { Hero } from "../components/Hero/hero";
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import { NextPageWithLayout } from "./_app";
 import Layout from "../layout/layout";
-
+import { GetServerSideProps } from "next";
 interface PropsType {
   children?: ReactElement;
 }
 
 const Home: NextPageWithLayout<PropsType> = ({ texts, images, cards }: any) => {
+
   return (
     <>
       <Head>
@@ -41,7 +42,7 @@ Home.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="home">{page}</Layout>;
 };
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const client = await clientPromise;
     const db = client.db("data");
@@ -95,6 +96,6 @@ export async function getServerSideProps() {
       props: { ok: false, reason: "No se puede acceder a la Base de Datos" },
     };
   }
-}
+};
 
 export default Home;
