@@ -56,6 +56,10 @@ const Password: NextPageWithLayout<PropsType> = () => {
             })
             .then((response) => {
               localStorage.setItem("userId", response.data.user_id);
+              localStorage.setItem(
+                "accountId",
+                response.data.id
+              );
             });
 
           setErrorLogin(false);

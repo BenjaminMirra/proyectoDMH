@@ -2,10 +2,15 @@ import { Box, Button, Typography } from "@mui/material";
 import Head from "next/head";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Link from "next/link";
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 import Layout from "../../layout/layout";
+import { NextPageWithLayout } from "../_app";
 
-const SuccessRegister = () => {
+interface PropsType {
+  children?: ReactNode;
+}
+
+const SuccessRegister: NextPageWithLayout<PropsType> = () => {
   return (
     <>
       <Head>

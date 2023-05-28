@@ -1,14 +1,17 @@
 import { Avatar, Box, Button, Card, Divider, InputAdornment, List, ListItem, ListItemAvatar, ListItemText, TextField, Typography } from "@mui/material";
-import { ReactElement } from "react";
 import Link from "next/link";
 import SearchIcon from "@mui/icons-material/Search";
 import { useStyles } from "../../material-theme";
-import React from "react";
+import React, { ReactElement } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { NextPageWithLayout } from "../_app";
 import Layout from "../../layout/layout";
 
+interface PropsType {
+  children?: ReactElement;
+}
 
-const Inicio = () => {
+const Inicio: NextPageWithLayout<PropsType> = () => {
   const classes = useStyles();
 
   const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
@@ -42,7 +45,7 @@ const Inicio = () => {
           <TextField
             variant="outlined"
             size="medium"
-            sx={{ width: "100%", maxWidth: "100%", }}
+            sx={{ width: "100%", maxWidth: "100%", backgroundColor: "#FFF", }}
             className={classes.textField}
             placeholder="Buscar en tu actividad"
             InputProps={{
@@ -54,14 +57,14 @@ const Inicio = () => {
             }}
           />
         </form>
-        <Box sx={{ width: "100%", backgroundColor: "#FFF", borderRadius: "10px" }}>
+        <Box sx={{ width: "100%", backgroundColor: "#FFF", borderRadius: "10px", boxShadow: "0px 4px 4px #0000004c", }}>
           <List sx={{ width: "100%", }}>
             <ListItem sx={{ padding: "20px" }}>
               <Typography variant="h4" sx={{}}>Tu actividad</Typography>
             </ListItem>
             <ListItem alignItems="flex-start" sx={{ flexDirection: "row", display: "flex" }}>
               <ListItemAvatar>
-                <Avatar alt="R" sx={{ backgroundColor: "#C1FD35", color: "#000" }} src="/static/images/avatar/1.jpg" />
+                <Avatar alt="R" sx={{ backgroundColor: "#C1FD35", color: "#000" }} />
               </ListItemAvatar>
               <ListItemText
                 sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
@@ -169,4 +172,3 @@ Inicio.getLayout = function getLayout(page: ReactElement) {
 };
 
 export default Inicio;
-

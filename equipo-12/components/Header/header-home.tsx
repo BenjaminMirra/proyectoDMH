@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Link from "next/link";
 import { Box, Fade, Menu, MenuItem, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import axios from "axios";
 
 const HeaderHome = () => {
@@ -12,6 +13,8 @@ const HeaderHome = () => {
     name: "",
     lastName: "",
   });
+
+  const router = useRouter();
 
   useEffect(() => {
     if (localStorage.getItem("userId") !== null) {
@@ -52,6 +55,9 @@ const HeaderHome = () => {
   const handleLogout = () => {
     setAnchorEl(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("accountId");
+    localStorage.removeItem("userId");
+    router.push("/");
     setLogged(false);
   };
 
