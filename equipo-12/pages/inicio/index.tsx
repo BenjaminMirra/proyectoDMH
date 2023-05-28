@@ -1,0 +1,99 @@
+import { Avatar, Box, Button, Card, Divider, InputAdornment, List, ListItem, ListItemAvatar, ListItemText, TextField, Typography } from "@mui/material";
+import Link from "next/link";
+import SearchIcon from "@mui/icons-material/Search";
+import { useStyles } from "../../material-theme";
+import React, { ReactElement } from "react";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { NextPageWithLayout } from "../_app";
+import Layout from "../../layout/layout";
+
+interface PropsType {
+  children?: ReactElement;
+}
+
+const Inicio: NextPageWithLayout<PropsType> = () => {
+  const classes = useStyles();
+
+  const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  };
+
+  return (
+    <Box sx={{ display: "flex", width: "100%" }}>
+      <Box sx={{ width: "25%", height: "100%", backgroundColor: "#C1FD35" }}>
+
+      </Box>
+      <Box sx={{ width: "75%", gap: "10px", display: "flex", flexDirection: "column", alignItems: "center", padding: "50px", backgroundColor: "tertiary.main" }}>
+        <Card variant="outlined" sx={{ width: "100%" }}>
+          <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end", gap: "10px" }}>
+            <Link style={{ color: "#EEEAEA" }} href="/">
+              <Typography variant="subtitle1" sx={{ "&:hover": { color: "#C1FD35", } }}>Ver Tarjetas</Typography>
+            </Link>
+            <Link style={{ color: "#EEEAEA" }} href="/">
+              <Typography variant="subtitle1" sx={{ "&:hover": { color: "#C1FD35", } }}>Ver CVU</Typography>
+            </Link>
+          </Box>
+          <Typography variant="h4" sx={{ paddingLeft: "10px" }}>Dinero Disponible</Typography>
+          <Typography variant="h1" sx={{ border: "2px solid #C1FD35", borderRadius: "100px", width: "auto", padding: "10px" }}>6.565.565,45 AR$</Typography>
+
+        </Card>
+        <Box sx={{ display: "flex", width: "100%", gap: "10px" }}>
+          <Button sx={{ width: "50%" }} variant="xxl">Transferir Dinero</Button>
+          <Button sx={{ width: "50%" }} variant="xxl">Ingresar dinero</Button>
+        </Box>
+        <form style={{ width: "100%" }} onSubmit={handleSearch}>
+          <TextField
+            variant="outlined"
+            size="medium"
+            sx={{ width: "100%", maxWidth: "100%", backgroundColor: "#FFF", }}
+            className={classes.textField}
+            placeholder="Buscar en tu actividad"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start" sx={{ backgroundColor: "#FFF" }}>
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </form>
+        <Box sx={{ width: "100%", backgroundColor: "#FFF", borderRadius: "10px", boxShadow: "0px 4px 4px #0000004c", }}>
+          <List sx={{ width: "100%", }}>
+            <ListItem sx={{ padding: "20px" }}>
+              <Typography variant="h4" sx={{}}>Tu actividad</Typography>
+            </ListItem>
+            <ListItem alignItems="flex-start" sx={{ display: "flex", alignItems: "center" }}>
+              <ListItemAvatar>
+                <Avatar alt="R" sx={{ backgroundColor: "#C1FD35", color: "#000" }} />
+              </ListItemAvatar>
+              <ListItemText
+                sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                primary="Transferiste a Rodrigo"
+              >
+
+              </ListItemText>
+              <ListItemText
+                sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-end" }}
+                primary="-$ 1265,57"
+                secondary="sabado"
+              />
+            </ListItem>
+            <Divider variant="middle"></Divider>
+            <ListItem sx={{ padding: "20px" }} >
+              <Link href="/" style={{ display: "flex", width: "100%", justifyContent: "space-between", color: "#000" }}>
+                <Typography variant="h4" sx={{}}>Ver toda tu actividad</Typography>
+                <ArrowForwardIcon></ArrowForwardIcon>
+              </Link>
+            </ListItem>
+          </List>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+Inicio.getLayout = function getLayout(page: ReactElement) {
+  return <Layout variant="home">{page}</Layout>;
+};
+
+export default Inicio;
