@@ -66,7 +66,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
           router.push("/inicio");
         });
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setErrorLogin(true);
     }
   };

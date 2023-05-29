@@ -1,7 +1,7 @@
 import Head from "next/head";
 import clientPromise from "../lib/mongodb";
 import { Hero } from "../components/Hero/hero";
-import { ReactElement, useEffect } from "react";
+import { ReactElement } from "react";
 import { NextPageWithLayout } from "./_app";
 import Layout from "../layout/layout";
 import { GetServerSideProps } from "next";

@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import CardHero from "../../CardHero/cardHero";
 
-const HeroDesktop = ({ cards, texts, images }: any) => {
+const HeroDesktop = ({ cards, texts }: any) => {
   return (
     <Grid className={styles.grid}
       sx={{

@@ -19,7 +19,11 @@ export const userContext = createContext<ContextType>({
 
 export const useUserContext = (): ContextType => useContext(userContext);
 
-const UseContextProvider = ({ children }: any) => {
+type Props = {
+  children: React.ReactNode;
+}
+
+const UseContextProvider = ({ children }: Props) => {
   const [user, setUser] = useState<UserType>({
     email: "",
     password: "",

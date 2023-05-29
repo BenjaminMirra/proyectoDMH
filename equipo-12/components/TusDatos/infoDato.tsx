@@ -63,7 +63,7 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
         return response;
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 

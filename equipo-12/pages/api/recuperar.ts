@@ -1,9 +1,7 @@
 import { mailOptions, transporter } from "../../config/nodemailer";
-import * as crypto from "crypto-js";
 
 const handler = async (req: any, res: any) => {
 
-  console.log(req.method);
   if (req.method === "POST") {
     const data = req.body;
     //${crypto.DES.encrypt(data.email, "12345").toString()}

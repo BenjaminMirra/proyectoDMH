@@ -3,7 +3,6 @@ import ControlledInput from "./controlled-input";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
 import * as yup from "yup";
 import sendConfirmationEmail from "../../lib/mail";
 import { useState } from "react";
@@ -51,7 +50,7 @@ const FormRegister = () => {
       await sendConfirmationEmail(data);
       router.push("/");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
   return (
