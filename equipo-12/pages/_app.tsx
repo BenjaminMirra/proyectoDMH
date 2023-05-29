@@ -5,6 +5,7 @@ import { theme } from "../material-theme";
 import { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
 import UseContextProvider from "../provider/userProvider";
+import { UserProvider } from "../context/createContext";
 
 export type NextPageWithLayout<T> = NextPage<T> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -19,9 +20,11 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <ThemeProvider theme={theme}>
-      <UseContextProvider>
-        {getLayout(<Component {...pageProps} />)}
-      </UseContextProvider>
+      <UserProvider>
+        <UseContextProvider>
+          {getLayout(<Component {...pageProps} />)}
+        </UseContextProvider>
+      </UserProvider>
     </ThemeProvider>
   );
 }

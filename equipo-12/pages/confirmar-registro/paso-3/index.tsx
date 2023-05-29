@@ -87,12 +87,12 @@ const Token: NextPageWithLayout<PropsType> = () => {
                   });
               });
           } else {
-            console.log("token incorrecto");
+            console.error("token incorrecto");
             setErrorLogin(true);
           }
         });
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setErrorLogin(true);
     }
   };
