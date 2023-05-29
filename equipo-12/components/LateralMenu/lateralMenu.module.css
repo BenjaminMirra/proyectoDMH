@@ -1,5 +1,107 @@
-.container {
-    position: sticky;
-    width: 30%;
+.mobileBackground, .desktopBackground {
+    position: fixed;
     height: 100%;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
 }
+
+.mobileBackground{
+    visibility: collapse;
+    align-items: end;
+    -webkit-animation: slide-left 0.5s cubic-bezier(0.445, 0.050, 0.550, 0.950) forwards;
+	animation: slide-left 0.5s cubic-bezier(0.445, 0.050, 0.550, 0.950) forwards;
+}
+
+
+.top{
+    background-color: #201F22;
+    width: 40%;
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+}
+
+.top p {
+    color: #C1FD35;
+    margin: 5px 0px 0px 35px;
+}
+
+.top img {
+    filter: invert(85%) sepia(83%) saturate(465%) hue-rotate(21deg) brightness(105%) contrast(98%);
+    width: 26px;
+    height: 26px;
+}
+
+.top button {
+    background-color: transparent;
+    padding: 10px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.top div {
+    display: flex;
+    justify-content: end;
+}
+
+.container {
+    width: 15%;
+    height: 100%;
+    background-color: #C1FD35;
+    z-index: 1;
+    box-shadow: 3px 0px 3px -1px rgba(0, 0, 0, 0.25);
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+}
+
+.links a{
+    text-decoration: none;
+    color: #201f22;
+    font-size: 17px;
+    margin: 15px 0px 0px 35px;
+}
+
+.links button {
+    text-decoration: none;
+    border: none;
+    padding: none;
+    background-color: transparent;
+    text-align: left;
+    font-size: 17px;
+    margin: 15px 0px 0px 35px;
+    color: #201f22a0;
+    cursor: pointer;
+}
+
+.active {
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 40%;
+    }
+    .mobileBackground{
+        z-index: 9;
+        background-color: #201f229a;
+        visibility: visible;
+    }
+    .desktopBackground{
+        visibility: collapse;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .mobileBackground{
+        visibility: collapse !important;
+    }
+    .container{
+        padding-top: 120px;
+    }
+}
+

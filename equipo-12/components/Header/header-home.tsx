@@ -5,8 +5,10 @@ import Link from "next/link";
 import { Box, Fade, Menu, MenuItem, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import menuLogo from "../../utils/images/menus.svg"
 
-const HeaderHome = () => {
+const HeaderHome = (props : any) => {
+  const { setVisibility } = props;
   const [logged, setLogged] = useState(false);
   const [userData, setUserData] = useState({
     name: "",
@@ -142,6 +144,7 @@ const HeaderHome = () => {
               Crear Cuenta
             </Button>
           </Link>
+          <button onClick={() => {setVisibility(true)}}><Image src={menuLogo} alt="menu"/></button>
         </>
       );
     }
@@ -151,6 +154,7 @@ const HeaderHome = () => {
     <Box
       sx={{
         backgroundColor: "var(--main-bg-color)",
+        zIndex: "2",
       }}
     >
       <Box

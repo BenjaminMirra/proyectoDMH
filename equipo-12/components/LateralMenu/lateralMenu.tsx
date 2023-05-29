@@ -1,18 +1,66 @@
 import styles from "./lateralMenu.module.css";
-import Link from "next/link"
-import Box from "@mui/material/Box/Box";
+import NavTree from "./navTree";
+import Box from "@mui/material/Box";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import axios from "axios";
+import { Typography } from "@mui/material";
+import close from "../../utils/images/close.svg"
+import Image from "next/image";
 
-const LateralMenu = () => {
+const LateralMenu = ( props : any) => {
+    const { visibility, setVisibility } = props;
+    const [userData, setUserData] = useState({
+        name: "",
+        lastName: "",
+    });
+    useEffect(() => {
+        if (localStorage.getItem("userId") !== null) {
+        const userId = localStorage.getItem("userId");
+        const token = localStorage.getItem("token");
+        const config = {
+            method: "get",
+            url: `https://digitalmoney.ctd.academy/api/users/${userId}`,
+            headers: {
+                Authorization: `${token}`,
+            },
+            data: "",
+        };
+        axios
+            .request(config)
+            .then((response) => {
+            setUserData({
+                name: response.data.firstname,
+                lastName: response.data.lastname,
+            });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
+    }, []);
+
     return(
-        <Box className={styles.container}>
-            <Link>Inicio</Link>
-            <Link>Actividad</Link>
-            <Link>Tu Perfil</Link>
-            <Link>Cargar Dinero</Link>
-            <Link>Pagar Servicios</Link>
-            <Link>Tarjetas</Link>
-            <Link>Cerrar sesión</Link>
-        </Box>
+        <>
+            <Box sx={{visibility: visibility ? "visible !important" : "hidden !important"}}  className={styles.mobileBackground}
+            onClick={()=> {setVisibility(false)}}
+            >
+                <Box className={styles.top}>
+                        <Box>
+                            <button onClick={()=>{setVisibility(false)}}><Image src={close} alt="logo"/></button>
+                        </Box>
+                        <Typography>Hola,</Typography>
+                        <Typography>{userData.name}  {userData.lastName}</Typography>
+                </Box>
+                <Box className={styles.container}>
+                    <NavTree/>
+                </Box>
+            </Box>
+            <Box className={styles.desktopBackground}>
+                    <Box className={styles.container}>
+                        <NavTree/>
+                    </Box>
+            </Box>
+        </>
     )
 }
 
