@@ -5,23 +5,16 @@ import Link from "next/link";
 import { Box, Fade, Menu, MenuItem, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import useUser from "../../hooks/useUser";
-import { IUser } from "../../types";
 import axios from "axios";
-
+import { useUserData } from "../../context/createContext";
 
 const HeaderHome = () => {
-  const [logged, setLogged] = useState(true);
-  const [userData, setUserData] = useState<IUser>();
-
-  const [userInfo] = useUser();
+  const [logged, setLogged] = useState(false);
+  const { userInfo } = useUserData();
 
   useEffect(() => {
-    if (userInfo) {
-      setUserData(userInfo);
+    if (userInfo.firstname !== "" && localStorage.getItem("token")) {
       setLogged(true);
-    } else {
-      setLogged(false);
     }
   }, [userInfo]);
 
@@ -47,7 +40,7 @@ const HeaderHome = () => {
         console.log(response);
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
     setAnchorEl(null);
     localStorage.removeItem("token");
@@ -90,8 +83,8 @@ const HeaderHome = () => {
                   color: "var( --main-bg-color)",
                 }}
               >
-                {userData?.firstname.charAt(0)}
-                {userData?.lastname.charAt(0)}
+                {userInfo?.firstname.charAt(0)}
+                {userInfo?.lastname.charAt(0)}
               </Typography>
             </Button>
             <Menu
@@ -125,7 +118,7 @@ const HeaderHome = () => {
               color: "var(--main-text-color)",
             }}
           >
-            Hola, {userData?.firstname} {userData?.lastname}
+            Hola, {userInfo?.firstname} {userInfo?.lastname}
           </Typography>
         </>
       );
@@ -187,3 +180,5 @@ const HeaderHome = () => {
     </Box>
   );
 };
+
+export default HeaderHome;
