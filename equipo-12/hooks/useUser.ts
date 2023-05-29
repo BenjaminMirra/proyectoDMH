@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { UserInfoType } from "../types/userInfo";
 
 const useUser = () => {
 
-  const [userInfo, setUserInfo] = useState();
+  const [userInfo, setUserInfo] = useState<UserInfoType>();
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");

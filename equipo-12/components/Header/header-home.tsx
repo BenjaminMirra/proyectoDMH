@@ -5,28 +5,14 @@ import Link from "next/link";
 import { Box, Fade, Menu, MenuItem, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import axios from "axios";
 import useUser from "../../hooks/useUser";
 import { UserInfoType } from "../../types/userInfo";
 
-interface Props {
-  userInfo: UserInfoType;
-}
-
 const HeaderHome = () => {
   const [logged, setLogged] = useState(true);
-  const [userData, setUserData] = useState<UserInfoType>();
+  const [data, setData] = useState<UserInfoType>();
 
   const [userInfo] = useUser();
-
-  useEffect(() => {
-    if (userInfo) {
-      setUserData(userInfo);
-      setLogged(true);
-    } else {
-      setLogged(false);
-    }
-  }, [userInfo]);
 
   const router = useRouter();
 
@@ -39,17 +25,26 @@ const HeaderHome = () => {
     setAnchorEl(null);
   };
 
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setLogged(true);
+      setData(userInfo);
+    } else {
+      setLogged(false);
+    }
+  }, [userInfo]);
+
   const handleLogout = () => {
     setAnchorEl(null);
     localStorage.removeItem("token");
     localStorage.removeItem("accountId");
     localStorage.removeItem("userId");
-    router.push("/");
+    setData(undefined);
     setLogged(false);
   };
 
   const handleIsAuthMenu = () => {
-    if (logged) {
+    if (logged && data?.firstname) {
       ////const { nombre, apellido } = JSON.parse(localStorage.getItem('user'));
       return (
         <>
@@ -81,8 +76,8 @@ const HeaderHome = () => {
                   color: "var( --main-bg-color)",
                 }}
               >
-                {userData?.firstname.charAt(0)}
-                {userData?.lastname.charAt(0)}
+                {data?.firstname.charAt(0)}
+                {data?.lastname.charAt(0)}
               </Typography>
             </Button>
             <Menu
@@ -101,7 +96,6 @@ const HeaderHome = () => {
               <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
             </Menu>
           </Box>
-
           <Typography
             variant="subtitle2"
             sx={{
@@ -116,7 +110,7 @@ const HeaderHome = () => {
               color: "var(--main-text-color)",
             }}
           >
-            Hola, {userData?.firstname} {userData?.lastname}
+            Hola, {data?.firstname} {data?.lastname}
           </Typography>
         </>
       );
