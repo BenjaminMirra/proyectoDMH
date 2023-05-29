@@ -1,10 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { UserInfoType } from "../types/userInfo";
+import { IUser } from "../types";
 
 const useUser = () => {
 
-  const [userInfo, setUserInfo] = useState<UserInfoType>();
+  const [userInfo, setUserInfo] = useState<IUser>({
+    firstname: "",
+    lastname: "",
+    phone: "",
+    dni: 0,
+    email: "",
+    password: "",
+  });
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");

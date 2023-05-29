@@ -33,7 +33,6 @@ interface PropsType {
 const RecuperarClave: NextPageWithLayout<PropsType> = () => {
   //const [errorLogin, setErrorLogin] = useState(false);
   const router = useRouter();
-  const { query } = useRouter();
   const {
     handleSubmit,
     formState: { errors, isSubmitting },
@@ -43,7 +42,6 @@ const RecuperarClave: NextPageWithLayout<PropsType> = () => {
   });
 
   const onSubmit = async () => {
-    console.log(query);
     router.push("/recupero-exitoso");
     return;
   };

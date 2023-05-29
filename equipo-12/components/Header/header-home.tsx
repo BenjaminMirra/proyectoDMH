@@ -6,13 +6,24 @@ import { Box, Fade, Menu, MenuItem, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useUser from "../../hooks/useUser";
-import { UserInfoType } from "../../types/userInfo";
+import { IUser } from "../../types";
+import axios from "axios";
+
 
 const HeaderHome = () => {
   const [logged, setLogged] = useState(true);
-  const [data, setData] = useState<UserInfoType>();
+  const [userData, setUserData] = useState<IUser>();
 
   const [userInfo] = useUser();
+
+  useEffect(() => {
+    if (userInfo) {
+      setUserData(userInfo);
+      setLogged(true);
+    } else {
+      setLogged(false);
+    }
+  }, [userInfo]);
 
   const router = useRouter();
 
@@ -25,26 +36,29 @@ const HeaderHome = () => {
     setAnchorEl(null);
   };
 
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setLogged(true);
-      setData(userInfo);
-    } else {
-      setLogged(false);
+  const handleLogout = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      await axios("https://digitalmoney.ctd.academy/api/logout", {
+        headers: {
+          Authorization: token,
+        },
+      }).then((response) => {
+        console.log(response);
+      });
+    } catch (error) {
+      console.log(error);
     }
-  }, [userInfo]);
-
-  const handleLogout = () => {
     setAnchorEl(null);
     localStorage.removeItem("token");
     localStorage.removeItem("accountId");
     localStorage.removeItem("userId");
-    setData(undefined);
+    router.push("/");
     setLogged(false);
   };
 
   const handleIsAuthMenu = () => {
-    if (logged && data?.firstname) {
+    if (logged) {
       ////const { nombre, apellido } = JSON.parse(localStorage.getItem('user'));
       return (
         <>
@@ -76,8 +90,8 @@ const HeaderHome = () => {
                   color: "var( --main-bg-color)",
                 }}
               >
-                {data?.firstname.charAt(0)}
-                {data?.lastname.charAt(0)}
+                {userData?.firstname.charAt(0)}
+                {userData?.lastname.charAt(0)}
               </Typography>
             </Button>
             <Menu
@@ -96,6 +110,7 @@ const HeaderHome = () => {
               <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
             </Menu>
           </Box>
+
           <Typography
             variant="subtitle2"
             sx={{
@@ -110,7 +125,7 @@ const HeaderHome = () => {
               color: "var(--main-text-color)",
             }}
           >
-            Hola, {data?.firstname} {data?.lastname}
+            Hola, {userData?.firstname} {userData?.lastname}
           </Typography>
         </>
       );
@@ -172,5 +187,3 @@ const HeaderHome = () => {
     </Box>
   );
 };
-
-export default HeaderHome;

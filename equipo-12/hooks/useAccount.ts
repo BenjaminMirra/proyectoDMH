@@ -1,9 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { IAccount } from "../types";
 
 const useAccount = () => {
 
-  const [userAccount, setUserAccount] = useState();
+  const [userAccount, setUserAccount] = useState<IAccount>({
+    alias: "",
+    available_amount: "",
+    cvu: "",
+    id: 0,
+    user_id: 0
+  });
 
   useEffect(() => {
     const token = localStorage.getItem("token");
