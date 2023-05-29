@@ -11,7 +11,7 @@ interface Props {
 const TusDatos = ({ userInfo }: Props) => {
   return (
     <>
-      {userInfo ? (
+      {userInfo.firstname !== "" ? (
         <>
           <Box
             sx={{
