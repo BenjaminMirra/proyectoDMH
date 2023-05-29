@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import useUser from "../hooks/useUser";
 import useAccount from "../hooks/useAccount";
 import { IAccount, IUser } from "../types";
@@ -43,3 +43,5 @@ export const UserProvider = ({children}: Props) => {
     </UserContext.Provider>
   );
 };
+
+export const useUserData = () => useContext(UserContext);

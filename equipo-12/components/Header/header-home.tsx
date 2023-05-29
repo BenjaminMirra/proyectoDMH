@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useUser from "../../hooks/useUser";
 import { IUser } from "../../types";
+import axios from "axios";
 
 
 const HeaderHome = () => {

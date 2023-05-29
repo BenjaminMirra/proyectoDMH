@@ -2,21 +2,23 @@ import { Box, Button, Typography } from "@mui/material";
 import Head from "next/head";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Link from "next/link";
-import LayoutLogin from "../../layout/layout-login";
-import LayoutHome from "../../layout/layout-home";
 import "react-credit-cards/es/styles-compiled.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import ControlledInput from "../../components/FormController/controlled-input";
 import CreditCard from "../../components/CreditCard/creditCard";
+import { NextPageWithLayout } from "../_app";
+import { ReactElement } from "react";
+import Layout from "../../layout/layout";
 
+interface PropsType {
+  children?: ReactElement;
+}
 
-const addCard = () => {
-
-
+const addCard: NextPageWithLayout<PropsType> = () => {
   return (
-    <LayoutHome>
+    <>
       <Head>
         <title>Recupero Pendiente</title>
         <meta
@@ -41,7 +43,7 @@ const addCard = () => {
       >
         <Box
           sx={{
-            padding:"20px",
+            padding: "20px",
             backgroundColor: "#fff",
             textAlign: "center",
             "@media only screen and (max-width: 768px)": {
@@ -57,11 +59,14 @@ const addCard = () => {
             },
           }}
         >
-          <CreditCard/>
-
+          <CreditCard />
         </Box>
       </main>
-    </LayoutHome>
+    </>
   );
+};
+
+addCard.getLayout = function getLayout(page: ReactElement) {
+  return <Layout variant="home">{page}</Layout>;
 };
 export default addCard;

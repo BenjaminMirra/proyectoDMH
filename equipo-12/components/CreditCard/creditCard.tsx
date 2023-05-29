@@ -20,12 +20,12 @@ import ControlledInput from "../FormController/controlled-input";
 import axios from "axios";
 import { styled } from "@mui/material/styles";
 import catchError from "../../services/creditCard/handle-credit-cards-errors";
+import { useUserData } from "../../context/createContext";
 
 const CreditCard = () => {
   const [error, setError] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
-  const [limit10, setLimit10] = useState(false);
-  const [idAccount, setIdAccount] = useState();
+  const { account } = useUserData();
   const [cvc, setCvc] = useState("");
   const [expiry, setExpiry] = useState("");
   const [focused, setFocused] = useState("");
@@ -37,18 +37,6 @@ const CreditCard = () => {
     expiry: "",
     cvc: "",
   });
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    axios("https://digitalmoney.ctd.academy/api/account", {
-      headers: {
-        Authorization: token,
-      },
-    }).then((response) => {
-      setIdAccount(response.data?.id);
-      console.log(idAccount);
-    });
-  }, [idAccount]);
 
   useEffect(() => {
     setState({
@@ -64,17 +52,17 @@ const CreditCard = () => {
   };
 
   const onSubmit = async () => {
-
     if (state.cvc === "" || state.name === "" || state.number === "") {
       setError("Por favor, complete todos los campos");
     } else {
       const token = localStorage.getItem("token");
       console.log(JSON.stringify(state));
+      console.log(JSON.stringify("account: " + account.id));
 
       try {
         await axios
           .post(
-            `https://digitalmoney.ctd.academy/api/accounts/${idAccount}/cards`,
+            `https://digitalmoney.ctd.academy/api/accounts/${account.id}/cards`,
             {
               cod: parseInt(cvc),
               expiration_date: expiry,
