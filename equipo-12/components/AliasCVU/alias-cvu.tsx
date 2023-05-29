@@ -1,11 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import { UserAccountType } from "../../types/userAccount";
+import { IAccount } from "../../types";
 import CheckIcon from "@mui/icons-material/Check";
 import { useState } from "react";
 
 interface Props {
-  userAccount: UserAccountType;
+  userAccount: IAccount;
 }
 const AliasCVU = ({ userAccount }: Props) => {
   const [checkCopyAlias, setCheckCopyAlias] = useState(false);

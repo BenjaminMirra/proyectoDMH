@@ -3,9 +3,9 @@ import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import InfoDato from "./infoDato";
-import { UserInfoType } from "../../types/userInfo";
+import { IUser } from "../../types";
 interface Props {
-  userInfo: UserInfoType;
+  userInfo: IUser;
 }
 
 const TusDatos = ({ userInfo }: Props) => {

@@ -5,17 +5,13 @@ import Link from "next/link";
 import { Box, Fade, Menu, MenuItem, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import axios from "axios";
 import useUser from "../../hooks/useUser";
-import { UserInfoType } from "../../types/userInfo";
+import { IUser } from "../../types";
 
-interface Props {
-  userInfo: UserInfoType;
-}
 
 const HeaderHome = () => {
   const [logged, setLogged] = useState(true);
-  const [userData, setUserData] = useState<UserInfoType>();
+  const [userData, setUserData] = useState<IUser>();
 
   const [userInfo] = useUser();
 

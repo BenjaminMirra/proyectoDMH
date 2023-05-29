@@ -1,7 +1,6 @@
 import Box from "@mui/material/Box";
 import TusDatos from "../../components/TusDatos/tusDatos";
-import axios from "axios";
-import { ReactElement, ReactNode, useEffect } from "react";
+import { ReactElement, ReactNode } from "react";
 import Layout from "../../layout/layout";
 import { NextPageWithLayout } from "../_app";
 import BannerGestionPago from "../../components/GestionPago/banner-gestion-pago";

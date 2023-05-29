@@ -2,7 +2,6 @@ import { mailOptions, transporter } from "../../config/nodemailer";
 import clientPromise from "../../lib/mongodb";
 
 const handler = async (req: any, res: any) => {
-  console.log(req.method);
   if (req.method === "POST") {
     const data = req.body;
     try {
