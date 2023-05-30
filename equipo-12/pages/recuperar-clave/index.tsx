@@ -2,14 +2,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
-import { ReactElement, ReactNode, useState } from "react";
+import { ReactElement, ReactNode } from "react";
 import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../components/FormController/controlled-input";
 import { NextPageWithLayout } from "../_app";
-import LayoutLogin from "../../layout/layout-login";
-import * as crypto from "crypto-js";
-import Link from "next/link";
+import Layout from "../../layout/layout";
 
 const schema = yup
   .object({
@@ -35,7 +33,6 @@ interface PropsType {
 const RecuperarClave: NextPageWithLayout<PropsType> = () => {
   //const [errorLogin, setErrorLogin] = useState(false);
   const router = useRouter();
-  const { query } = useRouter();
   const {
     handleSubmit,
     formState: { errors, isSubmitting },
@@ -45,7 +42,6 @@ const RecuperarClave: NextPageWithLayout<PropsType> = () => {
   });
 
   const onSubmit = async () => {
-    console.log(query);
     router.push("/recupero-exitoso");
     return;
   };
@@ -143,7 +139,7 @@ const RecuperarClave: NextPageWithLayout<PropsType> = () => {
 };
 
 RecuperarClave.getLayout = function getLayout(page: ReactElement) {
-  return <LayoutLogin>{page}</LayoutLogin>;
+  return <Layout variant="login">{page}</Layout>;
 };
 
 export default RecuperarClave;

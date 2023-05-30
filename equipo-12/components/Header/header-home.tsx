@@ -4,43 +4,21 @@ import Button from "@mui/material/Button";
 import Link from "next/link";
 import { Box, Fade, Menu, MenuItem, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import axios from "axios";
+import { useUserData } from "../../context/createContext";
 
 const HeaderHome = () => {
   const [logged, setLogged] = useState(false);
-  const [userData, setUserData] = useState({
-    name: "",
-    lastName: "",
-  });
+  const { userInfo } = useUserData();
 
   useEffect(() => {
-    if (localStorage.getItem("userId") !== null) {
-      const userId = localStorage.getItem("userId");
-      const token = localStorage.getItem("token");
-      const config = {
-        method: "get",
-        url: `https://digitalmoney.ctd.academy/api/users/${userId}`,
-        headers: {
-          Authorization: `${token}`,
-        },
-        data: "",
-      };
-      console.log(userData);
-      axios
-        .request(config)
-        .then((response) => {
-          setLogged(true);
-          setUserData({
-            name: response.data.firstname,
-            lastName: response.data.lastname,
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    if (userInfo.firstname !== "" && localStorage.getItem("token")) {
+      setLogged(true);
     }
-    console.log(userData);
-  }, []);
+  }, [userInfo]);
+
+  const router = useRouter();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -51,14 +29,29 @@ const HeaderHome = () => {
     setAnchorEl(null);
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      await axios("https://digitalmoney.ctd.academy/api/logout", {
+        headers: {
+          Authorization: token,
+        },
+      }).then((response) => {
+        console.log(response);
+      });
+    } catch (error) {
+      console.error(error);
+    }
     setAnchorEl(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("accountId");
+    localStorage.removeItem("userId");
+    router.push("/");
     setLogged(false);
   };
 
   const handleIsAuthMenu = () => {
-    if (logged && userData.name != "") {
+    if (logged) {
       ////const { nombre, apellido } = JSON.parse(localStorage.getItem('user'));
       return (
         <>
@@ -90,8 +83,8 @@ const HeaderHome = () => {
                   color: "var( --main-bg-color)",
                 }}
               >
-                {userData.name.charAt(0)}
-                {userData.lastName.charAt(0)}
+                {userInfo?.firstname.charAt(0)}
+                {userInfo?.lastname.charAt(0)}
               </Typography>
             </Button>
             <Menu
@@ -125,7 +118,7 @@ const HeaderHome = () => {
               color: "var(--main-text-color)",
             }}
           >
-            Hola, {userData.name} {userData.lastName}
+            Hola, {userInfo?.firstname} {userInfo?.lastname}
           </Typography>
         </>
       );

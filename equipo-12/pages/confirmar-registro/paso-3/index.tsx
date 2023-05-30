@@ -7,9 +7,9 @@ import { ReactElement, ReactNode, useState } from "react";
 import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
-import LayoutLogin from "../../../layout/layout-login";
 import { NextPageWithLayout } from "../../_app";
 import { useUserContext } from "../../../provider/userProvider";
+import Layout from "../../../layout/layout";
 
 const schema = yup
   .object({
@@ -24,7 +24,6 @@ interface PropsType {
 const Token: NextPageWithLayout<PropsType> = () => {
   const [errorLogin, setErrorLogin] = useState(false);
   const router = useRouter();
-  const { query } = useRouter();
   const {
     handleSubmit,
     formState: { errors },
@@ -88,12 +87,12 @@ const Token: NextPageWithLayout<PropsType> = () => {
                   });
               });
           } else {
-            console.log("token incorrecto");
+            console.error("token incorrecto");
             setErrorLogin(true);
           }
         });
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setErrorLogin(true);
     }
   };
@@ -185,7 +184,7 @@ const Token: NextPageWithLayout<PropsType> = () => {
 };
 
 Token.getLayout = function getLayout(page: ReactElement) {
-  return <LayoutLogin>{page}</LayoutLogin>;
+  return <Layout variant="login">{page}</Layout>;
 };
 
 export default Token;

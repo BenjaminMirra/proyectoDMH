@@ -18,6 +18,9 @@ interface InputType<T extends FieldValues = FieldValues> {
   errorMessage?: string;
   variant?: TextFieldVariants;
   size?: "small" | "medium";
+  id?:string | number;
+  value?:string;
+  onFocusCapture?:({ target }: any) => void
 }
 
 const ControlledInput = <T extends FieldValues = FieldValues>({
@@ -29,7 +32,7 @@ const ControlledInput = <T extends FieldValues = FieldValues>({
   sx,
   errorMessage,
   variant,
-  size,
+  size,  
 }: InputType<T>) => {
   return (
     <Box

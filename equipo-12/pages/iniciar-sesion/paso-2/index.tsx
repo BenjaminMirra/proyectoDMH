@@ -7,10 +7,9 @@ import { ReactElement, ReactNode, useState } from "react";
 import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
-import LayoutLogin from "../../../layout/layout-login";
 import { NextPageWithLayout } from "../../_app";
-import Link from "next/link";
 import { useUserContext } from "../../../provider/userProvider";
+import Layout from "../../../layout/layout";
 
 const schema = yup
   .object({
@@ -57,27 +56,21 @@ const Password: NextPageWithLayout<PropsType> = () => {
             })
             .then((response) => {
               localStorage.setItem("userId", response.data.user_id);
+              localStorage.setItem(
+                "accountId",
+                response.data.id
+              );
             });
 
           setErrorLogin(false);
-          router.push("/");
+          router.push("/inicio");
         });
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setErrorLogin(true);
     }
   };
 
-  const onChangePass = async () => {
-    try {
-      await axios
-        .post("/api/recuperar", {
-          email: user.email,
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
 
   return (
@@ -163,7 +156,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
               justifyContent: "center",
               alignItems: "center"
             }}>
-              <Link style={{textDecoration: "none"}} href="/recupero-pendiente" onClick={onChangePass}>
+              {/* <Link style={{textDecoration: "none"}} href="/recupero-pendiente" onClick={onChangePass}>
                 <Typography
                   variant="subtitle2"
                   sx={{
@@ -175,7 +168,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
                   }}>
                   ¿Olvidaste tu contraseña?
                 </Typography>
-              </Link>
+              </Link> */}
             </Box>
           </Box>
         </form>
@@ -185,7 +178,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
 };
 
 Password.getLayout = function getLayout(page: ReactElement) {
-  return <LayoutLogin>{page}</LayoutLogin>;
+  return <Layout variant="login">{page}</Layout>;
 };
 
 export default Password;

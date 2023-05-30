@@ -2,11 +2,17 @@ import { Box, Button, Typography } from "@mui/material";
 import Head from "next/head";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Link from "next/link";
-import LayoutLogin from "../../layout/layout-login";
+import { ReactElement, ReactNode } from "react";
+import { NextPageWithLayout } from "../_app";
+import Layout from "../../layout/layout";
 
-const SuccessRegister = () => {
+interface PropsType {
+  children?: ReactNode;
+}
+
+const SuccessRegister: NextPageWithLayout<PropsType> = () => {
   return (
-    <LayoutLogin>
+    <>
       <Head>
         <title>Recupero Contraseña</title>
         <meta
@@ -84,7 +90,13 @@ const SuccessRegister = () => {
           </Button>
         </Link>
       </main>
-    </LayoutLogin>
+    </>
   );
 };
+
+SuccessRegister.getLayout = function getLayout(page: ReactElement) {
+  return <Layout variant="login">{page}</Layout>;
+};
+
+
 export default SuccessRegister;
