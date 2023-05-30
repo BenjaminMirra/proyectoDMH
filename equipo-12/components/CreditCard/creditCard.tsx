@@ -24,6 +24,7 @@ import { useUserData } from "../../context/createContext";
 
 const CreditCard = () => {
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   const { account } = useUserData();
   const [cvc, setCvc] = useState("");
@@ -77,6 +78,7 @@ const CreditCard = () => {
           )
           .then((response) => {
             console.log(response);
+            setSuccess("Operación realizada con éxito");
           });
       } catch (error) {
         console.log(error);
@@ -119,6 +121,16 @@ const CreditCard = () => {
           }}
         >
           {error}
+        </Alert>
+      )}
+      {success !== "" && (
+        <Alert
+          severity="success"
+          sx={{
+            marginTop: "30px",
+          }}
+        >
+          {success}
         </Alert>
       )}
       <form
@@ -191,6 +203,7 @@ const CreditCard = () => {
           >
             {() => (
               <TextField
+                id="validateDate"
                 name="validateDate"
                 label="Fecha de vencimiento*"
                 onFocusCapture={handleInputFocus}
@@ -199,6 +212,7 @@ const CreditCard = () => {
           </InputMask>
 
           <TextField
+            id="name"
             name="name"
             label="Nombre y apellido*"
             value={name}
