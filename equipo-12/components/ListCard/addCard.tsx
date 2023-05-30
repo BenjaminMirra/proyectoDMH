@@ -49,17 +49,27 @@ const AddCard = () => {
                         }
                         }>
 
-                            <AddCircleOutlineIcon className={styles.icon} sx={{ fontSize: "24px", }} />
-                            <Typography
+                            <Button
+                                
+                                style={{ textTransform: 'none',
+                                color: '#C1FD35' }}
+                            >
+                                <AddCircleOutlineIcon className={styles.icon} sx={{ fontSize: "24px", }} />
+                                <Typography
                                 sx={{
                                     paddingLeft: "10px"
                                 }} variant="h6"
                                 style={{ textTransform: 'none' }}
-                            >
+                                >
                                 Nueva tarjeta
-                            </Typography>
+                                </Typography>
+                            </Button>
                         </CardContent>
-
+                        <Button
+                                
+                                style={{ textTransform: 'none',
+                                color: '#C1FD35' }}
+                            >
                         <Typography
                             sx={{
                                 color: "#C1FD35",
@@ -68,6 +78,7 @@ const AddCard = () => {
                         >
                             <ArrowForwardIcon sx={{ fontSize: "24px" }} />
                         </Typography>
+                        </Button>
                     </CardContent>
                 </Card>
             </Box>

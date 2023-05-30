@@ -27,12 +27,15 @@ const DeleteCards :  FC<Props> = ({ data, list, refreshlista }: Props) => {
   return (
     <>
       <Button
+        id="BotonEliminar"
         variant="primary"
         color="secondary"
         size="large"
         type="submit"
         sx={{
           marginTop: "10px",
+          backgroundColor: "#FFFFFF", 
+          border: "none"
         }}
         onClick={() => refreshlista(data.id,idAccount,list)}              
       >Eliminar</Button>    
