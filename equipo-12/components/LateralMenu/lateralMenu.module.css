@@ -1,4 +1,5 @@
-.mobileBackground, .desktopBackground {
+.mobileBackground,
+.desktopBackground {
     position: fixed;
     height: 100%;
     width: 100vw;
@@ -6,16 +7,16 @@
     flex-direction: column;
 }
 
-.mobileBackground{
+.mobileBackground {
+    z-index: 9;
+    background-color: #201f229a;
     visibility: collapse;
     align-items: end;
-    -webkit-animation: slide-left 0.5s cubic-bezier(0.445, 0.050, 0.550, 0.950) forwards;
-	animation: slide-left 0.5s cubic-bezier(0.445, 0.050, 0.550, 0.950) forwards;
 }
 
 
-.top{
-    background-color: #201F22;
+.top {
+    background-color: #201f22;
     width: 40%;
     height: 15%;
     display: flex;
@@ -23,7 +24,7 @@
 }
 
 .top p {
-    color: #C1FD35;
+    color: #c1fd35;
     margin: 5px 0px 0px 35px;
 }
 
@@ -49,7 +50,7 @@
 .container {
     width: 15%;
     height: 100%;
-    background-color: #C1FD35;
+    background-color: #c1fd35;
     z-index: 1;
     box-shadow: 3px 0px 3px -1px rgba(0, 0, 0, 0.25);
 }
@@ -59,11 +60,11 @@
     flex-direction: column;
 }
 
-.links a{
+.links a {
     text-decoration: none;
     color: #201f22;
     font-size: 17px;
-    margin: 15px 0px 0px 35px;
+    margin: 15px 0px 0px 45px;
 }
 
 .links button {
@@ -73,7 +74,7 @@
     background-color: transparent;
     text-align: left;
     font-size: 17px;
-    margin: 15px 0px 0px 35px;
+    margin: 15px 0px 0px 45px;
     color: #201f22a0;
     cursor: pointer;
 }
@@ -86,22 +87,154 @@
     .container {
         width: 40%;
     }
-    .mobileBackground{
-        z-index: 9;
-        background-color: #201f229a;
+
+    .mobileBackground {
         visibility: visible;
     }
-    .desktopBackground{
+
+    .desktopBackground {
         visibility: collapse;
     }
 }
 
-@media only screen and (min-width: 600px) {
-    .mobileBackground{
+@media only screen and (min-width: 601px) and (max-width: 1300px) {
+    .mobileBackground {
         visibility: collapse !important;
     }
-    .container{
+    .top{
+        visibility: collapse !important;
+    }
+    .mobileContainer{
+        visibility: collapse !important;
+    }
+
+    .container {
+        padding-top: 120px;
+        width: 30%;
+    }
+}
+
+@media only screen and (min-width: 1301px) {
+    .mobileBackground {
+        visibility: collapse !important;
+    }
+    .top{
+        visibility: collapse !important;
+    }
+    .mobileContainer{
+        visibility: collapse !important;
+    }
+    .container {
         padding-top: 120px;
     }
 }
 
+
+.animationFoward {
+    -webkit-animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.animationBack {
+    -webkit-animation: slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.visible{
+    -webkit-animation: visible 0.6s both;
+    animation: visible 0.6s both;
+}
+.invisible{
+    -webkit-animation: invisible 0.4s both;
+    animation: invisible 0.4s both;
+}
+
+@-webkit-keyframes visible {
+    0% {
+        visibility: visible;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+@keyframes visible {
+    0% {
+        visibility: visible;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+
+@-webkit-keyframes invisible {
+    0% {
+        visibility: visible;
+    }
+    100% {
+        visibility: hidden;
+    }
+}
+@keyframes invisible {
+    0% {
+        visibility: visible;
+    }
+    100% {
+        visibility: hidden;
+    }
+}
+
+
+
+
+
+@-webkit-keyframes slide-left {
+    0% {
+        -webkit-transform: translateX(500px);
+        transform: translateX(500px);
+        visibility: visible;
+    }
+
+    100% {
+        -webkit-transform: translateX(0px);
+        transform: translateX(0px);
+        visibility: visible;
+    }
+}
+
+@keyframes slide-left {
+    0% {
+        -webkit-transform: translateX(500px);
+        transform: translateX(500px);
+        visibility: visible;
+    }
+
+    100% {
+        -webkit-transform: translateX(0px);
+        transform: translateX(0px);
+        visibility: visible;
+    }
+}
+
+@-webkit-keyframes slide-right {
+    0% {
+        -webkit-transform: translateX(0px);
+        transform: translateX(0px);
+    }
+
+    100% {
+        -webkit-transform: translateX(500px);
+        transform: translateX(500px);
+        visibility: hidden;
+    }
+}
+
+@keyframes slide-right {
+    0% {
+        -webkit-transform: translateX(0px);
+        transform: translateX(0px);
+    }
+
+    100% {
+        -webkit-transform: translateX(500px);
+        transform: translateX(500px);
+        visibility: hidden;
+    }
+}

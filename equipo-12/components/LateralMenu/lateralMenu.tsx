@@ -1,11 +1,12 @@
 import styles from "./lateralMenu.module.css";
 import NavTree from "./navTree";
 import Box from "@mui/material/Box";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Typography } from "@mui/material";
 import close from "../../utils/images/close.svg"
 import Image from "next/image";
+
 
 const LateralMenu = ( props : any) => {
     const { visibility, setVisibility } = props;
@@ -41,17 +42,18 @@ const LateralMenu = ( props : any) => {
 
     return(
         <>
-            <Box sx={{visibility: visibility ? "visible !important" : "hidden !important"}}  className={styles.mobileBackground}
-            onClick={()=> {setVisibility(false)}}
+            <Box 
+                className={`${styles.mobileBackground} ${visibility ? styles.visible : styles.invisible}`} 
+                onClick={() => {setVisibility(false)}}
             >
-                <Box className={styles.top}>
+                <Box className={`${styles.top} ${visibility ? styles.animationFoward : styles.animationBack}`}>
                         <Box>
                             <button onClick={()=>{setVisibility(false)}}><Image src={close} alt="logo"/></button>
                         </Box>
                         <Typography>Hola,</Typography>
                         <Typography>{userData.name}  {userData.lastName}</Typography>
                 </Box>
-                <Box className={styles.container}>
+                <Box className={`${styles.container} ${styles.mobileContainer} ${visibility ? styles.animationFoward : styles.animationBack}`}>
                     <NavTree/>
                 </Box>
             </Box>
@@ -65,3 +67,4 @@ const LateralMenu = ( props : any) => {
 }
 
 export default LateralMenu;
+
