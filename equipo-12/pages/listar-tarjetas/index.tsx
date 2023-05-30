@@ -1,10 +1,15 @@
-import LayoutHome from "../../layout/layout-home";
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, ReactNode, useEffect, useState } from "react";
 import AddCard from "../../components/ListCard/addCard";
 import ListCards from "../../components/ListCard/listCard";
 import { Box } from "@mui/material";
+import Layout from "../../layout/layout";
+import { NextPageWithLayout } from "../_app";
 
-const ListCard = () => {
+interface PropsType {
+  children?: ReactNode;
+}
+
+const ListCard: NextPageWithLayout<PropsType> = () => {
   return (
     <>
 
@@ -37,7 +42,7 @@ const ListCard = () => {
 };
 
 ListCard.getLayout = function getLayout(page: ReactElement) {
-  return <LayoutHome>{page}</LayoutHome>;
+  return <Layout variant="home">{page}</Layout>;
 };
 
 export default ListCard;
