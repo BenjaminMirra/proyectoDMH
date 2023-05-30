@@ -5,6 +5,7 @@ const Footer = () => {
     <Box
       sx={{
         backgroundColor: "var(--dark-grey)",
+        zIndex: "2",
       }}
     >
       <Typography
