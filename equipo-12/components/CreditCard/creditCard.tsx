@@ -21,8 +21,10 @@ import axios from "axios";
 import { styled } from "@mui/material/styles";
 import catchError from "../../services/creditCard/handle-credit-cards-errors";
 import { useUserData } from "../../context/createContext";
+import { useRouter } from "next/router";
 
 const CreditCard = () => {
+  const router = useRouter();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
@@ -79,6 +81,9 @@ const CreditCard = () => {
           .then((response) => {
             console.log(response);
             setSuccess("Operación realizada con éxito");
+            setTimeout(() => {
+              router.push("/listar-tarjetas");
+            }, 3000);
           });
       } catch (error) {
         console.log(error);
