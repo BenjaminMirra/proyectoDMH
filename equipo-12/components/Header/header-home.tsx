@@ -105,7 +105,7 @@ const HeaderHome = (props: any) => {
               <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
             </Menu>
           </Box>
-
+          <button onClick={() => { setVisibility(true); }}><Image src={menuLogo} alt="menu" /></button>
           <Typography
             variant="subtitle2"
             sx={{
@@ -137,7 +137,6 @@ const HeaderHome = (props: any) => {
               Crear Cuenta
             </Button>
           </Link>
-          <button onClick={() => { setVisibility(true); }}><Image src={menuLogo} alt="menu" /></button>
         </>
       );
     }

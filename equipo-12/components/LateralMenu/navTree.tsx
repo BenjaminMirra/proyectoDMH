@@ -18,12 +18,12 @@ const NavTree = () => {
         
     return(
         <Box className = {styles.links}>
-            <Link className={active("/")} href="/">Inicio</Link>
-            <Link className={active("/actividades")} href="/actividades">Actividad</Link>
-            <Link className={active("/tuperfil")} href="/tuperfil">Tu Perfil</Link>
-            <Link className={active("/cargardinero")} href="/cargardinero">Cargar Dinero</Link>
-            <Link className={active("/pagarservicios")} href="/pagarservicios">Pagar Servicios</Link>
-            <Link className={active("/tarjetas")} href="/tarjetas">Tarjetas</Link>
+            <Link className={active("/inicio")} href="/inicio">Inicio</Link>
+            <Link className={active("/actividades")} href="/#">Actividad</Link>
+            <Link className={active("/perfil")} href="/perfil">Tu Perfil</Link>
+            <Link className={active("/cargardinero")} href="/#">Cargar Dinero</Link>
+            <Link className={active("/pagarservicios")} href="/#">Pagar Servicios</Link>
+            <Link className={active("/tarjetas")} href="/#">Tarjetas</Link>
             <button onClick={()=>{logout(router)}}>Cerrar sesión</button>
         </Box>
     )
