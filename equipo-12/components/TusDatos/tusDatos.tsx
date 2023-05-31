@@ -20,10 +20,6 @@ const TusDatos = ({ userInfo }: Props) => {
               justifyContent: "center",
               alignItems: "center",
               width: "100%",
-              "@media (max-width: 768px)": {
-                paddingRight: "30px",
-                paddingLeft: "30px",
-              },
             }}
           >
             <Card
