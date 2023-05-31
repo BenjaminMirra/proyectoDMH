@@ -27,7 +27,6 @@ const AvailableAmount = () => {
       <Typography variant="h4" sx={{ paddingLeft: "10px" }}>Dinero Disponible</Typography>
       <Box sx={{ display: "flex", alignItems: "center", gap: "30px" }}>
         <Typography variant="h1" sx={{ border: "2px solid #C1FD35", borderRadius: "100px", width: "auto", padding: "10px", wordSpacing:"10px",display: "flex", gap: "20px" }}>
-             $
           {
             isVisibility
               ? available_amount == "0" ? "0,00" : available_amount
