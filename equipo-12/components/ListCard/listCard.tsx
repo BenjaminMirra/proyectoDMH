@@ -11,8 +11,8 @@ import { Avatar, Divider, Link, ListItem, ListItemAvatar, ListItemText, Paper } 
 
 const useStyles = makeStyles({
   root: {
-    height: 300, 
-    overflow: 'auto',
+    height: 300,
+    overflow: "auto",
   },
 });
 
@@ -26,14 +26,14 @@ const ListCard = styled("div")(({ theme }) => ({
 const ListCards = () => {
   const listItems = GenerateListCard();
   return (
-    <Box sx={{   overflow: 'auto',width: "100%",backgroundColor: "#FFF", borderRadius: "10px", boxShadow: "0px 4px 4px #0000004c", }}>
-    <List sx={{ width: "100%", }}>
-      <ListItem sx={{ padding: "20px" }}>
-        <Typography variant="h4" sx={{}}>Tus tarjetas</Typography>
-      </ListItem>
-    {listItems}
-    </List>
-  </Box> 
+    <Box sx={{ overflow: "auto", width: "100%", backgroundColor: "#FFF", borderRadius: "10px", boxShadow: "0px 4px 4px #0000004c", }}>
+      <List sx={{ width: "100%", }}>
+        <ListItem sx={{ padding: "20px" }}>
+          <Typography variant="h4" sx={{}}>Tus tarjetas</Typography>
+        </ListItem>
+        {listItems}
+      </List>
+    </Box>
   );
 };
 

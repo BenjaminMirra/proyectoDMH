@@ -9,13 +9,15 @@ import { CircularProgress, Typography } from "@mui/material";
 import useUser from "../../hooks/useUser";
 import useAccount from "../../hooks/useAccount";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
+import { useUserData } from "../../context/createContext";
 interface PropsType {
   children?: ReactNode;
 }
 
 const Perfil: NextPageWithLayout<PropsType> = () => {
   const [userInfo] = useUser();
-  const [userAccount] = useAccount();
+  const { account } = useUserData();
 
   return (
     <>
@@ -38,7 +40,7 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
         }}
       ></Box>
 
-      {userInfo && userAccount ? (
+      {userInfo && account ? (
         <Box
           sx={{
             display: "flex",
@@ -59,24 +61,10 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
             },
           }}
         >
-          <Typography
-            sx={{
-              "@media (max-width: 768px)": {
-                display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                width: "100%",
-              },
-              "@media (min-width: 768px)": {
-                display: "none",
-              },
-            }}
-          >
-            <ArrowForwardIcon /> Perfil
-          </Typography>
+          <ArrowSubtitleMobile title="Tarjetas" />
           <TusDatos userInfo={userInfo} />
           <BannerGestionPago />
-          <AliasCVU userAccount={userAccount} />
+          <AliasCVU userAccount={account} />
         </Box>
       ) : (
         <Box

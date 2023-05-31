@@ -43,7 +43,7 @@ const GenerateListCard = () => {
           );
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
     }
   }, []);
@@ -65,7 +65,7 @@ const GenerateListCard = () => {
           setListCard(nuevaLista);
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
     } catch (error) {
       console.error("Ocurrió un error al realizar la solicitud DELETE:", error);
