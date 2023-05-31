@@ -2,17 +2,37 @@ import styles from "./lateralMenu.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Box } from "@mui/material";
+import axios from "axios";
 
-const logout = (router: any) => {
-  console.log(router.pathname);
-};
+const NavTree = (props: any) => {
+  const { setLogged } = props;
 
-const NavTree = () => {
   const router = useRouter();
 
   const active = (path: string) => {
     return (router.pathname === path ? styles.active : "");
   };
+
+  const logout = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      await axios("https://digitalmoney.ctd.academy/api/logout", {
+        headers: {
+          Authorization: token,
+        },
+      }).then((response) => {
+        console.log(response);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+    localStorage.removeItem("token");
+    localStorage.removeItem("accountId");
+    localStorage.removeItem("userId");
+    setLogged ? setLogged(false) : "";
+    router.push("/");
+  };
+
 
   return (
     <Box className={styles.links}>
@@ -22,7 +42,7 @@ const NavTree = () => {
       <Link className={active("/cargardinero")} href="/inicio">Cargar Dinero</Link>
       <Link className={active("/pagarservicios")} href="/inicio">Pagar Servicios</Link>
       <Link className={active("/listar-tarjetas")} href="/listar-tarjetas">Tarjetas</Link>
-      <button onClick={() => { logout(router); }}>Cerrar sesión</button>
+      <button onClick={() => { logout(); }}>Cerrar sesión</button>
     </Box>
   );
 };

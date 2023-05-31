@@ -17,8 +17,6 @@ interface Props extends PropsWithChildren<any> {
 const Layout: FC<Props> = ({ variant, children }: Props) => {
   const [visibility, setVisibility] = useState(false);
   const [headerDisplayed, setHeaderDisplayed] = useState(<HeaderHome />);
-  const { userInfo } = useUserData();
-
 
   useEffect(() => {
     if (variant === "home") {

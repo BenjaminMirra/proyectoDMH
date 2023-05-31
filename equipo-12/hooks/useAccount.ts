@@ -33,7 +33,7 @@ const useAccount = () => {
       });
   }, [userAccount]);
 
-  return [userAccount];
+  return [userAccount, setUserAccount];
 };
 
 export default useAccount;

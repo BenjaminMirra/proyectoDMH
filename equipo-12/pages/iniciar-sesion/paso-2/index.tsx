@@ -10,6 +10,7 @@ import ControlledInput from "../../../components/FormController/controlled-input
 import { NextPageWithLayout } from "../../_app";
 import { useUserContext } from "../../../provider/userProvider";
 import Layout from "../../../layout/layout";
+import { useUserData } from "../../../context/createContext";
 
 const schema = yup
   .object({
@@ -32,6 +33,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
   });
 
   const { user, setUser } = useUserContext();
+  const { setUserAccount, setUserDataInitial } = useUserData();
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -55,13 +57,30 @@ const Password: NextPageWithLayout<PropsType> = () => {
               data: "",
             })
             .then((response) => {
+              console.log(response.data);
               localStorage.setItem("userId", response.data.user_id);
               localStorage.setItem(
                 "accountId",
                 response.data.id
               );
+              setUserAccount(response.data);
+              const configInfo = {
+                method: "get",
+                url: `https://digitalmoney.ctd.academy/api/users/${localStorage.getItem("userId")}`,
+                headers: {
+                  Authorization: localStorage.getItem("token"),
+                  "Content-Type": "application/json",
+                },
+              };
+              axios
+                .request(configInfo)
+                .then((response) => {
+                  setUserDataInitial(response.data);
+                })
+                .catch((error) => {
+                  console.error(error);
+                });
             });
-
           setErrorLogin(false);
           router.push("/inicio");
         });
