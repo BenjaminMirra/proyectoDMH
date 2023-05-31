@@ -35,17 +35,17 @@ const Header = () => {
         <Box>
           {router.pathname === "/iniciar-sesion/paso-1" ||
             router.pathname === "/iniciar-sesion/paso-2" ? (
-            <></>
-          ) : (
-            <>
-              <Link href="/iniciar-sesion/paso-1">
-                <Button variant="primary">Ingresar</Button>
-              </Link>
-              <Link href="/crear-cuenta">
-                <Button variant="secondary">Crear Cuenta</Button>
-              </Link>
-            </>
-          )}
+              <></>
+            ) : (
+              <>
+                <Link href="/iniciar-sesion/paso-1">
+                  <Button variant="primary">Ingresar</Button>
+                </Link>
+                <Link href="/crear-cuenta">
+                  <Button variant="secondary">Crear Cuenta</Button>
+                </Link>
+              </>
+            )}
         </Box>
       </Box>
     </Box>
