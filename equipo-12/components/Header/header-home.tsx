@@ -7,8 +7,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useUserData } from "../../context/createContext";
+import menuLogo from "../../utils/images/menus.svg";
 
-const HeaderHome = () => {
+const HeaderHome = (props: any) => {
+  const { setVisibility } = props;
   const [logged, setLogged] = useState(false);
   const { userInfo } = useUserData();
 
@@ -103,7 +105,7 @@ const HeaderHome = () => {
               <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
             </Menu>
           </Box>
-
+          <button onClick={() => { setVisibility(true); }}><Image src={menuLogo} alt="menu" /></button>
           <Typography
             variant="subtitle2"
             sx={{
@@ -144,6 +146,10 @@ const HeaderHome = () => {
     <Box
       sx={{
         backgroundColor: "var(--main-bg-color)",
+        zIndex: "2",
+        position: "sticky",
+        top: "0px",
+        width: "100%",
       }}
     >
       <Box

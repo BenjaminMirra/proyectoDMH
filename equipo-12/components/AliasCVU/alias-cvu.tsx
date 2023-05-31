@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Divider } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { IAccount } from "../../types";
 import CheckIcon from "@mui/icons-material/Check";
@@ -28,8 +28,19 @@ const AliasCVU = ({ userAccount }: Props) => {
         width: "100%",
         borderRadius: "10px",
         boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-        padding: "40px 45px 18px 35px",
-        gap: "18px",
+
+        "@media (max-width: 768px)": {
+          padding: "18px 45px 18px 25px",
+          gap: "18px",
+        },
+        "@media (min-width: 768px)": {
+          padding: "40px 45px 40px 35px",
+          gap: "18px",
+        },
+        "@media (min-width: 1024px)": {
+          padding: "40px 45px 18px 35px",
+          gap: "18px",
+        },
       }}
     >
       <Typography>
@@ -79,6 +90,19 @@ const AliasCVU = ({ userAccount }: Props) => {
           />
         )}
       </Box>
+      <Divider
+        sx={{
+          backgroundColor: "var(--lime-green)",
+          height: "2px",
+          width: "100%",
+          "@media (max-width: 768px)": {
+            display: "block",
+          },
+          "@media (min-width: 768px)": {
+            display: "none",
+          },
+        }}
+      />
       <Box
         sx={{
           display: "flex",

@@ -1,10 +1,12 @@
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, useContext, useEffect, useState } from "react";
 import { Stack } from "@mui/material";
 import Box from "@mui/material/Box";
-import HeaderHome from "../components/Header/header-home";
 import HeaderLogin from "../components/Header/header-login";
 import HeaderRegister from "../components/Header/header-register";
 import Footer from "../components/Footer/footer";
+import LateralMenu from "../components/LateralMenu/lateralMenu";
+import { useUserData } from "../context/createContext";
+import HeaderHome from "../components/Header/header-home";
 
 type LayoutVariant = "home" | "login" | "register";
 
@@ -13,27 +15,31 @@ interface Props extends PropsWithChildren<any> {
 }
 
 const Layout: FC<Props> = ({ variant, children }: Props) => {
-  let HeaderComponent;
+  const [visibility, setVisibility] = useState(false);
+  const [headerDisplayed, setHeaderDisplayed] = useState(<HeaderHome />);
+  const { userInfo } = useUserData();
 
-  switch (variant) {
-  case "home":
-    HeaderComponent = HeaderHome;
-    break;
-  case "login":
-    HeaderComponent = HeaderLogin;
-    break;
-  case "register":
-    HeaderComponent = HeaderRegister;
-    break;
-  default:
-    HeaderComponent = null;
-    break;
-  }
+
+  useEffect(() => {
+    if (variant === "home") {
+      setHeaderDisplayed(
+        <>
+          <HeaderHome setVisibility={setVisibility} />
+          <LateralMenu visibility={visibility} setVisibility={setVisibility} />
+        </>
+      );
+    } else if (variant === "login") {
+      setHeaderDisplayed(<HeaderLogin />);
+    } else if (variant === "register") {
+      setHeaderDisplayed(<HeaderRegister />);
+    }
+  }, [variant, visibility]);
+
 
   return (
     <>
       <Stack direction="column" height="100%">
-        {HeaderComponent && <HeaderComponent />}
+        {headerDisplayed}
         <Box display="flex" flexGrow={1} justifyContent="center">
           {children}
         </Box>
