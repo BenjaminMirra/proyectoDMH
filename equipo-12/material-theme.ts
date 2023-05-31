@@ -241,6 +241,7 @@ export const theme = createTheme({
 export const useStyles = makeStyles((theme: { spacing: (arg0: number) => any; palette: { primary: { main: any; }; }; }) => ({
   textField: {
     width: "100%",
+    height: "10000px",
     "& .MuiOutlinedInput-root": {
       borderRadius: theme.spacing(1),
       boxShadow:"0px 4px 4px #0000004c",
