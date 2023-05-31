@@ -20,7 +20,6 @@ const DeleteCards :  FC<Props> = ({ data, list, refreshlista }: Props) => {
     }).then((response) => {
       setIdAccount(response.data?.id);
     });
-
   }, [idAccount]);
 
   return (
