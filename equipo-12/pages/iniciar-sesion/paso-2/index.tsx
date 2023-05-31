@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { ReactElement, ReactNode, useState } from "react";
+import { ReactElement, ReactNode, useEffect, useState } from "react";
 import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
@@ -33,7 +33,10 @@ const Password: NextPageWithLayout<PropsType> = () => {
   });
 
   const { user, setUser } = useUserContext();
-  const { setUserAccount, setUserDataInitial } = useUserData();
+  const { setUserAccount, setUserDataInitial } =
+    useUserData();
+
+
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -59,14 +62,13 @@ const Password: NextPageWithLayout<PropsType> = () => {
             .then((response) => {
               console.log(response.data);
               localStorage.setItem("userId", response.data.user_id);
-              localStorage.setItem(
-                "accountId",
-                response.data.id
-              );
+              localStorage.setItem("accountId", response.data.id);
               setUserAccount(response.data);
               const configInfo = {
                 method: "get",
-                url: `https://digitalmoney.ctd.academy/api/users/${localStorage.getItem("userId")}`,
+                url: `https://digitalmoney.ctd.academy/api/users/${localStorage.getItem(
+                  "userId"
+                )}`,
                 headers: {
                   Authorization: localStorage.getItem("token"),
                   "Content-Type": "application/json",
@@ -89,8 +91,6 @@ const Password: NextPageWithLayout<PropsType> = () => {
       setErrorLogin(true);
     }
   };
-
-
 
   return (
     <>
@@ -170,11 +170,13 @@ const Password: NextPageWithLayout<PropsType> = () => {
             >
               Continuar
             </Button>
-            <Box sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center"
-            }}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               {/* <Link style={{textDecoration: "none"}} href="/recupero-pendiente" onClick={onChangePass}>
                 <Typography
                   variant="subtitle2"

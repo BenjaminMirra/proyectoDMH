@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import TusDatos from "../../components/TusDatos/tusDatos";
-import { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode, useEffect } from "react";
 import Layout from "../../layout/layout";
 import { NextPageWithLayout } from "../_app";
 import BannerGestionPago from "../../components/GestionPago/banner-gestion-pago";
@@ -9,6 +9,7 @@ import { CircularProgress, Typography } from "@mui/material";
 import useUser from "../../hooks/useUser";
 import useAccount from "../../hooks/useAccount";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useUserData } from "../../context/createContext";
 interface PropsType {
   children?: ReactNode;
 }
@@ -16,6 +17,15 @@ interface PropsType {
 const Perfil: NextPageWithLayout<PropsType> = () => {
   const [userInfo] = useUser();
   const [userAccount] = useAccount();
+  const { userDataInitial, account, setUserAccount, setUserDataInitial } =
+    useUserData();
+
+  useEffect(() => {
+    console.log("account: ");
+    console.log(account);
+    console.log("userDataInitial: ");
+    console.log(userDataInitial);
+  }, [userDataInitial, account]);
 
   return (
     <>
