@@ -21,9 +21,12 @@ import axios from "axios";
 import { styled } from "@mui/material/styles";
 import catchError from "../../services/creditCard/handle-credit-cards-errors";
 import { useUserData } from "../../context/createContext";
+import { useRouter } from "next/router";
 
 const CreditCard = () => {
+  const router = useRouter();
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   const { account } = useUserData();
   const [cvc, setCvc] = useState("");
@@ -77,6 +80,10 @@ const CreditCard = () => {
           )
           .then((response) => {
             console.log(response);
+            setSuccess("Operación realizada con éxito");
+            setTimeout(() => {
+              router.push("/listar-tarjetas");
+            }, 3000);
           });
       } catch (error) {
         console.log(error);
@@ -119,6 +126,16 @@ const CreditCard = () => {
           }}
         >
           {error}
+        </Alert>
+      )}
+      {success !== "" && (
+        <Alert
+          severity="success"
+          sx={{
+            marginTop: "30px",
+          }}
+        >
+          {success}
         </Alert>
       )}
       <form
@@ -191,6 +208,7 @@ const CreditCard = () => {
           >
             {() => (
               <TextField
+                id="validateDate"
                 name="validateDate"
                 label="Fecha de vencimiento*"
                 onFocusCapture={handleInputFocus}
@@ -199,6 +217,7 @@ const CreditCard = () => {
           </InputMask>
 
           <TextField
+            id="name"
             name="name"
             label="Nombre y apellido*"
             value={name}
