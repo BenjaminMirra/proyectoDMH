@@ -1,9 +1,10 @@
 import { ReactElement, ReactNode, useEffect, useState } from "react";
 import AddCard from "../../components/ListCard/addCard";
 import ListCards from "../../components/ListCard/listCard";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Layout from "../../layout/layout";
 import { NextPageWithLayout } from "../_app";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 interface PropsType {
   children?: ReactNode;
@@ -28,6 +29,7 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
         backgroundColor: "#EEEAEA"
       }}
       >
+        
         <Box sx={{
           marginBottom: "1rem",
           paddingTop: "20px",
@@ -35,6 +37,21 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
           paddingLeft: "50px"
         }}
         >
+          <Typography
+            sx={{
+              "@media (max-width: 768px)": {
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                width: "100%",
+              },
+              "@media (min-width: 768px)": {
+                display: "none",
+              },
+            }}
+          >
+            <ArrowForwardIcon /> Tarjetas
+          </Typography>
           <AddCard />
         </Box>
         <Box sx={{
@@ -45,6 +62,7 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
         }} >
           <ListCards />
         </Box>
+
       </Box>
     </>
   );
