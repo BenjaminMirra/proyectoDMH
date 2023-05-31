@@ -17,7 +17,7 @@ const HeaderHome = (props: any) => {
   const [userInfo] = useUser();
 
   useEffect(() => {
-    if (userDataInitial.firstname !== "" && localStorage.getItem("token") || userInfo.firstname !== "") {
+    if (userDataInitial.firstname !== "" && localStorage.getItem("token") || userInfo.firstname !== "" && router.pathname !== "/") {
       setLogged(true);
     } else {
       setLogged(false);
@@ -90,7 +90,8 @@ const HeaderHome = (props: any) => {
                   color: "var( --main-bg-color)",
                 }}
               >
-                {userDataInitial?.firstname != "" ?
+                {
+                userDataInitial?.firstname != ""  ?
                   `
                 ${userDataInitial?.firstname.charAt(0)}
                 ${userDataInitial?.lastname.charAt(0)}`

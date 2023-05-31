@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { IUser } from "../types";
 
 const useUser = () => {
-
   const [userInfo, setUserInfo] = useState<IUser>({
     firstname: "",
     lastname: "",
@@ -32,7 +31,6 @@ const useUser = () => {
       .catch((error) => {
         console.error(error);
       });
-
   }, [userInfo]);
 
   return [userInfo];
