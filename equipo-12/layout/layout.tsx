@@ -32,7 +32,7 @@ const Layout: FC<Props> = ({ variant, children }: Props) => {
     } else if (variant === "register") {
       setHeaderDisplayed(<HeaderRegister />);
     }
-  }, [variant, visibility]);
+  }, [variant, visibility, router.pathname]);
 
 
   return (
