@@ -50,7 +50,7 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
               },
             }}
           >
-            <ArrowForwardIcon /> Perfil
+            <ArrowForwardIcon /> Tarjetas
           </Typography>
           <AddCard />
         </Box>

@@ -2,16 +2,16 @@ import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import CircleIcon from "@mui/icons-material/Circle";
-import { ListItemText, Typography } from "@mui/material";
+import { Box, ListItemText, Typography, makeStyles, styled } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import DeleteCards from "./deleteCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import useAccount from "../../hooks/useAccount";
 
 const GenerateListCard = () => {
   const [listCard, setListCard] = useState<ListItemData[]>();
   const [idAccount, setIdAccount] = useState<number>(0);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios("https://digitalmoney.ctd.academy/api/account", {
@@ -74,6 +74,7 @@ const GenerateListCard = () => {
 
   return listCard?.map((item) => (
     <>
+
       <ListItem sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
         <ListItemAvatar>
           <CircleIcon color="secondary" fontSize="large" />

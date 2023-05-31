@@ -26,7 +26,7 @@ const ListCard = styled("div")(({ theme }) => ({
 const ListCards = () => {
   const listItems = GenerateListCard();
   return (
-    <Box sx={{ width: "100%", backgroundColor: "#FFF", borderRadius: "10px", boxShadow: "0px 4px 4px #0000004c", }}>
+    <Box sx={{   overflow: 'auto',width: "100%",backgroundColor: "#FFF", borderRadius: "10px", boxShadow: "0px 4px 4px #0000004c", }}>
     <List sx={{ width: "100%", }}>
       <ListItem sx={{ padding: "20px" }}>
         <Typography variant="h4" sx={{}}>Tus tarjetas</Typography>
