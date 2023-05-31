@@ -9,8 +9,8 @@ const NavTree = (props: any) => {
 
   const router = useRouter();
 
-  const active = (path: string) => {
-    return (router.pathname === path ? styles.active : "");
+  const active = (path: Array<String>) => {
+    return (path.includes(router.pathname) ? styles.active : "");
   };
 
   const logout = async () => {
@@ -36,12 +36,12 @@ const NavTree = (props: any) => {
 
   return (
     <Box className={styles.links}>
-      <Link className={active("/inicio")} href="/inicio">Inicio</Link>
-      <Link className={active("/actividades")} href="/inicio">Actividad</Link>
-      <Link className={active("/perfil")} href="/perfil">Tu Perfil</Link>
-      <Link className={active("/cargardinero")} href="/inicio">Cargar Dinero</Link>
-      <Link className={active("/pagarservicios")} href="/inicio">Pagar Servicios</Link>
-      <Link className={active("/listar-tarjetas")} href="/listar-tarjetas">Tarjetas</Link>
+      <Link className={active(["/inicio"])} href="/inicio">Inicio</Link>
+      <Link className={active(["/actividades"])} href="/inicio">Actividad</Link>
+      <Link className={active(["/perfil"])} href="/perfil">Tu Perfil</Link>
+      <Link className={active(["/cargardinero"])} href="/inicio">Cargar Dinero</Link>
+      <Link className={active(["/pagarservicios"])} href="/inicio">Pagar Servicios</Link>
+      <Link className={active(["/listar-tarjetas","/agregar-tarjeta"])} href="/listar-tarjetas">Tarjetas</Link>
       <button onClick={() => { logout(); }}>Cerrar sesión</button>
     </Box>
   );

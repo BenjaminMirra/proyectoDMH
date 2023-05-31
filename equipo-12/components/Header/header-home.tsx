@@ -2,12 +2,12 @@ import Image from "next/image";
 import imageLogo from "../../utils/images/imageLogo.svg";
 import Button from "@mui/material/Button";
 import Link from "next/link";
-import { Box, Fade, Menu, MenuItem, Typography } from "@mui/material";
+import { Box, Fade, Menu, MenuItem, Typography,IconButton} from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useUserData } from "../../context/createContext";
-import menuLogo from "../../utils/images/menus.svg";
 import useUser from "../../hooks/useUser";
 
 const HeaderHome = (props: any) => {
@@ -17,7 +17,7 @@ const HeaderHome = (props: any) => {
   const [userInfo] = useUser();
 
   useEffect(() => {
-    if (userDataInitial.firstname !== "" && localStorage.getItem("token") || userInfo.firstname !== "") {
+    if (userDataInitial.firstname !== "" && localStorage.getItem("token") || userInfo.firstname !== "" && router.pathname !== "/") {
       setLogged(true);
     } else {
       setLogged(false);
@@ -90,7 +90,8 @@ const HeaderHome = (props: any) => {
                   color: "var( --main-bg-color)",
                 }}
               >
-                {userDataInitial?.firstname != "" ?
+                {
+                userDataInitial?.firstname != ""  ?
                   `
                 ${userDataInitial?.firstname.charAt(0)}
                 ${userDataInitial?.lastname.charAt(0)}`
@@ -118,7 +119,21 @@ const HeaderHome = (props: any) => {
               <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
             </Menu>
           </Box>
-          <button onClick={() => { setVisibility(true); }}><Image src={menuLogo} alt="menu" /></button>
+          {router.pathname !== "/" &&
+            <IconButton 
+            onClick={() => {setVisibility(true)}}
+              sx={{
+                "@media (min-width: 768px)": {
+                  display: "none !important",
+                },
+                "@media (max-width: 767px)": {
+                  display: "inline !important",
+                },
+                padding: "0px",
+              }}
+            >
+              
+            <MenuIcon color="secondary" fontSize="large"/> </IconButton>}
           <Typography
             variant="subtitle2"
             sx={{

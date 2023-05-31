@@ -8,7 +8,7 @@ type context = {
   setUserAccount: React.Dispatch<React.SetStateAction<IAccount>>
 }
 
-const INITIAL_VALUE_ACCOUNT = {
+export const INITIAL_VALUE_ACCOUNT = {
   alias: "",
   available_amount: "",
   cvu: "",
@@ -16,7 +16,7 @@ const INITIAL_VALUE_ACCOUNT = {
   user_id: 0
 };
 
-const INITIAL_VALUE_USER = {
+export const INITIAL_VALUE_USER = {
   firstname: "",
   lastname: "",
   phone: "",
@@ -39,6 +39,7 @@ type Props = {
 }
 
 export const UserProvider = ({ children }: Props) => {
+
   const [userDataInitial, setUserDataInitial] = useState<IUser>(
     INITIAL_VALUE_USER
   );
@@ -46,7 +47,6 @@ export const UserProvider = ({ children }: Props) => {
     INITIAL_VALUE_ACCOUNT
   );
   const data = { userDataInitial, account, setUserAccount, setUserDataInitial };
-
   return (
     <UserContext.Provider value={data}>
       {children}
