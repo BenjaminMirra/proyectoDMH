@@ -33,17 +33,16 @@ const GenerateListCard = (idAccount: number) => {
         })
         .catch((error) => {
           console.log(error);
-          router.push("/");
         });
     }
   }, []);
 
-  const handleDelete = async (card_id: number, idAccount: number,list: ListItemData[]  ) => {
+  const handleDelete = async (card_id: number, idAccount: number, list: ListItemData[]) => {
     try {
       const nuevaLista = list.filter(item => item.id !== card_id);
       const token = localStorage.getItem("token");
       const config = {
-        method: "delete",  
+        method: "delete",
         url: `https://digitalmoney.ctd.academy/api/accounts/${idAccount}/cards/${card_id}`,
         headers: {
           "Authorization": token,
@@ -53,8 +52,8 @@ const GenerateListCard = (idAccount: number) => {
       axios.delete(config.url, config)
         .then((response) => {
           console.log(response);
-          setListCard(nuevaLista);  
-      
+          setListCard(nuevaLista);
+
         })
         .catch((error) => {
           console.log(error);
@@ -72,7 +71,7 @@ const GenerateListCard = (idAccount: number) => {
           <CircleIcon color="secondary" fontSize="large" />
         </ListItemAvatar>
         <Typography paddingRight="10px">
-                    Terminada en
+          Terminada en
         </Typography>
         <ListItemText secondary={item.number_id.toString().slice(-3)} />
         <ListItemIcon>

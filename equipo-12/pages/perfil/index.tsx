@@ -21,7 +21,7 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
     <>
       <Box
         sx={{
-          width: "25%",
+          width: "276px",
           height: "100%",
           backgroundColor: "#C1FD35",
           "@media (max-width: 768px)": {

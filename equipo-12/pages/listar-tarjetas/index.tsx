@@ -12,7 +12,16 @@ interface PropsType {
 const ListCard: NextPageWithLayout<PropsType> = () => {
   return (
     <>
-
+      <Box
+        sx={{
+          width: "276px",
+          height: "100%",
+          backgroundColor: "#C1FD35",
+          "@media (max-width: 768px)": {
+            display: "none",
+          },
+        }}
+      ></Box>
       <Box sx={{
         height: "100vh",
         width: "100vw",
@@ -34,9 +43,9 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
           paddingRight: "50px",
           paddingLeft: "50px",
         }} >
-            <ListCards />
-          </Box>
+          <ListCards />
         </Box>
+      </Box>
     </>
   );
 };
