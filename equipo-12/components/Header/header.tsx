@@ -31,10 +31,10 @@ const Header = () => {
           }}
         >
           <Image src={logoDark} alt="logo" />
-        </Link>        
+        </Link>
         <Box>
           {router.pathname === "/iniciar-sesion/paso-1" ||
-          router.pathname === "/iniciar-sesion/paso-2" ? (
+            router.pathname === "/iniciar-sesion/paso-2" ? (
               <></>
             ) : (
               <>

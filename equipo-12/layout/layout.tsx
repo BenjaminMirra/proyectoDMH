@@ -1,13 +1,13 @@
 import { FC, PropsWithChildren, useContext, useEffect, useState } from "react";
 import { Stack } from "@mui/material";
 import Box from "@mui/material/Box";
-import HeaderHome from "../components/Header/header-home";
 import HeaderLogin from "../components/Header/header-login";
 import HeaderRegister from "../components/Header/header-register";
 import Footer from "../components/Footer/footer";
 import LateralMenu from "../components/LateralMenu/lateralMenu";
 import { useUserData } from "../context/createContext";
 import { useRouter } from "next/router";
+import HeaderHome from "../components/Header/header-home";
 
 type LayoutVariant = "home" | "login" | "register";
 
@@ -18,9 +18,7 @@ interface Props extends PropsWithChildren<any> {
 const Layout: FC<Props> = ({ variant, children }: Props) => {
   const [visibility, setVisibility] = useState(false);
   const [headerDisplayed, setHeaderDisplayed] = useState(<HeaderHome />);
-  const { userInfo } = useUserData();
   const router = useRouter();
-
   useEffect(() => {
     if (variant === "home") {
       setHeaderDisplayed(

@@ -8,17 +8,22 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useUserData } from "../../context/createContext";
+import useUser from "../../hooks/useUser";
 
-const HeaderHome = (props : any) => {
+const HeaderHome = (props: any) => {
   const { setVisibility } = props;
   const [logged, setLogged] = useState(false);
-  const { userInfo } = useUserData();
+  const { userDataInitial } = useUserData();
+  const [userInfo] = useUser();
 
   useEffect(() => {
-    if (userInfo.firstname !== "" && localStorage.getItem("token")) {
+    if (userDataInitial.firstname !== "" && localStorage.getItem("token") || userInfo.firstname !== "") {
       setLogged(true);
+    } else {
+      setLogged(false);
     }
-  }, [userInfo]);
+
+  }, [userDataInitial, userInfo]);
 
   const router = useRouter();
 
@@ -85,8 +90,16 @@ const HeaderHome = (props : any) => {
                   color: "var( --main-bg-color)",
                 }}
               >
-                {userInfo?.firstname.charAt(0)}
-                {userInfo?.lastname.charAt(0)}
+                {userDataInitial?.firstname != "" ?
+                  `
+                ${userDataInitial?.firstname.charAt(0)}
+                ${userDataInitial?.lastname.charAt(0)}`
+                  :
+                  `
+                ${userInfo?.firstname.charAt(0)}
+                ${userInfo?.lastname.charAt(0)}
+                `
+                }
               </Typography>
             </Button>
             <Menu
@@ -109,10 +122,10 @@ const HeaderHome = (props : any) => {
             <IconButton 
             onClick={() => {setVisibility(true)}}
               sx={{
-                "@media (min-width: 601px)": {
+                "@media (min-width: 768px)": {
                   display: "none !important",
                 },
-                "@media (max-width: 600px)": {
+                "@media (max-width: 767px)": {
                   display: "inline !important",
                 },
                 padding: "0px",
@@ -134,7 +147,11 @@ const HeaderHome = (props : any) => {
               color: "var(--main-text-color)",
             }}
           >
-            Hola, {userInfo?.firstname} {userInfo?.lastname}
+            {userDataInitial?.firstname != "" ?
+              `Hola, ${userDataInitial?.firstname} ${userDataInitial?.lastname}`
+              :
+              `Hola, ${userInfo?.firstname} ${userInfo?.lastname}`
+            }
           </Typography>
         </>
       );
@@ -157,44 +174,52 @@ const HeaderHome = (props : any) => {
   };
 
   return (
-    <Box
-      sx={{
-        backgroundColor: "var(--main-bg-color)",
-        zIndex: "2",
-      }}
-    >
-      <Box
+
+    <>
+      < Box
         sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: "12px 20px",
-        }}
+          backgroundColor: "var(--main-bg-color)",
+          zIndex: "2",
+          position: "sticky",
+          top: "0px",
+          width: "100%",
+        }
+        }
       >
-        <Box>
-          <Link
-            href={"/"}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Image src={imageLogo} alt="logo" />
-          </Link>
-        </Box>
         <Box
           sx={{
             display: "flex",
-            gap: "20px",
-            color: "white",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "12px 20px",
           }}
         >
-          {handleIsAuthMenu()}
+          <Box>
+            <Link
+              href={"/"}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Image src={imageLogo} alt="logo" />
+            </Link>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              gap: "20px",
+              color: "white",
+            }}
+          >
+            {handleIsAuthMenu()}
+          </Box>
         </Box>
-      </Box>
-    </Box>
+      </Box >
+
+    </>
   );
 };
 

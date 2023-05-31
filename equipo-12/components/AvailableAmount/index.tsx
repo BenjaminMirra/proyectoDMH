@@ -15,8 +15,8 @@ const AvailableAmount = () => {
 
   const { available_amount } = data.account;
   return (
-    <Card variant="outlined" sx={{ width: "100%" }}>
-      <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end", gap: "10px" }}>
+    <Card variant="outlined" sx={{ width: "100%","@media (max-width: 768px)": {padding: "20px"} }}>
+      <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end", gap: "10px", flexWrap:"wrap" }}>
         <Link style={{ color: "#EEEAEA" }} href="/inicio">
           <Typography variant="subtitle1" sx={{ "&:hover": { color: "#C1FD35", } }}>Ver Tarjetas</Typography>
         </Link>
@@ -25,8 +25,9 @@ const AvailableAmount = () => {
         </Link>
       </Box>
       <Typography variant="h4" sx={{ paddingLeft: "10px" }}>Dinero Disponible</Typography>
-      <Box sx={{ display: "flex", alignItems: "center", gap: "30px" }}>
+      <Box sx={{ display: "flex", flexWrap:"wrap",alignItems: "center", gap: "30px" }}>
         <Typography variant="h1" sx={{ border: "2px solid #C1FD35", borderRadius: "100px", width: "auto", padding: "10px", wordSpacing:"10px",display: "flex", gap: "20px" }}>
+          $
           {
             isVisibility
               ? available_amount == "0" ? "0,00" : available_amount
