@@ -5,23 +5,18 @@ import Link from "next/link";
 import { Box, Fade, Menu, MenuItem, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import useUser from "../../hooks/useUser";
-import { IUser } from "../../types";
 import axios from "axios";
+import { useUserData } from "../../context/createContext";
+import menuLogo from "../../utils/images/menus.svg"
 
-
-const HeaderHome = () => {
-  const [logged, setLogged] = useState(true);
-  const [userData, setUserData] = useState<IUser>();
-
-  const [userInfo] = useUser();
+const HeaderHome = (props : any) => {
+  const { setVisibility } = props;
+  const [logged, setLogged] = useState(false);
+  const { userInfo } = useUserData();
 
   useEffect(() => {
-    if (userInfo) {
-      setUserData(userInfo);
+    if (userInfo.firstname !== "" && localStorage.getItem("token")) {
       setLogged(true);
-    } else {
-      setLogged(false);
     }
   }, [userInfo]);
 
@@ -36,7 +31,7 @@ const HeaderHome = () => {
     setAnchorEl(null);
   };
 
-  const handleLogout = async() => {
+  const handleLogout = async () => {
     const token = localStorage.getItem("token");
     try {
       await axios("https://digitalmoney.ctd.academy/api/logout", {
@@ -46,8 +41,8 @@ const HeaderHome = () => {
       }).then((response) => {
         console.log(response);
       });
-    } catch (error){
-      console.log(error);
+    } catch (error) {
+      console.error(error);
     }
     setAnchorEl(null);
     localStorage.removeItem("token");
@@ -90,8 +85,8 @@ const HeaderHome = () => {
                   color: "var( --main-bg-color)",
                 }}
               >
-                {userData?.firstname.charAt(0)}
-                {userData?.lastname.charAt(0)}
+                {userInfo?.firstname.charAt(0)}
+                {userInfo?.lastname.charAt(0)}
               </Typography>
             </Button>
             <Menu
@@ -110,7 +105,7 @@ const HeaderHome = () => {
               <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
             </Menu>
           </Box>
-
+          <button onClick={() => {setVisibility(true)}}><Image src={menuLogo} alt="menu"/></button>
           <Typography
             variant="subtitle2"
             sx={{
@@ -125,7 +120,7 @@ const HeaderHome = () => {
               color: "var(--main-text-color)",
             }}
           >
-            Hola, {userData?.firstname} {userData?.lastname}
+            Hola, {userInfo?.firstname} {userInfo?.lastname}
           </Typography>
         </>
       );
@@ -151,6 +146,7 @@ const HeaderHome = () => {
     <Box
       sx={{
         backgroundColor: "var(--main-bg-color)",
+        zIndex: "2",
       }}
     >
       <Box
