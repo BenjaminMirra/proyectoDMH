@@ -23,7 +23,6 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
         sx={{
           width: "276px",
           height: "100%",
-          width: "100%",
           backgroundColor: "#C1FD35",
           "@media (max-width: 768px)": {
             display: "none",
