@@ -7,7 +7,6 @@ import Divider from "@mui/material/Divider";
 import DeleteCards from "./deleteCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import router from "next/router";
 
 const GenerateListCard = (idAccount: number) => {
   const [listCard, setListCard] = useState<ListItemData[]>();
@@ -28,22 +27,19 @@ const GenerateListCard = (idAccount: number) => {
           setListCard(
             response.data
           );
-          console.log("id_account " + idAccount);
-          console.log("id_account " + JSON.stringify(response.data));
         })
         .catch((error) => {
           console.log(error);
-          router.push("/");
         });
     }
   }, []);
 
-  const handleDelete = async (card_id: number, idAccount: number,list: ListItemData[]  ) => {
+  const handleDelete = async (card_id: number, idAccount: number, list: ListItemData[]) => {
     try {
       const nuevaLista = list.filter(item => item.id !== card_id);
       const token = localStorage.getItem("token");
       const config = {
-        method: "delete",  
+        method: "delete",
         url: `https://digitalmoney.ctd.academy/api/accounts/${idAccount}/cards/${card_id}`,
         headers: {
           "Authorization": token,
@@ -52,9 +48,8 @@ const GenerateListCard = (idAccount: number) => {
       };
       axios.delete(config.url, config)
         .then((response) => {
-          console.log(response);
-          setListCard(nuevaLista);  
-      
+          setListCard(nuevaLista);
+
         })
         .catch((error) => {
           console.log(error);
@@ -67,21 +62,38 @@ const GenerateListCard = (idAccount: number) => {
 
   return listCard?.map((item) => (
     <>
-      <ListItem key={item.account_id} >
+      <ListItem sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
         <ListItemAvatar>
           <CircleIcon color="secondary" fontSize="large" />
         </ListItemAvatar>
-        <Typography paddingRight="10px">
-                    Terminada en
-        </Typography>
-        <ListItemText secondary={item.number_id.toString().slice(-3)} />
-        <ListItemIcon>
-          <DeleteCards refreshlista={handleDelete} list={listCard} data={item} />
-        </ListItemIcon>
+        < ListItemText primary={
+          <Typography variant="body1">
+            Terminada en {item.number_id.toString().slice(-3)}
+          </Typography>}
+        />
+      <ListItemIcon >
+        <DeleteCards refreshlista={handleDelete} list={listCard} data={item} />
+      </ListItemIcon>
       </ListItem>
-      <Divider key={item.account_id} variant="inset" component="li" sx={{ whith: "90%", marginLeft: "20px", marginRight: "20px" }} />
+      <Divider variant="middle"></Divider>
     </>
   ));
 };
 
 export default GenerateListCard;
+/*
+*/
+
+/**
+ *      <ListItem key={item.account_id} >
+        <ListItemAvatar>
+          
+        </ListItemAvatar>
+       
+       
+      </ListItem>
+      <Divider key={item.account_id} variant="inset" component="li" sx={{ whith: "90%", marginLeft: "20px", marginRight: "20px" }} />
+
+ * 
+ * 
+ */
