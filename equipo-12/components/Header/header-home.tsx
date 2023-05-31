@@ -17,10 +17,6 @@ const HeaderHome = (props: any) => {
   const [userInfo] = useUser();
 
   useEffect(() => {
-    console.log("token desde headerHome: " + localStorage.getItem("token"));
-    console.log(userDataInitial);
-
-
     if (userDataInitial.firstname !== "" && localStorage.getItem("token") || userInfo.firstname !== "") {
       setLogged(true);
     } else {
