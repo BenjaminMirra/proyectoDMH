@@ -4,15 +4,44 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Box, Button, Card, CardContent, Snackbar, Typography } from "@mui/material"
 import { useRouter } from "next/router";
 import MuiAlert from '@mui/material/Alert';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useDeviceSize from "../../hooks/useDeviceSize";
+import axios from "axios";
 const AddCard = () => {
 
     const router = useRouter();
     const [open, setOpen] = useState(false);
     const [width] = useDeviceSize();
+    const [listCard, setListCard] = useState<ListItemData[]>([]);
+
+    useEffect(() => {
+        if (localStorage.getItem("userId") !== null) {
+          const token = localStorage.getItem("token");
+          const account = localStorage.getItem("accountId");
+          const config = {
+            method: "get",
+            url: `https://digitalmoney.ctd.academy/api/accounts/${account}/cards`,
+            headers: {
+              Authorization: token,
+            },
+            data: "",
+          };
+          axios
+            .request(config)
+            .then((response) => {
+              setListCard(
+                response.data
+              );
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+      }, []);
+      
     const handleClick = () => {
-        if (9 < 10) {
+        console.log("error"+ listCard?.length);
+        if (listCard?.length < 10) {
             router.push('/agregar-tarjeta');
         } else {
             setOpen(true);
@@ -251,3 +280,7 @@ const AddCard = () => {
 }
 
 export default AddCard;
+
+function setListCard(data: any) {
+    throw new Error("Function not implemented.");
+}
