@@ -1,12 +1,12 @@
 import { FC, PropsWithChildren, useContext, useEffect, useState } from "react";
 import { Stack } from "@mui/material";
 import Box from "@mui/material/Box";
-import HeaderHome from "../components/Header/header-home";
 import HeaderLogin from "../components/Header/header-login";
 import HeaderRegister from "../components/Header/header-register";
 import Footer from "../components/Footer/footer";
 import LateralMenu from "../components/LateralMenu/lateralMenu";
 import { useUserData } from "../context/createContext";
+import HeaderHome from "../components/Header/header-home";
 
 type LayoutVariant = "home" | "login" | "register";
 
@@ -24,8 +24,8 @@ const Layout: FC<Props> = ({ variant, children }: Props) => {
     if (variant === "home") {
       setHeaderDisplayed(
         <>
-            <HeaderHome setVisibility={setVisibility}/>
-            <LateralMenu visibility={visibility} setVisibility={setVisibility}/>
+          <HeaderHome setVisibility={setVisibility} />
+          <LateralMenu visibility={visibility} setVisibility={setVisibility} />
         </>
       );
     } else if (variant === "login") {

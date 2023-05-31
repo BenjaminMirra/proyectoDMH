@@ -20,7 +20,7 @@ const addCard: NextPageWithLayout<PropsType> = () => {
   return (
     <>
       <Head>
-        <title>Recupero Pendiente</title>
+        <title>Agregar Tarjetas</title>
         <meta
           name="description"
           content="Registro exitoso Digital Money House"
@@ -41,6 +41,16 @@ const addCard: NextPageWithLayout<PropsType> = () => {
           backgroundColor: "#EEEAEA",
         }}
       >
+        <Box
+          sx={{
+            width: "276px",
+            height: "100%",
+            backgroundColor: "#C1FD35",
+            "@media (max-width: 768px)": {
+              display: "none",
+            },
+          }}
+        ></Box>
         <Box
           sx={{
             padding: "20px",
