@@ -31,7 +31,7 @@ const CreditCard = () => {
   const { account } = useUserData();
   const [cvc, setCvc] = useState("");
   const [expiry, setExpiry] = useState("");
-  const [focused, setFocused] = useState("");
+  const [focused, setFocused] = useState(undefined);
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [state, setState] = useState({
