@@ -46,7 +46,6 @@ const addCard: NextPageWithLayout<PropsType> = () => {
           justifyContent: "center",
           height: "100vh",
           width: "100vw",
-          paddingTop: "100px",
           backgroundColor: "#EEEAEA",
         }}
       >
@@ -76,16 +75,16 @@ const addCard: NextPageWithLayout<PropsType> = () => {
             padding: "20px",
             "@media only screen and (max-width: 768px)": {
               width: "90%",
-              height: "100%",
+              height: "85%",
               paddingTop: "230px",
             },
             "@media only screen and (min-width: 768px)": {
               width: "85%",
-              height: "100%",
+              height: "80%",
             },
             "@media only screen and (min-width: 1366px)": {
               width: "80%",
-              height: "100%",
+              height: "90%",
             },
           }}
         >
