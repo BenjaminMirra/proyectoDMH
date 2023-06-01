@@ -108,7 +108,7 @@ export const theme = createTheme({
             color: "#C1FD35",
             backgroundColor: "#201F22",
             border: "solid 1px #C1FD35",
-            boxShadow:"0px 4px 4px #0000004c",
+            boxShadow: "0px 4px 4px #0000004c",
             padding: "0",
             "&:hover": {
               backgroundColor: "#403e44",
@@ -128,7 +128,7 @@ export const theme = createTheme({
             color: "#201F22",
             backgroundColor: "#C1FD35",
             border: "solid 1px #C1FD35",
-            boxShadow:"0px 4px 4px #0000004c",
+            boxShadow: "0px 4px 4px #0000004c",
             "&:hover": {
               backgroundColor: "#a3d52e",
               borderColor: "#a3d52e",
@@ -141,7 +141,7 @@ export const theme = createTheme({
             color: "#201F22",
             backgroundColor: "#CECECE",
             border: "solid 1px #CECECE",
-            boxShadow:"0px 4px 4px #0000004c",
+            boxShadow: "0px 4px 4px #0000004c",
             "&:hover": {
               backgroundColor: "#bababa",
               borderColor: "#bababa",
@@ -182,13 +182,13 @@ export const theme = createTheme({
           },
         },
         {
-          props: { variant:"xxl"},
+          props: { variant: "xxl" },
           style: {
             color: "#201F22",
             backgroundColor: "#C1FD35",
             border: "solid 1px #C1FD35",
-            boxShadow:"0px 4px 4px #0000004c",
-            padding:"20px",
+            boxShadow: "0px 4px 4px #0000004c",
+            padding: "20px",
             "&:hover": {
               backgroundColor: "#a3d52e",
               borderColor: "#a3d52e",
@@ -197,20 +197,20 @@ export const theme = createTheme({
         }
       ],
     },
-    MuiCard:{
-      variants:[
+    MuiCard: {
+      variants: [
         {
-          props: { variant:"outlined"},
+          props: { variant: "outlined" },
           style: {
-            backgroundColor:"#201F22", 
-            color:"#EEEAEA", 
-            padding:"30px 50px", 
-            display:"flex",
-            flexDirection:"column",
-            alignItems:"self-start" ,
-            gap:"20px", 
-            borderRadius:"10px", 
-            boxShadow:"0px 4px 4px #0000004c"
+            backgroundColor: "#201F22",
+            color: "#EEEAEA",
+            padding: "30px 50px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "self-start",
+            gap: "20px",
+            borderRadius: "10px",
+            boxShadow: "0px 4px 4px #0000004c"
           }
         }
       ]
@@ -241,10 +241,9 @@ export const theme = createTheme({
 export const useStyles = makeStyles((theme: { spacing: (arg0: number) => any; palette: { primary: { main: any; }; }; }) => ({
   textField: {
     width: "100%",
-    height: "10000px",
     "& .MuiOutlinedInput-root": {
       borderRadius: theme.spacing(1),
-      boxShadow:"0px 4px 4px #0000004c",
+      boxShadow: "0px 4px 4px #0000004c",
       backgroundColor: "#f1f1f1",
       "& fieldset": {
         borderColor: "#dddddd",

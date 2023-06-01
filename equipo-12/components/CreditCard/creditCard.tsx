@@ -59,9 +59,6 @@ const CreditCard = () => {
       setError("Por favor, complete todos los campos");
     } else {
       const token = localStorage.getItem("token");
-      console.log(JSON.stringify(state));
-      console.log(JSON.stringify("account: " + account.id));
-
       try {
         await axios
           .post(
@@ -79,14 +76,13 @@ const CreditCard = () => {
             }
           )
           .then((response) => {
-            console.log(response);
             setSuccess("Operación realizada con éxito");
             setTimeout(() => {
               router.push("/listar-tarjetas");
             }, 3000);
           });
       } catch (error) {
-        console.log(error);
+        console.error(error);
         const errorMessage = catchError(error);
         setError(errorMessage);
         return;
@@ -105,7 +101,7 @@ const CreditCard = () => {
   return (
     <>
       <Card
-      
+
         locale={{
           valid: "MM/YYYY",
         }}

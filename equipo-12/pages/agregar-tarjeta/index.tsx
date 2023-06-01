@@ -51,7 +51,7 @@ const addCard: NextPageWithLayout<PropsType> = () => {
       >
         <Typography
           sx={{
-            padding:"20px",
+            padding: "20px",
             "@media (max-width: 768px)": {
               display: "flex",
               justifyContent: "flex-start",
@@ -71,12 +71,12 @@ const addCard: NextPageWithLayout<PropsType> = () => {
             flexDirection: "column",
             justifyContent: "center",
             backgroundColor: "#fff",
-            textAlign: "center",  
-            padding:"20px",          
+            textAlign: "center",
+            padding: "20px",
             "@media only screen and (max-width: 768px)": {
               width: "90%",
               height: "85%",
-              paddingTop:"230px",
+              paddingTop: "230px",
             },
             "@media only screen and (min-width: 768px)": {
               width: "85%",

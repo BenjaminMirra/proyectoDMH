@@ -9,7 +9,7 @@ const NavTree = (props: any) => {
 
   const router = useRouter();
 
-  const active = (path: Array<String>) => {
+  const active = (path: Array<string>) => {
     return (path.includes(router.pathname) ? styles.active : "");
   };
 
@@ -41,7 +41,7 @@ const NavTree = (props: any) => {
       <Link className={active(["/perfil"])} href="/perfil">Tu Perfil</Link>
       <Link className={active(["/cargardinero"])} href="/inicio">Cargar Dinero</Link>
       <Link className={active(["/pagarservicios"])} href="/inicio">Pagar Servicios</Link>
-      <Link className={active(["/listar-tarjetas","/agregar-tarjeta"])} href="/listar-tarjetas">Tarjetas</Link>
+      <Link className={active(["/listar-tarjetas", "/agregar-tarjeta"])} href="/listar-tarjetas">Tarjetas</Link>
       <button onClick={() => { logout(); }}>Cerrar sesión</button>
     </Box>
   );

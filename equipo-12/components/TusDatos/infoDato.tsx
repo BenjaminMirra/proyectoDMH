@@ -40,14 +40,12 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
         });
       }
     }
-  }, [edit, inputValue, dataKey]);
-
+  }, [edit, inputValue, dataKey, infoData]);
 
   const onHandleSubmit = () => {
 
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
-
     const config = {
       method: "patch",
       url: `https://digitalmoney.ctd.academy/api/users/${userId}`,
@@ -57,7 +55,6 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
       },
       data: infoData
     };
-
     axios.request(config)
       .then((response) => {
         return response;
@@ -140,8 +137,6 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
                   </>
                 }
               </Box>
-
-
             </Box>
             :
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 8, md: 12 }}>

@@ -2,8 +2,8 @@ import Image from "next/image";
 import imageLogo from "../../utils/images/imageLogo.svg";
 import Button from "@mui/material/Button";
 import Link from "next/link";
-import { Box, Fade, Menu, MenuItem, Typography,IconButton} from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
+import { Box, Fade, Menu, MenuItem, Typography, IconButton } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -16,16 +16,20 @@ const HeaderHome = (props: any) => {
   const { userDataInitial } = useUserData();
   const [userInfo] = useUser();
 
+  const router = useRouter();
+
   useEffect(() => {
-    if (userDataInitial.firstname !== "" && localStorage.getItem("token") || userInfo.firstname !== "" && router.pathname !== "/") {
-      setLogged(true);
+    if (router.pathname === "/") {
+      return setLogged(false);
+    }
+    else if (userDataInitial.firstname !== "" && localStorage.getItem("token") || userInfo.firstname !== "" && router.pathname !== "/") {
+      return setLogged(true);
     } else {
-      setLogged(false);
+      return setLogged(false);
     }
 
-  }, [userDataInitial, userInfo]);
 
-  const router = useRouter();
+  }, [router.pathname, userDataInitial, userInfo]);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -91,12 +95,12 @@ const HeaderHome = (props: any) => {
                 }}
               >
                 {
-                userDataInitial?.firstname != ""  ?
-                  `
+                  userDataInitial?.firstname != "" ?
+                    `
                 ${userDataInitial?.firstname.charAt(0)}
                 ${userDataInitial?.lastname.charAt(0)}`
-                  :
-                  `
+                    :
+                    `
                 ${userInfo?.firstname.charAt(0)}
                 ${userInfo?.lastname.charAt(0)}
                 `
@@ -120,8 +124,8 @@ const HeaderHome = (props: any) => {
             </Menu>
           </Box>
           {router.pathname !== "/" &&
-            <IconButton 
-            onClick={() => {setVisibility(true)}}
+            <IconButton
+              onClick={() => { setVisibility(true); }}
               sx={{
                 "@media (min-width: 768px)": {
                   display: "none !important",
@@ -132,8 +136,8 @@ const HeaderHome = (props: any) => {
                 padding: "0px",
               }}
             >
-              
-            <MenuIcon color="secondary" fontSize="large"/> </IconButton>}
+
+              <MenuIcon color="secondary" fontSize="large" /> </IconButton>}
           <Typography
             variant="subtitle2"
             sx={{
@@ -181,7 +185,7 @@ const HeaderHome = (props: any) => {
         sx={{
           backgroundColor: "var(--main-bg-color)",
           zIndex: "2",
-          position: "sticky",
+          position: "fixed",
           top: "0px",
           width: "100%",
         }

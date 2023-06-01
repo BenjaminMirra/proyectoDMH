@@ -5,17 +5,17 @@ import Layout from "../../layout/layout";
 import { NextPageWithLayout } from "../_app";
 import BannerGestionPago from "../../components/GestionPago/banner-gestion-pago";
 import AliasCVU from "../../components/AliasCVU/alias-cvu";
-import { CircularProgress, Typography } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import useUser from "../../hooks/useUser";
-import useAccount from "../../hooks/useAccount";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
+import { useUserData } from "../../context/createContext";
 interface PropsType {
   children?: ReactNode;
 }
 
 const Perfil: NextPageWithLayout<PropsType> = () => {
   const [userInfo] = useUser();
-  const [userAccount] = useAccount();
+  const { account } = useUserData();
 
   return (
     <>
@@ -38,7 +38,7 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
         }}
       ></Box>
 
-      {userInfo && userAccount ? (
+      {userInfo && account ? (
         <Box
           sx={{
             display: "flex",
@@ -52,31 +52,15 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
               padding: "20px",
             },
             "@media (min-width: 768px)": {
-              padding: "65px 50px",
-            },
-            "@media (min-width: 1024px)": {
-              padding: "40px 80px",
+              padding: "50px",
+              paddingLeft: "100px"
             },
           }}
         >
-          <Typography
-            sx={{
-              "@media (max-width: 768px)": {
-                display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                width: "100%",
-              },
-              "@media (min-width: 768px)": {
-                display: "none",
-              },
-            }}
-          >
-            <ArrowForwardIcon /> Perfil
-          </Typography>
+          <ArrowSubtitleMobile title="Tarjetas" />
           <TusDatos userInfo={userInfo} />
           <BannerGestionPago />
-          <AliasCVU userAccount={userAccount} />
+          <AliasCVU userAccount={account} />
         </Box>
       ) : (
         <Box
