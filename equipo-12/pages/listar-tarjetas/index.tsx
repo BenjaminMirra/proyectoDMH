@@ -27,15 +27,16 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
       <Box sx={{
         height: "100%",
         width: "100vw",
-        backgroundColor: "#EEEAEA"
+        backgroundColor: "#EEEAEA",
+        padding: "50px",
+        "@media (max-width: 768px)": {
+          paddingLeft: "0px",
+        },
       }}
       >
 
         <Box sx={{
           marginBottom: "1rem",
-          paddingTop: "20px",
-          paddingRight: "50px",
-          paddingLeft: "50px"
         }}
         >
           <ArrowSubtitleMobile title="Tarjetas" />
@@ -43,9 +44,7 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
         </Box>
         <Box sx={{
           marginBottom: "1rem",
-          paddingTop: "20px",
-          paddingRight: "50px",
-          paddingLeft: "50px",
+
         }} >
           <ListCards />
         </Box>

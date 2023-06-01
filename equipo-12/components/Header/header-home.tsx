@@ -185,7 +185,7 @@ const HeaderHome = (props: any) => {
         sx={{
           backgroundColor: "var(--main-bg-color)",
           zIndex: "2",
-          position: "sticky",
+          position: "fixed",
           top: "0px",
           width: "100%",
         }

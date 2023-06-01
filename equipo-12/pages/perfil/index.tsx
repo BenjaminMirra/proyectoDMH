@@ -54,10 +54,7 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
               padding: "20px",
             },
             "@media (min-width: 768px)": {
-              padding: "65px 50px",
-            },
-            "@media (min-width: 1024px)": {
-              padding: "40px 80px",
+              padding: "50px",
             },
           }}
         >

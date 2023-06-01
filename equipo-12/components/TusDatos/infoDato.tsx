@@ -40,7 +40,7 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
         });
       }
     }
-  }, [edit, inputValue, dataKey]);
+  }, [edit, inputValue, dataKey, infoData]);
 
   const onHandleSubmit = () => {
 

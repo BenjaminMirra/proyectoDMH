@@ -38,9 +38,9 @@ const AddCard = () => {
         });
     }
   }, []);
-      
+
   const handleClick = () => {
-    console.log("error"+ listCard?.length);
+    console.log("error" + listCard?.length);
     if (listCard?.length < 10) {
       router.push("/agregar-tarjeta");
     } else {
@@ -59,10 +59,13 @@ const AddCard = () => {
       justifyContent: "flex-start",
       alignItems: "center",
       width: "100%",
+      "@media (max-width: 768px)": {
+        paddingTop: "10px",
+      },
     }
     }>
       {width > 768 ?
-        width<=1024 ? 
+        width <= 1024 ?
           <Card sx={{
             minWidth: "100%",
             background: "#201F22",
@@ -102,7 +105,7 @@ const AddCard = () => {
                     }} variant="h6"
                     style={{ textTransform: "none" }}
                   >
-                                    Nueva tarjeta
+                    Nueva tarjeta
                   </Typography>
                 </Button>
               </CardContent>
@@ -123,7 +126,7 @@ const AddCard = () => {
               </Button>
               <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
                 <MuiAlert onClose={handleClose} severity="warning" elevation={6} variant="filled">
-                                No se pueden Agregar mas de 10 Tarjetas
+                  No se pueden Agregar mas de 10 Tarjetas
                 </MuiAlert>
               </Snackbar>
             </CardContent>
@@ -143,7 +146,7 @@ const AddCard = () => {
                 color: "#FFFFFF",
                 paddingLeft: "15px"
               }} variant="h6">
-                            Agregá tu tarjeta de débito o crédito
+                Agregá tu tarjeta de débito o crédito
               </Typography>
             </CardContent>
             <CardContent sx={{
@@ -176,7 +179,7 @@ const AddCard = () => {
                     }} variant="h6"
                     style={{ textTransform: "none" }}
                   >
-                                    Nueva tarjeta
+                    Nueva tarjeta
                   </Typography>
                 </Button>
               </CardContent>
@@ -197,7 +200,7 @@ const AddCard = () => {
               </Button>
               <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
                 <MuiAlert onClose={handleClose} severity="warning" elevation={6} variant="filled">
-                                No se pueden Agregar mas de 10 Tarjetas
+                  No se pueden Agregar mas de 10 Tarjetas
                 </MuiAlert>
               </Snackbar>
             </CardContent>
@@ -216,7 +219,7 @@ const AddCard = () => {
               color: "#FFFFFF",
               paddingLeft: "15px"
             }} variant="h6">
-                            Agregá tu tarjeta de débito o crédito
+              Agregá tu tarjeta de débito o crédito
             </Typography>
           </CardContent>
           <CardContent sx={{
@@ -249,7 +252,7 @@ const AddCard = () => {
                   }} variant="h6"
                   style={{ textTransform: "none" }}
                 >
-                                Nueva tarjeta
+                  Nueva tarjeta
                 </Typography>
               </Button>
             </CardContent>
@@ -270,7 +273,7 @@ const AddCard = () => {
             </Button>
             <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
               <MuiAlert onClose={handleClose} severity="warning" elevation={6} variant="filled">
-                            No se pueden Agregar mas de 10 Tarjetas
+                No se pueden Agregar mas de 10 Tarjetas
               </MuiAlert>
             </Snackbar>
           </CardContent>

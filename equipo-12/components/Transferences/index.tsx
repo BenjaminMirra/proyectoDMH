@@ -9,16 +9,16 @@ const Transferences = () => {
   const classes = useStyles();
 
   const [transferences] = useTransferences();
-    
+
   const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
 
-  const staticData = [1,2,3,4,5,6,7,8,9,10];
+  const staticData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  
 
-  return(
+
+  return (
     <>
       <form style={{ width: "100%" }} onSubmit={handleSearch}>
         <TextField
@@ -41,9 +41,9 @@ const Transferences = () => {
             <Typography variant="h4" sx={{}}>Tu actividad</Typography>
           </ListItem>
           {
-            staticData.map(()=>{
+            staticData.map(() => {
 
-              return(
+              return (
                 <>
                   <ListItem alignItems="flex-start" sx={{ display: "flex", alignItems: "center" }}>
                     <ListItemAvatar>
@@ -53,7 +53,7 @@ const Transferences = () => {
                       sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
                       primary="Transferiste a Rodrigo"
                     >
-      
+
                     </ListItemText>
                     <ListItemText
                       sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-end" }}
@@ -73,7 +73,7 @@ const Transferences = () => {
             </Link>
           </ListItem>
         </List>
-      </Box> 
+      </Box>
     </>
 
   );
