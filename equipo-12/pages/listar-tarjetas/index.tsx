@@ -28,7 +28,10 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
         height: "100%",
         width: "100vw",
         backgroundColor: "#EEEAEA",
-        padding: "50px",
+        paddingLeft: "100px",
+        paddingTop: "50px",
+        paddingBottom: "50px",
+        paddingRight: "50px",
         "@media (max-width: 768px)": {
           paddingLeft: "0px",
         },
@@ -44,7 +47,6 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
         </Box>
         <Box sx={{
           marginBottom: "1rem",
-
         }} >
           <ListCards />
         </Box>

@@ -5,10 +5,8 @@ import Layout from "../../layout/layout";
 import { NextPageWithLayout } from "../_app";
 import BannerGestionPago from "../../components/GestionPago/banner-gestion-pago";
 import AliasCVU from "../../components/AliasCVU/alias-cvu";
-import { CircularProgress, Typography } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import useUser from "../../hooks/useUser";
-import useAccount from "../../hooks/useAccount";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
 import { useUserData } from "../../context/createContext";
 interface PropsType {
@@ -55,6 +53,7 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
             },
             "@media (min-width: 768px)": {
               padding: "50px",
+              paddingLeft: "100px"
             },
           }}
         >
