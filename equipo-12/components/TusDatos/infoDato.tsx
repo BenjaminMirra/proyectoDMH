@@ -4,6 +4,7 @@ import DoneIcon from "@mui/icons-material/Done";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import useDeviceSize from "../../hooks/useDeviceSize";
+import Button from "@mui/material/Button";
 
 interface Props {
   dataKey: string;
@@ -117,6 +118,7 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
                 display: "flex",
                 justifyContent: "flex-end",
                 alignItems: "center",
+
               }}>
                 {change ?
                   edit ?
@@ -125,12 +127,16 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
                         onClick={() => {
                           setEdit(!edit);
                           onHandleSubmit();
+                        }} sx={{
+                          cursor: "pointer"
                         }} />
                     </> :
                     <>
                       <EditIcon onClick={() => {
                         setEdit(!edit);
-                      }} color="disabled" />
+                      }} color="disabled" sx={{
+                        cursor: "pointer"
+                      }} />
                     </>
                   :
                   <>
@@ -177,12 +183,17 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
                         onClick={() => {
                           setEdit(!edit);
                           onHandleSubmit();
+                        }} sx={{
+                          cursor: "pointer"
                         }} />
                     </> :
                     <>
                       <EditIcon onClick={() => {
                         setEdit(!edit);
-                      }} color="disabled" />
+                      }} color="disabled"
+                        sx={{
+                          cursor: "pointer"
+                        }} />
                     </>
                   :
                   <>
