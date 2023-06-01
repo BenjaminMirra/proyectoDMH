@@ -50,6 +50,7 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
             backgroundColor: "var(--light-grey)",
             "@media (max-width: 768px)": {
               padding: "20px",
+              paddingTop: "50px"
             },
             "@media (min-width: 768px)": {
               padding: "50px",

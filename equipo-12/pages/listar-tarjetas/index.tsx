@@ -33,7 +33,8 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
         paddingBottom: "50px",
         paddingRight: "50px",
         "@media (max-width: 768px)": {
-          paddingLeft: "0px",
+          paddingLeft: "20px",
+          paddingRight: "20px",
         },
       }}
       >

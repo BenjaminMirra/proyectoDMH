@@ -28,7 +28,7 @@ const Inicio = () => {
         }}
       ></Box>
       <Box sx={{ display: "flex", width: "100%", backgroundColor: "#EEEAEA" }}>
-        <Box sx={{ width: "100%", gap: "10px", display: "flex", flexDirection: "column", alignItems: "center", padding: "50px", paddingLeft: "100px", "@media (max-width: 768px)": { padding: "10px" } }}>
+        <Box sx={{ width: "100%", gap: "10px", display: "flex", flexDirection: "column", alignItems: "center", padding: "50px", paddingLeft: "100px", "@media (max-width: 768px)": { padding: "10px", paddingTop: "50px" } }}>
           <ArrowSubtitleMobile title="Inicio"></ArrowSubtitleMobile>
           <AvailableAmount></AvailableAmount>
           <Box sx={{ display: "flex", width: "100%", gap: "10px", "@media (max-width: 768px)": { flexDirection: "column" } }}>
