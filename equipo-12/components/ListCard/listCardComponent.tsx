@@ -43,7 +43,7 @@ const GenerateListCard = () => {
           );
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
     }
   }, []);
@@ -65,7 +65,7 @@ const GenerateListCard = () => {
           setListCard(nuevaLista);
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
     } catch (error) {
       console.error("Ocurrió un error al realizar la solicitud DELETE:", error);
@@ -81,7 +81,7 @@ const GenerateListCard = () => {
         </ListItemAvatar>
         < ListItemText primary={
           <Typography variant="body1">
-            Terminada en {item.number_id.toString().slice(-3)}
+            Terminada en {item.number_id.toString().slice(-4)}
           </Typography>}
         />
         <ListItemIcon >

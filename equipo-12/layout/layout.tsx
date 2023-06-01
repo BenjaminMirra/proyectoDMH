@@ -23,8 +23,15 @@ const Layout: FC<Props> = ({ variant, children }: Props) => {
     if (variant === "home") {
       setHeaderDisplayed(
         <>
-            <HeaderHome setVisibility={setVisibility}/>
-            {router.pathname != "/" && <LateralMenu visibility={visibility} setVisibility={setVisibility}/>}
+          <Box sx={{
+            width: "100%",
+            heigth: "450px",
+            paddingBottom: "50px",
+            backgroundColor: "blue"
+          }}>
+          </Box>
+          <HeaderHome setVisibility={setVisibility} />
+          {router.pathname != "/" && <LateralMenu visibility={visibility} setVisibility={setVisibility} />}
         </>
       );
     } else if (variant === "login") {
@@ -38,7 +45,9 @@ const Layout: FC<Props> = ({ variant, children }: Props) => {
   return (
     <>
       <Stack direction="column" height="100%">
+
         {headerDisplayed}
+
         <Box display="flex" flexGrow={1} justifyContent="center">
           {children}
         </Box>

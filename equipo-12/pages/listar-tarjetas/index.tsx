@@ -5,6 +5,7 @@ import { Box, Typography } from "@mui/material";
 import Layout from "../../layout/layout";
 import { NextPageWithLayout } from "../_app";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
 
 interface PropsType {
   children?: ReactNode;
@@ -24,41 +25,29 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
         }}
       ></Box>
       <Box sx={{
-        height: "100vh",
+        height: "100%",
         width: "100vw",
-        backgroundColor: "#EEEAEA"
+        backgroundColor: "#EEEAEA",
+        paddingLeft: "100px",
+        paddingTop: "50px",
+        paddingBottom: "50px",
+        paddingRight: "50px",
+        "@media (max-width: 768px)": {
+          paddingLeft: "20px",
+          paddingRight: "20px",
+        },
       }}
       >
-        
+
         <Box sx={{
           marginBottom: "1rem",
-          paddingTop: "20px",
-          paddingRight: "50px",
-          paddingLeft: "50px"
         }}
         >
-          <Typography
-            sx={{
-              "@media (max-width: 768px)": {
-                display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                width: "100%",
-              },
-              "@media (min-width: 768px)": {
-                display: "none",
-              },
-            }}
-          >
-            <ArrowForwardIcon /> Tarjetas
-          </Typography>
+          <ArrowSubtitleMobile title="Tarjetas" />
           <AddCard />
         </Box>
         <Box sx={{
           marginBottom: "1rem",
-          paddingTop: "20px",
-          paddingRight: "50px",
-          paddingLeft: "50px",
         }} >
           <ListCards />
         </Box>

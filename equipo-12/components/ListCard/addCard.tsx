@@ -64,6 +64,9 @@ const AddCard = () => {
         justifyContent: "flex-start",
         alignItems: "center",
         width: "100%",
+        "@media (max-width: 768px)": {
+          paddingTop: "10px",
+        },
       }}
     >
       {width > 768 ? (
@@ -92,7 +95,7 @@ const AddCard = () => {
                 sx={{
                   display: "flex",
                   flexDirection: "row",
-                  justifyContent: "flex-start",
+                  justifyContent: "space-between",
                   alignItems: "center",
                   width: "100%",
                   color: "#C1FD35",
