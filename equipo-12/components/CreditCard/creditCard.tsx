@@ -31,7 +31,7 @@ const CreditCard = () => {
   const { account } = useUserData();
   const [cvc, setCvc] = useState("");
   const [expiry, setExpiry] = useState("");
-  const [focused, setFocused] = useState("");
+  const [focused, setFocused] = useState(undefined);
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [state, setState] = useState({
@@ -101,7 +101,6 @@ const CreditCard = () => {
   return (
     <>
       <Card
-
         locale={{
           valid: "MM/YYYY",
         }}
@@ -152,10 +151,11 @@ const CreditCard = () => {
             "@media only screen and (max-width: 768px)": {
               gridRowGap: "20px",
               gridTemplateColumns: "minmax(50px, 300px)",
-              gridTemplateRows: "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
+              gridTemplateRows: "1fr 1fr 1fr 1fr 1fr 1fr 1fr",
               "& .css-1yuncik-MuiFormLabel-root-MuiInputLabel-root": {
                 transform: "translate(12px, 15px) scale(1)",
               },
+              height: "100%"
             },
             "@media only screen and (min-width: 768px)": {
               gridColumnGap: "57px",

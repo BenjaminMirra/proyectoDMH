@@ -1,17 +1,12 @@
-import { Box, Button, Typography } from "@mui/material";
-import Head from "next/head";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import Link from "next/link";
+import { Box, Typography } from "@mui/material";
 import "react-credit-cards/es/styles-compiled.css";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import ControlledInput from "../../components/FormController/controlled-input";
+import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
 import CreditCard from "../../components/CreditCard/creditCard";
 import { NextPageWithLayout } from "../_app";
 import { ReactElement } from "react";
 import Layout from "../../layout/layout";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
 
 interface PropsType {
   children?: ReactElement;
@@ -45,52 +40,37 @@ const addCard: NextPageWithLayout<PropsType> = () => {
           alignItems: "center",
           justifyContent: "center",
           height: "100vh",
-          width: "100vw",
+          width: "100%",
+          padding: "50px",
+          "@media only screen and (max-width: 768px)": {
+            padding: "20px",
+            paddingTop: "60px"
+          },
           backgroundColor: "#EEEAEA",
         }}
       >
-        <Typography
-          sx={{
-            padding: "20px",
-            "@media (max-width: 768px)": {
-              display: "flex",
-              justifyContent: "flex-start",
-              alignItems: "center",
-              width: "100%",
-            },
-            "@media (min-width: 768px)": {
-              display: "none",
-            },
-          }}
-        >
-          <ArrowForwardIcon /> Tarjetas
-        </Typography>
+        <ArrowSubtitleMobile title="Tarjetas"></ArrowSubtitleMobile>
         <Box
           sx={{
             display: "flex",
+            borderRadius: "8px",
             flexDirection: "column",
             justifyContent: "center",
             backgroundColor: "#fff",
             textAlign: "center",
-            padding: "20px",
+            height: "100%",
+            padding: "95px",
             "@media only screen and (max-width: 768px)": {
-              width: "90%",
-              height: "85%",
-              paddingTop: "230px",
-            },
-            "@media only screen and (min-width: 768px)": {
-              width: "85%",
-              height: "80%",
-            },
-            "@media only screen and (min-width: 1366px)": {
-              width: "80%",
-              height: "90%",
+              width: "100%",
+              padding: "0px",
+              paddingTop: "150px",
+              marginBottom: "30px"
             },
           }}
         >
           <CreditCard />
         </Box>
-      </Box>
+      </Box >
     </>
   );
 };
