@@ -81,7 +81,7 @@ const GenerateListCard = () => {
         </ListItemAvatar>
         < ListItemText primary={
           <Typography variant="body1">
-            Terminada en {item.number_id.toString().slice(-3)}
+            Terminada en {item.number_id.toString().slice(-4)}
           </Typography>}
         />
         <ListItemIcon >
