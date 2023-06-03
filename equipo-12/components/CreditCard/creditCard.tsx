@@ -77,6 +77,7 @@ const CreditCard = () => {
           )
           .then((response) => {
             setSuccess("Operación realizada con éxito");
+            setError("");
             setTimeout(() => {
               router.push("/listar-tarjetas");
             }, 3000);
@@ -155,7 +156,7 @@ const CreditCard = () => {
               "& .css-1yuncik-MuiFormLabel-root-MuiInputLabel-root": {
                 transform: "translate(12px, 15px) scale(1)",
               },
-              height: "100%"
+              height: "100%",
             },
             "@media only screen and (min-width: 768px)": {
               gridColumnGap: "57px",
@@ -175,42 +176,24 @@ const CreditCard = () => {
           <InputMask
             mask="9999 9999 9999 9999"
             onChange={(e: any) => setNumber(e.target.value)}
-            disabled={false}
+            placeholder="Número de la tarjeta*"
             maskChar=" "
+            name="numberCard"
+            id="number"
+            onFocusCapture={handleInputFocus}
+            value={number}
           >
-            {() => (
-              /*       <ControlledInput
-                control={control}
-                name="numberCard"
-                type="number"
-                id="number"
-                value={number}
-                label="Número de la tarjeta*"
-                onFocusCapture={handleInputFocus}
-              /> */
-              <TextField
-                name="numberCard"
-                id="number"
-                label="Número de la tarjeta*"
-                onFocusCapture={handleInputFocus}
-              />
-            )}
           </InputMask>
           <InputMask
             mask="99/9999"
             value={expiry}
             onChange={(e: any) => setExpiry(e.target.value)}
-            disabled={false}
             maskChar=" "
+            id="validateDate"
+            name="validateDate"
+            placeholder="Fecha de vencimiento*"
+            onFocusCapture={handleInputFocus}
           >
-            {() => (
-              <TextField
-                id="validateDate"
-                name="validateDate"
-                label="Fecha de vencimiento*"
-                onFocusCapture={handleInputFocus}
-              />
-            )}
           </InputMask>
 
           <TextField
@@ -226,17 +209,12 @@ const CreditCard = () => {
             mask="999"
             value={cvc}
             onChange={(e: any) => setCvc(e.target.value)}
-            disabled={false}
             maskChar=" "
+            name="cvc"
+            id="cvc"
+            placeholder="Código de seguridad*"
+            onFocusCapture={handleInputFocus}
           >
-            {() => (
-              <TextField
-                name="cvc"
-                id="cvc"
-                label="Código de seguridad*"
-                onFocusCapture={handleInputFocus}
-              />
-            )}
           </InputMask>
           <Box
             sx={{
