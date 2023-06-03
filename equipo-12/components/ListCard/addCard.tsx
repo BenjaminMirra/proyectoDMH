@@ -354,6 +354,6 @@ const AddCard = () => {
 
 export default AddCard;
 
-function setListCard(data: any) {
+/* function setListCard(data: any) {
   throw new Error("Function not implemented.");
-}
+} */

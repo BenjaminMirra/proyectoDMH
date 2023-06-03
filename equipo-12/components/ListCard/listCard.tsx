@@ -1,27 +1,22 @@
-import * as React from "react";
-import { makeStyles, styled } from "@mui/styles";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
-import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import GenerateListCard from "./listCardComponent";
-import { Avatar, Divider, Link, ListItem, ListItemAvatar, ListItemText, Paper } from "@mui/material";
+import { ListItem } from "@mui/material";
 
-const useStyles = makeStyles({
+/* const useStyles = makeStyles({
   root: {
     height: 300,
     overflow: "auto",
   },
-});
+}); */
 
-const ListCard = styled("div")(({ theme }) => ({
+/* const ListCard = styled("div")(({ theme }) => ({
   minWidth: "100%",
   boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
   borderRadius: "10px",
   paddingBottom: "20px",
-}));
+})); */
 
 const ListCards = () => {
   const listItems = GenerateListCard();

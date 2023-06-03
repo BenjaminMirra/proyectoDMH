@@ -1,22 +1,9 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { FormEvent, MouseEvent, useEffect, useState } from "react";
-import * as yup from "yup";
+import { useEffect, useState } from "react";
 import Card from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
-import { useForm } from "react-hook-form";
 import InputMask from "react-input-mask";
-import {
-  TextField,
-  Typography,
-  Button,
-  Box,
-  TextFieldVariants,
-  Grid,
-  Paper,
-  Alert,
-} from "@mui/material";
+import { TextField, Button, Box, Paper, Alert } from "@mui/material";
 import Link from "next/link";
-import ControlledInput from "../FormController/controlled-input";
 import axios from "axios";
 import { styled } from "@mui/material/styles";
 import catchError from "../../services/creditCard/handle-credit-cards-errors";
@@ -174,6 +161,12 @@ const CreditCard = () => {
           }}
         >
           <InputMask
+            style={{
+              padding: "10px",
+              border: "1px solid #D2FFEC",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.1)",
+              borderRadius: "10px",
+            }}
             mask="9999 9999 9999 9999"
             onChange={(e: any) => setNumber(e.target.value)}
             placeholder="Número de la tarjeta*"
@@ -182,9 +175,14 @@ const CreditCard = () => {
             id="number"
             onFocusCapture={handleInputFocus}
             value={number}
-          >
-          </InputMask>
+          ></InputMask>
           <InputMask
+            style={{
+              padding: "10px",
+              border: "1px solid #D2FFEC",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.1)",
+              borderRadius: "10px",
+            }}
             mask="99/9999"
             value={expiry}
             onChange={(e: any) => setExpiry(e.target.value)}
@@ -193,19 +191,32 @@ const CreditCard = () => {
             name="validateDate"
             placeholder="Fecha de vencimiento*"
             onFocusCapture={handleInputFocus}
-          >
-          </InputMask>
+          ></InputMask>
 
-          <TextField
+          <InputMask
+            style={{
+              padding: "10px",
+              border: "1px solid #D2FFEC",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.1)",
+              borderRadius: "10px",
+            }}
+            mask=""
             id="name"
             name="name"
-            label="Nombre y apellido*"
+            placeholder="Nombre y apellido*"
             value={name}
+            maskChar=" "
             onChange={(e) => setName(e.target.value)}
             onFocusCapture={handleInputFocus}
           />
 
           <InputMask
+            style={{
+              padding: "10px",
+              border: "1px solid #D2FFEC",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.1)",
+              borderRadius: "10px",
+            }}
             mask="999"
             value={cvc}
             onChange={(e: any) => setCvc(e.target.value)}
@@ -214,8 +225,7 @@ const CreditCard = () => {
             id="cvc"
             placeholder="Código de seguridad*"
             onFocusCapture={handleInputFocus}
-          >
-          </InputMask>
+          ></InputMask>
           <Box
             sx={{
               "@media only screen and (min-width: 768px)": {

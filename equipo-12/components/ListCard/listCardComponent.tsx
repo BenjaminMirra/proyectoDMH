@@ -2,7 +2,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import CircleIcon from "@mui/icons-material/Circle";
-import { Box, ListItemText, Typography, makeStyles, styled } from "@mui/material";
+import {ListItemText, Typography} from "@mui/material";
 import Divider from "@mui/material/Divider";
 import DeleteCards from "./deleteCard";
 import { useEffect, useState } from "react";
@@ -61,7 +61,7 @@ const GenerateListCard = () => {
         }
       };
       axios.delete(config.url, config)
-        .then((response) => {
+        .then(() => {
           setListCard(nuevaLista);
         })
         .catch((error) => {

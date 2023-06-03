@@ -5,7 +5,6 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import useDeviceSize from "../../hooks/useDeviceSize";
-import Button from "@mui/material/Button";
 
 interface Props {
   dataKey: string;
@@ -25,39 +24,39 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
       const dataInputs = inputValue.split(" ");
       if (dataKey === "email") {
         setInfoData({
-          email: inputValue
+          email: inputValue,
         });
       } else if (dataKey === "firstname,lastname") {
         setInfoData({
           firstname: dataInputs[0],
-          lastname: dataInputs[1]
+          lastname: dataInputs[1],
         });
       } else if (dataKey === "password") {
         setInfoData({
-          password: inputValue
+          password: inputValue,
         });
       } else {
         setInfoData({
-          phone: inputValue
+          phone: inputValue,
         });
       }
     }
   }, [edit, inputValue, dataKey, infoData]);
 
   const onHandleSubmit = () => {
-
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
     const config = {
       method: "patch",
       url: `https://digitalmoney.ctd.academy/api/users/${userId}`,
       headers: {
-        "Authorization": token,
-        "Content-Type": "application/json"
+        Authorization: token,
+        "Content-Type": "application/json",
       },
-      data: infoData
+      data: infoData,
     };
-    axios.request(config)
+    axios
+      .request(config)
       .then((response) => {
         return response;
       })
@@ -68,220 +67,285 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
 
   return (
     <>
-      <Box sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        paddingBottom: "7px",
-        paddingTop: "9px"
-      }}>
-        {width > 768 ?
-          width <= 1024 ?
-            <Box sx={{
-              display: "flex",
-              width: "100%",
-              justifyContent: "space-around"
-            }}>
-              <Box sx={{
-                width: "60%",
-              }}
-              >
-                <Typography>
-                  {input}
-                </Typography>
-              </Box>
-              <Box sx={{
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          paddingBottom: "7px",
+          paddingTop: "9px",
+        }}
+      >
+        {width > 768 ? (
+          width <= 1024 ? (
+            <Box
+              sx={{
+                display: "flex",
                 width: "100%",
-                display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "center"
-              }}>
-                {
-                  edit ?
-                    <>
-                      < Input onChange={(e) => {
-                        setInputValue(e.target.value);
-                      }} name="name" defaultValue={data} sx={{ width: "100%" }} />
-                    </> :
-                    <>
-                      <Typography
-                        sx={{
-                          display: "flex",
-                          color: "rgba(0,0,0,0.5)"
-                        }}
-                        variant="subtitle2">
-                        {data}
-                      </Typography>
-                    </>
-                }
-              </Box>
-              <Box sx={{
-                width: "10%",
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "center",
-
-              }}>
-                {change ?
-                  edit ?
-                    <>
-                      < DoneIcon color="success"
-                        onClick={() => {
-                          setEdit(!edit);
-                          onHandleSubmit();
-                        }} sx={{
-                          cursor: "pointer"
-                        }} />
-                      < CancelIcon color="warning"
-                        onClick={() => {
-                          setEdit(!edit);
-                        }} sx={{
-                          cursor: "pointer"
-                        }} />
-                    </> :
-                    <>
-                      <EditIcon onClick={() => {
-                        setEdit(!edit);
-                      }} color="disabled" sx={{
-                        cursor: "pointer"
-                      }} />
-                    </>
-                  :
-                  <>
-                  </>
-                }
-              </Box>
-            </Box>
-            :
-            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 8, md: 12 }}>
-              <Grid item xs={1} sm={4} md={4}>
-                <Typography>
-                  {input}
-                </Typography>
-              </Grid>
-              <Grid item xs={1} sm={4} md={4}>
-                {
-                  edit ?
-                    <>
-                      < Input onChange={(e) => {
-                        setInputValue(e.target.value);
-                      }} name="name" defaultValue={data} sx={{ width: "100%" }} />
-                    </> :
-                    <>
-                      <Typography
-                        sx={{
-                          display: "flex",
-                          color: "rgba(0,0,0,0.5)"
-                        }}
-                        variant="subtitle2">
-                        {data}
-                      </Typography>
-                    </>
-                }
-              </Grid>
-              <Grid sx={{
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "center"
-              }} item xs={1} sm={4} md={4}>
-                {change ?
-                  edit ?
-                    <>
-                      < DoneIcon color="success"
-                        onClick={() => {
-                          setEdit(!edit);
-                          onHandleSubmit();
-                        }} sx={{
-                          cursor: "pointer"
-                        }} />
-                      < CancelIcon color="warning"
-                        onClick={() => {
-                          setEdit(!edit);
-                        }} sx={{
-                          cursor: "pointer"
-                        }} />
-                    </> :
-                    <>
-                      <EditIcon onClick={() => {
-                        setEdit(!edit);
-                      }} color="disabled"
-                        sx={{
-                          cursor: "pointer"
-                        }} />
-
-                    </>
-                  :
-                  <>
-                  </>
-                }
-              </Grid>
-            </Grid >
-          :
-          <Box sx={{
-            display: "flex",
-            width: "100%",
-            justifyContent: "space-around"
-          }}>
-            <Box sx={{
-              width: "100%",
-            }}
+                justifyContent: "space-around",
+              }}
             >
-              <Typography>
-                {input}
-              </Typography>
-              {
-                edit ?
+              <Box
+                sx={{
+                  width: "60%",
+                }}
+              >
+                <Typography>{input}</Typography>
+              </Box>
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                }}
+              >
+                {edit ? (
                   <>
-                    < Input onChange={(e) => {
-                      setInputValue(e.target.value);
-                    }} name="name" defaultValue={data} sx={{ width: "300px" }} />
-                  </> :
+                    <Input
+                      onChange={(e) => {
+                        setInputValue(e.target.value);
+                      }}
+                      name="name"
+                      defaultValue={data}
+                      sx={{ width: "100%" }}
+                    />
+                  </>
+                ) : (
                   <>
                     <Typography
                       sx={{
                         display: "flex",
-                        color: "rgba(0,0,0,0.5)"
+                        color: "rgba(0,0,0,0.5)",
                       }}
-                      variant="subtitle2">
+                      variant="subtitle2"
+                    >
                       {data}
                     </Typography>
                   </>
-              }
+                )}
+              </Box>
+              <Box
+                sx={{
+                  width: "10%",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                }}
+              >
+                {change ? (
+                  edit ? (
+                    <>
+                      <DoneIcon
+                        color="success"
+                        onClick={() => {
+                          setEdit(!edit);
+                          onHandleSubmit();
+                        }}
+                        sx={{
+                          cursor: "pointer",
+                        }}
+                      />
+                      <CancelIcon
+                        color="warning"
+                        onClick={() => {
+                          setEdit(!edit);
+                        }}
+                        sx={{
+                          cursor: "pointer",
+                        }}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <EditIcon
+                        onClick={() => {
+                          setEdit(!edit);
+                        }}
+                        color="disabled"
+                        sx={{
+                          cursor: "pointer",
+                        }}
+                      />
+                    </>
+                  )
+                ) : (
+                  <></>
+                )}
+              </Box>
             </Box>
-            <Box sx={{
-              width: "100%",
-              height: "100$",
-              display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "end",
-            }}>
-              {change ?
-                edit ?
+          ) : (
+            <Grid
+              container
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 2, sm: 8, md: 12 }}
+            >
+              <Grid item xs={1} sm={4} md={4}>
+                <Typography>{input}</Typography>
+              </Grid>
+              <Grid item xs={1} sm={4} md={4}>
+                {edit ? (
                   <>
-                    < DoneIcon color="success"
+                    <Input
+                      onChange={(e) => {
+                        setInputValue(e.target.value);
+                      }}
+                      name="name"
+                      defaultValue={data}
+                      sx={{ width: "100%" }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <Typography
+                      sx={{
+                        display: "flex",
+                        color: "rgba(0,0,0,0.5)",
+                      }}
+                      variant="subtitle2"
+                    >
+                      {data}
+                    </Typography>
+                  </>
+                )}
+              </Grid>
+              <Grid
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                }}
+                item
+                xs={1}
+                sm={4}
+                md={4}
+              >
+                {change ? (
+                  edit ? (
+                    <>
+                      <DoneIcon
+                        color="success"
+                        onClick={() => {
+                          setEdit(!edit);
+                          onHandleSubmit();
+                        }}
+                        sx={{
+                          cursor: "pointer",
+                        }}
+                      />
+                      <CancelIcon
+                        color="warning"
+                        onClick={() => {
+                          setEdit(!edit);
+                        }}
+                        sx={{
+                          cursor: "pointer",
+                        }}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <EditIcon
+                        onClick={() => {
+                          setEdit(!edit);
+                        }}
+                        color="disabled"
+                        sx={{
+                          cursor: "pointer",
+                        }}
+                      />
+                    </>
+                  )
+                ) : (
+                  <></>
+                )}
+              </Grid>
+            </Grid>
+          )
+        ) : (
+          <Box
+            sx={{
+              display: "flex",
+              width: "100%",
+              justifyContent: "space-around",
+            }}
+          >
+            <Box
+              sx={{
+                width: "100%",
+              }}
+            >
+              <Typography>{input}</Typography>
+              {edit ? (
+                <>
+                  <Input
+                    onChange={(e) => {
+                      setInputValue(e.target.value);
+                    }}
+                    name="name"
+                    defaultValue={data}
+                    sx={{ width: "300px" }}
+                  />
+                </>
+              ) : (
+                <>
+                  <Typography
+                    sx={{
+                      display: "flex",
+                      color: "rgba(0,0,0,0.5)",
+                    }}
+                    variant="subtitle2"
+                  >
+                    {data}
+                  </Typography>
+                </>
+              )}
+            </Box>
+            <Box
+              sx={{
+                width: "100%",
+                height: "100$",
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "end",
+              }}
+            >
+              {change ? (
+                edit ? (
+                  <>
+                    <DoneIcon
+                      color="success"
                       onClick={() => {
                         setEdit(!edit);
                         onHandleSubmit();
-                      }} />
-                    < CancelIcon color="warning"
+                      }}
+                    />
+                    <CancelIcon
+                      color="warning"
                       onClick={() => {
                         setEdit(!edit);
-                      }} sx={{
-                        cursor: "pointer"
-                      }} />
-                  </> :
-                  <>
-                    <EditIcon onClick={() => {
-                      setEdit(!edit);
-                    }} color="disabled" />
+                      }}
+                      sx={{
+                        cursor: "pointer",
+                      }}
+                    />
                   </>
-                :
-                <>
-                </>
-              }
+                ) : (
+                  <>
+                    <EditIcon
+                      onClick={() => {
+                        setEdit(!edit);
+                      }}
+                      color="disabled"
+                    />
+                  </>
+                )
+              ) : (
+                <></>
+              )}
             </Box>
           </Box>
-        }
-      </Box >
+        )}
+      </Box>
       <hr />
     </>
   );
