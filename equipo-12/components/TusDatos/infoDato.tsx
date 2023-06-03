@@ -1,6 +1,7 @@
 import { Box, Typography, Grid, Input } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DoneIcon from "@mui/icons-material/Done";
+import CancelIcon from "@mui/icons-material/Cancel";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import useDeviceSize from "../../hooks/useDeviceSize";
@@ -99,7 +100,7 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
                     <>
                       < Input onChange={(e) => {
                         setInputValue(e.target.value);
-                      }} name="name" defaultValue={data} sx={{}} />
+                      }} name="name" defaultValue={data} sx={{ width: "100%" }} />
                     </> :
                     <>
                       <Typography
@@ -130,6 +131,12 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
                         }} sx={{
                           cursor: "pointer"
                         }} />
+                      < CancelIcon color="warning"
+                        onClick={() => {
+                          setEdit(!edit);
+                        }} sx={{
+                          cursor: "pointer"
+                        }} />
                     </> :
                     <>
                       <EditIcon onClick={() => {
@@ -157,7 +164,7 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
                     <>
                       < Input onChange={(e) => {
                         setInputValue(e.target.value);
-                      }} name="name" defaultValue={data} sx={{ width: "300px" }} />
+                      }} name="name" defaultValue={data} sx={{ width: "100%" }} />
                     </> :
                     <>
                       <Typography
@@ -186,6 +193,12 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
                         }} sx={{
                           cursor: "pointer"
                         }} />
+                      < CancelIcon color="warning"
+                        onClick={() => {
+                          setEdit(!edit);
+                        }} sx={{
+                          cursor: "pointer"
+                        }} />
                     </> :
                     <>
                       <EditIcon onClick={() => {
@@ -194,6 +207,7 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
                         sx={{
                           cursor: "pointer"
                         }} />
+
                     </>
                   :
                   <>
@@ -219,7 +233,7 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
                   <>
                     < Input onChange={(e) => {
                       setInputValue(e.target.value);
-                    }} name="name" defaultValue={data} sx={{}} />
+                    }} name="name" defaultValue={data} sx={{ width: "300px" }} />
                   </> :
                   <>
                     <Typography
@@ -247,6 +261,12 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
                       onClick={() => {
                         setEdit(!edit);
                         onHandleSubmit();
+                      }} />
+                    < CancelIcon color="warning"
+                      onClick={() => {
+                        setEdit(!edit);
+                      }} sx={{
+                        cursor: "pointer"
                       }} />
                   </> :
                   <>

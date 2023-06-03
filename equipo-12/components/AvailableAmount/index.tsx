@@ -30,7 +30,7 @@ const AvailableAmount = () => {
           $
           {
             isVisibility
-              ? available_amount == "0" ? "0,00" : available_amount
+              ? "0,00"
               : "***"
           } ARS
         </Typography>
