@@ -29,6 +29,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "config/nodemailer.js"
-, "pages/api/recuperar.ts"  ],
+, "pages/api/recuperar.ts", "pages/cargar-dinero-transferencia"  ],
   "exclude": ["node_modules"]
 }
