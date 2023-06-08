@@ -13,7 +13,7 @@ const TransferenceTransaction: NextPageWithLayout<PropsType> = () => {
   const { account } = useUserData();
   return (
     <>
-     <Box
+      <Box
         sx={{
           width: "276px",
           height: "100%",
@@ -32,27 +32,27 @@ const TransferenceTransaction: NextPageWithLayout<PropsType> = () => {
         }}
       ></Box>
     
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            alignItems: "center",
-            width: "100%",
-            gap: "20px",
-            backgroundColor: "var(--light-grey)",
-            "@media (max-width: 768px)": {
-              padding: "20px",
-              paddingTop: "50px",
-            },
-            "@media (min-width: 768px)": {
-              padding: "50px",
-              paddingLeft: "100px",
-            },
-          }}
-        >
-          <AliasCVU userAccount={account} />
-        </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          width: "100%",
+          gap: "20px",
+          backgroundColor: "var(--light-grey)",
+          "@media (max-width: 768px)": {
+            padding: "20px",
+            paddingTop: "50px",
+          },
+          "@media (min-width: 768px)": {
+            padding: "50px",
+            paddingLeft: "100px",
+          },
+        }}
+      >
+        <AliasCVU userAccount={account} />
+      </Box>
     </>
   );
 };

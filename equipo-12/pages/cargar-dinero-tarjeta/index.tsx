@@ -1,17 +1,17 @@
-import { ReactElement, ReactNode, useEffect, useState } from "react";
-import AddCard from "../../components/ListCard/addCard";
-import ListCards from "../../components/ListCard/listCard";
-import { Box, Typography } from "@mui/material";
+import { ReactElement, ReactNode} from "react";
+import { Box} from "@mui/material";
 import Layout from "../../layout/layout";
 import { NextPageWithLayout } from "../_app";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
+import SelectCard from "../../components/ListCard/selectCard";
 
 interface PropsType {
   children?: ReactNode;
 }
+  
 
-const ListCard: NextPageWithLayout<PropsType> = () => {
+const CardTransaction: NextPageWithLayout<PropsType> = () => {
+
   return (
     <>
       <Box
@@ -23,7 +23,7 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
             display: "none",
           },
         }}
-      ></Box>
+      ></Box>    
       <Box sx={{
         height: "100%",
         width: "100vw",
@@ -43,22 +43,18 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
           marginBottom: "1rem",
         }}
         >
-          <ArrowSubtitleMobile title="Tarjetas" />
-          <AddCard />
+          <ArrowSubtitleMobile title="Seleccionar Tarjetas" />      
+          <SelectCard/>
         </Box>
-        <Box sx={{
-          marginBottom: "1rem",
-        }} >
-          <ListCards deleteCard={true} />
-        </Box>
+      
 
       </Box>
     </>
   );
 };
 
-ListCard.getLayout = function getLayout(page: ReactElement) {
+CardTransaction.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="home">{page}</Layout>;
 };
 
-export default ListCard;
+export default CardTransaction;

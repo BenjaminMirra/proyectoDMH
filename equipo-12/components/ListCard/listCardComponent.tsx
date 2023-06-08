@@ -7,10 +7,12 @@ import Divider from "@mui/material/Divider";
 import DeleteCards from "./deleteCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import CheckedCards from "./checkedCard";
 
-const GenerateListCard = () => {
+const GenerateListCard = (deleteCard: boolean) => {
   const [listCard, setListCard] = useState<ListItemData[]>();
   const [idAccount, setIdAccount] = useState<number>(0);
+  const [idCardSelect, setIdCardSelect] = useState<number>(0);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -71,7 +73,13 @@ const GenerateListCard = () => {
       console.error("Ocurrió un error al realizar la solicitud DELETE:", error);
     }
   };
-
+  const handleSelect = async (card_id: number) => {
+    try {
+      setIdCardSelect(card_id);
+    } catch (error) {
+      console.error("Ocurrió un error al checkear:", error);
+    }
+  };
   return listCard?.map((item) => (
     <>
 
@@ -84,9 +92,13 @@ const GenerateListCard = () => {
             Terminada en {item.number_id.toString().slice(-4)}
           </Typography>}
         />
-        <ListItemIcon >
-          <DeleteCards refreshlista={handleDelete} list={listCard} data={item} />
-        </ListItemIcon>
+        {deleteCard ?  
+          <ListItemIcon >
+            <DeleteCards refreshlista={handleDelete} list={listCard} data={item} />
+          </ListItemIcon>
+          : 
+          <CheckedCards refreshlista={handleSelect} data={item} selectid={idCardSelect} list={[]} />
+        }
       </ListItem>
       <Divider variant="middle"></Divider>
     </>

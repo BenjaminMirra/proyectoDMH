@@ -1,5 +1,5 @@
 import styles from "../ListCard/addCard.module.css";
-import Image from 'next/image';
+import Image from "next/image";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import {
   Box,
@@ -65,13 +65,13 @@ const AddMoneyOptionTransfer = () => {
                     color: "#C1FD35",
                   }}
                 >
-                <Image
-                  src="/assets/icon_user.png"
-                  alt="Icono"
-                  sizes='24px'
-                  width={36}
-                  height={36}
-                />
+                  <Image
+                    src="/assets/icon_user.png"
+                    alt="Icono"
+                    sizes='24px'
+                    width={36}
+                    height={36}
+                  />
                   <Typography
                     sx={{
                       paddingLeft: "10px",
@@ -140,13 +140,13 @@ const AddMoneyOptionTransfer = () => {
                     color: "#C1FD35",
                   }}
                 >
-                 <Image
-                  src="/assets/icon_user.png"
-                  alt="Icono"
-                  sizes='24px'
-                  width={36}
-                  height={36}
-                />
+                  <Image
+                    src="/assets/icon_user.png"
+                    alt="Icono"
+                    sizes='24px'
+                    width={36}
+                    height={36}
+                  />
                   <Typography
                     sx={{
                       paddingLeft: "10px",
@@ -227,7 +227,7 @@ const AddMoneyOptionTransfer = () => {
                   sx={{
                     paddingLeft: "10px",
                     align:"justify",
-                    textAlign: 'left', 
+                    textAlign: "left", 
                   }}
                   variant="h6"
                   style={{ textTransform: "none" }}
