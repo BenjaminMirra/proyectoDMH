@@ -82,7 +82,7 @@ const Token: NextPageWithLayout<PropsType> = () => {
                               response.data.user_id
                             );
                           });
-                        router.push("/");
+                        router.push("/inicio");
                       });
                   });
               });
