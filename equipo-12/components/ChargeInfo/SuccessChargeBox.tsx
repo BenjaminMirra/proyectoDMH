@@ -1,6 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
-import editIconChargeMoney from "../../utils/icons/editIconChargeMoney.png";
-import Image from "next/image";
+import { Box, Typography } from "@mui/material";
 
 const CheckInfoBox = () => {
   return (
