@@ -1,5 +1,5 @@
 import styles from "../ListCard/addCard.module.css";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Image from 'next/image';
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import {
   Box,
@@ -65,10 +65,13 @@ const AddMoneyOptionTransfer = () => {
                     color: "#C1FD35",
                   }}
                 >
-                  <AccountCircleIcon
-                    className={styles.icon}
-                    sx={{ fontSize: "24px" }}
-                  />
+                <Image
+                  src="/assets/icon_user.png"
+                  alt="Icono"
+                  sizes='24px'
+                  width={36}
+                  height={36}
+                />
                   <Typography
                     sx={{
                       paddingLeft: "10px",
@@ -137,10 +140,13 @@ const AddMoneyOptionTransfer = () => {
                     color: "#C1FD35",
                   }}
                 >
-                  <AccountCircleIcon
-                    className={styles.icon}
-                    sx={{ fontSize: "24px" }}
-                  />
+                 <Image
+                  src="/assets/icon_user.png"
+                  alt="Icono"
+                  sizes='24px'
+                  width={36}
+                  height={36}
+                />
                   <Typography
                     sx={{
                       paddingLeft: "10px",
@@ -210,13 +216,18 @@ const AddMoneyOptionTransfer = () => {
                   color: "#C1FD35",
                 }}
               >
-                <AccountCircleIcon
-                  className={styles.icon}
-                  sx={{ fontSize: "24px" }}
+                <Image
+                  src="/assets/icon_user.png"
+                  alt="Icono"
+                  sizes='24px'
+                  width={36}
+                  height={36}
                 />
                 <Typography
                   sx={{
                     paddingLeft: "10px",
+                    align:"justify",
+                    textAlign: 'left', 
                   }}
                   variant="h6"
                   style={{ textTransform: "none" }}

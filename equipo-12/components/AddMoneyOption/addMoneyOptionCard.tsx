@@ -1,5 +1,4 @@
-import styles from "../ListCard/addCard.module.css";
-import CreditCardIcon from '@mui/icons-material/CreditCard';
+import Image from 'next/image';
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import {
   Box,
@@ -11,8 +10,8 @@ import {
 import useDeviceSize from "../../hooks/useDeviceSize";
 const AddMoneyOptionCard = () => {
   const [width] = useDeviceSize();
-  const handleClick = () => {};
- 
+  const handleClick = () => { };
+
   return (
     <Box
       sx={{
@@ -65,9 +64,12 @@ const AddMoneyOptionCard = () => {
                     color: "#C1FD35",
                   }}
                 >
-                  <CreditCardIcon
-                    className={styles.icon}
-                    sx={{ fontSize: "24px" }}
+                  <Image
+                    src="/assets/card.png"
+                    alt="Icono"
+                    sizes='24px'
+                    width={30}
+                    height={24}
                   />
                   <Typography
                     sx={{
@@ -137,9 +139,12 @@ const AddMoneyOptionCard = () => {
                     color: "#C1FD35",
                   }}
                 >
-                  <CreditCardIcon
-                    className={styles.icon}
-                    sx={{ fontSize: "24px" }}
+                  <Image
+                    src="/assets/card.png"
+                    alt="Icono"
+                    sizes='24px'
+                    width={30}
+                    height={24}
                   />
                   <Typography
                     sx={{
@@ -148,7 +153,7 @@ const AddMoneyOptionCard = () => {
                     variant="h6"
                     style={{ textTransform: "none" }}
                   >
-                    Transferencia bancaria
+                    Seleccionar tarjeta
                   </Typography>
                 </Button>
               </CardContent>
@@ -210,18 +215,23 @@ const AddMoneyOptionCard = () => {
                   color: "#C1FD35",
                 }}
               >
-                <CreditCardIcon
-                  className={styles.icon}
-                  sx={{ fontSize: "24px" }}
+                <Image
+                  src="/assets/card.png"
+                  alt="Icono"
+                  sizes='24px'
+                  width={40}
+                  height={36}
                 />
                 <Typography
                   sx={{
                     paddingLeft: "10px",
+                    align: "justify",
+                    textAlign: 'left',
                   }}
                   variant="h6"
                   style={{ textTransform: "none" }}
                 >
-                  Transferencia bancaria
+                  Seleccionar tarjeta
                 </Typography>
               </Button>
             </CardContent>

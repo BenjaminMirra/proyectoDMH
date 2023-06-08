@@ -41,14 +41,13 @@ const SelectTransaction: NextPageWithLayout<PropsType> = () => {
           marginBottom: "1rem",
         }}
         >
-          <ArrowSubtitleMobile title="Tarjetas" />
+          <ArrowSubtitleMobile title="Cargar dinero" />
           <AddMoneyOptionTransfer />
         </Box>
         <Box sx={{
           marginBottom: "1rem",
         }}
         >
-          <ArrowSubtitleMobile title="Tarjetas" />
           <AddMoneyOptionCard />
         </Box>
       </Box>
