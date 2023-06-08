@@ -23,8 +23,11 @@ const AlertChargeBox = () => {
         alt="Editar Monto"
       />
       <Typography sx={{
-        fontSize: "20pt",
+        fontSize: "24px",
         fontWeight: "700",
+        "@media only screen and (max-width: 768px)": {
+          fontSize: "16px",
+        }
       }}>
         Ya cargamos el dinero en tu cuenta
       </Typography>

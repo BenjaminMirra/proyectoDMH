@@ -9,7 +9,8 @@ const CheckInfoBox = () => {
       width: "100%",
       justifyContent: "center",
       alignItems: "center",
-      flexDirection: "column"
+      flexDirection: "column",
+      paddingTop: "10px"
     }}>
       <Box sx={{
         backgroundColor: "grey",
