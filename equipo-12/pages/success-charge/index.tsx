@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { ReactElement } from "react";
 import Layout from "../../layout/layout";
 import Head from "next/head";
