@@ -126,8 +126,8 @@ const AddMoneyOption = () => {
                     </Typography>
                     <Box sx={{
                         display: "flex",
-                        justifyContent: "center",
-                        alignItems: "flex-start",
+                        justifyContent: "flex-start",
+                        alignItems: "center",
                         flexDirection: "row",
                         alignContent: "flex-start",
                         
