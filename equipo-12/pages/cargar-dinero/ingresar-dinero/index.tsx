@@ -1,16 +1,16 @@
 import { ReactElement, ReactNode } from "react";
 import { Box } from "@mui/material";
-import { NextPageWithLayout } from "../_app";
-import AliasCVU from "../../components/AliasCVU/alias-cvu";
-import Layout from "../../layout/layout";
-import AddMoneyOption from "../../components/AddMoneyQuantity/addMoneyQuantity";
+import { NextPageWithLayout } from "../../_app";
+import AliasCVU from "../../../components/AliasCVU/alias-cvu";
+import Layout from "../../../layout/layout";
+import AddMoneyOption from "../../../components/AddMoneyQuantity/addMoneyQuantity";
 interface PropsType {
   children?: ReactNode;
 }
 const AddMoneyTransaction: NextPageWithLayout<PropsType> = () => {
   return (
     <>
-     <Box
+      <Box
         sx={{
           width: "276px",
           height: "100%",
@@ -28,28 +28,28 @@ const AddMoneyTransaction: NextPageWithLayout<PropsType> = () => {
           },
         }}
       ></Box>
-    
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            alignItems: "center",
-            width: "100%",
-            gap: "20px",
-            backgroundColor: "var(--light-grey)",
-            "@media (max-width: 768px)": {
-              padding: "20px",
-              paddingTop: "50px",
-            },
-            "@media (min-width: 768px)": {
-              padding: "50px",
-              paddingLeft: "100px",
-            },
-          }}
-        >
-          <AddMoneyOption />
-        </Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          width: "100%",
+          gap: "20px",
+          backgroundColor: "var(--light-grey)",
+          "@media (max-width: 768px)": {
+            padding: "20px",
+            paddingTop: "50px",
+          },
+          "@media (min-width: 768px)": {
+            padding: "50px",
+            paddingLeft: "100px",
+          },
+        }}
+      >
+        <AddMoneyOption />
+      </Box>
     </>
   );
 };

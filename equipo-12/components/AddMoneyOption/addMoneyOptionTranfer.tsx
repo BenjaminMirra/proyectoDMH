@@ -9,9 +9,12 @@ import {
   Typography,
 } from "@mui/material";
 import useDeviceSize from "../../hooks/useDeviceSize";
+import router from "next/router";
 const AddMoneyOptionTransfer = () => {
   const [width] = useDeviceSize();
-  const handleClick = () => {};
+  const handleClick = () => {
+    router.push( "/cargar-dinero/cargar-dinero-transferencia");
+  };
 
   return (
     <Box

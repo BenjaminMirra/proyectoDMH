@@ -17,7 +17,7 @@ const AddMoneyOptionCard = () => {
   const handleClick = () => { 
     localStorage.removeItem("cardId");
     localStorage.removeItem("expirationDate");
-    router.push( "/cargar-dinero-tarjeta");
+    router.push( "/cargar-dinero/cargar-dinero-tarjeta");
 
   };
 
@@ -142,8 +142,7 @@ const AddMoneyOptionCard = () => {
                 }}
               >
                 <Button
-                  href="/cargar-dinero-tarjeta"
-                  //onClick={handleClick}
+                  onClick={handleClick}
                   style={{
                     textTransform: "none",
                     color: "#C1FD35",
@@ -168,8 +167,7 @@ const AddMoneyOptionCard = () => {
                 </Button>
               </CardContent>
               <Button
-                href="/cargar-dinero-tarjeta"
-                //  onClick={handleClick}
+                onClick={handleClick}
                 style={{
                   textTransform: "none",
                   color: "#C1FD35",

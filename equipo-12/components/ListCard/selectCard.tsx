@@ -81,7 +81,7 @@ const SelectCard = () => {
       }
       else
       {
-        router.push("/ingresar-dinero");    
+        router.push("/cargar-dinero/ingresar-dinero");    
       }
     }
     else {

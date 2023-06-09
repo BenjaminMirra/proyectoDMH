@@ -1,9 +1,9 @@
 import { ReactElement, ReactNode} from "react";
 import { Box} from "@mui/material";
-import Layout from "../../layout/layout";
-import { NextPageWithLayout } from "../_app";
-import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
-import SelectCard from "../../components/ListCard/selectCard";
+import Layout from "../../../layout/layout";
+import { NextPageWithLayout } from "../../_app";
+import ArrowSubtitleMobile from "../../../components/ArrowSubtitleMobile";
+import SelectCard from "../../../components/ListCard/selectCard";
 
 interface PropsType {
   children?: ReactNode;

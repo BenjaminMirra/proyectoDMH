@@ -1,10 +1,10 @@
 import { ReactElement, ReactNode } from "react";
 import { Box, CircularProgress } from "@mui/material";
-import { NextPageWithLayout } from "../_app";
-import AliasCVU from "../../components/AliasCVU/alias-cvu";
-import useUser from "../../hooks/useUser";
-import { useUserData } from "../../context/createContext";
-import Layout from "../../layout/layout";
+import { NextPageWithLayout } from "../../_app";
+import AliasCVU from "../../../components/AliasCVU/alias-cvu";
+import useUser from "../../../hooks/useUser";
+import { useUserData } from "../../../context/createContext";
+import Layout from "../../../layout/layout";
 interface PropsType {
   children?: ReactNode;
 }
