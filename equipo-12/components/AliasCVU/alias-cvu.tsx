@@ -1,13 +1,10 @@
 import { Box, Typography, Divider } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import { IAccount } from "../../types";
 import CheckIcon from "@mui/icons-material/Check";
 import { useState } from "react";
 
-interface Props {
-  userAccount: IAccount;
-}
-const AliasCVU = ({ userAccount }: Props) => {
+
+const AliasCVU = ({ account }: any) => {
   const [checkCopyAlias, setCheckCopyAlias] = useState(false);
   const [checkCopyCVU, setCheckCopyCVU] = useState(false);
 
@@ -18,6 +15,7 @@ const AliasCVU = ({ userAccount }: Props) => {
       console.error("Failed to copy: ", err);
     }
   };
+
   return (
     <Box
       sx={{
@@ -63,7 +61,7 @@ const AliasCVU = ({ userAccount }: Props) => {
           >
             CVU
           </Typography>
-          <Typography>{userAccount?.cvu}</Typography>
+          <Typography>{account?.cvu}</Typography>
         </Box>
         {checkCopyCVU && (
           <CheckIcon
@@ -76,7 +74,7 @@ const AliasCVU = ({ userAccount }: Props) => {
         {!checkCopyCVU && (
           <ContentCopyIcon
             onClick={() => {
-              copyContent(userAccount?.cvu);
+              copyContent(account?.cvu);
               setCheckCopyCVU(true);
               setTimeout(() => {
                 setCheckCopyCVU(false);
@@ -120,7 +118,7 @@ const AliasCVU = ({ userAccount }: Props) => {
           >
             Alias
           </Typography>
-          <Typography>{userAccount?.alias}</Typography>
+          <Typography>{account?.alias}</Typography>
         </Box>
         {checkCopyAlias && (
           <CheckIcon
@@ -133,7 +131,7 @@ const AliasCVU = ({ userAccount }: Props) => {
         {!checkCopyAlias && (
           <ContentCopyIcon
             onClick={() => {
-              copyContent(userAccount?.alias);
+              copyContent(account?.alias);
               setCheckCopyAlias(true);
               setTimeout(() => {
                 setCheckCopyAlias(false);
