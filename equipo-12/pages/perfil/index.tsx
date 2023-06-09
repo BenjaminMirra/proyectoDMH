@@ -1,22 +1,22 @@
 import Box from "@mui/material/Box";
 import TusDatos from "../../components/TusDatos/tusDatos";
-import { ReactElement, ReactNode, useEffect } from "react";
+import { ReactElement, ReactNode } from "react";
 import Layout from "../../layout/layout";
 import { NextPageWithLayout } from "../_app";
 import BannerGestionPago from "../../components/GestionPago/banner-gestion-pago";
 import AliasCVU from "../../components/AliasCVU/alias-cvu";
 import { CircularProgress } from "@mui/material";
-import useUser from "../../hooks/useUser";
 import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
-import { useUserData } from "../../context/createContext";
 import useAccount from "../../hooks/useAccount";
 import Head from "next/head";
+import useUser from "../../hooks/useUser";
+import { useUserContext } from "../../context/userContext";
 interface PropsType {
   children?: ReactNode;
 }
 
 const Perfil: NextPageWithLayout<PropsType> = () => {
-  const [userInfo] = useUser();
+  const { userInfo, setIsLoading } = useUserContext();
   const [userAccount] = useAccount();
 
   return (
@@ -44,7 +44,7 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
         }}
       ></Box>
 
-      {userInfo && userAccount ? (
+      {userInfo.firstname !== "" && userAccount ? (
         <Box
           sx={{
             display: "flex",
@@ -65,7 +65,7 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
           }}
         >
           <ArrowSubtitleMobile title="Tarjetas" />
-          <TusDatos userInfo={userInfo} />
+          <TusDatos userInfo={userInfo} setLoading={setIsLoading} />
           <BannerGestionPago />
           <AliasCVU account={userAccount} />
         </Box>
