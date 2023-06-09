@@ -31,7 +31,7 @@ const useAccount = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [userAccount]);
+  }, []);
 
   return [userAccount, setUserAccount];
 };

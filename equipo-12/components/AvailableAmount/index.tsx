@@ -1,6 +1,5 @@
 import { UserContext } from "../../context/createContext";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Card, Box, Typography, IconButton } from "@mui/material";
 import Link from "next/link";
 import { useState, useContext } from "react";
@@ -36,8 +35,8 @@ const AvailableAmount = () => {
         </Typography>
         {
           isVisibility
-            ? <IconButton color="secondary" onClick={handleVisibility}> <VisibilityIcon color="secondary" fontSize="large" /> </IconButton >
-            : <IconButton color="secondary" onClick={handleVisibility}> <VisibilityOffIcon color="secondary" fontSize="large" /></IconButton >
+            ? <IconButton color="secondary" onClick={handleVisibility}> <Visibility color="secondary" fontSize="large" /> </IconButton >
+            : <IconButton color="secondary" onClick={handleVisibility}> <VisibilityOff color="secondary" fontSize="large" /></IconButton >
         }
       </Box>
 

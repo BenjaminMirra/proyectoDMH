@@ -3,7 +3,7 @@ import imageLogo from "../../utils/images/imageLogo.svg";
 import Button from "@mui/material/Button";
 import Link from "next/link";
 import { Box, Fade, Menu, MenuItem, Typography, IconButton } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { DensityMedium } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -137,7 +137,7 @@ const HeaderHome = (props: any) => {
               }}
             >
 
-              <MenuIcon color="secondary" fontSize="large" /> </IconButton>}
+              <DensityMedium color="secondary" fontSize="large" /> </IconButton>}
           <Typography
             variant="subtitle2"
             sx={{

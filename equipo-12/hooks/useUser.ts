@@ -31,7 +31,7 @@ const useUser = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [userInfo]);
+  }, []);
 
   return [userInfo];
 };

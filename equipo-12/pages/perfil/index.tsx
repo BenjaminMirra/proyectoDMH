@@ -9,16 +9,22 @@ import { CircularProgress } from "@mui/material";
 import useUser from "../../hooks/useUser";
 import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
 import { useUserData } from "../../context/createContext";
+import useAccount from "../../hooks/useAccount";
+import Head from "next/head";
 interface PropsType {
   children?: ReactNode;
 }
 
 const Perfil: NextPageWithLayout<PropsType> = () => {
   const [userInfo] = useUser();
-  const { account } = useUserData();
+  const [userAccount] = useAccount();
 
   return (
     <>
+      <Head>
+        <title>Digital Money House</title>
+        <meta name="description" content="Digital Money House" />
+      </Head>
       <Box
         sx={{
           width: "276px",
@@ -38,7 +44,7 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
         }}
       ></Box>
 
-      {userInfo && account ? (
+      {userInfo && userAccount ? (
         <Box
           sx={{
             display: "flex",
@@ -61,7 +67,7 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
           <ArrowSubtitleMobile title="Tarjetas" />
           <TusDatos userInfo={userInfo} />
           <BannerGestionPago />
-          <AliasCVU userAccount={account} />
+          <AliasCVU account={userAccount} />
         </Box>
       ) : (
         <Box

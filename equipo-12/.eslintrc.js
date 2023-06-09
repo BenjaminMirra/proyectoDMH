@@ -21,14 +21,14 @@ module.exports = {
     "react",
     "@typescript-eslint"
   ],
-  "rules": {    
+  "rules": {
     "indent": [
       "error",
       2
     ],
     "linebreak-style": [
       "error",
-      "windows",
+      "unix",
     ],
     "quotes": [
       "error",
