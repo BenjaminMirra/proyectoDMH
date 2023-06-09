@@ -1,5 +1,5 @@
 import Link from "next/link";
-import SearchIcon from "@mui/icons-material/Search";
+import { Search } from "@mui/icons-material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { TextField, InputAdornment, Box, List, ListItem, Typography, ListItemAvatar, Avatar, ListItemText, Divider } from "@mui/material";
 import { useStyles } from "../../material-theme";
@@ -29,7 +29,7 @@ const Transferences = () => {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start" sx={{ backgroundColor: "#FFF" }}>
-                <SearchIcon />
+                <Search />
               </InputAdornment>
             ),
           }}
