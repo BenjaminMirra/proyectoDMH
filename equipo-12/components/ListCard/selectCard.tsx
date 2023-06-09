@@ -22,7 +22,7 @@ const SelectCard = () => {
   const [width] = useDeviceSize();
   const [listCard, setListCard] = useState<ListItemData[]>([]);
   const isDelete = false;
-  const vencimiento = localStorage.getItem("expirationDate");
+  const [vencimiento, setVencimiento] = useState("01/2000");
   useEffect(() => {
     if (localStorage.getItem("userId") !== null) {
       const token = localStorage.getItem("token");
@@ -65,6 +65,8 @@ const SelectCard = () => {
       const mesActual = fechaActual.getMonth() + 1; 
       const anioActual = fechaActual.getFullYear();
       const expirationDate = localStorage.getItem("expirationDate");
+      if(expirationDate)
+        setVencimiento(expirationDate);
       let mesDeseado = 1;
       let anioDeseado = 1900;
       if (expirationDate !== null) {
