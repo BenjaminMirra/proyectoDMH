@@ -1,4 +1,4 @@
-import { Button, Radio } from "@mui/material";
+import { Radio } from "@mui/material";
 import axios from "axios";
 import { FC, useEffect, useState } from "react";
 
@@ -7,7 +7,7 @@ interface Props {
   selectid: number
   data: ListItemData
   list: ListItemData[]
-  refreshlista: (card_id: number) => void
+  refreshlista: (card_id: number,expiration_date: string) => void
 }
 
 const CheckedCards :  FC<Props> = ({selectid ,data, refreshlista }: Props) => {
@@ -26,8 +26,10 @@ const CheckedCards :  FC<Props> = ({selectid ,data, refreshlista }: Props) => {
   return (
     <>
       <Radio
+        border-color="default"
+        color="secondary"
         checked={data.id === selectid}
-        onChange={() => refreshlista(data.id)}    
+        onChange={() => refreshlista(data.id, data.expiration_date)}    
         value={data.id}
         name="radio-buttons"
         inputProps={{ "aria-label": "A" }}
@@ -35,5 +37,4 @@ const CheckedCards :  FC<Props> = ({selectid ,data, refreshlista }: Props) => {
     </>             
   );
 };
-
 export default CheckedCards;

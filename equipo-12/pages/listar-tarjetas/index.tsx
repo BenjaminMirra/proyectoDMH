@@ -19,7 +19,7 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
           width: "276px",
           height: "100%",
           backgroundColor: "#C1FD35",
-          "@media (max-width: 768px)": {
+          "@media (max-width: 767px)": {
             display: "none",
           },
         }}

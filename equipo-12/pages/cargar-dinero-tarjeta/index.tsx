@@ -19,7 +19,7 @@ const CardTransaction: NextPageWithLayout<PropsType> = () => {
           width: "276px",
           height: "100%",
           backgroundColor: "#C1FD35",
-          "@media (max-width: 768px)": {
+          "@media (max-width: 767px)": {
             display: "none",
           },
         }}
@@ -32,7 +32,7 @@ const CardTransaction: NextPageWithLayout<PropsType> = () => {
         paddingTop: "50px",
         paddingBottom: "50px",
         paddingRight: "50px",
-        "@media (max-width: 768px)": {
+        "@media (max-width: 767px)": {
           paddingLeft: "20px",
           paddingRight: "20px",
         },

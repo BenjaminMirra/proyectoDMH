@@ -1,6 +1,5 @@
 import styles from "./addCard.module.css";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import {
   Box,
   Button,
@@ -18,9 +17,12 @@ import ListCards from "./listCard";
 const SelectCard = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [isContinuar, setIsContinuar] = useState(false);
+  const [isContinuarExpiredCard, setIsContinuarExpiredCard] = useState(false);
   const [width] = useDeviceSize();
   const [listCard, setListCard] = useState<ListItemData[]>([]);
   const isDelete = false;
+  const vencimiento = localStorage.getItem("expirationDate");
   useEffect(() => {
     if (localStorage.getItem("userId") !== null) {
       const token = localStorage.getItem("token");
@@ -45,6 +47,7 @@ const SelectCard = () => {
   }, []);
 
   const handleClick = () => {
+    setIsContinuar(false);
     console.log("error" + listCard?.length);
     if (listCard?.length < 10) {
       router.push("/agregar-tarjeta");
@@ -53,11 +56,42 @@ const SelectCard = () => {
     }
   };
   const handleContinuarClick = () => {
-    router.push("/ingresar-dinero");
+    const carId = localStorage.getItem("cardId");
+    setIsContinuarExpiredCard(false);
+    setIsContinuar(false);
+    if(carId && parseInt(carId) > 0)
+    {
+      const fechaActual = new Date();
+      const mesActual = fechaActual.getMonth() + 1; 
+      const anioActual = fechaActual.getFullYear();
+      const expirationDate = localStorage.getItem("expirationDate");
+      let mesDeseado = 1;
+      let anioDeseado = 1900;
+      if (expirationDate !== null) {
+        const [mesString, anioString] = expirationDate.split("/");
+        mesDeseado = parseInt(mesString, 10);
+        anioDeseado = parseInt(anioString, 10);
+      }
+      if (anioDeseado < anioActual 
+          || (anioDeseado === anioActual && mesDeseado < mesActual)) {
+        setIsContinuarExpiredCard(true);
+            
+      }
+      else
+      {
+        router.push("/ingresar-dinero");    
+      }
+    }
+    else {
+      setIsContinuar(true);
+    }
+    
   };
   const handleClose = () => {
     setOpen(false);
+    setIsContinuar(false); 
   };
+  
 
   return (
     <Box
@@ -67,12 +101,12 @@ const SelectCard = () => {
         justifyContent: "flex-start",
         alignItems: "center",
         width: "100%",
-        "@media (max-width: 768px)": {
+        "@media (max-width: 767px)": {
           paddingTop: "10px",
         },
       }}
     >
-      {width > 768 ? (
+      {width >= 768 ? (
         width <= 1024 ? (
           <Card
             sx={{
@@ -95,7 +129,12 @@ const SelectCard = () => {
               >
                 Seleccionar tarjeta
               </Typography>
-            </CardContent>            
+            </CardContent> 
+            <Box sx={{
+              marginBottom: "1rem",
+            }} >
+              <ListCards deleteCard={isDelete} />
+            </Box>            
             <CardContent
               sx={{
                 display: "flex",
@@ -150,6 +189,50 @@ const SelectCard = () => {
               >
               Continuar
               </Button>
+              <Snackbar
+                open={open}
+                autoHideDuration={3000}
+                onClose={handleClose}
+              >
+                <MuiAlert
+                  onClose={handleClose}
+                  severity="warning"
+                  elevation={6}
+                  variant="filled"
+                >
+                  No se pueden Agregar mas de 10 Tarjetas
+                </MuiAlert>
+              </Snackbar>
+              <Snackbar
+                open={isContinuar}
+                autoHideDuration={3000}
+                onClose={handleClose}
+              >
+                <MuiAlert
+                  onClose={handleClose}
+                  severity="warning"
+                  elevation={6}
+                  variant="filled"
+                >
+                  Debe Seleccionar una tarjeta para Continuar
+                </MuiAlert>
+              </Snackbar>
+              <Snackbar
+                open={isContinuarExpiredCard}
+                autoHideDuration={3000}
+                onClose={handleClose}
+              >
+                <MuiAlert
+                  onClose={handleClose}
+                  severity="warning"
+                  elevation={6}
+                  variant="filled"
+                >
+                  {vencimiento && `La tarjeta seleccionada está vencida: ${vencimiento}`}
+                </MuiAlert>
+              </Snackbar>
+
+              
             </CardContent>
           </Card>
         ) : (
@@ -233,6 +316,49 @@ const SelectCard = () => {
               >
               Continuar
               </Button>
+              <Snackbar
+                open={open}
+                autoHideDuration={3000}
+                onClose={handleClose}
+              >
+                <MuiAlert
+                  onClose={handleClose}
+                  severity="warning"
+                  elevation={6}
+                  variant="filled"
+                >
+                  No se pueden Agregar mas de 10 Tarjetas
+                </MuiAlert>
+              </Snackbar>
+              <Snackbar
+                open={isContinuar}
+                autoHideDuration={3000}
+                onClose={handleClose}
+              >
+                <MuiAlert
+                  onClose={handleClose}
+                  severity="warning"
+                  elevation={6}
+                  variant="filled"
+                >
+                  Debe Seleccionar una tarjeta para Continuar
+                </MuiAlert>
+              </Snackbar>
+              <Snackbar
+                open={isContinuarExpiredCard}
+                autoHideDuration={3000}
+                onClose={handleClose}
+              >
+                <MuiAlert
+                  onClose={handleClose}
+                  severity="warning"
+                  elevation={6}
+                  variant="filled"
+                >
+                  {vencimiento && `La tarjeta seleccionada está vencida: ${vencimiento}`}
+                </MuiAlert>
+              </Snackbar>
+
 
             </CardContent>
           </Card>
@@ -319,6 +445,50 @@ const SelectCard = () => {
             >
               Continuar
             </Button>
+            <Snackbar
+              open={open}
+              autoHideDuration={3000}
+              onClose={handleClose}
+            >
+              <MuiAlert
+                onClose={handleClose}
+                severity="warning"
+                elevation={6}
+                variant="filled"
+              >
+                  No se pueden Agregar mas de 10 Tarjetas
+              </MuiAlert>
+            </Snackbar>
+            <Snackbar
+              open={isContinuar}
+              autoHideDuration={3000}
+              onClose={handleClose}
+            >
+              <MuiAlert
+                onClose={handleClose}
+                severity="warning"
+                elevation={6}
+                variant="filled"
+              >
+                  Debe Seleccionar una tarjeta para Continuar
+              </MuiAlert>
+            </Snackbar> 
+            <Snackbar
+              open={isContinuarExpiredCard}
+              autoHideDuration={3000}
+              onClose={handleClose}
+            >
+              <MuiAlert
+                onClose={handleClose}
+                severity="warning"
+                elevation={6}
+                variant="filled"
+              >
+                {vencimiento && `La tarjeta seleccionada está vencida: ${vencimiento}`}
+              </MuiAlert>
+            </Snackbar>
+
+              
           </CardContent>
         </Card>
       )}

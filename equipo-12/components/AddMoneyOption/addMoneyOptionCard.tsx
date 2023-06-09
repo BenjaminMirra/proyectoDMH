@@ -7,10 +7,19 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
+
 import useDeviceSize from "../../hooks/useDeviceSize";
+import { useRouter } from "next/router";
+
 const AddMoneyOptionCard = () => {
+  const router = useRouter();
   const [width] = useDeviceSize();
-  const handleClick = () => { };
+  const handleClick = () => { 
+    localStorage.removeItem("cardId");
+    localStorage.removeItem("expirationDate");
+    router.push( "/cargar-dinero-tarjeta");
+
+  };
 
   return (
     <Box
@@ -83,8 +92,7 @@ const AddMoneyOptionCard = () => {
                 </Button>
               </CardContent>
               <Button
-                href="/cargar-dinero-tarjeta"
-                //onClick={handleClick}
+                onClick={handleClick}
                 style={{
                   textTransform: "none",
                   color: "#C1FD35",
