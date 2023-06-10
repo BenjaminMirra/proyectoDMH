@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { IAccount } from "../types";
 
 const useAccount = () => {
@@ -35,7 +35,7 @@ const useAccount = () => {
 
   }, []); // Sin dependencias para que solo se ejecute una vez al montar el componente
 
-  return [userAccount, setUserAccount];
+  return [userAccount];
 };
 
 export default useAccount;

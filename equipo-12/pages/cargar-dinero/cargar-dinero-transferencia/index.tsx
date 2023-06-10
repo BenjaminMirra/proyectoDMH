@@ -1,16 +1,18 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode, useEffect, useState } from "react";
 import { Box, CircularProgress } from "@mui/material";
 import { NextPageWithLayout } from "../../_app";
 import AliasCVU from "../../../components/AliasCVU/alias-cvu";
-import useUser from "../../../hooks/useUser";
-import { useUserData } from "../../../context/createContext";
 import Layout from "../../../layout/layout";
+import { useUserContext } from "../../../context/userContext";
+import useAccount from "../../../hooks/useAccount";
+import { useAccountContext } from "../../../context/accountContext";
 interface PropsType {
   children?: ReactNode;
 }
+
 const TransferenceTransaction: NextPageWithLayout<PropsType> = () => {
-  const [userInfo] = useUser();
-  const { account } = useUserData();
+  const { accountInfo, isLoading } = useAccountContext();
+
   return (
     <>
       <Box
@@ -31,8 +33,7 @@ const TransferenceTransaction: NextPageWithLayout<PropsType> = () => {
           },
         }}
       ></Box>
-    
-      <Box
+      {accountInfo?.cvu !== "" ? <Box
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -51,8 +52,10 @@ const TransferenceTransaction: NextPageWithLayout<PropsType> = () => {
           },
         }}
       >
-        <AliasCVU userAccount={account} />
-      </Box>
+        <AliasCVU isLoading={isLoading} userAccount={accountInfo} />
+      </Box> :
+        <CircularProgress />
+      }
     </>
   );
 };

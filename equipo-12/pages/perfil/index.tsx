@@ -9,7 +9,6 @@ import { CircularProgress } from "@mui/material";
 import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
 import useAccount from "../../hooks/useAccount";
 import Head from "next/head";
-import useUser from "../../hooks/useUser";
 import { useUserContext } from "../../context/userContext";
 interface PropsType {
   children?: ReactNode;
@@ -67,7 +66,7 @@ const Perfil: NextPageWithLayout<PropsType> = () => {
           <ArrowSubtitleMobile title="Tarjetas" />
           <TusDatos userInfo={userInfo} setLoading={setIsLoading} />
           <BannerGestionPago />
-          <AliasCVU account={userAccount} />
+          <AliasCVU userAccount={userAccount} />
         </Box>
       ) : (
         <Box

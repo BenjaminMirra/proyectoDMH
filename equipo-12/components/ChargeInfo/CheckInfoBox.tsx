@@ -1,8 +1,22 @@
 import { Box, Button, Typography } from "@mui/material";
 import editIconChargeMoney from "../../utils/icons/editIconChargeMoney.png";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
-const CheckInfoBox = () => {
+const CheckInfoBox = ({ accountInfo, handleChargeMoney }: any) => {
+
+  const [moneyToCharge, setMoneyToCharge] = useState<string | null>("");
+  const handleContinuarClick = () => {
+    handleChargeMoney();
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("moneyToCharge") !== null) {
+      setMoneyToCharge(localStorage.getItem("moneyToCharge"));
+    }
+  });
+
   return (
     <Box sx={{
       backgroundColor: "grey",
@@ -41,16 +55,22 @@ const CheckInfoBox = () => {
             <Typography sx={{ color: "white", paddingBottom: "10px" }} variant="subtitle2">
               Vas a transferir
             </Typography>
-            <Image
-              src={editIconChargeMoney}
-              width={30}
-              height={30}
-              style={{ marginBottom: "10px" }}
-              alt="Editar Monto"
-            />
+            <Link
+              href={{
+                pathname: "/cargar-dinero/ingresar-dinero"
+              }}>
+
+              <Image
+                src={editIconChargeMoney}
+                width={30}
+                height={30}
+                style={{ marginBottom: "10px", cursor: "pointer" }}
+                alt="Editar Monto"
+              />
+            </Link>
           </Box>
           <Typography sx={{ color: "white" }} variant="subtitle2">
-            $3.000
+            $ {moneyToCharge}
           </Typography>
         </Box>
         <Box sx={{ paddingTop: "10px", paddingBottom: "10px" }}>
@@ -67,7 +87,7 @@ const CheckInfoBox = () => {
             Brubank
           </Typography>
           <Typography sx={{ color: "white" }} variant="subtitle2">
-            CVU: 0000002100075990000000
+            CVU: {accountInfo?.cvu}
           </Typography>
         </Box>
       </Box>
@@ -92,18 +112,22 @@ const CheckInfoBox = () => {
           paddingTop: "0px"
         },
       }}>
-        <Button variant="primary" color="secondary"
-          sx={{
-            height: "65px",
-            "@media (max-width: 1100px)": {
-              width: "100%",
-
-            }
-          }}>
-          <Typography variant="button">
-            Continuar
-          </Typography>
-        </Button>
+        <Link href={{
+          pathname: "exitosa-carga"
+        }}>
+          <Button variant="primary" color="secondary"
+            sx={{
+              height: "65px",
+              "@media (max-width: 1100px)": {
+                width: "100%"
+              }
+            }}
+            onClick={handleContinuarClick}>
+            <Typography variant="button">
+              Continuar
+            </Typography>
+          </Button>
+        </Link>
       </Box>
     </Box >
   );
