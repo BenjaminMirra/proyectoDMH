@@ -7,10 +7,12 @@ import Divider from "@mui/material/Divider";
 import DeleteCards from "./deleteCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import CheckedCards from "./checkedCard";
 
-const GenerateListCard = () => {
+const GenerateListCard = (deleteCard: boolean) => {
   const [listCard, setListCard] = useState<ListItemData[]>();
   const [idAccount, setIdAccount] = useState<number>(0);
+  const [idCardSelect, setIdCardSelect] = useState<number>(0);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -41,6 +43,8 @@ const GenerateListCard = () => {
           setListCard(
             response.data
           );
+          setIdCardSelect(response.data.length > 0 ? (response.data[0] as ListItemData).id : 0);
+          handleSelect(response.data.length > 0 ? (response.data[0] as ListItemData).id : 0,response.data.length > 0 ? (response.data[0] as ListItemData).expiration_date : "01/2000");
         })
         .catch((error) => {
           console.error(error);
@@ -71,10 +75,18 @@ const GenerateListCard = () => {
       console.error("Ocurrió un error al realizar la solicitud DELETE:", error);
     }
   };
-
+  const handleSelect = async (card_id: number, expiration_date: string) => {
+    try {
+      setIdCardSelect(card_id);
+      if(expiration_date.length)
+        localStorage.setItem("expirationDate",expiration_date);
+      localStorage.setItem("cardId", card_id.toString()); 
+    } catch (error) {
+      console.error("Ocurrió un error al checkear:", error);
+    }
+  };
   return listCard?.map((item) => (
     <>
-
       <ListItem sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
         <ListItemAvatar>
           <CircleIcon color="secondary" fontSize="large" />
@@ -84,9 +96,13 @@ const GenerateListCard = () => {
             Terminada en {item.number_id.toString().slice(-4)}
           </Typography>}
         />
-        <ListItemIcon >
-          <DeleteCards refreshlista={handleDelete} list={listCard} data={item} />
-        </ListItemIcon>
+        {deleteCard ?  
+          <ListItemIcon >
+            <DeleteCards refreshlista={handleDelete} list={listCard} data={item} />
+          </ListItemIcon>
+          : 
+          <CheckedCards refreshlista={handleSelect} data={item} selectid={idCardSelect} list={[]} />
+        }
       </ListItem>
       <Divider variant="middle"></Divider>
     </>

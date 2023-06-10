@@ -1,17 +1,16 @@
-import { ReactElement, ReactNode, useEffect, useState } from "react";
-import AddCard from "../../components/ListCard/addCard";
-import ListCards from "../../components/ListCard/listCard";
-import { Box, Typography } from "@mui/material";
-import Layout from "../../layout/layout";
+import {  ReactElement, ReactNode } from "react";
+import { Box } from "@mui/material";
 import { NextPageWithLayout } from "../_app";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
+import AddMoneyOptionTransfer from "../../components/AddMoneyOption/addMoneyOptionTranfer";
+import AddMoneyOptionCard from "../../components/AddMoneyOption/addMoneyOptionCard";
+import Layout from "../../layout/layout";
 
 interface PropsType {
   children?: ReactNode;
 }
 
-const ListCard: NextPageWithLayout<PropsType> = () => {
+const SelectTransaction: NextPageWithLayout<PropsType> = () => {
   return (
     <>
       <Box
@@ -19,7 +18,7 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
           width: "276px",
           height: "100%",
           backgroundColor: "#C1FD35",
-          "@media (max-width: 767px)": {
+          "@media (max-width: 768px)": {
             display: "none",
           },
         }}
@@ -38,27 +37,28 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
         },
       }}
       >
-
         <Box sx={{
           marginBottom: "1rem",
         }}
         >
-          <ArrowSubtitleMobile title="Tarjetas" />
-          <AddCard />
+          <ArrowSubtitleMobile title="Cargar dinero" />
+          <AddMoneyOptionTransfer />
         </Box>
         <Box sx={{
           marginBottom: "1rem",
-        }} >
-          <ListCards deleteCard={true} />
+        }}
+        >
+          <AddMoneyOptionCard />
         </Box>
-
       </Box>
     </>
   );
 };
 
-ListCard.getLayout = function getLayout(page: ReactElement) {
+
+SelectTransaction.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="home">{page}</Layout>;
 };
 
-export default ListCard;
+
+export default SelectTransaction;

@@ -39,7 +39,7 @@ const NavTree = (props: any) => {
       <Link className={active(["/inicio"])} href="/inicio">Inicio</Link>
       <Link className={active(["/actividades"])} href="/inicio">Actividad</Link>
       <Link className={active(["/perfil"])} href="/perfil">Tu Perfil</Link>
-      <Link className={active(["/cargardinero"])} href="/inicio">Cargar Dinero</Link>
+      <Link className={active(["/cargar-dinero"])} href="/cargar-dinero">Cargar Dinero</Link>
       <Link className={active(["/pagarservicios"])} href="/inicio">Pagar Servicios</Link>
       <Link className={active(["/listar-tarjetas", "/agregar-tarjeta"])} href="/listar-tarjetas">Tarjetas</Link>
       <button onClick={() => { logout(); }}>Cerrar sesión</button>

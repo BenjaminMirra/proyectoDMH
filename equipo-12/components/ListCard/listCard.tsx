@@ -3,23 +3,14 @@ import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import GenerateListCard from "./listCardComponent";
 import { ListItem } from "@mui/material";
+import { FC } from "react";
+interface Props {
+  deleteCard: boolean
+}
 
-/* const useStyles = makeStyles({
-  root: {
-    height: 300,
-    overflow: "auto",
-  },
-}); */
 
-/* const ListCard = styled("div")(({ theme }) => ({
-  minWidth: "100%",
-  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-  borderRadius: "10px",
-  paddingBottom: "20px",
-})); */
-
-const ListCards = () => {
-  const listItems = GenerateListCard();
+const ListCards :  FC<Props> = (Props) => {
+  const listItems = GenerateListCard(Props.deleteCard);
   return (
     <Box sx={{ overflow: "auto", width: "100%", backgroundColor: "#FFF", borderRadius: "10px", boxShadow: "0px 4px 4px #0000004c", }}>
       <List sx={{ width: "100%", }}>
