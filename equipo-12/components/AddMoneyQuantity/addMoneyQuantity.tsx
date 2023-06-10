@@ -1,10 +1,20 @@
 import { Box, Typography, Button, TextField, Input, FormControl } from "@mui/material";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
 
 const AddMoneyOption = () => {
-  const [inputValue, setInputValue] = useState("");
+
+  const router = useRouter();
+
+  const handleContinuarClick = () => {
+    localStorage.setItem("moneyToCharge", inputValue);
+    router.push("confirmar-info");
+  };
+
+  const [inputValue, setInputValue] = useState<string>("");
   const [validationError, setValidationError] = useState("");
+  const [buttonDisabled, setButtonDisabled] = useState(true);
   const validationSchema = Yup.object().shape({
     number: Yup.string()
       .test("notEmpty", "Este campo es requerido", (value: any) => {
@@ -44,8 +54,19 @@ const AddMoneyOption = () => {
       .required("Ingrese la cantidad de dinero a transferir")
   });
 
+  useEffect(() => {
+    if (inputValue === "") {
+      setButtonDisabled(true);
+    }
+  }, [inputValue]);
+
   const handleChange = (e: any) => {
-    setInputValue(e.target.value);
+    setInputValue(`${e.target.value}`);
+    if (inputValue != "") {
+      setButtonDisabled(false);
+    } else if (inputValue === "") {
+      setButtonDisabled(true);
+    }
     validationSchema
       .validate({ number: e.target.value })
       .then(() => {
@@ -122,16 +143,15 @@ const AddMoneyOption = () => {
             }}
             variant="h6"
           >
-                        ¿Cuánto querés ingresar a la cuenta?
+            ¿Cuánto querés ingresar a la cuenta?
           </Typography>
           <Box sx={{
             display: "flex",
+            width: "100%",
             justifyContent: "flex-start",
             alignItems: "center",
             flexDirection: "row",
             alignContent: "flex-start",
-
-
           }}>
 
             <TextField
@@ -141,16 +161,23 @@ const AddMoneyOption = () => {
               onBlur={handleBlur}
               variant="filled"
               size="medium"
-              placeholder="$0"
+              placeholder="$ 0"
               InputProps={{
-                disableUnderline: true, // Desactivar subrayado al hacer clic
+                disableUnderline: true,
+                // Desactivar subrayado al hacer clic
               }}
+              margin={"none"}
               sx={{
+                width: "100%",
                 borderRadius: "10px",
-                backgroundColor: "#ffffff"
+                backgroundColor: "#ffffff",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "flex-start",
+                paddingBottom: "10px",
               }}
             />
-            <Typography sx={{ paddingLeft: "20px", color: "#C1FD35" }} variant="h6">
+            <Typography sx={{ width: "100", paddingLeft: "20px", color: "#C1FD35" }} variant="h6">
               {validationError}
             </Typography>
           </Box>
@@ -164,6 +191,7 @@ const AddMoneyOption = () => {
           }}
         >
           <Button
+            disabled={buttonDisabled}
             variant="primary"
             color="secondary"
             size="large"
@@ -171,18 +199,19 @@ const AddMoneyOption = () => {
             sx={{
               textTransform: "none",
               borderColor: "transparent", // Desactivar el color del borde
-              backgroundColor: validationError ? "#CECECE" : "#C1FD35", // Cambiar el color del botón según la visibilidad del error
+              backgroundColor: buttonDisabled ? "#CECECE" : "#C1FD35", // Cambiar el color del botón según la visibilidad del error
               "&:hover": {
-                backgroundColor: validationError ? "#CECECE" : "#C1FD35", // Cambiar el color del botón según la visibilidad del error,
+                backgroundColor: buttonDisabled ? "#CECECE" : "#C1FD35", // Cambiar el color del botón según la visibilidad del error,
 
               },
             }}
+            onClick={handleContinuarClick}
           >
-                        Continuar
+            Continuar
           </Button>
         </Box>
-      </FormControl>
-    </Box>
+      </FormControl >
+    </Box >
 
   );
 };

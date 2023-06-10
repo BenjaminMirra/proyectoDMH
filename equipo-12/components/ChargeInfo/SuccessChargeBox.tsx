@@ -1,6 +1,33 @@
 import { Box, Typography } from "@mui/material";
 
-const CheckInfoBox = () => {
+const CheckInfoBox = ({ moneyToCharge, accountInfo }: any) => {
+
+  const currentDate = new Date();
+
+  const monthNames = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre"
+  ];
+
+  const monthName = monthNames[currentDate.getUTCMonth()];
+
+  const year = currentDate.getUTCFullYear();
+  const day = currentDate.getUTCDate().toString().padStart(2, "0");
+  const hours = currentDate.getUTCHours().toString().padStart(2, "0");
+  const minutes = currentDate.getUTCMinutes().toString().padStart(2, "0");
+
+  const formattedDate = `${day} de ${monthName} ${year} a ${hours}:${minutes} hs.`;
+
   return (
     <Box sx={{
       display: "flex",
@@ -21,10 +48,10 @@ const CheckInfoBox = () => {
       }}>
         <Box>
           <Typography sx={{ color: "white" }} variant="subtitle2">
-            17 de Agosto 2022 a 16:34 hs.
+            {formattedDate}
           </Typography>
           <Typography sx={{ color: "#C1FD35" }} variant="subtitle2">
-            $3.000
+            $ {moneyToCharge}
           </Typography>
         </Box>
         <Box sx={{ paddingTop: "10px", paddingBottom: "10px" }}>
@@ -41,7 +68,7 @@ const CheckInfoBox = () => {
             Brubank
           </Typography>
           <Typography sx={{ color: "white" }} variant="subtitle2">
-            CVU: 0000002100075990000000
+            CVU: {accountInfo?.cvu}
           </Typography>
         </Box>
       </Box >
