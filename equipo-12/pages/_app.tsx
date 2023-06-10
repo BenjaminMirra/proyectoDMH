@@ -2,10 +2,11 @@ import "../globals.css";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../material-theme";
-import { ReactElement, ReactNode, useContext } from "react";
+import { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
 import UseContextProvider from "../provider/userProvider";
 import { UserProvider } from "../context/createContext";
+import { UserProviderNew } from "../context/userContext";
 
 
 export type NextPageWithLayout<T> = NextPage<T> & {
@@ -22,9 +23,11 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <ThemeProvider theme={theme}>
       <UserProvider>
-        <UseContextProvider>
-          {getLayout(<Component {...pageProps} />)}
-        </UseContextProvider>
+        <UserProviderNew>
+          <UseContextProvider>
+            {getLayout(<Component {...pageProps} />)}
+          </UseContextProvider>
+        </UserProviderNew>
       </UserProvider>
     </ThemeProvider>
   );

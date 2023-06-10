@@ -5,15 +5,17 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import useDeviceSize from "../../hooks/useDeviceSize";
+import { IUser } from "../../types";
 
 interface Props {
   dataKey: string;
   input: string;
   data: string;
   change: boolean;
+  setLoading?: (param: any) => void;
 }
 
-const InfoDato = ({ dataKey, input, data, change }: Props) => {
+const InfoDato = ({ setLoading, dataKey, input, data, change }: Props) => {
   const [edit, setEdit] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [infoData, setInfoData] = useState({});
@@ -41,9 +43,10 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
         });
       }
     }
-  }, [edit, inputValue, dataKey, infoData]);
+  }, [edit, inputValue]);
 
   const onHandleSubmit = () => {
+    setLoading && setLoading(true);
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
     const config = {
@@ -55,14 +58,20 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
       },
       data: infoData,
     };
+
     axios
       .request(config)
       .then((response) => {
         return response;
+
       })
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  const handleEdit = () => {
+    setEdit(!edit);
   };
 
   return (
@@ -138,7 +147,7 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
                       <DoneIcon
                         color="success"
                         onClick={() => {
-                          setEdit(!edit);
+                          handleEdit();
                           onHandleSubmit();
                         }}
                         sx={{
@@ -148,7 +157,7 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
                       <CancelIcon
                         color="warning"
                         onClick={() => {
-                          setEdit(!edit);
+                          handleEdit();
                         }}
                         sx={{
                           cursor: "pointer",
@@ -159,7 +168,7 @@ const InfoDato = ({ dataKey, input, data, change }: Props) => {
                     <>
                       <EditIcon
                         onClick={() => {
-                          setEdit(!edit);
+                          handleEdit();
                         }}
                         color="disabled"
                         sx={{
