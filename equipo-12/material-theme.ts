@@ -109,7 +109,6 @@ export const theme = createTheme({
             backgroundColor: "#201F22",
             border: "solid 1px #C1FD35",
             boxShadow: "0px 4px 4px #0000004c",
-            padding: "0",
             "&:hover": {
               backgroundColor: "#403e44",
             },

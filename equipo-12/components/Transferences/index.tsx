@@ -41,11 +41,10 @@ const Transferences = () => {
             <Typography variant="h4" sx={{}}>Tu actividad</Typography>
           </ListItem>
           {
-            staticData.map(() => {
-
+            staticData.map((i) => {
               return (
-                <>
-                  <ListItem alignItems="flex-start" sx={{ display: "flex", alignItems: "center" }}>
+                <Link href={"/transferencias/"+i} key={i} style={{textDecoration:"none", color:"unset" }}>
+                  <ListItem alignItems="flex-start" sx={{ display: "flex", alignItems: "center","&:hover": {backgroundColor: "#EEEAEA",}, }}>
                     <ListItemAvatar>
                       <Avatar alt="R" sx={{ backgroundColor: "#C1FD35", color: "#000" }} />
                     </ListItemAvatar>
@@ -62,7 +61,7 @@ const Transferences = () => {
                     />
                   </ListItem>
                   <Divider variant="middle"></Divider>
-                </>
+                </Link>
               );
             })
           }
