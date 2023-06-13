@@ -3,7 +3,6 @@ import { ReactElement, useEffect, useState } from "react";
 import Head from "next/head";
 import AlertChargeBox from "../../../components/ChargeInfo/AlertChargeBox";
 import ArrowSubtitleMobile from "../../../components/ArrowSubtitleMobile";
-import { useRouter } from "next/router";
 import { useAccountContext } from "../../../context/accountContext";
 import { NextPageWithLayout } from "../../_app";
 import Layout from "../../../layout/layout";
@@ -12,7 +11,6 @@ import Link from "next/link";
 
 const SuccessCharge: NextPageWithLayout<any> = () => {
 
-  const router = useRouter();
   const { accountInfo } = useAccountContext();
   const [moneyToCharge, setMoneyToCharge] = useState<string | null>("");
 
@@ -21,10 +19,6 @@ const SuccessCharge: NextPageWithLayout<any> = () => {
       setMoneyToCharge(localStorage.getItem("moneyToCharge"));
     }
   });
-  const handleContinuarClick = () => {
-    router.push("/inicio");
-  };
-
 
   return (
     <>
@@ -34,7 +28,7 @@ const SuccessCharge: NextPageWithLayout<any> = () => {
       </Head>
       <Box
         sx={{
-          width: "276px",
+          width: "265px",
           height: "100%",
           backgroundColor: "#C1FD35",
           "@media (max-width: 768px)": {
@@ -97,9 +91,14 @@ const SuccessCharge: NextPageWithLayout<any> = () => {
 
           },
         }}>
-          <Link href={{
-            pathname: "/inicio"
-          }}>
+          <Link
+            href={{
+              pathname: "/inicio"
+            }}
+            style={{
+              width: "100%"
+            }}
+          >
             <Button
               variant="primary"
               sx={{

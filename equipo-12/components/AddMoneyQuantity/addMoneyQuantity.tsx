@@ -7,33 +7,28 @@ const AddMoneyOption = () => {
 
   const router = useRouter();
 
-  const handleContinuarClick = () => {
-    localStorage.setItem("moneyToCharge", inputValue);
-    router.push("confirmar-info");
-  };
-
   const [inputValue, setInputValue] = useState<string>("");
   const [validationError, setValidationError] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const validationSchema = Yup.object().shape({
     number: Yup.string()
-      .test("notEmpty", "Este campo es requerido", (value: any) => {
+      .test("notEmpty", "*Este campo es requerido", (value: any) => {
         return value && value.trim() !== "";
       })
-      .test("validNumber", "Ingrese solo números", (value) => {
+      .test("validNumber", "*Ingrese solo números", (value) => {
         if (value && value !== "") {
           return !isNaN(parseFloat(value));
         }
         return true;
       })
-      .test("decimalWithDigits", "Ingrese números después del decimal", (value) => {
+      .test("decimalWithDigits", "*Ingrese números después de la coma", (value) => {
         if (value && value !== "") {
           const decimalPart = value.split(".")[1];
           return decimalPart === undefined || decimalPart.length > 0;
         }
         return true;
       })
-      .test("decimalDigits", "*Ingrese como máximo dos dígitos después de la coma", (value) => {
+      .test("decimalDigits", "*Ingrese como máximo dos decimales", (value) => {
         if (value && value !== "") {
           const decimalPart = value.split(".")[1];
           if (decimalPart === undefined) {
@@ -44,14 +39,14 @@ const AddMoneyOption = () => {
         }
         return true;
       })
-      .test("noLetters", "No ingrese letras", (value) => {
+      .test("noLetters", "*No ingrese letras", (value) => {
         if (value && value !== "") {
           const transformedValue = value.replace(",", "."); // Reemplazar coma por punto
           return /^\d*\.?\d*$/.test(transformedValue);
         }
         return true;
       })
-      .required("Ingrese la cantidad de dinero a transferir")
+      .required("*Ingrese la cantidad de dinero a transferir")
   });
 
   useEffect(() => {
@@ -62,17 +57,17 @@ const AddMoneyOption = () => {
 
   const handleChange = (e: any) => {
     setInputValue(`${e.target.value}`);
-    if (inputValue != "") {
-      setButtonDisabled(false);
-    } else if (inputValue === "") {
+    if (inputValue === "") {
       setButtonDisabled(true);
     }
     validationSchema
       .validate({ number: e.target.value })
       .then(() => {
+        setButtonDisabled(false);
         setValidationError("");
       })
       .catch((error) => {
+        setButtonDisabled(true);
         setValidationError(error.message);
       });
   };
@@ -93,7 +88,8 @@ const AddMoneyOption = () => {
     validationSchema
       .validate({ number: inputValue })
       .then(() => {
-        //router.push( "/cargar-dinero/CONFIRMACION");
+        localStorage.setItem("moneyToCharge", inputValue);
+        router.push("confirmar-info");
       })
       .catch((error) => {
         setValidationError(error.message);
@@ -164,7 +160,6 @@ const AddMoneyOption = () => {
               placeholder="$ 0"
               InputProps={{
                 disableUnderline: true,
-                // Desactivar subrayado al hacer clic
               }}
               margin={"none"}
               sx={{
@@ -202,10 +197,9 @@ const AddMoneyOption = () => {
               backgroundColor: buttonDisabled ? "#CECECE" : "#C1FD35", // Cambiar el color del botón según la visibilidad del error
               "&:hover": {
                 backgroundColor: buttonDisabled ? "#CECECE" : "#C1FD35", // Cambiar el color del botón según la visibilidad del error,
-
               },
             }}
-            onClick={handleContinuarClick}
+            onClick={handleClick}
           >
             Continuar
           </Button>
