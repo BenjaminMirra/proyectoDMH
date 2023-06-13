@@ -50,9 +50,8 @@ const SelectCard = () => {
 
   const handleClick = () => {
     setIsContinuar(false);
-    console.log("error" + listCard?.length);
     if (listCard?.length < 10) {
-      router.push("/agregar-tarjeta");
+      router.push("/agregar-tarjeta?listar='false'");
     } else {
       setOpen(true);
     }

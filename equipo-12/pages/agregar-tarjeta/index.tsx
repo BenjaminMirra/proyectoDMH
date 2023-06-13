@@ -1,18 +1,23 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import "react-credit-cards/es/styles-compiled.css";
 import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
 import CreditCard from "../../components/CreditCard/creditCard";
 import { NextPageWithLayout } from "../_app";
 import { ReactElement } from "react";
 import Layout from "../../layout/layout";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
+import { useRouter } from "next/router";
 
 interface PropsType {
   children?: ReactElement;
 }
 
 const addCard: NextPageWithLayout<PropsType> = () => {
+  const router = useRouter();
+  
+  const {listar} = router.query;
+  const esListar = listar === "true";
+
   return (
     <>
       <Box
@@ -68,7 +73,7 @@ const addCard: NextPageWithLayout<PropsType> = () => {
             },
           }}
         >
-          <CreditCard />
+          <CreditCard listar ={esListar}/>
         </Box>
       </Box >
     </>

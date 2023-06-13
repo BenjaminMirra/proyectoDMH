@@ -8,6 +8,7 @@ import DeleteCards from "./deleteCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import CheckedCards from "./checkedCard";
+import { ListItemData } from "./IListCard";
 
 const GenerateListCard = (deleteCard: boolean) => {
   const [listCard, setListCard] = useState<ListItemData[]>();

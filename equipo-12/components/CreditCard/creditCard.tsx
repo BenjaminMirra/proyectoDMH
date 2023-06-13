@@ -8,8 +8,10 @@ import axios from "axios";
 import { styled } from "@mui/material/styles";
 import catchError from "../../services/creditCard/handle-credit-cards-errors";
 import { useRouter } from "next/router";
-
-const CreditCard = () => {
+interface PropsCard {
+  listar: boolean; 
+}
+const CreditCard = ({listar}: PropsCard) => {
   const router = useRouter();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -65,7 +67,12 @@ const CreditCard = () => {
           .request(config)
           .then((response) => {
             setSuccess(true);
-            router.push("listar-tarjetas");
+            console.log(listar);
+            if (listar) {
+              router.push("/listar-tarjetas");
+            } else {
+              router.push("/cargar-dinero/cargar-dinero-tarjeta");
+            }
             return response;
           });
 
@@ -77,13 +84,6 @@ const CreditCard = () => {
     }
   };
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
 
   return (
     <>
@@ -99,7 +99,7 @@ const CreditCard = () => {
         expiry={expiry}
         cvc={cvc}
         focused={focused}
-        callback={console.log}
+        
       />
       {error !== "" && (
         <Alert
