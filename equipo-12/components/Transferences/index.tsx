@@ -1,22 +1,16 @@
 import Link from "next/link";
 import { Search } from "@mui/icons-material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { TextField, InputAdornment, Box, List, ListItem, Typography, ListItemAvatar, Avatar, ListItemText, Divider } from "@mui/material";
+import { TextField, InputAdornment, Box, List, ListItem, Typography } from "@mui/material";
 import { useStyles } from "../../material-theme";
-import useTransferences from "../../hooks/useTransferences";
+import ListTranference from "./listTranference";
 
 const Transferences = () => {
   const classes = useStyles();
-
-  const [transferences] = useTransferences();
-
+  
   const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
-
-  const staticData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-
 
   return (
     <>
@@ -40,31 +34,7 @@ const Transferences = () => {
           <ListItem sx={{ padding: "20px" }}>
             <Typography variant="h4" sx={{}}>Tu actividad</Typography>
           </ListItem>
-          {
-            staticData.map((i) => {
-              return (
-                <Link href={"/transferencias/"+i} key={i} style={{textDecoration:"none", color:"unset" }}>
-                  <ListItem alignItems="flex-start" sx={{ display: "flex", alignItems: "center","&:hover": {backgroundColor: "#EEEAEA",}, }}>
-                    <ListItemAvatar>
-                      <Avatar alt="R" sx={{ backgroundColor: "#C1FD35", color: "#000" }} />
-                    </ListItemAvatar>
-                    <ListItemText
-                      sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
-                      primary="Transferiste a Rodrigo"
-                    >
-
-                    </ListItemText>
-                    <ListItemText
-                      sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-end" }}
-                      primary="-$ 1265,57"
-                      secondary="sabado"
-                    />
-                  </ListItem>
-                  <Divider variant="middle"></Divider>
-                </Link>
-              );
-            })
-          }
+          <ListTranference></ListTranference>
           <ListItem sx={{ padding: "20px" }} >
             <Link href="/inicio" style={{ display: "flex", width: "100%", justifyContent: "space-between", color: "#000" }}>
               <Typography variant="h4" sx={{}}>Ver toda tu actividad</Typography>
