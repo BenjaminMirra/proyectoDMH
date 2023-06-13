@@ -37,7 +37,7 @@ const NavTree = (props: any) => {
   return (
     <Box className={styles.links}>
       <Link className={active(["/inicio"])} href="/inicio">Inicio</Link>
-      <Link className={active(["/actividades"])} href="/inicio">Actividad</Link>
+      <Link className={active(["/actividad"])} href="/actividad">Actividad</Link>
       <Link className={active(["/perfil"])} href="/perfil">Tu Perfil</Link>
       <Link className={active(["/cargar-dinero"])} href="/cargar-dinero">Cargar Dinero</Link>
       <Link className={active(["/pagarservicios"])} href="/inicio">Pagar Servicios</Link>
