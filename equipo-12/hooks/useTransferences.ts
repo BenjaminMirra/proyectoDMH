@@ -11,7 +11,7 @@ const useTransferences = () => {
 
     const configTransferences = {
       method: "get",
-      url: `https://digitalmoney.ctd.academy/api/accounts/${account}/transferences`,
+      url: `https://digitalmoney.ctd.academy/api/accounts/${account}/activity`,
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
