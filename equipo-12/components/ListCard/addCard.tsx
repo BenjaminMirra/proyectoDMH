@@ -42,11 +42,11 @@ const AddCard = () => {
           console.log(error);
         });
     }
-  }, []);
+  }, [listCard]);
 
   const handleClick = () => {
     if (listCard?.length < 10) {
-      router.push("/agregar-tarjeta?listar='true'");
+      router.push("/agregar-tarjeta?listar=true");
     } else {
       setOpen(true);
     }
