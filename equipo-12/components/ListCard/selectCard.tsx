@@ -101,9 +101,9 @@ const SelectCard = () => {
         display: "flex",
         flexDirection: "row",
         justifyContent: "flex-start",
-        alignItems: "center",
-        width: "100%",
-        "@media (max-width: 767px)": {
+        alignItems: "center",  
+        "@media (max-width: 1024px)": {
+          width:"100%",
           paddingTop: "10px",
         },
       }}
@@ -119,6 +119,11 @@ const SelectCard = () => {
               paddingLeft: "20px",
               paddingRight: "20px",
               paddingTop: "20px",
+              "@media (max-width: 1024px)": {
+                width:"100%",
+                paddingTop: "10px",
+              },
+
             }}
           >
             <CardContent>
@@ -140,10 +145,9 @@ const SelectCard = () => {
             <CardContent
               sx={{
                 display: "flex",
-                flexDirection: "row",
+                flexDirection: "column",
                 justifyContent: "space-between",
                 alignItems: "center",
-                width: "100%",
               }}
             >
               <CardContent
@@ -156,7 +160,6 @@ const SelectCard = () => {
                   color: "#C1FD35",
                 }}
               >
-
                 <Button
                   onClick={handleClick}
                   style={{
@@ -179,18 +182,21 @@ const SelectCard = () => {
                   </Typography>
                 </Button>
               </CardContent>
-              <Button
-                onClick={handleContinuarClick}
-                variant="primary"
-                color="secondary"
-                size="large"
-                type="submit"
-                sx={{
-                  marginTop: "10px",
-                }}
-              >
-                Continuar
-              </Button>
+
+                <Button
+                  onClick={handleContinuarClick}
+                  variant="primary"
+                  color="secondary"
+                  size="large"
+                  type="submit"
+                  sx={{
+                    "@media (max-width: 1024px)": {
+                      width:"100%",
+                      paddingTop: "10px",
+                    },
+                  }}>
+                  Continuar
+                </Button>
               <Snackbar
                 open={open}
                 autoHideDuration={3000}
@@ -233,8 +239,6 @@ const SelectCard = () => {
                   {vencimiento && `La tarjeta seleccionada está vencida: ${vencimiento}`}
                 </MuiAlert>
               </Snackbar>
-
-
             </CardContent>
           </Card>
         ) : (
@@ -360,8 +364,6 @@ const SelectCard = () => {
                   {vencimiento && `La tarjeta seleccionada está vencida: ${vencimiento}`}
                 </MuiAlert>
               </Snackbar>
-
-
             </CardContent>
           </Card>
         )
@@ -375,6 +377,11 @@ const SelectCard = () => {
             paddingLeft: "20px",
             paddingRight: "20px",
             paddingTop: "20px",
+            "@media (max-width: 768px)": {
+              width:"100%",
+              paddingTop: "10px",
+            },
+            
           }}
         >
           <CardContent>
@@ -397,7 +404,7 @@ const SelectCard = () => {
           <CardContent
             sx={{
               display: "flex",
-              flexDirection: "row",
+              flexDirection: "column",
               justifyContent: "space-between",
               alignItems: "center",
               width: "100%",
@@ -442,6 +449,7 @@ const SelectCard = () => {
               size="large"
               type="submit"
               sx={{
+                maxWidth:"768px",
                 marginTop: "10px",
               }}
             >
@@ -489,8 +497,6 @@ const SelectCard = () => {
                 {vencimiento && `La tarjeta seleccionada está vencida: ${vencimiento}`}
               </MuiAlert>
             </Snackbar>
-
-
           </CardContent>
         </Card>
       )}
