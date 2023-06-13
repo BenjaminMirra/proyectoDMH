@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import Card from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import InputMask from "react-input-mask";
-import { Button, Box, Paper, Alert } from "@mui/material";
+import { Button, Box, Alert } from "@mui/material";
 import Link from "next/link";
 import axios from "axios";
-import { styled } from "@mui/material/styles";
 import catchError from "../../services/creditCard/handle-credit-cards-errors";
 import { useRouter } from "next/router";
 interface PropsCard {
@@ -15,7 +14,7 @@ const CreditCard = ({listar}: PropsCard) => {
   const router = useRouter();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isDisabled] = useState(false);
   const [cvc, setCvc] = useState("");
   const [expiry, setExpiry] = useState("");
   const [focused, setFocused] = useState(undefined);
@@ -67,7 +66,6 @@ const CreditCard = ({listar}: PropsCard) => {
           .request(config)
           .then((response) => {
             setSuccess(true);
-            console.log(listar);
             if (listar) {
               router.push("/listar-tarjetas");
             } else {
@@ -83,13 +81,6 @@ const CreditCard = ({listar}: PropsCard) => {
       }
     }
   };
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
 
 
   return (
@@ -125,7 +116,7 @@ const CreditCard = ({listar}: PropsCard) => {
             marginTop: "30px",
           }}
         >
-          {success}
+          {"Se agrego la tarjeta"}
         </Alert>
       )}
       <form

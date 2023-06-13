@@ -1,6 +1,7 @@
-import { Button } from "@mui/material";
+import { Button,Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import axios from "axios";
 import { FC, useEffect, useState } from "react";
+import { ListItemData } from "./IListCard";
 
 
 interface Props {
@@ -11,6 +12,19 @@ interface Props {
 
 const DeleteCards :  FC<Props> = ({ data, list, refreshlista }: Props) => {
   const [idAccount, setIdAccount] = useState(0);
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };  
+  const handleDelete = (card_id: number,idAccount: number, list: ListItemData[]) => {
+    setOpen(false);
+    refreshlista(card_id,idAccount,list);
+  };  
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios("https://digitalmoney.ctd.academy/api/account", {
@@ -36,8 +50,21 @@ const DeleteCards :  FC<Props> = ({ data, list, refreshlista }: Props) => {
           backgroundColor: "transparent",
           boxShadow: "none"
         }}
-        onClick={() => refreshlista(data.id,idAccount,list)}              
-      >Eliminar</Button>    
+        onClick={handleOpen}              
+      >Eliminar</Button>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Confirmar Eliminación</DialogTitle>
+        <DialogContent>
+          <p>¿Estás seguro de que deseas eliminar está tarjeta?</p>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancelar</Button>
+          <Button onClick={() => handleDelete(data.id,idAccount,list)}    color="secondary">
+            Eliminar
+          </Button>
+        </DialogActions>
+      </Dialog>
+         
     </>             
   );
 };

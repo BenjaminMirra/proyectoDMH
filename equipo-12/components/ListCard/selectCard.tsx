@@ -182,20 +182,20 @@ const SelectCard = () => {
                 </Button>
               </CardContent>
 
-                <Button
-                  onClick={handleContinuarClick}
-                  variant="primary"
-                  color="secondary"
-                  size="large"
-                  type="submit"
-                  sx={{
-                    "@media (max-width: 1024px)": {
-                      width:"100%",
-                      paddingTop: "10px",
-                    },
-                  }}>
+              <Button
+                onClick={handleContinuarClick}
+                variant="primary"
+                color="secondary"
+                size="large"
+                type="submit"
+                sx={{
+                  "@media (max-width: 1024px)": {
+                    width:"100%",
+                    paddingTop: "10px",
+                  },
+                }}>
                   Continuar
-                </Button>
+              </Button>
               <Snackbar
                 open={open}
                 autoHideDuration={3000}
