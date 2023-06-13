@@ -130,79 +130,103 @@ const AddMoneyOption = () => {
         }}
       >
         <Box
-
-        >
-          <Typography
-            sx={{
-              color: "#C1FD35",
-              paddingBottom: "25px"
-            }}
-            variant="h6"
-          >
-            ¿Cuánto querés ingresar a la cuenta?
-          </Typography>
-          <Box sx={{
-            display: "flex",
-            width: "100%",
-            justifyContent: "flex-start",
-            alignItems: "center",
-            flexDirection: "row",
-            alignContent: "flex-start",
-          }}>
-
-            <TextField
-              type="text"
-              value={inputValue}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              variant="filled"
-              size="medium"
-              placeholder="$ 0"
-              InputProps={{
-                disableUnderline: true,
-              }}
-              margin={"none"}
-              sx={{
-                width: "100%",
-                borderRadius: "10px",
-                backgroundColor: "#ffffff",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "flex-start",
-                paddingBottom: "10px",
-              }}
-            />
-            <Typography sx={{ width: "100", paddingLeft: "20px", color: "#C1FD35" }} variant="h6">
-              {validationError}
-            </Typography>
-          </Box>
-        </Box>
-        <Box
           sx={{
-            display: "flex",
-            justifyContent: "right",
-            alignItems: "center",
-            paddingBottom: "25px"
+            "@media (max-width: 1024px)": {
+              width: "100%",
+              paddingTop: "10px",
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "colum",
+            },
           }}
         >
-          <Button
-            disabled={buttonDisabled}
-            variant="primary"
-            color="secondary"
-            size="large"
-            type="submit"
-            sx={{
-              textTransform: "none",
-              borderColor: "transparent", // Desactivar el color del borde
-              backgroundColor: buttonDisabled ? "#CECECE" : "#C1FD35", // Cambiar el color del botón según la visibilidad del error
-              "&:hover": {
-                backgroundColor: buttonDisabled ? "#CECECE" : "#C1FD35", // Cambiar el color del botón según la visibilidad del error,
-              },
-            }}
-            onClick={handleClick}
+
+          <Box
           >
-            Continuar
-          </Button>
+            <Typography
+              sx={{
+                color: "#C1FD35",
+                paddingBottom: "25px"
+              }}
+              variant="h6"
+            >
+              ¿Cuánto querés ingresar a la cuenta?
+            </Typography>
+            <Box sx={{
+              display: "flex",
+              width: "100%",
+              justifyContent: "flex-start",
+              alignItems: "center",
+              flexDirection: "row",
+              alignContent: "flex-start",
+            }}>
+
+              <TextField
+                type="text"
+                value={inputValue}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                variant="filled"
+                size="medium"
+                placeholder="$ 0"
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                margin={"none"}
+                sx={{
+                  width: "100%",
+                  borderRadius: "10px",
+                  backgroundColor: "#ffffff",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "flex-start",
+                  paddingBottom: "10px",
+                }}
+              />
+              <Typography sx={{ width: "100", paddingLeft: "20px", color: "#C1FD35" }} variant="h6">
+                {validationError}
+              </Typography>
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              paddingBottom: "25px",
+              paddingTop:"15px",
+              width:"100%",
+              justifyContent: "flex-end",
+              flexDirection: "colum",
+              "@media (max-width: 1024px)": {
+                width: "100%",
+                paddingTop: "10px",
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "colum",
+              },  
+            }}
+          >
+            <Button
+              disabled={buttonDisabled}
+              variant="primary"
+              color="secondary"
+              size="large"
+              type="submit"
+              sx={{
+                width: "100%",
+                paddingTop: "10px",             
+                textTransform: "none",
+                borderColor: "transparent", // Desactivar el color del borde
+                backgroundColor: buttonDisabled ? "#CECECE" : "#C1FD35", // Cambiar el color del botón según la visibilidad del error
+                "&:hover": {
+                  backgroundColor: buttonDisabled ? "#CECECE" : "#C1FD35", // Cambiar el color del botón según la visibilidad del error,
+                },
+              }}
+              onClick={handleClick}
+            >
+              Continuar
+            </Button>
+          </Box>
         </Box>
       </FormControl >
     </Box >
