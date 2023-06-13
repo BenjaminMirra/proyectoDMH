@@ -57,7 +57,9 @@ const CheckInfo = () => {
 
   const handleContinuarClick = () => {
     handleChargeMoney();
-
+    localStorage.removeItem("cardId");
+    localStorage.removeItem("expirationDate");
+    localStorage.removeItem("moneyToCharge");
   };
 
   const handleChargeMoney = () => {
