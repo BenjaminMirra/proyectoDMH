@@ -1,12 +1,30 @@
 import { Box, Button } from "@mui/material";
-import { ReactElement } from "react";
-import Layout from "../../layout/layout";
+import { ReactElement, useEffect, useState } from "react";
 import Head from "next/head";
-import SuccessChargeBox from "../../components/ChargeInfo/SuccessChargeBox";
-import AlertChargeBox from "../../components/ChargeInfo/AlertChargeBox";
-import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
+import AlertChargeBox from "../../../components/ChargeInfo/AlertChargeBox";
+import ArrowSubtitleMobile from "../../../components/ArrowSubtitleMobile";
+import { useRouter } from "next/router";
+import { useAccountContext } from "../../../context/accountContext";
+import { NextPageWithLayout } from "../../_app";
+import Layout from "../../../layout/layout";
+import SuccessChargeBox from "../../../components/ChargeInfo/SuccessChargeBox";
+import Link from "next/link";
 
-const SuccessCharge = () => {
+const SuccessCharge: NextPageWithLayout<any> = () => {
+
+  const router = useRouter();
+  const { accountInfo } = useAccountContext();
+  const [moneyToCharge, setMoneyToCharge] = useState<string | null>("");
+
+  useEffect(() => {
+    if (localStorage.getItem("moneyToCharge") !== null) {
+      setMoneyToCharge(localStorage.getItem("moneyToCharge"));
+    }
+  });
+  const handleContinuarClick = () => {
+    router.push("/inicio");
+  };
+
 
   return (
     <>
@@ -61,7 +79,7 @@ const SuccessCharge = () => {
           <ArrowSubtitleMobile title={"Cargar dinero"} />
         </Box>
         <AlertChargeBox />
-        <SuccessChargeBox />
+        <SuccessChargeBox accountInfo={accountInfo} moneyToCharge={moneyToCharge} />
         <Box sx={{
           display: "flex",
           width: "100%",
@@ -79,27 +97,34 @@ const SuccessCharge = () => {
 
           },
         }}>
-          <Button variant="primary" sx={{
-            textTransform: "none",
-            backgroundColor: "#CECECE",
-            borderColor: "#CECECE",
-            color: "black",
-            width: "233px",
-            height: "65px",
-            fontSize: "16px",
-            "&:hover": {
-              backgroundColor: "#a5a5a5",
-              borderColor: "#a5a5a5",
-            },
-            "@media only screen and (max-width: 1098px)": {
-              width: "243px",
-            },
-            "@media only screen and (max-width: 768px)": {
-              width: "100%"
-            }
+          <Link href={{
+            pathname: "/inicio"
           }}>
-            Ir al Inicio
-          </Button>
+            <Button
+              variant="primary"
+              sx={{
+                textTransform: "none",
+                backgroundColor: "#CECECE",
+                borderColor: "#CECECE",
+                color: "black",
+                width: "233px",
+                height: "65px",
+                fontSize: "16px",
+                "&:hover": {
+                  backgroundColor: "#a5a5a5",
+                  borderColor: "#a5a5a5",
+                },
+                "@media only screen and (max-width: 1098px)": {
+                  width: "243px",
+                },
+                "@media only screen and (max-width: 768px)": {
+                  width: "100%"
+                }
+              }}
+            >
+              Ir al Inicio
+            </Button>
+          </Link>
           <Button variant="primary" color="secondary" sx={{
             width: "233px",
             height: "65px",

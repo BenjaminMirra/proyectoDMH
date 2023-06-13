@@ -14,6 +14,8 @@ import { useEffect, useState } from "react";
 import useDeviceSize from "../../hooks/useDeviceSize";
 import axios from "axios";
 import ListCards from "./listCard";
+import { ListItemData } from "./IListCard";
+
 const SelectCard = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -59,13 +61,12 @@ const SelectCard = () => {
     const carId = localStorage.getItem("cardId");
     setIsContinuarExpiredCard(false);
     setIsContinuar(false);
-    if(carId && parseInt(carId) > 0)
-    {
+    if (carId && parseInt(carId) > 0) {
       const fechaActual = new Date();
-      const mesActual = fechaActual.getMonth() + 1; 
+      const mesActual = fechaActual.getMonth() + 1;
       const anioActual = fechaActual.getFullYear();
       const expirationDate = localStorage.getItem("expirationDate");
-      if(expirationDate)
+      if (expirationDate)
         setVencimiento(expirationDate);
       let mesDeseado = 1;
       let anioDeseado = 1900;
@@ -74,26 +75,25 @@ const SelectCard = () => {
         mesDeseado = parseInt(mesString, 10);
         anioDeseado = parseInt(anioString, 10);
       }
-      if (anioDeseado < anioActual 
-          || (anioDeseado === anioActual && mesDeseado < mesActual)) {
+      if (anioDeseado < anioActual
+        || (anioDeseado === anioActual && mesDeseado < mesActual)) {
         setIsContinuarExpiredCard(true);
-            
+
       }
-      else
-      {
-        router.push("/cargar-dinero/ingresar-dinero");    
+      else {
+        router.push("/cargar-dinero/ingresar-dinero");
       }
     }
     else {
       setIsContinuar(true);
     }
-    
+
   };
   const handleClose = () => {
     setOpen(false);
-    setIsContinuar(false); 
+    setIsContinuar(false);
   };
-  
+
 
   return (
     <Box
@@ -131,12 +131,12 @@ const SelectCard = () => {
               >
                 Seleccionar tarjeta
               </Typography>
-            </CardContent> 
+            </CardContent>
             <Box sx={{
               marginBottom: "1rem",
             }} >
               <ListCards deleteCard={isDelete} />
-            </Box>            
+            </Box>
             <CardContent
               sx={{
                 display: "flex",
@@ -180,7 +180,7 @@ const SelectCard = () => {
                 </Button>
               </CardContent>
               <Button
-                onClick={handleContinuarClick}  
+                onClick={handleContinuarClick}
                 variant="primary"
                 color="secondary"
                 size="large"
@@ -189,7 +189,7 @@ const SelectCard = () => {
                   marginTop: "10px",
                 }}
               >
-              Continuar
+                Continuar
               </Button>
               <Snackbar
                 open={open}
@@ -234,7 +234,7 @@ const SelectCard = () => {
                 </MuiAlert>
               </Snackbar>
 
-              
+
             </CardContent>
           </Card>
         ) : (
@@ -264,7 +264,7 @@ const SelectCard = () => {
               marginBottom: "1rem",
             }} >
               <ListCards deleteCard={isDelete} />
-            </Box>         
+            </Box>
             <CardContent
               sx={{
                 display: "flex",
@@ -316,7 +316,7 @@ const SelectCard = () => {
                   marginTop: "10px",
                 }}
               >
-              Continuar
+                Continuar
               </Button>
               <Snackbar
                 open={open}
@@ -384,7 +384,7 @@ const SelectCard = () => {
                 paddingLeft: "15px",
               }}
               variant="h6"
-              
+
             >
               Seleccionar tarjeta
             </Typography>
@@ -393,7 +393,7 @@ const SelectCard = () => {
             marginBottom: "1rem",
           }} >
             <ListCards deleteCard={isDelete} />
-          </Box>          
+          </Box>
           <CardContent
             sx={{
               display: "flex",
@@ -458,7 +458,7 @@ const SelectCard = () => {
                 elevation={6}
                 variant="filled"
               >
-                  No se pueden Agregar mas de 10 Tarjetas
+                No se pueden Agregar mas de 10 Tarjetas
               </MuiAlert>
             </Snackbar>
             <Snackbar
@@ -472,9 +472,9 @@ const SelectCard = () => {
                 elevation={6}
                 variant="filled"
               >
-                  Debe Seleccionar una tarjeta para Continuar
+                Debe Seleccionar una tarjeta para Continuar
               </MuiAlert>
-            </Snackbar> 
+            </Snackbar>
             <Snackbar
               open={isContinuarExpiredCard}
               autoHideDuration={3000}
@@ -490,7 +490,7 @@ const SelectCard = () => {
               </MuiAlert>
             </Snackbar>
 
-              
+
           </CardContent>
         </Card>
       )}

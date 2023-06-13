@@ -1,13 +1,13 @@
 import { ReactElement, ReactNode } from "react";
 import { Box } from "@mui/material";
 import { NextPageWithLayout } from "../../_app";
-import AliasCVU from "../../../components/AliasCVU/alias-cvu";
 import Layout from "../../../layout/layout";
 import AddMoneyOption from "../../../components/AddMoneyQuantity/addMoneyQuantity";
 interface PropsType {
   children?: ReactNode;
 }
 const AddMoneyTransaction: NextPageWithLayout<PropsType> = () => {
+
   return (
     <>
       <Box

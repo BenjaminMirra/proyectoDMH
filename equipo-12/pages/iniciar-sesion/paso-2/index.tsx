@@ -83,7 +83,9 @@ const Password: NextPageWithLayout<PropsType> = () => {
                 });
             });
           setErrorLogin(false);
-          router.push("/inicio");
+          if (typeof window !== "undefined") {
+            window.location.href = "/inicio";
+          }
         });
     } catch (error) {
       console.error(error);

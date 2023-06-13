@@ -2,20 +2,18 @@ import { useEffect, useState } from "react";
 import Card from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import InputMask from "react-input-mask";
-import { TextField, Button, Box, Paper, Alert } from "@mui/material";
+import { Button, Box, Paper, Alert } from "@mui/material";
 import Link from "next/link";
 import axios from "axios";
 import { styled } from "@mui/material/styles";
 import catchError from "../../services/creditCard/handle-credit-cards-errors";
-import { useUserData } from "../../context/createContext";
 import { useRouter } from "next/router";
 
 const CreditCard = () => {
   const router = useRouter();
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [success, setSuccess] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-  const { account } = useUserData();
   const [cvc, setCvc] = useState("");
   const [expiry, setExpiry] = useState("");
   const [focused, setFocused] = useState(undefined);
@@ -46,34 +44,35 @@ const CreditCard = () => {
       setError("Por favor, complete todos los campos");
     } else {
       const token = localStorage.getItem("token");
+      const account_id = localStorage.getItem("accountId");
+      const infoData = {
+        cod: parseInt(cvc),
+        expiration_date: expiry,
+        first_last_name: name,
+        number_id: parseInt(number),
+      };
       try {
-        await axios
-          .post(
-            `https://digitalmoney.ctd.academy/api/accounts/${account.id}/cards`,
-            {
-              cod: parseInt(cvc),
-              expiration_date: expiry,
-              first_last_name: name,
-              number_id: parseInt(number),
-            },
-            {
-              headers: {
-                Authorization: token,
-              },
-            }
-          )
+        const config = {
+          method: "post",
+          url: `https://digitalmoney.ctd.academy/api/accounts/${account_id}/cards`,
+          headers: {
+            Authorization: token,
+            "Content-Type": "application/json",
+          },
+          data: infoData,
+        };
+        axios
+          .request(config)
           .then((response) => {
-            setSuccess("Operación realizada con éxito");
-            setError("");
-            setTimeout(() => {
-              router.push("/listar-tarjetas");
-            }, 3000);
+            setSuccess(true);
+            router.push("listar-tarjetas");
+            return response;
           });
+
       } catch (error) {
         console.error(error);
         const errorMessage = catchError(error);
         setError(errorMessage);
-        return;
       }
     }
   };
@@ -112,7 +111,7 @@ const CreditCard = () => {
           {error}
         </Alert>
       )}
-      {success !== "" && (
+      {success && (
         <Alert
           severity="success"
           sx={{

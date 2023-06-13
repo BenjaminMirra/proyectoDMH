@@ -7,7 +7,7 @@ import { NextPage } from "next";
 import UseContextProvider from "../provider/userProvider";
 import { UserProvider } from "../context/createContext";
 import { UserProviderNew } from "../context/userContext";
-
+import { AccountProviderNew } from "../context/accountContext";
 
 export type NextPageWithLayout<T> = NextPage<T> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -23,11 +23,13 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <ThemeProvider theme={theme}>
       <UserProvider>
-        <UserProviderNew>
-          <UseContextProvider>
-            {getLayout(<Component {...pageProps} />)}
-          </UseContextProvider>
-        </UserProviderNew>
+        <AccountProviderNew>
+          <UserProviderNew>
+            <UseContextProvider>
+              {getLayout(<Component {...pageProps} />)}
+            </UseContextProvider>
+          </UserProviderNew>
+        </AccountProviderNew>
       </UserProvider>
     </ThemeProvider>
   );
