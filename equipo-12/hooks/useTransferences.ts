@@ -8,10 +8,9 @@ const useTransferences = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const account = localStorage.getItem("accountId");
-
     const configTransferences = {
       method: "get",
-      url: `https://digitalmoney.ctd.academy/api/accounts/${account}/transferences`,
+      url: `https://digitalmoney.ctd.academy/api/accounts/${account}/activity`,
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
@@ -25,7 +24,7 @@ const useTransferences = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [transferences]);
+  }, []);
 
   return [transferences];
 };
