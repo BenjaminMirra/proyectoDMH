@@ -7,6 +7,7 @@ import ActivityItem from "../../components/Activity/activityItem";
 import { useStyles } from "../../material-theme";
 import { ITransference } from "../../types";
 import { Search } from "@mui/icons-material";
+import FilterMenu from "../../components/Activity/filterMenu";
 
 interface PropsType {
   children?: ReactNode;
@@ -15,18 +16,39 @@ interface PropsType {
 const Actividad: NextPageWithLayout<PropsType> = () => {
   const [activity, setActivity] = useState<ITransference[]>();
   const [search, setSearch] = useState("");
+  const [operation, setOperation] = useState();
+  const [period, setPeriod] = useState(-1);
+
   const [transferences] = useTransferences();
   const classes = useStyles();
 
-  function sortByDate(array: any) {
+  function sortByDate(array: ITransference[]) {
     return array?.sort(function (a: any, b: any) {
       return +new Date(b.dated) - +new Date(a.dated);
     });
   }
-  function filterBySearch(array: any) {
+  function filterBySearch(array: ITransference[]) {
     return array.filter((activityOperation: ITransference) => {
       return activityOperation.description.includes(search);
     });
+  }
+  function filterByPeriod(array: ITransference[]) {
+    const start = new Date();
+    if (period <= 1) {
+      return array.filter((activityOperation: ITransference) => {
+        return (
+          new Date(activityOperation.dated).getDate() ==
+          start.getDate() - period
+        );
+      });
+    } else if (period > 1) {
+      return array.filter((activityOperation: ITransference) => {
+        return (
+          new Date(activityOperation.dated).getDate() >=
+          start.getDate() - period
+        );
+      });
+    }
   }
 
   const handleSearch = (event: any) => {
@@ -34,6 +56,7 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
   };
 
   useEffect(() => {
+    console.log(period);
     let array;
     if (true) {
       array = sortByDate(transferences);
@@ -41,8 +64,11 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
     if (search != "") {
       array = filterBySearch(array);
     }
+    if (period != -1) {
+      array = filterByPeriod(array);
+    }
     setActivity(array);
-  }, [search, transferences]);
+  }, [search, transferences, period]);
 
   return (
     <Box>
@@ -75,6 +101,12 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
           })}
         </List>
       </Box>
+      <FilterMenu
+        operation={operation}
+        setOperation={setOperation}
+        period={period}
+        setPeriod={setPeriod}
+      />
     </Box>
   );
 };
