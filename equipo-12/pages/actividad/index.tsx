@@ -1,5 +1,13 @@
 /* eslint-disable react/no-children-prop */
-import { Box, Button, Divider, InputAdornment, List, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Divider,
+  InputAdornment,
+  List,
+  TextField,
+  Typography,
+} from "@mui/material";
 import useTransferences from "../../hooks/useTransferences";
 import Layout from "../../layout/layout";
 import { NextPageWithLayout } from "../_app";
@@ -23,6 +31,7 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
   const [operation, setOperation] = useState("");
   const [period, setPeriod] = useState(-1);
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [amount, setAmount] = useState<any>(0);
 
   const [transferences] = useTransferences();
   const classes = useStyles();
@@ -62,6 +71,54 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
     });
   }
 
+  function filterByAmount(array: ITransference[] | any) {
+    if (amount[0] === 0) {
+      return array.filter((activityOperation: ITransference) => {
+        return (
+          activityOperation.amount < 1000 && activityOperation.amount > -1000
+        );
+      });
+    }
+    if (amount[0] === 1000) {
+      return array.filter((activityOperation: ITransference) => {
+        return (
+          (activityOperation.amount >= 1000 &&
+            activityOperation.amount < 5000) ||
+          (activityOperation.amount <= -1000 &&
+            activityOperation.amount > -5000)
+        );
+      });
+    }
+    if (amount[0] === 5000) {
+      return array.filter((activityOperation: ITransference) => {
+        return (
+          (activityOperation.amount >= 5000 &&
+            activityOperation.amount < 20000) ||
+          (activityOperation.amount <= -5000 &&
+            activityOperation.amount > -20000)
+        );
+      });
+    }
+    if (amount[0] === 20000) {
+      return array.filter((activityOperation: ITransference) => {
+        return (
+          (activityOperation.amount >= 20000 &&
+            activityOperation.amount < 100000) ||
+          (activityOperation.amount <= -20000 &&
+            activityOperation.amount > -100000)
+        );
+      });
+    }
+    if (amount[0] === 100000) {
+      return array.filter((activityOperation: ITransference) => {
+        return (
+          activityOperation.amount >= 100000 ||
+          activityOperation.amount < -100000
+        );
+      });
+    }
+  }
+
   const handleSearch = (event: any) => {
     setSearch(event.target.value);
   };
@@ -90,8 +147,11 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
     if (operation != "") {
       array = filterByOperationType(array);
     }
+    if (amount != 0) {
+      array = filterByAmount(array);
+    }
     setActivity(array);
-    setOpenModal(false)
+    setOpenModal(false);
   };
 
   const handleDeleteFilter = () => {
@@ -101,13 +161,14 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
       array = sortByDate(transferences);
     }
     setActivity(array);
-    setOpenModal(false)
+    setOpenModal(false);
   };
 
   const handleOpenModalFilter = () => {
     setOpenModal(!openModal);
     setPeriod(-1);
     setOperation("");
+    setAmount([]);
   };
 
   return (
@@ -131,47 +192,70 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
         }}
       ></Box>
 
-      <Box sx={{
-        width: "100%", paddingTop: "50px", paddingLeft: "50px", paddingRight: "50px",
-        display: "flex",
-        flexDirection: "column",
-        backgroundColor: "var(--light-grey)",
-        paddingBottom: "30px"
-      }}>
+      <Box
+        sx={{
+          width: "100%",
+          paddingTop: "50px",
+          paddingLeft: "50px",
+          paddingRight: "50px",
+          display: "flex",
+          flexDirection: "column",
+          backgroundColor: "var(--light-grey)",
+          paddingBottom: "30px",
+        }}
+      >
         <ArrowSubtitleMobile title="Inicio"></ArrowSubtitleMobile>
         <Box>
-          <Box sx={{
-            display: "flex",
-            flexDirection: "row",
-            gap: "21px",
-            paddingBottom: "20px",
-            "@media (max-width: 768px)": {
-              paddingTop: "20px"
-            },
-          }}>
-            <form style={{
-              width: "100%", height: "100%",
-              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.1)",
-              borderRadius: "10px",
-            }} onChange={handleSearch}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "21px",
+              paddingBottom: "20px",
+              "@media (max-width: 768px)": {
+                paddingTop: "20px",
+              },
+            }}
+          >
+            <form
+              style={{
+                width: "100%",
+                height: "100%",
+                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.1)",
+                borderRadius: "10px",
+              }}
+              onChange={handleSearch}
+            >
               <TextField
                 size="medium"
-                sx={{ width: "100%", maxWidth: "100%", backgroundColor: "#FFF", height: "100%", borderRadius: "10px", }}
+                sx={{
+                  width: "100%",
+                  maxWidth: "100%",
+                  backgroundColor: "#FFF",
+                  height: "100%",
+                  borderRadius: "10px",
+                }}
                 className={classes.textField}
                 placeholder="Buscar en tu actividad"
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position="start" sx={{
-                      backgroundColor: "#FFF",
-                      height: "100%"
-                    }}>
+                    <InputAdornment
+                      position="start"
+                      sx={{
+                        backgroundColor: "#FFF",
+                        height: "100%",
+                      }}
+                    >
                       <Search />
                     </InputAdornment>
                   ),
                 }}
               />
             </form>
-            <Button variant="primary" color="secondary" size="medium"
+            <Button
+              variant="primary"
+              color="secondary"
+              size="medium"
               sx={{
                 height: "56px",
                 display: "flex",
@@ -179,7 +263,7 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
                 justifyContent: "space-around",
                 width: "172px",
                 "@media (max-width: 768px)": {
-                  display: "none"
+                  display: "none",
                 },
               }}
               onClick={handleOpenModalFilter}
@@ -194,70 +278,88 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
               width: "100%",
               backgroundColor: "#FFF",
               borderRadius: "10px",
-              boxShadow: "0px 4px 4px #0000004c"
+              boxShadow: "0px 4px 4px #0000004c",
             }}
           >
-            <Box sx={{
-              display: "flex",
-              padding: "18px",
-              justifyContent: "space-between",
-              alignItems: "center",
-              "@media (min-width: 768px)": {
-                display: "none"
-              }
-            }}>
-              <Typography sx={{
-                fontWeight: "700",
-                fontSize: "16px",
-                lineHeight: "22px"
-              }}>
+            <Box
+              sx={{
+                display: "flex",
+                padding: "18px",
+                justifyContent: "space-between",
+                alignItems: "center",
+                "@media (min-width: 768px)": {
+                  display: "none",
+                },
+              }}
+            >
+              <Typography
+                sx={{
+                  fontWeight: "700",
+                  fontSize: "16px",
+                  lineHeight: "22px",
+                }}
+              >
                 Tu Actividad
               </Typography>
-              <Box sx={{
-                display: "flex",
-                flexDirection: "row",
-                gap: 2,
-              }}>
-                <Typography sx={{
-                  fontWeight: "600",
-                  fontSize: "16px",
-                  lineWeight: "100%",
-                  textDecorationLine: "underline"
-                }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: 2,
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontWeight: "600",
+                    fontSize: "16px",
+                    lineWeight: "100%",
+                    textDecorationLine: "underline",
+                  }}
+                >
                   Filtrar
                 </Typography>
                 <Tune />
               </Box>
-
             </Box>
-            <Divider sx={{
-              "@media (min-width: 768px)": {
-                display: "none"
-              }
-            }} variant="middle"></Divider>
+            <Divider
+              sx={{
+                "@media (min-width: 768px)": {
+                  display: "none",
+                },
+              }}
+              variant="middle"
+            ></Divider>
             <List sx={{ width: "100%" }}>
               {activity?.map((activityItem, idx) => {
                 return (
                   <React.Fragment key={idx}>
                     <ActivityItem key={idx} activityData={activityItem} />
-                    {idx !== activity.length - 1 && <Divider variant="middle" />}
+                    {idx !== activity.length - 1 && (
+                      <Divider variant="middle" />
+                    )}
                   </React.Fragment>
                 );
               })}
             </List>
           </Box>
         </Box>
-        <FilterModal children={
-          <FilterMenu
-            handleDeleteFilter={handleDeleteFilter}
-            handleSubmitFilter={handleSubmitFilter}
-            operation={operation}
-            setOperation={setOperation}
-            period={period}
-            setPeriod={setPeriod}
-          />
-        } open={openModal} setOpen={setOpenModal} />
-      </Box >
+        <FilterModal
+          children={
+            <FilterMenu
+              handleDeleteFilter={handleDeleteFilter}
+              handleSubmitFilter={handleSubmitFilter}
+              operation={operation}
+              setOperation={setOperation}
+              period={period}
+              setPeriod={setPeriod}
+              amount={amount}
+              setAmount={setAmount}
+            />
+          }
+          open={openModal}
+          setOpen={setOpenModal}
+        />
+      </Box>
     </>
   );
 };
