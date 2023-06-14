@@ -220,9 +220,9 @@ const FilterMenu = (props: any) => {
               pl: 4,
               width: "100%",
               justifyContent: "space-between"
-            }} onClick={() => handleClickOperation("Transaction")}>
+            }} onClick={() => handleClickOperation("Deposit")}>
 
-              {operation === "Transaction" ?
+              {operation === "Deposit" ?
                 <>
                   <Typography sx={{
                     fontWeight: "900"
@@ -246,8 +246,8 @@ const FilterMenu = (props: any) => {
               pl: 4,
               width: "100%",
               justifyContent: "space-between"
-            }} onClick={() => handleClickOperation("Deposit")}>
-              {operation === "Deposit" ?
+            }} onClick={() => handleClickOperation("Transfer")}>
+              {operation === "Transfer" ?
                 <>
                   <Typography sx={{
                     fontWeight: "900"

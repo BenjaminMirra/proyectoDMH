@@ -85,12 +85,13 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
       array = sortByDate(transferences);
     }
     if (period != -1) {
-      array = filterByPeriod(transferences);
+      array = filterByPeriod(array);
     }
     if (operation != "") {
-      array = filterByOperationType(transferences);
+      array = filterByOperationType(array);
     }
     setActivity(array);
+    setOpenModal(false)
   };
 
   const handleDeleteFilter = () => {
@@ -100,10 +101,13 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
       array = sortByDate(transferences);
     }
     setActivity(array);
+    setOpenModal(false)
   };
 
   const handleOpenModalFilter = () => {
     setOpenModal(!openModal);
+    setPeriod(-1);
+    setOperation("");
   };
 
   return (
