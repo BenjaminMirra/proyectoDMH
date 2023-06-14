@@ -14,12 +14,13 @@ import MuiAlert from "@mui/material/Alert";
 import { useEffect, useState } from "react";
 import useDeviceSize from "../../hooks/useDeviceSize";
 import axios from "axios";
+import { ListItemData } from "./IListCard";
+
 const AddCard = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [width] = useDeviceSize();
   const [listCard, setListCard] = useState<ListItemData[]>([]);
-
   useEffect(() => {
     if (localStorage.getItem("userId") !== null) {
       const token = localStorage.getItem("token");
@@ -41,12 +42,11 @@ const AddCard = () => {
           console.log(error);
         });
     }
-  }, []);
+  }, [listCard]);
 
   const handleClick = () => {
-    console.log("error" + listCard?.length);
     if (listCard?.length < 10) {
-      router.push("/agregar-tarjeta");
+      router.push("/agregar-tarjeta?listar=true");
     } else {
       setOpen(true);
     }
@@ -353,7 +353,3 @@ const AddCard = () => {
 };
 
 export default AddCard;
-
-/* function setListCard(data: any) {
-  throw new Error("Function not implemented.");
-} */

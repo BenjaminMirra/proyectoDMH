@@ -24,7 +24,7 @@ const Footer = () => {
           },
         }}
       >
-        © 2022 Digital Money House
+        © 2023 Digital Money House
       </Typography>
     </Box>
   );

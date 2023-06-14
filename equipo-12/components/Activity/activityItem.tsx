@@ -34,10 +34,9 @@ const ActivityItem = (props: any) => {
             alignItems: "flex-end",
           }}
           primary={`$ ${activityData?.amount}`}
-          secondary="sabado"
+          secondary="sábado"
         />
       </ListItem>
-      <Divider variant="middle"></Divider>
     </>
   );
 };

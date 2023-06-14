@@ -3,6 +3,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Card, Box, Typography, IconButton } from "@mui/material";
 import Link from "next/link";
 import { useState, useContext } from "react";
+import { useAccountContext } from "../../context/accountContext";
 
 const AvailableAmount = () => {
   const [isVisibility, setIsVisibility] = useState<boolean>(true);
@@ -12,7 +13,8 @@ const AvailableAmount = () => {
 
   const data = useContext(UserContext);
 
-  const { available_amount } = data.account;
+  const { accountInfo } = useAccountContext();
+
   return (
     <Card variant="outlined" sx={{ width: "100%", "@media (max-width: 768px)": { padding: "20px" } }}>
       <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end", gap: "10px", flexWrap: "wrap" }}>
@@ -29,7 +31,7 @@ const AvailableAmount = () => {
           $
           {
             isVisibility
-              ? "0,00"
+              ? `${accountInfo.available_amount},00`
               : "***"
           } ARS
         </Typography>

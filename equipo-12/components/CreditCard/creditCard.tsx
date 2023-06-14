@@ -2,18 +2,19 @@ import { useEffect, useState } from "react";
 import Card from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import InputMask from "react-input-mask";
-import { Button, Box, Paper, Alert } from "@mui/material";
+import { Button, Box, Alert } from "@mui/material";
 import Link from "next/link";
 import axios from "axios";
-import { styled } from "@mui/material/styles";
 import catchError from "../../services/creditCard/handle-credit-cards-errors";
 import { useRouter } from "next/router";
-
-const CreditCard = () => {
+interface PropsCard {
+  listar: boolean; 
+}
+const CreditCard = ({listar}: PropsCard) => {
   const router = useRouter();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isDisabled] = useState(false);
   const [cvc, setCvc] = useState("");
   const [expiry, setExpiry] = useState("");
   const [focused, setFocused] = useState(undefined);
@@ -65,7 +66,11 @@ const CreditCard = () => {
           .request(config)
           .then((response) => {
             setSuccess(true);
-            router.push("listar-tarjetas");
+            if (listar) {
+              router.push("/listar-tarjetas");
+            } else {
+              router.push("/cargar-dinero/cargar-dinero-tarjeta");
+            }
             return response;
           });
 
@@ -77,13 +82,6 @@ const CreditCard = () => {
     }
   };
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
 
   return (
     <>
@@ -99,7 +97,7 @@ const CreditCard = () => {
         expiry={expiry}
         cvc={cvc}
         focused={focused}
-        callback={console.log}
+        
       />
       {error !== "" && (
         <Alert
@@ -118,7 +116,7 @@ const CreditCard = () => {
             marginTop: "30px",
           }}
         >
-          {success}
+          {"Se agrego la tarjeta"}
         </Alert>
       )}
       <form

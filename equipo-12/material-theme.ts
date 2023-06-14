@@ -216,25 +216,6 @@ export const theme = createTheme({
       ]
     }
     ,
-    MuiTextField: {
-      styleOverrides: {
-        root: {
-          width: "100%",
-          maxWidth: "360px",
-          input: {
-            borderRadius: "10px",
-            backgroundColor: "var(--main-text-color)",
-            color: "var(--main-bg-color)",
-            "@media only screen and (max-width: 768px)": {
-              height: "17px",
-            },
-            "@media only screen and (min-width: 768px)": {
-              height: "31px",
-            },
-          },
-        },
-      },
-    },
   },
 });
 

@@ -1,78 +1,282 @@
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import {
+  Box,
+  Button,
   Collapse,
   List,
   ListItemButton,
-  ListItemIcon,
   ListItemText,
   Typography,
 } from "@mui/material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import { useState } from "react";
-import StarBorder from "@mui/icons-material/StarBorder";
+import { CircleOutlined } from "@mui/icons-material";
+import { RadioButtonChecked } from "@mui/icons-material";
 
 const FilterMenu = (props: any) => {
-  const { setPeriod, period } = props;
-  const [open1, setOpen1] = useState(true);
-  const [open2, setOpen2] = useState(true);
+  const { setPeriod, period, operation, setOperation, handleSubmitFilter, handleDeleteFilter } = props;
+  const [openPeriod, setOpenPeriod] = useState(true);
+  const [openOperation, setOpenOperation] = useState(false);
+  const [filterSelected, setFilterSelected] = useState(false);
 
   const handleClick1 = () => {
-    setOpen1(!open1);
-    setOpen2(false);
+    setOpenPeriod(!openPeriod);
+    setOpenOperation(false);
   };
   const handleClick2 = () => {
-    setOpen2(!open2);
-    setOpen1(false);
+    setOpenOperation(!openOperation);
+    setOpenPeriod(false);
   };
 
   const handleClickPeriod = (value: number) => {
     setPeriod(value);
+    setFilterSelected(!filterSelected);
+  };
+
+  const handleClickOperation = (value: string) => {
+    setOperation(value);
+    setFilterSelected(!filterSelected);
+  };
+
+  const handleClickDeleteFilters = () => {
+    setOperation("");
+    setPeriod(-1);
+    setFilterSelected(false);
+    handleDeleteFilter();
   };
 
   return (
-    <List>
-      <ListItemButton onClick={handleClick1}>
-        <ListItemText primary="Periodo" />
-        {open1 ? <ExpandLess /> : <ExpandMore />}
-      </ListItemButton>
-      <Collapse in={open1} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 4 }} onClick={() => handleClickPeriod(0)}>
-            <Typography>Hoy</Typography>
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }} onClick={() => handleClickPeriod(1)}>
-            <Typography>Ayer</Typography>
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }} onClick={() => handleClickPeriod(7)}>
-            <Typography>Última semana</Typography>
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }} onClick={() => handleClickPeriod(14)}>
-            <Typography>Últimos 15 días</Typography>
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }} onClick={() => handleClickPeriod(30)}>
-            <Typography>Último mes</Typography>
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }} onClick={() => handleClickPeriod(90)}>
-            <Typography>Últimos 3 meses</Typography>
-          </ListItemButton>
-        </List>
-      </Collapse>
+    <Box>
+      <List>
+        <ListItemButton onClick={handleClick1}>
+          <ListItemText primary="Período" />
+          {openPeriod ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={openPeriod} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton
+              sx={{
+                pl: 4,
+                width: "100%",
+                justifyContent: "space-between"
+              }}
 
-      <ListItemButton onClick={handleClick2}>
-        <ListItemText primary="Operacion" />
-        {open2 ? <ExpandLess /> : <ExpandMore />}
-      </ListItemButton>
-      <Collapse in={open2} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 4 }} onClick={() => handleClickPeriod(0)}>
-            <Typography>Hoy</Typography>
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }} onClick={() => handleClickPeriod(1)}>
-            <Typography>Ayer</Typography>
-          </ListItemButton>
-        </List>
-      </Collapse>
-    </List>
+              onClick={() => handleClickPeriod(0)}>
+              {period === 0 ?
+                <>
+                  <Typography sx={{
+                    fontWeight: "900"
+                  }}>
+                    Hoy
+                  </Typography>
+                  <RadioButtonChecked />
+                </>
+                :
+                <>
+                  <Typography sx={{
+                    fontWeight: "100px"
+                  }}>
+                    Hoy
+                  </Typography>
+                  <CircleOutlined />
+                </>
+              }
+            </ListItemButton>
+            <ListItemButton sx={{
+              pl: 4,
+              width: "100%",
+              justifyContent: "space-between"
+            }} onClick={() => handleClickPeriod(1)}>
+              {period === 1 ?
+                <>
+                  <Typography sx={{
+                    fontWeight: "900"
+                  }}>
+                    Ayer
+                  </Typography>
+                  <RadioButtonChecked />
+                </>
+                :
+                <>
+                  <Typography sx={{
+                    fontWeight: "100px"
+                  }}>
+                    Ayer
+                  </Typography>
+                  <CircleOutlined />
+                </>
+              }
+            </ListItemButton>
+            <ListItemButton sx={{
+              pl: 4,
+              width: "100%",
+              justifyContent: "space-between"
+            }} onClick={() => handleClickPeriod(7)}>
+              {period === 7 ?
+                <>
+                  <Typography sx={{
+                    fontWeight: "900"
+                  }}>
+                    Última semana
+                  </Typography>
+                  <RadioButtonChecked />
+                </>
+                :
+                <>
+                  <Typography sx={{
+                    fontWeight: "100px"
+                  }}>
+                    Última semana
+                  </Typography>
+                  <CircleOutlined />
+                </>
+              }
+            </ListItemButton>
+            <ListItemButton sx={{
+              pl: 4,
+              width: "100%",
+              justifyContent: "space-between"
+            }} onClick={() => handleClickPeriod(14)}>
+              {period === 14 ?
+                <>
+                  <Typography sx={{
+                    fontWeight: "900"
+                  }}>
+                    Últimos 15 días
+                  </Typography>
+                  <RadioButtonChecked />
+                </>
+                :
+                <>
+                  <Typography sx={{
+                    fontWeight: "100px"
+                  }}>
+                    Últimos 15 días
+                  </Typography>
+                  <CircleOutlined />
+                </>
+              }
+            </ListItemButton>
+            <ListItemButton sx={{
+              pl: 4,
+              width: "100%",
+              justifyContent: "space-between"
+            }} onClick={() => handleClickPeriod(30)}>
+              {period === 30 ?
+                <>
+                  <Typography sx={{
+                    fontWeight: "900"
+                  }}>
+                    Último mes
+                  </Typography>
+                  <RadioButtonChecked />
+                </>
+                :
+                <>
+                  <Typography sx={{
+                    fontWeight: "100px"
+                  }}>
+                    Último mes
+                  </Typography>
+                  <CircleOutlined />
+                </>
+              }
+            </ListItemButton>
+            <ListItemButton sx={{
+              pl: 4,
+              width: "100%",
+              justifyContent: "space-between"
+            }} onClick={() => handleClickPeriod(90)}>
+              {period === 90 ?
+                <>
+                  <Typography sx={{
+                    fontWeight: "900"
+                  }}>
+                    Últimos 3 meses
+                  </Typography>
+                  <RadioButtonChecked />
+                </>
+                :
+                <>
+                  <Typography sx={{
+                    fontWeight: "100px"
+                  }}>
+                    Últimos 3 meses
+                  </Typography>
+                  <CircleOutlined />
+                </>
+              }
+
+            </ListItemButton>
+          </List>
+        </Collapse>
+
+        <ListItemButton onClick={handleClick2}>
+          <ListItemText primary="Operación" />
+          {openOperation ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={openOperation} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton sx={{
+              pl: 4,
+              width: "100%",
+              justifyContent: "space-between"
+            }} onClick={() => handleClickOperation("Transaction")}>
+
+              {operation === "Transaction" ?
+                <>
+                  <Typography sx={{
+                    fontWeight: "900"
+                  }}>
+                    Ingresos
+                  </Typography>
+                  <RadioButtonChecked />
+                </>
+                :
+                <>
+                  <Typography sx={{
+                    fontWeight: "100px"
+                  }}>
+                    Ingresos
+                  </Typography>
+                  <CircleOutlined />
+                </>
+              }
+            </ListItemButton>
+            <ListItemButton sx={{
+              pl: 4,
+              width: "100%",
+              justifyContent: "space-between"
+            }} onClick={() => handleClickOperation("Deposit")}>
+              {operation === "Deposit" ?
+                <>
+                  <Typography sx={{
+                    fontWeight: "900"
+                  }}>
+                    Egresos
+                  </Typography>
+                  <RadioButtonChecked />
+                </>
+                :
+                <>
+                  <Typography sx={{
+                    fontWeight: "100px"
+                  }}>
+                    Egresos
+                  </Typography>
+                  <CircleOutlined />
+                </>
+              }
+            </ListItemButton>
+          </List>
+        </Collapse>
+      </List>
+      <Button onClick={handleSubmitFilter} sx={{ marginBottom: "10px" }} variant="primary" color="secondary" size="large">
+        Aplicar
+      </Button>
+      <Button onClick={handleClickDeleteFilters} variant="secondary" color="primary" size="large">
+        Resetear Filtros
+      </Button>
+    </Box>
   );
 };
 
