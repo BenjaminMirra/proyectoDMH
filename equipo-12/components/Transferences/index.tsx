@@ -20,7 +20,7 @@ const Transferences = () => {
 
   return (
     <>
-      <form style={{ width: "100%" }} onSubmit={handleSearch}>
+      <form style={{ width: "100%", borderRadius: "10px" }} onSubmit={handleSearch}>
         <TextField
           size="medium"
           sx={{ width: "100%", maxWidth: "100%", backgroundColor: "#FFF", }}
