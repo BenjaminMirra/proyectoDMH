@@ -8,12 +8,12 @@ import axios from "axios";
 import catchError from "../../services/creditCard/handle-credit-cards-errors";
 import { useRouter } from "next/router";
 interface PropsCard {
-  listar: boolean; 
+  listar: boolean;
 }
-const CreditCard = ({listar}: PropsCard) => {
+const CreditCard = ({ listar }: PropsCard) => {
   const router = useRouter();
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [errorAlert, setErrorAlert] = useState("");
+  const [success, setSuccess] = useState("");
   const [isDisabled] = useState(false);
   const [cvc, setCvc] = useState("");
   const [expiry, setExpiry] = useState("");
@@ -42,7 +42,7 @@ const CreditCard = ({listar}: PropsCard) => {
 
   const onSubmit = async () => {
     if (state.cvc === "" || state.name === "" || state.number === "") {
-      setError("Por favor, complete todos los campos");
+      setErrorAlert("Por favor, complete todos los campos");
     } else {
       const token = localStorage.getItem("token");
       const account_id = localStorage.getItem("accountId");
@@ -65,23 +65,26 @@ const CreditCard = ({listar}: PropsCard) => {
         axios
           .request(config)
           .then((response) => {
-            setSuccess(true);
+            setSuccess("Tarjeta agregada");
+            setErrorAlert("");
             if (listar) {
               router.push("/listar-tarjetas");
             } else {
               router.push("/cargar-dinero/cargar-dinero-tarjeta");
             }
-            return response;
+          })
+          .catch(function (error) {
+            const errorMessage = catchError(error);
+            setErrorAlert(errorMessage);
           });
-
       } catch (error) {
-        console.error(error);
-        const errorMessage = catchError(error);
-        setError(errorMessage);
+
+        console.log(error);
+
+        return;
       }
     }
   };
-
 
   return (
     <>
@@ -97,26 +100,25 @@ const CreditCard = ({listar}: PropsCard) => {
         expiry={expiry}
         cvc={cvc}
         focused={focused}
-        
       />
-      {error !== "" && (
+      {errorAlert !== "" && (
         <Alert
           severity="error"
           sx={{
             marginTop: "30px",
           }}
         >
-          {error}
+          {errorAlert}
         </Alert>
       )}
-      {success && (
+      {success !== "" && (
         <Alert
           severity="success"
           sx={{
             marginTop: "30px",
           }}
         >
-          {"Se agrego la tarjeta"}
+          {success}
         </Alert>
       )}
       <form
