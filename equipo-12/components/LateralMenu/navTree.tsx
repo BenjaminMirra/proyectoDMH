@@ -1,7 +1,7 @@
 import styles from "./lateralMenu.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import axios from "axios";
 
 const NavTree = (props: any) => {
@@ -45,8 +45,18 @@ const NavTree = (props: any) => {
       <Link className={active(["/cargar-dinero", "/cargar-dinero/cargar-dinero-transferencia", "/cargar-dinero/cargar-dinero-tarjeta", "/cargar-dinero/ingresar-dinero", "/cargar-dinero/confirmar-info", "/cargar-dinero/exitosa-carga"])} href="/cargar-dinero">Cargar Dinero</Link>
       <Link className={active(["/pagarservicios"])} href="/inicio">Pagar Servicios</Link>
       <Link className={active(["/listar-tarjetas", "/agregar-tarjeta"])} href="/listar-tarjetas">Tarjetas</Link>
-      <Link href="/">
-        <button onClick={() => { logout(); }}>Cerrar sesión</button>
+      <Link style={{
+        margin: 0
+      }} href="/">
+        <Button sx={{
+          p: 0,
+          margin: 0,
+          display: "flex",
+          justifyContent: "flex-start",
+          "&:hover": {
+            backgroundColor: "transparent",
+          },
+        }} onClick={() => { logout(); }}>Cerrar sesión</Button>
       </Link>
     </Box>
   );
