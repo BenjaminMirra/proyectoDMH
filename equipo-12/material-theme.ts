@@ -214,8 +214,7 @@ export const theme = createTheme({
           }
         }
       ]
-    }
-    ,
+    },
   },
 });
 
@@ -244,4 +243,17 @@ export const useStyles = makeStyles((theme: { spacing: (arg0: number) => any; pa
       color: "#888888",
     },
   },
+  textFieldFilter: {
+    width: "100%",
+    "& .MuiOutlinedInput-root": {
+      height: "56px",
+      boxShadow: "0px 4px 4px #0000004c",
+      backgroundColor: "white",
+    },
+    "& .MuiInputBase-input": {
+      width: "100%",
+      borderRadius: "8px",
+      backgroundColor: "white",
+    },
+  }
 }));

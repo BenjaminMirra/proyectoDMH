@@ -24,7 +24,7 @@ const Transferences = () => {
         <TextField
           size="medium"
           sx={{ width: "100%", maxWidth: "100%", backgroundColor: "#FFF", }}
-          className={classes.textField}
+          className={classes.textFieldFilter}
           placeholder="Buscar en tu actividad"
           InputProps={{
             startAdornment: (

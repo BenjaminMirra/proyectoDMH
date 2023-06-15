@@ -175,7 +175,7 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
     <>
       <Box
         sx={{
-          width: "276px",
+          width: "290px",
           height: "100%",
           backgroundColor: "#C1FD35",
           "@media (max-width: 768px)": {
@@ -196,7 +196,7 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
         sx={{
           width: "100%",
           paddingTop: "50px",
-          paddingLeft: "50px",
+          paddingLeft: "80px",
           paddingRight: "50px",
           display: "flex",
           flexDirection: "column",
@@ -229,22 +229,17 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
               <TextField
                 size="medium"
                 sx={{
-                  width: "100%",
                   maxWidth: "100%",
                   backgroundColor: "#FFF",
-                  height: "100%",
+                  height: "56px",
                   borderRadius: "10px",
                 }}
-                className={classes.textField}
+                className={classes.textFieldFilter}
                 placeholder="Buscar en tu actividad"
                 InputProps={{
                   startAdornment: (
                     <InputAdornment
                       position="start"
-                      sx={{
-                        backgroundColor: "#FFF",
-                        height: "100%",
-                      }}
                     >
                       <Search />
                     </InputAdornment>
