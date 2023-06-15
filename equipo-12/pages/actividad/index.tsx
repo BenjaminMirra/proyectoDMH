@@ -6,6 +6,7 @@ import {
   InputAdornment,
   Link,
   List,
+  Pagination,
   TextField,
   Typography,
 } from "@mui/material";
@@ -33,9 +34,15 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
   const [period, setPeriod] = useState(-1);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [amount, setAmount] = useState<any>(0);
+  const [offset, setOffset] = useState(1);
+  const PAGINATION_LIMIT = 10;
 
   const [transferences] = useTransferences();
   const classes = useStyles();
+
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setOffset(value);
+  };
 
   function sortByDate(array: ITransference[]) {
     return array?.sort(function (a: any, b: any) {
@@ -44,7 +51,7 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
   }
   function filterBySearch(array: ITransference[]) {
     return array.filter((activityOperation: ITransference) => {
-      return activityOperation.description.includes(search);
+      return activityOperation.description.toLowerCase().includes(search.toLowerCase());
     });
   }
   function filterByPeriod(array: ITransference[] | any) {
@@ -133,6 +140,7 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
     if (search != "") {
       array = filterBySearch(array);
     }
+    setOffset(1)
     setActivity(array);
   }, [search, transferences]);
 
@@ -151,6 +159,7 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
     if (amount != 0) {
       array = filterByAmount(array);
     }
+    setOffset(1)
     setActivity(array);
     setOpenModal(false);
   };
@@ -171,6 +180,10 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
     setOperation("");
     setAmount([]);
   };
+
+  const handleCloseModal = () =>{
+    setOpenModal(false);
+  }
 
   return (
     <>
@@ -239,9 +252,7 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
                 placeholder="Buscar en tu actividad"
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment
-                      position="start"
-                    >
+                    <InputAdornment position="start">
                       <Search />
                     </InputAdornment>
                   ),
@@ -327,19 +338,36 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
             ></Divider>
             <List sx={{ width: "100%" }}>
               {activity?.map((activityItem, idx) => {
-                return (
-                  <React.Fragment key={idx}>
-                    <Link href={`/transferencias/${activityItem.id}`}
-                      style={{ textDecoration: "none", color: "unset" }}>
-                      <ActivityItem activityData={activityItem} />
+                if (
+                  idx >= (offset - 1) * PAGINATION_LIMIT &&
+                  idx < PAGINATION_LIMIT * offset
+                ) {
+                  return (
+                    <React.Fragment key={idx}>
+                      <ActivityItem key={idx} activityData={activityItem} />
                       {idx !== activity.length - 1 && (
                         <Divider variant="middle" />
                       )}
-                    </Link>
-                  </React.Fragment>
-                );
+                    </React.Fragment>
+                  );
+                }
               })}
             </List>
+            <Pagination
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                padding:"10px 0",                
+              }}
+              color={"secondary"}
+              count={
+                activity !== undefined
+                  ? Math.ceil(activity.length / PAGINATION_LIMIT)
+                  : 0
+              }
+              onChange={handleChange}
+            />
           </Box>
         </Box>
         <FilterModal
@@ -352,11 +380,12 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
               period={period}
               setPeriod={setPeriod}
               amount={amount}
-              setAmount={setAmount}
+              setAmount={setAmount}              
             />
           }
           open={openModal}
           setOpen={setOpenModal}
+          handleCloseModal={handleCloseModal}
         />
       </Box>
     </>

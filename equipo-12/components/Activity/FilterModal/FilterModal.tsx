@@ -1,4 +1,6 @@
-import { Box, Modal, Typography } from "@mui/material";
+import { Box, Button, Modal, Typography } from "@mui/material";
+import { Cancel } from "@mui/icons-material";
+import CloseIcon from "@mui/icons-material/Close";
 
 const style = {
   width: "354px",
@@ -14,7 +16,12 @@ const style = {
   p: 4,
 };
 
-const FilterModal = ({ open, handleClose, children }: any) => {
+const FilterModal = ({
+  open,
+  handleClose,
+  children,
+  handleCloseModal,
+}: any) => {
   return (
     <Modal
       open={open}
@@ -23,6 +30,23 @@ const FilterModal = ({ open, handleClose, children }: any) => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "end",
+            alignItems: "end",
+          }}
+        >
+          <Button onClick={handleCloseModal}>
+            <CloseIcon
+              sx={{
+                fontWeight: "500px",
+                fontSize: "30px",
+                color: "#201F22",
+              }}
+            />
+          </Button>
+        </Box>
         {children}
       </Box>
     </Modal>
