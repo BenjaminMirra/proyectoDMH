@@ -4,7 +4,7 @@ Integrantes del proyecto: Benjamín Mirra, Diana Sauval, Julián París, Maite L
 
 <br>
 
-<img src= "https://ibb.co/5nGJXn3">
+<img src= "https://i.ibb.co/hZLTxZN/logoDMH.png">
 
 <br>
 
@@ -19,7 +19,7 @@ Integrantes del proyecto: Benjamín Mirra, Diana Sauval, Julián París, Maite L
 ## Sprint-1
 
 
-<img src="https://ibb.co/cTKF6x8"><br>
+<img src="https://i.ibb.co/s3pwKt1/imagenS1.png"><br>
 
 
 <img src="https://cdn-icons-png.flaticon.com/512/753/753244.png" width="25" height="25" align="center"> ▫ link a la página ▫
@@ -48,7 +48,7 @@ $ npm start
 En este sprint usamos: <br>
 
 <img src="https://cdn-icons-png.flaticon.com/512/226/226777.png" width="25" height="25" align="center"> Java &nbsp; &nbsp; &nbsp;
-<img src="https://ibb.co/rH4LCKD" width="25" height="25" align="center"> Postman &nbsp; &nbsp; &nbsp;
+<img src="https://i.ibb.co/tD8N7wV/logo-Postman.png" width="25" height="25" align="center"> Postman &nbsp; &nbsp; &nbsp;
 <img src="https://cdn-icons-png.flaticon.com/512/753/753244.png" width="25" height="25" align="center"> React &nbsp; &nbsp; &nbsp;
 
 ---
@@ -58,10 +58,10 @@ En este sprint usamos: <br>
 ## Sprint-2
 
 
-<img src="https://ibb.co/YtbhdWF"><br>
+<img src="https://i.ibb.co/jLHDw5P/imagenS2.png"><br>
 
 
-<img src="https://cdn-icons-png.flaticon.com/512/753/753244.png" width="25" height="25" align="center"> ▫ link a la página ▫
+<img src="https://cdn-icons-png.flaticon.com/512/753/753244.png" width="25" height="25" align="center"> [▫ link a la página ▫](https://equipo-12-lucaszhh.vercel.app/)
 <br>
 ## Tecnologías
 En este sprint usamos: <br>
@@ -70,9 +70,17 @@ En este sprint usamos: <br>
 ---
 
 ## Sprint-3
+En este sprint usamos: <br>
 
+<img src="https://cdn-icons-png.flaticon.com/512/226/226777.png" width="25" height="25" align="center"> Java &nbsp; &nbsp; &nbsp;
+<img src="https://i.ibb.co/tD8N7wV/logo-Postman.png" width="25" height="25" align="center"> Postman &nbsp; &nbsp; &nbsp;
+<img src="https://cdn-icons-png.flaticon.com/512/753/753244.png" width="25" height="25" align="center"> React &nbsp; &nbsp; &nbsp;
 
+<img src="https://cdn-icons-png.flaticon.com/512/753/753244.png" width="25" height="25" align="center"> [▫ link a la página ▫](https://equipo-12-lucaszhh.vercel.app/)
 
 ## Sprint-4
 
+En este sprint usamos: <br>
 
+
+<img src="https://cdn-icons-png.flaticon.com/512/753/753244.png" width="25" height="25" align="center"> [▫ link a la página ▫](https://equipo-12-lucaszhh.vercel.app/)
