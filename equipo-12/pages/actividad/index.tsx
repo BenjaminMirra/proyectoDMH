@@ -5,6 +5,7 @@ import {
   Divider,
   InputAdornment,
   List,
+  Pagination,
   TextField,
   Typography,
 } from "@mui/material";
@@ -32,9 +33,15 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
   const [period, setPeriod] = useState(-1);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [amount, setAmount] = useState<any>(0);
+  const [offset, setOffset] = useState(0);
+  const PAGINATION_LIMIT = 10;
 
   const [transferences] = useTransferences();
   const classes = useStyles();
+
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setOffset(value);
+  };
 
   function sortByDate(array: ITransference[]) {
     return array?.sort(function (a: any, b: any) {
@@ -331,16 +338,29 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
             ></Divider>
             <List sx={{ width: "100%" }}>
               {activity?.map((activityItem, idx) => {
-                return (
-                  <React.Fragment key={idx}>
-                    <ActivityItem key={idx} activityData={activityItem} />
-                    {idx !== activity.length - 1 && (
-                      <Divider variant="middle" />
-                    )}
-                  </React.Fragment>
-                );
+                if (
+                  idx >= (offset - 1) * PAGINATION_LIMIT &&
+                  idx < PAGINATION_LIMIT * offset
+                ) {
+                  return (
+                    <React.Fragment key={idx}>
+                      <ActivityItem key={idx} activityData={activityItem} />
+                      {idx !== activity.length - 1 && (
+                        <Divider variant="middle" />
+                      )}
+                    </React.Fragment>
+                  );
+                }
               })}
             </List>
+            <Pagination
+              count={
+                activity !== undefined
+                  ? Math.ceil(activity.length / PAGINATION_LIMIT)
+                  : 0
+              }
+              onChange={handleChange}
+            />
           </Box>
         </Box>
         <FilterModal

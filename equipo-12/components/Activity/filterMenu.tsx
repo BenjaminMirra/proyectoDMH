@@ -356,7 +356,7 @@ const FilterMenu = (props: any) => {
                 width: "100%",
                 justifyContent: "space-between",
               }}
-              onClick={() => handleClickAmount(0,1000)}
+              onClick={() => handleClickAmount(0, 1000)}
             >
               {amount[0] === 0 ? (
                 <>
@@ -420,7 +420,7 @@ const FilterMenu = (props: any) => {
                 width: "100%",
                 justifyContent: "space-between",
               }}
-              onClick={() => handleClickAmount(5000,20000)}
+              onClick={() => handleClickAmount(5000, 20000)}
             >
               {amount[0] === 5000 ? (
                 <>
