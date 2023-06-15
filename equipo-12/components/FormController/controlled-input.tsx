@@ -6,7 +6,6 @@ import {
   PathValue,
 } from "react-hook-form";
 import { TextField, Typography, Box, TextFieldVariants } from "@mui/material";
-import { SxProps } from "@mui/system";
 
 interface InputType<T extends FieldValues = FieldValues> {
   control: Control<T>;
@@ -14,13 +13,12 @@ interface InputType<T extends FieldValues = FieldValues> {
   type: string;
   label: string;
   defaultValue?: PathValue<T, Path<T>>;
-  sx?: SxProps;
   errorMessage?: string;
   variant?: TextFieldVariants;
   size?: "small" | "medium";
-  id?:string | number;
-  value?:string;
-  onFocusCapture?:({ target }: any) => void
+  id?: string | number;
+  value?: string;
+  onFocusCapture?: ({ target }: any) => void
 }
 
 const ControlledInput = <T extends FieldValues = FieldValues>({
@@ -29,10 +27,9 @@ const ControlledInput = <T extends FieldValues = FieldValues>({
   type,
   label,
   defaultValue,
-  sx,
   errorMessage,
   variant,
-  size,  
+  size,
 }: InputType<T>) => {
   return (
     <Box
@@ -51,7 +48,10 @@ const ControlledInput = <T extends FieldValues = FieldValues>({
             name={name}
             value={value}
             label={label}
-            sx={sx}
+            sx={{
+              backgroundColor: "white",
+              borderRadius: "8px"
+            }}
             variant={variant}
             onChange={onChange}
             size={size}

@@ -8,6 +8,7 @@ const NavTree = (props: any) => {
   const { setLogged } = props;
 
   const router = useRouter();
+  const { id } = router.query;
 
   const active = (path: Array<string>) => {
     return (path.includes(router.pathname) ? styles.active : "");
@@ -40,7 +41,7 @@ const NavTree = (props: any) => {
   return (
     <Box className={styles.links}>
       <Link className={active(["/inicio"])} href="/inicio">Inicio</Link>
-      <Link className={active(["/actividad"])} href="/actividad">Actividad</Link>
+      <Link className={active(["/actividad", "/transferencias/[id]"])} href="/actividad">Actividad</Link>
       <Link className={active(["/perfil"])} href="/perfil">Tu Perfil</Link>
       <Link className={active(["/cargar-dinero", "/cargar-dinero/cargar-dinero-transferencia", "/cargar-dinero/cargar-dinero-tarjeta", "/cargar-dinero/ingresar-dinero", "/cargar-dinero/confirmar-info", "/cargar-dinero/exitosa-carga"])} href="/cargar-dinero">Cargar Dinero</Link>
       <Link className={active(["/pagarservicios"])} href="/inicio">Pagar Servicios</Link>
