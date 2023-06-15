@@ -1,16 +1,13 @@
-import { ReactElement, ReactNode, useEffect, useState } from "react";
+import { ReactElement, ReactNode } from "react";
 import AddCard from "../../components/ListCard/addCard";
 import ListCards from "../../components/ListCard/listCard";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import Layout from "../../layout/layout";
 import { NextPageWithLayout } from "../_app";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
-
 interface PropsType {
   children?: ReactNode;
 }
-
 const ListCard: NextPageWithLayout<PropsType> = () => {
   return (
     <>
@@ -44,7 +41,7 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
         }}
         >
           <ArrowSubtitleMobile title="Tarjetas" />
-          <AddCard preview_page="listar-tarjetas" />
+          <AddCard/>
         </Box>
         <Box sx={{
           marginBottom: "1rem",
@@ -53,12 +50,43 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
         </Box>
 
       </Box>
-    </>
+    </>    
   );
 };
 
 ListCard.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="home">{page}</Layout>;
 };
+/*
+export async function getServerSideProps() {
+  const credentials =  null;
+  if (!credentials) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 
+  return {
+    props: {}, 
+  };
+}
+export async function getServerSideProps(context) {
+  const credentials =  context.query;
+  if (!credentials) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {}, 
+  };
+}
+*/
 export default ListCard;

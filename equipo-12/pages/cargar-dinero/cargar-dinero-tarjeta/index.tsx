@@ -11,7 +11,7 @@ interface PropsType {
   
 
 const CardTransaction: NextPageWithLayout<PropsType> = () => {
-
+  
   return (
     <>
       <Box
