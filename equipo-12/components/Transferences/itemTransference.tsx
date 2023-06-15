@@ -8,6 +8,14 @@ type Props = {
 }
 
 const ItemTranference = ({transference}:Props) => {
+
+  const parseDate = ()=>{
+    const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+    const fecha = new Date(transference.dated);
+    const diaSemanaNumerico = fecha.getDay();
+    return diasSemana[diaSemanaNumerico];
+  };
+
   return (
     <Link href={`/transferencias/${transference.id}`}  
       style={{textDecoration:"none", color:"unset" }}>
@@ -18,13 +26,13 @@ const ItemTranference = ({transference}:Props) => {
         </ListItemAvatar>
         <ListItemText
           sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
-          primary="Transferiste a Rodrigo"
+          primary={transference.description}
         >
         </ListItemText>
         <ListItemText
           sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-end" }}
-          primary="-$ 1265,57"
-          secondary="sabado"
+          primary={`$ ${transference.amount} ARS`}
+          secondary={parseDate()}
         />
       </ListItem>
       <Divider variant="middle"></Divider>

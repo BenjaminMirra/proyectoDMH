@@ -36,7 +36,7 @@ const Transferences = () => {
           </ListItem>
           <ListTranference></ListTranference>
           <ListItem sx={{ padding: "20px" }} >
-            <Link href="/inicio" style={{ display: "flex", width: "100%", justifyContent: "space-between", color: "#000" }}>
+            <Link href="/actividad" style={{ display: "flex", width: "100%", justifyContent: "space-between", color: "#000" }}>
               <Typography variant="h4" sx={{}}>Ver toda tu actividad</Typography>
               <ArrowForwardIcon></ArrowForwardIcon>
             </Link>
@@ -44,7 +44,6 @@ const Transferences = () => {
         </List>
       </Box>
     </>
-
   );
 };
 

@@ -1,12 +1,51 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { Box, Button, Card, Divider, Link, Typography } from "@mui/material";
 import Head from "next/head";
-import { transferences } from "../../data";
+import { ITransference, transferences } from "../../data";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Layout from "../../layout/layout";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 const Transference = () => {
-  const transfercence = transferences[0];
+
+  const router = useRouter();
+  const {id} = router.query;
+  const [transference, setTransference] = useState<ITransference>();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const account = localStorage.getItem("accountId");
+    const configTransference = {
+      method: "get",
+      url: `https://digitalmoney.ctd.academy/api/accounts/${account}/transactions/${id}`,
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+    };
+    axios
+      .request(configTransference)
+      .then((response) => {
+        setTransference(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [id]);
+
+  const getParseDate = () => {
+    const fechaOriginal = transference?.dated;
+    if(fechaOriginal){
+      const fechaParseada = new Date(fechaOriginal);
+  
+      const dia = fechaParseada.toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
+      const hora = fechaParseada.toLocaleTimeString("es-ES", { hour: "numeric", minute: "numeric" });
+  
+      return `Creada el ${dia} a las ${hora} hs.`;
+    }
+  };
+
 
   return (
     <>
@@ -34,33 +73,33 @@ const Transference = () => {
                 Aprobada
             </Typography>
             <Typography variant="subtitle1" sx={{ "&:hover": { color: "#C1FD35", } }}>
-              {transfercence.dated}
+              {getParseDate()}
             </Typography>
           </Box>
           <Divider variant="middle"></Divider>
           <Box sx={{ display: "flex", flexDirection:"column", gap:"10px"}}>
-            <Typography variant="h4" >Transferencia de dinero</Typography>
+            <Typography variant="h4" >{transference && transference?.amount <= 0 ?"Transferencia de dinero":"Deposito de dinero"}</Typography>
             <Typography variant="h2" sx={{ color: "#C1FD35" }}>
-                $1.266,57
+             $ {transference?.amount} ARS
             </Typography>
           </Box>
           <Box sx={{ display: "flex", flexDirection:"column", gap:"10px"}}>
-            <Typography variant="subtitle1" >Le transferiste a</Typography>
+            <Typography variant="subtitle1">Descripción</Typography>
             <Typography variant="h1" sx={{ color: "#C1FD35" }}>
-                Benjamin Mirra
+              {transference?.description}
             </Typography>
           </Box>
           <Box sx={{ display: "flex", flexDirection:"column", gap:"10px"}}>
             <Typography variant="subtitle1" >Número de operación</Typography>
             <Typography variant="subtitle1" sx={{ color: "#C1FD35" }}>
-              27903047281
+              0000000{transference?.id}
             </Typography>
           </Box>
           <Box sx={{width:"100%", display:"flex", justifyContent:"flex-end", gap:"20px", flexWrap:"wrap"}}>
             <Link href="/inicio" sx={{textDecoration:"none", "@media (max-width:1200px)": {width:"100%"}}} >
               <Button variant="secondary" size="large" sx={{width:"360px", "@media (max-width:1200px)": {width:"100%", maxWidth:"100%"}}}>Ir al Inicio</Button>
             </Link>
-            <Link href="/transferencias" sx={{ textDecoration:"none", "@media (max-width:1200px)": {width:"100%"} }} >
+            <Link href="/actividad" sx={{ textDecoration:"none", "@media (max-width:1200px)": {width:"100%"} }} >
               <Button variant="primary" color="secondary" size="large" sx={{width:"360px", "@media (max-width:1200px)": {width:"100%", maxWidth:"100%"}}}>Tu actividad</Button>
             </Link>
           </Box>
