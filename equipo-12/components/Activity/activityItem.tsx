@@ -1,11 +1,8 @@
 import {
-  Typography,
-  Box,
   ListItem,
   ListItemText,
   ListItemAvatar,
   Avatar,
-  Divider,
 } from "@mui/material";
 const ActivityItem = (props: any) => {
   const { activityData } = props;
@@ -13,7 +10,7 @@ const ActivityItem = (props: any) => {
     <>
       <ListItem
         alignItems="flex-start"
-        sx={{ display: "flex", alignItems: "center" }}
+        sx={{ display: "flex", alignItems: "center", "&:hover": { backgroundColor: "#EEEAEA" } }}
       >
         <ListItemAvatar>
           <Avatar alt="R" sx={{ backgroundColor: "#C1FD35", color: "#000" }} />

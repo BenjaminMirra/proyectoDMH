@@ -49,7 +49,8 @@ const ControlledInput = <T extends FieldValues = FieldValues>({
             value={value}
             label={label}
             sx={{
-              backgroundColor: "white"
+              backgroundColor: "white",
+              borderRadius: "8px"
             }}
             variant={variant}
             onChange={onChange}

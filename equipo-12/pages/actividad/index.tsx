@@ -9,7 +9,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import {useTransferences} from "../../hooks/useTransferences";
+import { useTransferences } from "../../hooks/useTransferences";
 import Layout from "../../layout/layout";
 import { NextPageWithLayout } from "../_app";
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
@@ -329,9 +329,9 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
               {activity?.map((activityItem, idx) => {
                 return (
                   <React.Fragment key={idx}>
-                    <Link href={`/transferencias/${activityItem.id}`}  
-                      style={{textDecoration:"none", color:"unset" }}>
-                      <ActivityItem key={idx} activityData={activityItem} />
+                    <Link href={`/transferencias/${activityItem.id}`}
+                      style={{ textDecoration: "none", color: "unset" }}>
+                      <ActivityItem activityData={activityItem} />
                       {idx !== activity.length - 1 && (
                         <Divider variant="middle" />
                       )}

@@ -3,13 +3,13 @@ import Link from "next/link";
 import { ITransference } from "../../data";
 
 type Props = {
-    transference : ITransference;
+  transference: ITransference;
 
 }
 
-const ItemTranference = ({transference}:Props) => {
+const ItemTranference = ({ transference }: Props) => {
 
-  const parseDate = ()=>{
+  const parseDate = () => {
     const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
     const fecha = new Date(transference.dated);
     const diaSemanaNumerico = fecha.getDay();
@@ -17,10 +17,10 @@ const ItemTranference = ({transference}:Props) => {
   };
 
   return (
-    <Link href={`/transferencias/${transference.id}`}  
-      style={{textDecoration:"none", color:"unset" }}>
-      <ListItem alignItems="flex-start" 
-        sx={{ display: "flex", alignItems: "center","&:hover": {backgroundColor: "#EEEAEA",}, }}>
+    <Link href={`/transferencias/${transference.id}`}
+      style={{ textDecoration: "none", color: "unset" }}>
+      <ListItem alignItems="flex-start"
+        sx={{ display: "flex", alignItems: "center", "&:hover": { backgroundColor: "#EEEAEA", }, }}>
         <ListItemAvatar>
           <Avatar alt="R" sx={{ backgroundColor: "#C1FD35", color: "#000" }} />
         </ListItemAvatar>
@@ -35,7 +35,6 @@ const ItemTranference = ({transference}:Props) => {
           secondary={parseDate()}
         />
       </ListItem>
-      <Divider variant="middle"></Divider>
     </Link>
   );
 };
