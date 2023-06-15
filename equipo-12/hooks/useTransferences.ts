@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { ITransference } from "../types";
 
-const useTransferences = () => {
+export const useTransferences = () => {
   const [transferences, setTransferences] = useState<ITransference[]>([]);
 
   useEffect(() => {
@@ -28,5 +28,3 @@ const useTransferences = () => {
 
   return [transferences];
 };
-
-export default useTransferences;
