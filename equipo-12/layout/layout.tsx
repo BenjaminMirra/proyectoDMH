@@ -56,5 +56,19 @@ const Layout: FC<Props> = ({ variant, children }: Props) => {
     </>
   );
 };
-
+export async function getServerSideProps() {
+  // Obtener las credenciales almacenadas en el Local Storage
+  const credentials = null;
+  if (!credentials) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {}, 
+  };
+}  
 export default Layout;
