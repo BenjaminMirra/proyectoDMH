@@ -6,6 +6,14 @@ import {
 } from "@mui/material";
 const ActivityItem = (props: any) => {
   const { activityData } = props;
+
+  const parseDate = () => {
+    const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+    const fecha = new Date(activityData.dated);
+    const diaSemanaNumerico = fecha.getDay();
+    return diasSemana[diaSemanaNumerico];
+  };
+
   return (
     <>
       <ListItem
@@ -31,7 +39,7 @@ const ActivityItem = (props: any) => {
             alignItems: "flex-end",
           }}
           primary={`$ ${activityData?.amount}`}
-          secondary="sábado"
+          secondary={parseDate()}
         />
       </ListItem>
     </>

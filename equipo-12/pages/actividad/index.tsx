@@ -10,6 +10,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { SentimentVeryDissatisfied } from "@mui/icons-material";
 import { useTransferences } from "../../hooks/useTransferences";
 import Layout from "../../layout/layout";
 import { NextPageWithLayout } from "../_app";
@@ -140,7 +141,7 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
     if (search != "") {
       array = filterBySearch(array);
     }
-    setOffset(1)
+    setOffset(1);
     setActivity(array);
   }, [search, transferences]);
 
@@ -159,7 +160,7 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
     if (amount != 0) {
       array = filterByAmount(array);
     }
-    setOffset(1)
+    setOffset(1);
     setActivity(array);
     setOpenModal(false);
   };
@@ -181,9 +182,9 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
     setAmount([]);
   };
 
-  const handleCloseModal = () =>{
+  const handleCloseModal = () => {
     setOpenModal(false);
-  }
+  };
 
   return (
     <>
@@ -216,6 +217,9 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
           flexDirection: "column",
           backgroundColor: "var(--light-grey)",
           paddingBottom: "30px",
+          "@media (max-width: 768px)": {
+            paddingLeft: "50px",
+          },
         }}
       >
         <ArrowSubtitleMobile title="Inicio"></ArrowSubtitleMobile>
@@ -313,7 +317,11 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
                   display: "flex",
                   flexDirection: "row",
                   gap: 2,
+                  "&:hover": {
+                    cursor: "pointer"
+                  }
                 }}
+                onClick={handleOpenModalFilter}
               >
                 <Typography
                   sx={{
@@ -337,28 +345,45 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
               variant="middle"
             ></Divider>
             <List sx={{ width: "100%" }}>
-              {activity?.map((activityItem, idx) => {
-                if (
-                  idx >= (offset - 1) * PAGINATION_LIMIT &&
-                  idx < PAGINATION_LIMIT * offset
-                ) {
-                  return (
-                    <React.Fragment key={idx}>
-                      <ActivityItem key={idx} activityData={activityItem} />
-                      {idx !== activity.length - 1 && (
-                        <Divider variant="middle" />
-                      )}
-                    </React.Fragment>
-                  );
-                }
-              })}
+              {activity && activity?.length > 0 ?
+                activity?.map((activityItem, idx) => {
+                  if (
+                    idx >= (offset - 1) * PAGINATION_LIMIT &&
+                    idx < PAGINATION_LIMIT * offset
+                  ) {
+                    return (
+                      <React.Fragment key={idx}>
+                        <ActivityItem key={idx} activityData={activityItem} />
+                        {idx !== activity.length - 1 && (
+                          <Divider variant="middle" />
+                        )}
+                      </React.Fragment>
+                    );
+                  }
+                }) :
+                <Typography variant="h2" sx={{
+                  textAlign: "center",
+                  pt: 2,
+                  pb: 2,
+                  color: "#616161",
+                  textShadow: "#e0e0e0 1px 1px 0",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "100%",
+                  gap: 2,
+                }}>
+                  - No se encontró ninguna actividad -
+
+                </Typography>
+              }
             </List>
             <Pagination
               sx={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                padding:"10px 0",                
+                padding: "10px 0",
               }}
               color={"secondary"}
               count={
@@ -380,7 +405,7 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
               period={period}
               setPeriod={setPeriod}
               amount={amount}
-              setAmount={setAmount}              
+              setAmount={setAmount}
             />
           }
           open={openModal}

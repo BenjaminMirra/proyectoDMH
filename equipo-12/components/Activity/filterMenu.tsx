@@ -23,7 +23,7 @@ const FilterMenu = (props: any) => {
     amount,
     setAmount,
   } = props;
-  const [openPeriod, setOpenPeriod] = useState(true);
+  const [openPeriod, setOpenPeriod] = useState(false);
   const [openOperation, setOpenOperation] = useState(false);
   const [openAmount, setOpenAmount] = useState(false);
   const [filterSelected, setFilterSelected] = useState(false);
@@ -69,9 +69,13 @@ const FilterMenu = (props: any) => {
   };
 
   return (
-    <Box>      
+    <Box>
       <List>
-        <ListItemButton onClick={handleClick1}>
+        <ListItemButton sx={{
+          "&:hover": {
+            borderRadius: "8px",
+          },
+        }} onClick={handleClick1}>
           <ListItemText primary="Período" />
           {openPeriod ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
@@ -272,7 +276,11 @@ const FilterMenu = (props: any) => {
           </List>
         </Collapse>
 
-        <ListItemButton onClick={handleClick2}>
+        <ListItemButton sx={{
+          "&:hover": {
+            borderRadius: "8px",
+          },
+        }} onClick={handleClick2}>
           <ListItemText primary="Operación" />
           {openOperation ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
@@ -344,7 +352,11 @@ const FilterMenu = (props: any) => {
             </ListItemButton>
           </List>
         </Collapse>
-        <ListItemButton onClick={handleClick3}>
+        <ListItemButton sx={{
+          "&:hover": {
+            borderRadius: "8px",
+          },
+        }} onClick={handleClick3}>
           <ListItemText primary="Monto" />
           {openAmount ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
