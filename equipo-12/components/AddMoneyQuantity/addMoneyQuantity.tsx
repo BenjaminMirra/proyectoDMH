@@ -117,6 +117,7 @@ const AddMoneyOption = () => {
           padding: "40px 45px 18px 35px",
           gap: "18px",
         },
+        
       }}
     >
       <FormControl onSubmit={handleClick}
@@ -127,6 +128,16 @@ const AddMoneyOption = () => {
           flexDirection: "colum",
           alignContent: "flex-start",
           width: "100%",
+            "@media (max-width: 768px)": {
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "colum",
+            },
+            "@media (max-width: 1024px)": {
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "colum",
+            },            
         }}
       >
         <Box
@@ -138,6 +149,11 @@ const AddMoneyOption = () => {
               alignItems: "center",
               flexDirection: "colum",
             },
+            "@media (max-width: 768px)": {
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "colum",
+            },            
           }}
         >
 
@@ -161,26 +177,32 @@ const AddMoneyOption = () => {
               alignContent: "flex-start",
             }}>
 
-              <TextField
+              <Input
                 type="text"
                 value={inputValue}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                variant="filled"
+                //variant="filled"
                 size="medium"
                 placeholder="$ 0"
+               /*
                 InputProps={{
                   disableUnderline: true,
                 }}
+                */
                 margin={"none"}
                 sx={{
-                  width: "100%",
+                 // width: "50%",
                   borderRadius: "10px",
                   backgroundColor: "#ffffff",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "flex-start",
                   paddingBottom: "10px",
+                  paddingTop:"10px",
+                  paddingLeft:"8px",
+                  paddingRight:"60px",
+                  textAlign:"center",
                 }}
               />
               <Typography sx={{ width: "100", paddingLeft: "20px", color: "#C1FD35" }} variant="h6">
