@@ -145,15 +145,12 @@ const AddMoneyOption = () => {
             "@media (max-width: 1024px)": {
               width: "100%",
               paddingTop: "10px",
-              display: "flex",
-              alignItems: "center",
-              flexDirection: "colum",
+              alignItems:"center",
             },
             "@media (max-width: 768px)": {
-              display: "flex",
-              alignItems: "center",
-              flexDirection: "colum",
-            },            
+              alignItems:"center",
+            }, 
+            flexDirection:"column"  ,         
           }}
         >
 
