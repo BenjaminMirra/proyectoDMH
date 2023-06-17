@@ -39,7 +39,7 @@ const ActivityItem = (props: any) => {
             alignItems: "flex-end",
           }}
           primary={`$ ${activityData?.amount}`}
-          secondary={parseDate()}
+          secondary={activityData?.dated}
         />
       </ListItem>
     </>

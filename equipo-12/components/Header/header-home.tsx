@@ -13,7 +13,7 @@ import { useUserContext } from "../../context/userContext";
 const HeaderHome = (props: any) => {
   const { setVisibility } = props;
   const [logged, setLogged] = useState(false);
-  const { userInfo } = useUserContext();
+  const { userInfo, isLoading, setIsLoading } = useUserContext();
 
   const router = useRouter();
 
@@ -134,15 +134,11 @@ const HeaderHome = (props: any) => {
                       }}
                     >
                       {
-                        userInfo.firstname !== "" ?
-                          `
+                        !isLoading &&
+                        `
                   ${userInfo?.firstname.charAt(0)}
                   ${userInfo?.lastname.charAt(0)}`
-                          :
-                          `
-                  ${userInfo?.firstname?.charAt(0)}
-                  ${userInfo?.lastname?.charAt(0)}
-                  `
+
                       }
                     </Typography>
                   </Button>
@@ -191,9 +187,7 @@ const HeaderHome = (props: any) => {
                     color: "var(--main-text-color)",
                   }}
                 >
-                  {userInfo?.firstname != "" ?
-                    `Hola, ${userInfo?.firstname} ${userInfo?.lastname}`
-                    :
+                  {!isLoading &&
                     `Hola, ${userInfo?.firstname} ${userInfo?.lastname}`
                   }
                 </Typography>

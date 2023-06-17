@@ -128,16 +128,16 @@ const AddMoneyOption = () => {
           flexDirection: "colum",
           alignContent: "flex-start",
           width: "100%",
-            "@media (max-width: 768px)": {
-              display: "flex",
-              alignItems: "center",
-              flexDirection: "colum",
-            },
-            "@media (max-width: 1024px)": {
-              display: "flex",
-              alignItems: "center",
-              flexDirection: "colum",
-            },            
+          "@media (max-width: 768px)": {
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "colum",
+          },
+          "@media (max-width: 1024px)": {
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "colum",
+          },            
         }}
       >
         <Box
@@ -185,14 +185,14 @@ const AddMoneyOption = () => {
                 //variant="filled"
                 size="medium"
                 placeholder="$ 0"
-               /*
+                /*
                 InputProps={{
                   disableUnderline: true,
                 }}
                 */
                 margin={"none"}
                 sx={{
-                 // width: "50%",
+                  // width: "50%",
                   borderRadius: "10px",
                   backgroundColor: "#ffffff",
                   display: "flex",
