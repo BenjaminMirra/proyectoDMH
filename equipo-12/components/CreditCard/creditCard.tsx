@@ -8,12 +8,12 @@ import axios from "axios";
 import catchError from "../../services/creditCard/handle-credit-cards-errors";
 import { useRouter } from "next/router";
 interface PropsCard {
-  listar: boolean;
+  listar: boolean; 
 }
-const CreditCard = ({ listar }: PropsCard) => {
+const CreditCard = ({listar}: PropsCard) => {
   const router = useRouter();
-  const [errorAlert, setErrorAlert] = useState("");
-  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
   const [isDisabled] = useState(false);
   const [cvc, setCvc] = useState("");
   const [expiry, setExpiry] = useState("");
@@ -42,15 +42,18 @@ const CreditCard = ({ listar }: PropsCard) => {
 
   const onSubmit = async () => {
     if (state.cvc === "" || state.name === "" || state.number === "") {
-      setErrorAlert("Por favor, complete todos los campos");
+      setError("Por favor, complete todos los campos");
     } else {
       const token = localStorage.getItem("token");
       const account_id = localStorage.getItem("accountId");
+      const numberWithoutSpaces = number.replace(/\s/g, "");
+      const convertedNumber = parseInt(numberWithoutSpaces);
+      console.log(convertedNumber);
       const infoData = {
         cod: parseInt(cvc),
         expiration_date: expiry,
         first_last_name: name,
-        number_id: parseInt(number),
+        number_id: convertedNumber,
       };
       try {
         const config = {
@@ -65,26 +68,23 @@ const CreditCard = ({ listar }: PropsCard) => {
         axios
           .request(config)
           .then((response) => {
-            setSuccess("Tarjeta agregada");
-            setErrorAlert("");
+            setSuccess(true);
             if (listar) {
               router.push("/listar-tarjetas");
             } else {
               router.push("/cargar-dinero/cargar-dinero-tarjeta");
             }
-          })
-          .catch(function (error) {
-            const errorMessage = catchError(error);
-            setErrorAlert(errorMessage);
+            return response;
           });
+
       } catch (error) {
-
-        console.log(error);
-
-        return;
+        console.error(error);
+        const errorMessage = catchError(error);
+        setError(errorMessage);
       }
     }
   };
+
 
   return (
     <>
@@ -100,25 +100,26 @@ const CreditCard = ({ listar }: PropsCard) => {
         expiry={expiry}
         cvc={cvc}
         focused={focused}
+        
       />
-      {errorAlert !== "" && (
+      {error !== "" && (
         <Alert
           severity="error"
           sx={{
             marginTop: "30px",
           }}
         >
-          {errorAlert}
+          {error}
         </Alert>
       )}
-      {success !== "" && (
+      {success && (
         <Alert
           severity="success"
           sx={{
             marginTop: "30px",
           }}
         >
-          {success}
+          {"Se agrego la tarjeta"}
         </Alert>
       )}
       <form

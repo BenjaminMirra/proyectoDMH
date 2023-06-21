@@ -8,14 +8,6 @@ type Props = {
 }
 
 const ItemService = ({ service }: Props) => {
-
-  const parseDate = () => {
-    const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
-    const fecha = new Date(service.date);
-    const diaSemanaNumerico = fecha.getDay();
-    return diasSemana[diaSemanaNumerico];
-  };
-
   return (
     <Link href={`/?/${service.id}`}
       style={{ textDecoration: "none", color: "unset" }}>
