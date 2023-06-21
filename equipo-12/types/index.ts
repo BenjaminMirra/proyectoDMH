@@ -25,3 +25,9 @@ export interface ITransference {
   origin: string,
   type: string
 }
+
+export interface IService {
+  id: number,
+  name: string,
+  date: string
+}
