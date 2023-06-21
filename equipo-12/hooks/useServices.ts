@@ -1,24 +1,26 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { IService } from "../types";
+type Props = {
+  search: string;
 
-export const useServices = () => {
+}
+export const useServices = ({ search }: Props) => {
   const [services, setServices] = useState<IService[]>([]);
-
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const account = localStorage.getItem("accountId");
-    const configTransferences = {
+    const configService = {
       method: "get",
-      url: `https://digitalmoney.ctd.academy/service`,
+      url: "https://digitalmoney.ctd.academy/service",
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
       },
     };
     axios
-      .request(configTransferences)
+      .request(configService)
       .then((response) => {
+        console.log("en el servicio: "+search);
         setServices(response.data);
       })
       .catch((error) => {
