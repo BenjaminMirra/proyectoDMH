@@ -46,7 +46,6 @@ const InfoDato = ({ setLoading, dataKey, input, data, change }: Props) => {
   }, [edit, inputValue]);
 
   const onHandleSubmit = () => {
-    setLoading && setLoading(true);
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
     const config = {
@@ -62,6 +61,7 @@ const InfoDato = ({ setLoading, dataKey, input, data, change }: Props) => {
     axios
       .request(config)
       .then((response) => {
+        setLoading && setLoading(true);
         return response;
 
       })

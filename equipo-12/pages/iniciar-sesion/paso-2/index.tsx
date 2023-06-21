@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { ReactElement, ReactNode, useEffect, useState } from "react";
+import { ReactElement, ReactNode, useState } from "react";
 import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
@@ -83,9 +83,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
                 });
             });
           setErrorLogin(false);
-          if (typeof window !== "undefined") {
-            window.location.href = "/inicio";
-          }
+          router.push("/inicio");
         });
     } catch (error) {
       console.error(error);
@@ -178,19 +176,6 @@ const Password: NextPageWithLayout<PropsType> = () => {
                 alignItems: "center",
               }}
             >
-              {/* <Link style={{textDecoration: "none"}} href="/recupero-pendiente" onClick={onChangePass}>
-                <Typography
-                  variant="subtitle2"
-                  sx={{
-                    color: "var(--main-text-color)",
-                    cursor: "pointer",
-                    "&:hover": {
-                      color: "var(--lime-green)",
-                    },
-                  }}>
-                  ¿Olvidaste tu contraseña?
-                </Typography>
-              </Link> */}
             </Box>
           </Box>
         </form>

@@ -20,11 +20,6 @@ const SuccessCharge: NextPageWithLayout<any> = () => {
     }
   });
 
-  const sendInicio = () => {
-    if (typeof window !== "undefined") {
-      window.location.href = "/inicio";
-    }
-  };
 
   return (
     <>
@@ -97,31 +92,35 @@ const SuccessCharge: NextPageWithLayout<any> = () => {
 
           },
         }}>
-          <Button
-            variant="primary"
-            sx={{
-              textTransform: "none",
-              backgroundColor: "#CECECE",
-              borderColor: "#CECECE",
-              color: "black",
-              width: "233px",
-              height: "65px",
-              fontSize: "16px",
-              "&:hover": {
-                backgroundColor: "#a5a5a5",
-                borderColor: "#a5a5a5",
-              },
-              "@media only screen and (max-width: 1098px)": {
-                width: "243px",
-              },
-              "@media only screen and (max-width: 768px)": {
-                width: "100%"
-              }
-            }}
-            onClick={sendInicio}
+          <Link
+            href="/inicio"
           >
-            Ir al Inicio
-          </Button>
+            <Button
+              variant="primary"
+              sx={{
+                textTransform: "none",
+                backgroundColor: "#CECECE",
+                borderColor: "#CECECE",
+                color: "black",
+                width: "233px",
+                height: "65px",
+                fontSize: "16px",
+                "&:hover": {
+                  backgroundColor: "#a5a5a5",
+                  borderColor: "#a5a5a5",
+                },
+                "@media only screen and (max-width: 1098px)": {
+                  width: "243px",
+                },
+                "@media only screen and (max-width: 768px)": {
+                  width: "100%"
+                }
+              }}
+            >
+
+              Ir al Inicio
+            </Button>
+          </Link>
           <Button variant="primary" color="secondary" sx={{
             width: "233px",
             height: "65px",

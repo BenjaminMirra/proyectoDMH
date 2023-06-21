@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IAccount } from "../types";
 
 const useAccount = () => {
@@ -10,6 +10,8 @@ const useAccount = () => {
     id: 0,
     user_id: 0
   });
+
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -30,12 +32,14 @@ const useAccount = () => {
         console.error(error);
       }
     };
-
-    fetchData(); // Realiza la llamada a la API al montar el componente
+    if (isLoading) {
+      fetchData();
+      setIsLoading(false);
+    }
 
   }, []); // Sin dependencias para que solo se ejecute una vez al montar el componente
 
-  return [userAccount];
+  return { userAccount, isLoading };
 };
 
 export default useAccount;

@@ -83,9 +83,7 @@ const Token: NextPageWithLayout<PropsType> = () => {
                             );
                           });
 
-                        if (typeof window !== "undefined") {
-                          window.location.href = "/inicio";
-                        }
+                        router.push("/inicio");
                       });
                   });
               });
