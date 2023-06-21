@@ -118,6 +118,12 @@ const AddMoneyOption = () => {
           gap: "18px",
         },
         
+        "@media (max-width: 1024px)": {
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "colum",
+          width:"100%"
+        },            
       }}
     >
       <FormControl onSubmit={handleClick}
@@ -133,11 +139,6 @@ const AddMoneyOption = () => {
               alignItems: "center",
               flexDirection: "colum",
             },
-            "@media (max-width: 1024px)": {
-              display: "flex",
-              alignItems: "center",
-              flexDirection: "colum",
-            },            
         }}
       >
         <Box
@@ -159,7 +160,11 @@ const AddMoneyOption = () => {
             <Typography
               sx={{
                 color: "#C1FD35",
-                paddingBottom: "25px"
+                paddingBottom: "25px",
+                "@media (max-width: 1024px)": {
+                  textAlign:"center",
+
+                }, 
               }}
               variant="h6"
             >
@@ -172,6 +177,10 @@ const AddMoneyOption = () => {
               alignItems: "center",
               flexDirection: "row",
               alignContent: "flex-start",
+              "@media (max-width: 1024px)": {
+                alignItems:"stretch",
+                flexDirection: "column",
+              }, 
             }}>
 
               <Input
@@ -222,6 +231,7 @@ const AddMoneyOption = () => {
                 display: "flex",
                 justifyContent: "center",
                 flexDirection: "colum",
+                maxWidth: "100%",
               },  
             }}
           >
@@ -239,6 +249,13 @@ const AddMoneyOption = () => {
                 backgroundColor: buttonDisabled ? "#CECECE" : "#C1FD35", // Cambiar el color del botón según la visibilidad del error
                 "&:hover": {
                   backgroundColor: buttonDisabled ? "#CECECE" : "#C1FD35", // Cambiar el color del botón según la visibilidad del error,
+                  "@media (max-width: 1024px)": {
+                    display: "flex",
+                    alignItems:"stretch",
+                    flexDirection: "colum",
+                    maxWidth: "100%",
+                    width:"100%"
+                  },   
                 },
               }}
               onClick={handleClick}
