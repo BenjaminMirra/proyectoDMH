@@ -1,6 +1,7 @@
 import { Avatar, Button, Divider, ListItem, ListItemAvatar, ListItemText } from "@mui/material";
 import Link from "next/link";
 import { IService } from "../../types";
+import LiveTvIcon from "@mui/icons-material/LiveTv";
 
 type Props = {
   service: IService;
@@ -14,7 +15,7 @@ const ItemService = ({ service }: Props) => {
       <ListItem alignItems="flex-start"
         sx={{ display: "flex", alignItems: "center", "&:hover": { backgroundColor: "#EEEAEA", }, }}>
         <ListItemAvatar>
-          <Avatar alt="R" sx={{ backgroundColor: "#C1FD35", color: "#000" }} />
+          <LiveTvIcon sx={{ backgroundColor: "#C1FD35", color: "#000" }} />
         </ListItemAvatar>
         <ListItemText
           sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
