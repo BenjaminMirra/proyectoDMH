@@ -44,7 +44,7 @@ const NavTree = (props: any) => {
       <Link className={active(["/actividad", "/transferencias/[id]"])} href="/actividad">Actividad</Link>
       <Link className={active(["/perfil"])} href="/perfil">Tu Perfil</Link>
       <Link className={active(["/cargar-dinero", "/cargar-dinero/cargar-dinero-transferencia", "/cargar-dinero/cargar-dinero-tarjeta", "/cargar-dinero/ingresar-dinero", "/cargar-dinero/confirmar-info", "/cargar-dinero/exitosa-carga"])} href="/cargar-dinero">Cargar Dinero</Link>
-      <Link className={active(["/pagarservicios"])} href="/inicio">Pagar Servicios</Link>
+      <Link className={active(["/pagarservicios"])} href="/listar-servicios">Pagar Servicios</Link>
       <Link className={active(["/listar-tarjetas", "/agregar-tarjeta"])} href="/listar-tarjetas">Tarjetas</Link>
       <Link style={{
         margin: 0

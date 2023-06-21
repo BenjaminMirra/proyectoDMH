@@ -1,10 +1,8 @@
-import { Box, Button, Typography } from "@mui/material";
-import { ReactElement, useEffect, useState } from "react";
+import { Box} from "@mui/material";
+import { ReactElement} from "react";
 import Layout from "../../layout/layout";
-import AvailableAmount from "../../components/AvailableAmount";
-import Transferences from "../../components/Transferences";
-import Head from "next/head";
 import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
+import Services from "../../components/Services";
 
 const ListService = () => {
 
@@ -26,19 +24,14 @@ const ListService = () => {
       <Box sx={{ display: "flex", width: "100%", backgroundColor: "#EEEAEA" }}>
         <Box sx={{ width: "100%", gap: "10px", display: "flex", flexDirection: "column", alignItems: "center", padding: "50px", paddingLeft: "100px", "@media (max-width: 768px)": { padding: "10px", paddingTop: "50px" } }}>
           <ArrowSubtitleMobile title="Pagar servicios"></ArrowSubtitleMobile>
-          <AvailableAmount></AvailableAmount>
-          <Box sx={{ display: "flex", width: "100%", gap: "10px", "@media (max-width: 768px)": { flexDirection: "column" } }}>
-            <Button sx={{ width: "50%", "@media (max-width: 768px)": { width: "100%" } }} variant="xxl">Transferir Dinero</Button>
-            <Button sx={{ width: "50%", "@media (max-width: 768px)": { width: "100%" } }} variant="xxl">Ingresar dinero</Button>
-          </Box>
-          <Transferences></Transferences>
+          <Services></Services>
         </Box>
       </Box>
     </>
   );
 };
 
-Inicio.getLayout = function getLayout(page: ReactElement) {
+ListService.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="home">{page}</Layout>;
 };
 
