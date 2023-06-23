@@ -7,7 +7,7 @@ import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
 import { NextPageWithLayout } from "../../_app";
-import { useUserContext } from "../../../provider/userProvider";
+import { useUserContextPass } from "../../../provider/userProvider";
 import Layout from "../../../layout/layout";
 
 const schema = yup
@@ -29,7 +29,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
-  const { user, setUser } = useUserContext();
+  const { user, setUser } = useUserContextPass();
   const onSubmit = (data: FormData) => {
     setUser({ email: user.email, password: data.password });
     router.push({
