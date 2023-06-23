@@ -12,6 +12,7 @@ interface UserInfo {
 
 interface UserContextType {
   userInfo: UserInfo;
+  setUserInfo: (userInfo: UserInfo) => void;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   isLoading: boolean;
 }
@@ -72,6 +73,7 @@ export const UserProviderNew: React.FC<UserProviderProps> = ({ children }) => {
 
   const value: UserContextType = {
     userInfo,
+    setUserInfo,
     setIsLoading,
     isLoading,
   };

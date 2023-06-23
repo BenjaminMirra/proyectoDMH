@@ -8,9 +8,10 @@ import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
 import { NextPageWithLayout } from "../../_app";
-import { useUserContext } from "../../../provider/userProvider";
+import { useUserContextPass } from "../../../provider/userProvider";
 import Layout from "../../../layout/layout";
 import { useUserData } from "../../../context/createContext";
+import { useUserContext } from "../../../context/userContext";
 
 const schema = yup
   .object({
@@ -32,11 +33,8 @@ const Password: NextPageWithLayout<PropsType> = () => {
     resolver: yupResolver(schema),
   });
 
-  const { user, setUser } = useUserContext();
-  const { setUserAccount, setUserDataInitial } =
-    useUserData();
-
-
+  const { user, setUser } = useUserContextPass();
+  const { setUserInfo } = useUserContext();
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -47,7 +45,8 @@ const Password: NextPageWithLayout<PropsType> = () => {
           password: data.password,
         })
         .then(function (response) {
-          localStorage.setItem("token", response.data.token);
+          const token = response.data.token;
+          localStorage.setItem("token", token);
 
           axios
             .request({
@@ -55,14 +54,13 @@ const Password: NextPageWithLayout<PropsType> = () => {
               url: "https://digitalmoney.ctd.academy/api/account",
               headers: {
                 "Content-Type": "application/json",
-                Authorization: response.data.token,
+                Authorization: token,
               },
               data: "",
             })
             .then((response) => {
               localStorage.setItem("userId", response.data.user_id);
               localStorage.setItem("accountId", response.data.id);
-              setUserAccount(response.data);
               const configInfo = {
                 method: "get",
                 url: `https://digitalmoney.ctd.academy/api/users/${localStorage.getItem(
@@ -76,7 +74,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
               axios
                 .request(configInfo)
                 .then((response) => {
-                  setUserDataInitial(response.data);
+                  setUserInfo(response.data);
                 })
                 .catch((error) => {
                   console.error(error);
