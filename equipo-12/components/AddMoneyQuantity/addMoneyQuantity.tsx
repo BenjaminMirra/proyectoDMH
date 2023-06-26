@@ -1,12 +1,9 @@
-import { Box, Typography, Button, TextField, Input, FormControl } from "@mui/material";
+import { Box, Typography, Button, Input, FormControl } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
-
 const AddMoneyOption = () => {
-
   const router = useRouter();
-
   const [inputValue, setInputValue] = useState<string>("");
   const [validationError, setValidationError] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -48,13 +45,11 @@ const AddMoneyOption = () => {
       })
       .required("*Ingrese la cantidad de dinero a transferir")
   });
-
   useEffect(() => {
     if (inputValue === "") {
       setButtonDisabled(true);
     }
   }, [inputValue]);
-
   const handleChange = (e: any) => {
     setInputValue(`${e.target.value}`);
     if (inputValue === "") {
@@ -71,7 +66,6 @@ const AddMoneyOption = () => {
         setValidationError(error.message);
       });
   };
-
   const handleBlur = () => {
     validationSchema
       .validate({ number: inputValue })
@@ -82,7 +76,6 @@ const AddMoneyOption = () => {
         setValidationError(error.message);
       });
   };
-
   const handleClick = (e: any) => {
     e.preventDefault();
     validationSchema
@@ -95,7 +88,6 @@ const AddMoneyOption = () => {
         setValidationError(error.message);
       });
   };
-
   return (
     <Box
       sx={{
@@ -134,13 +126,6 @@ const AddMoneyOption = () => {
           flexDirection: "colum",
           alignContent: "flex-start",
           width: "100%",
-<<<<<<< HEAD
-            "@media (max-width: 768px)": {
-              display: "flex",
-              alignItems: "center",
-              flexDirection: "colum",
-            },
-=======
           "@media (max-width: 768px)": {
             display: "flex",
             alignItems: "center",
@@ -151,7 +136,6 @@ const AddMoneyOption = () => {
             alignItems: "center",
             flexDirection: "colum",
           },            
->>>>>>> 78a00be1a4087fbec72c78c65c5c24c7c7ef27a6
         }}
       >
         <Box
@@ -195,7 +179,6 @@ const AddMoneyOption = () => {
                 flexDirection: "column",
               }, 
             }}>
-
               <Input
                 type="text"
                 value={inputValue}
@@ -204,11 +187,6 @@ const AddMoneyOption = () => {
                 //variant="filled"
                 size="medium"
                 placeholder="$ 0"
-                /*
-                InputProps={{
-                  disableUnderline: true,
-                }}
-                */
                 margin={"none"}
                 sx={{
                   // width: "50%",
@@ -239,11 +217,7 @@ const AddMoneyOption = () => {
               justifyContent: "flex-end",
               flexDirection: "colum",
               "@media (max-width: 1024px)": {
-                width: "100%",
-                paddingTop: "10px",
-                display: "flex",
                 justifyContent: "center",
-                flexDirection: "colum",
                 maxWidth: "100%",
               },  
             }}
@@ -252,8 +226,8 @@ const AddMoneyOption = () => {
               disabled={buttonDisabled}
               variant="primary"
               color="secondary"
-              size="large"
               type="submit"
+              size="large"
               sx={{
                 width: "100%",
                 paddingTop: "10px",             
@@ -263,13 +237,31 @@ const AddMoneyOption = () => {
                 "&:hover": {
                   backgroundColor: buttonDisabled ? "#CECECE" : "#C1FD35", // Cambiar el color del botón según la visibilidad del error,
                   "@media (max-width: 1024px)": {
+                    fontSize: "10px",
+                    size: "medium",
                     display: "flex",
                     alignItems:"stretch",
                     flexDirection: "colum",
-                    maxWidth: "100%",
-                    width:"100%"
+                    maxWidth: "100%", 
+                    width: "100%"
+                  },   
+                  "@media (min-width: 1025px)": {
+                    size: "large",
+                    display: "flex",
+                    alignItems:"stretch",
+                    flexDirection: "colum",
+                    maxWidth: "100%", 
+                    width: "100%"
                   },   
                 },
+                "@media (max-width: 1024px)": {
+                  size: "large",
+                  display: "flex",
+                  alignItems:"stretch",
+                  flexDirection: "colum",
+                  maxWidth: "100%", 
+                  width: "100%"
+                },   
               }}
               onClick={handleClick}
             >
