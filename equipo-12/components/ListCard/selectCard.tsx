@@ -120,7 +120,7 @@ const SelectCard = () => {
               paddingTop: "20px",
               "@media (max-width: 1024px)": {
                 width:"100%",
-                paddingTop: "10px",
+                paddingTop: "10px",                
               },
 
             }}
@@ -190,8 +190,13 @@ const SelectCard = () => {
                 type="submit"
                 sx={{
                   "@media (max-width: 1024px)": {
-                    width:"100%",
                     paddingTop: "10px",
+                    size: "large",
+                    display: "flex",
+                    alignItems:"stretch",
+                    flexDirection: "colum",
+                    maxWidth: "100%", 
+                    width: "100%"
                   },
                 }}>
                   Continuar
@@ -450,6 +455,14 @@ const SelectCard = () => {
               sx={{
                 maxWidth:"768px",
                 marginTop: "10px",
+                "@media (max-width: 1024px)": {
+                  size: "large",
+                  display: "flex",
+                  alignItems:"stretch",
+                  flexDirection: "colum",
+                  maxWidth: "100%", 
+                  width: "100%"
+                },
               }}
             >
               Continuar
