@@ -8,7 +8,7 @@ import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
 import { NextPageWithLayout } from "../../_app";
-import { useUserContext } from "../../../provider/userProvider";
+import { useUserContextPass } from "../../../provider/userProvider";
 import Layout from "../../../layout/layout";
 
 const schema = yup
@@ -31,7 +31,7 @@ const Token: NextPageWithLayout<PropsType> = () => {
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
-  const { user } = useUserContext();
+  const { user } = useUserContextPass();
   const onSubmit = async (data: FormData) => {
     try {
       await axios

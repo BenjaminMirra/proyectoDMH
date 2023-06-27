@@ -17,7 +17,7 @@ export const userContext = createContext<ContextType>({
   },
 });
 
-export const useUserContext = (): ContextType => useContext(userContext);
+export const useUserContextPass = (): ContextType => useContext(userContext);
 
 type Props = {
   children: React.ReactNode;

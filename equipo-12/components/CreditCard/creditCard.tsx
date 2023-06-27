@@ -8,9 +8,9 @@ import axios from "axios";
 import catchError from "../../services/creditCard/handle-credit-cards-errors";
 import { useRouter } from "next/router";
 interface PropsCard {
-  listar: boolean; 
+  listar: boolean;
 }
-const CreditCard = ({listar}: PropsCard) => {
+const CreditCard = ({ listar }: PropsCard) => {
   const router = useRouter();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -75,16 +75,17 @@ const CreditCard = ({listar}: PropsCard) => {
               router.push("/cargar-dinero/cargar-dinero-tarjeta");
             }
             return response;
+          })
+          .catch(function (error) {
+            setSuccess(false)
+            const errorMessage = catchError(error);
+            setError(errorMessage);
           });
-
       } catch (error) {
         console.error(error);
-        const errorMessage = catchError(error);
-        setError(errorMessage);
       }
     }
   };
-
 
   return (
     <>
@@ -100,7 +101,6 @@ const CreditCard = ({listar}: PropsCard) => {
         expiry={expiry}
         cvc={cvc}
         focused={focused}
-        
       />
       {error !== "" && (
         <Alert
