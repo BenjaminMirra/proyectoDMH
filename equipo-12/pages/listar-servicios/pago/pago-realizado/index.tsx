@@ -3,22 +3,23 @@ import { ReactElement, useEffect, useState } from "react";
 import Head from "next/head";
 
 import Link from "next/link";
-import { NextPageWithLayout } from "../_app";
-import { useAccountContext } from "../../context/accountContext";
-import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
-import AlertChargeBox from "../../components/ChargeInfo/AlertChargeBox";
-import SuccessChargeBox from "../../components/ChargeInfo/SuccessChargeBox";
-import Layout from "../../layout/layout";
-import SuccessCharge from "../cargar-dinero/exitosa-carga";
-import ErrorInfoBox from "../../components/ChargeInfo/ErrorInfoBox";
-import useAccount from "../../hooks/useAccount";
+import { NextPageWithLayout } from "../../../_app";
+import ArrowSubtitleMobile from "../../../../components/ArrowSubtitleMobile";
+import AlertChargeBox from "../../../../components/ChargeInfo/AlertChargeBox";
+import SuccessChargeBox from "../../../../components/ChargeInfo/SuccessChargeBox";
+import Layout from "../../../../layout/layout";
+import SuccessCharge from "../../../cargar-dinero/exitosa-carga";
+import ErrorInfoBox from "../../../../components/ChargeInfo/ErrorInfoBox";
+import useAccount from "../../../../hooks/useAccount";
 import axios from "axios";
+import { useAccountContext } from "../../../../context/accountContext";
 
 const PaymentMade: NextPageWithLayout<any> = () => {
   const { userAccount, isLoading } = useAccount();
   const { accountInfo } = useAccountContext();
   const [isLoad, setIsLoad] = useState(true);
   const [moneyToCharge, setMoneyToCharge] = useState<string | null>("");
+  const serviceName = localStorage.getItem("ServiceName");
   const [cardInfo, setCardInfo] = useState({
     account_id: "",
     cod: 0,
@@ -28,12 +29,14 @@ const PaymentMade: NextPageWithLayout<any> = () => {
     number_id: 0,
   });
   const [titleError, setTitleError] = useState<string>("");
-  const [textError, setTextError] = useState<string>("");
+  const [textError, setTextError] = useState<string>("");  
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     const accountId = localStorage.getItem("accountId");
     const cardId = localStorage.getItem("cardId");
+
+    
 
     const fetchData = async () => {
       try {
@@ -99,7 +102,7 @@ const PaymentMade: NextPageWithLayout<any> = () => {
       type:"Transfer",
       description: "Transferiu para Servicio",
       origin: accountInfo?.cvu,
-      destination: "Servicios",
+      destination:  `${serviceName}`,
       amount: - parseInt(moneyToCharge),
       dated: formattedDate      
     };
@@ -123,7 +126,6 @@ const PaymentMade: NextPageWithLayout<any> = () => {
       }
     };
     postChargeMoney();
-    return "hola";
   };
 
   return (

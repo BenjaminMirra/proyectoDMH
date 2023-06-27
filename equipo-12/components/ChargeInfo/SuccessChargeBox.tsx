@@ -1,23 +1,78 @@
 import { Box, Button, Typography } from "@mui/material";
+import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { ICard } from "../../types";
 
-const CheckInfoBox = ({ money, info, handleChargeMoney}: any) => {
+const CheckInfoBox = ({ money, info, handleChargeMoney }: any) => {
   const router = useRouter();
   const [text, setText] = useState("");
+  const [card, setCard] = useState<ICard>();
+  const [typeCard, setTypeCard] = useState<string>("");
+  const serviceName = localStorage.getItem("ServiceName");
+  const carId = localStorage.getItem("cardId");
+  const idAccount = localStorage.getItem("accountId");
+  
+  
 
   useEffect(() => {
-    if (router.pathname === "/pago-realizado") {
+    if (carId!== null && idAccount!== null) {
+      getCard(parseInt(carId), parseInt(idAccount));
+    }
+    
+  }, []);
+
+  useEffect(() => {
+    if (router.pathname === "/listar-servicios/pago/pago-realizado") {
       return setText("Tarjeta");
     } else {
       return setText("Brubank");
     }
   }, [router.pathname, text]);
 
-
   const handleClick = () => {
     handleChargeMoney();
+  };
+
+  const getTypeCard = (num : number) => {
+    if (num === 4) {
+      setTypeCard("Visa");
+    }else if (num === 5) {
+      setTypeCard("MasterCard");
+    }else if (num === 3) {
+      setTypeCard("American Express");
+    }else{
+      setTypeCard("Terminada en");
+    }
+  };
+
+  const getCard = async (card_id: number, idAccount: number) => {
+    try {      
+      const token = localStorage.getItem("token");
+      const config = {
+        method: "get",
+        url: `https://digitalmoney.ctd.academy/api/accounts/${idAccount}/cards/${card_id}`,
+        headers: {
+          "Authorization": token,
+          "Content-Type": "application/json"
+        }
+      };
+      axios.get(config.url, config)
+        .then((response) => {
+          console.log("tarjeta: ");
+          console.log(response);
+          setCard(response?.data)
+          console.log("primer numero: ");
+          console.log(response?.data?.number_id?.toString().slice(0,1));
+          getTypeCard(parseInt(response?.data?.number_id?.toString().slice(0,1)));   
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } catch (error) {
+      console.error("Ocurrió un error al realizar la solicitud:", error);
+    }
   };
 
   const currentDate = new Date();
@@ -80,15 +135,21 @@ const CheckInfoBox = ({ money, info, handleChargeMoney}: any) => {
           <Typography sx={{ color: "white" }} variant="subtitle2">
             Para
           </Typography>
-          <Typography sx={{ color: "#C1FD35" }} variant="h2">
-            Cuenta Propia
-          </Typography>
+          {serviceName !== "" ? (
+            <Typography sx={{ color: "#C1FD35" }} variant="h2">
+              {serviceName}
+            </Typography>
+          ) : (
+            <Typography sx={{ color: "#C1FD35" }} variant="h2">
+              Cuenta Propia
+            </Typography>
+          )}
         </Box>
         <Box sx={{ paddingTop: "10px", paddingBottom: "10px" }}>
           <Typography sx={{ color: "white" }}>{text}</Typography>
-          {router.pathname === "/pago-realizado" ? (
+          {router.pathname === "/listar-servicios/pago/pago-realizado" ? (
             <Typography sx={{ color: "white" }} variant="subtitle2">
-              {info?.tarjeta?.nombre} {info?.tarjeta?.numero}
+              {typeCard} ************{card?.number_id.toString().slice(-4)}
             </Typography>
           ) : (
             <Typography sx={{ color: "white" }} variant="subtitle2">

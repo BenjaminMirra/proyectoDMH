@@ -6,6 +6,15 @@ export interface IAccount {
   user_id: number
 }
 
+export interface ICard { 
+  account_id: number,
+  cod: number,
+  expiration_date: string,
+  first_last_name: string,
+  id: number,
+  number_id:number
+}
+
 export interface IUser {
   firstname: string,
   lastname: string,

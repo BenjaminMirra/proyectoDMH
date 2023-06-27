@@ -28,12 +28,24 @@ const SelectCardService = () => {
   const [isContinuarExpiredCard, setIsContinuarExpiredCard] = useState(false);
   const [listCard, setListCard] = useState<ListItemData[]>([]);
   const [search, setSearch] = useState("");
+  const [moneyToCharge, setMoneyToCharge] = useState(0);
   const isDelete = false;
   const [services] = useServices({ search });
 
   const actualServices = services.filter(
     (item) => item.id == parseInt(serviceId)
   );
+
+  useEffect(() => {
+    setMoneyToCharge(getRandomInt(0, 10000));    
+  }, [])
+
+  function getRandomInt(min :number, max:number) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+  
 
   const [vencimiento, setVencimiento] = useState("01/2000");
   useEffect(() => {
@@ -70,6 +82,8 @@ const SelectCardService = () => {
     }
   };
   const handleContinuarClick = () => {
+    const serviceName = localStorage.setItem("ServiceName", `${actualServices[0]?.name}`);
+    localStorage.setItem("moneyToCharge", moneyToCharge.toString());
     const carId = localStorage.getItem("cardId");
     setIsContinuarExpiredCard(false);
     setIsContinuar(false);
@@ -92,10 +106,12 @@ const SelectCardService = () => {
       ) {
         setIsContinuarExpiredCard(true);
       } else {
-        router.push(`/listar-servicios/pago/${serviceId}`);
+        //router.push(`/listar-servicios/pago/${serviceId}`);
+        router.push("/listar-servicios/pago/pago-realizado");
       }
     } else {
       setIsContinuar(true);
+      
     }
   };
   const handleClose = () => {
@@ -195,7 +211,7 @@ const SelectCardService = () => {
             <Typography
               sx={{ fontSize: "24px", fontWeight: "700", color: "white" }}
             >
-              $1000
+              ${moneyToCharge}
             </Typography>
           </Box>
         </Box>
