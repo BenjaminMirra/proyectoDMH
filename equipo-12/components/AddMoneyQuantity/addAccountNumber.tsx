@@ -16,6 +16,7 @@ const AddAccountNumber = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const [validationError, setValidationError] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const serviceId = useRouter().query.id as string;
   const validationSchema = Yup.object().shape({
     number: Yup.string()
       .test("notEmpty", "*Este campo es requerido", (value: any) => {
@@ -83,7 +84,7 @@ const AddAccountNumber = () => {
       .validate({ number: inputValue })
       .then(() => {
         if (inputValue.slice(9) == "00") {
-          router.push("/inicio");
+          router.push(`/listar-servicios/pago/${serviceId}`);
         } else router.push("/ingresar-numero-cuenta/errorPage");
       })
       .catch((error) => {

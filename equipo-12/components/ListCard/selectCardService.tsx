@@ -20,12 +20,12 @@ import Link from "next/link";
 import { useServices } from "../../hooks/useServices";
 
 const SelectCardService = () => {
-  const serviceId = useRouter().query.id as string;
+  
   const router = useRouter();
+  const serviceId = useRouter().query.id as string;
   const [open, setOpen] = useState(false);
   const [isContinuar, setIsContinuar] = useState(false);
   const [isContinuarExpiredCard, setIsContinuarExpiredCard] = useState(false);
-  const [width] = useDeviceSize();
   const [listCard, setListCard] = useState<ListItemData[]>([]);
   const [search, setSearch] = useState("");
   const isDelete = false;
@@ -62,7 +62,9 @@ const SelectCardService = () => {
   const handleClick = () => {
     setIsContinuar(false);
     if (listCard?.length < 10) {
-      router.push("/listar-servicios/agregar-tarjeta?listar='false'");
+      router.push(
+        "/listar-servicios/agregar-tarjeta?listar='false'&id=" + serviceId
+      );
     } else {
       setOpen(true);
     }
@@ -90,7 +92,7 @@ const SelectCardService = () => {
       ) {
         setIsContinuarExpiredCard(true);
       } else {
-        router.push("/listar-servicios/pago");
+        router.push(`/listar-servicios/pago/${serviceId}`);
       }
     } else {
       setIsContinuar(true);

@@ -12,6 +12,7 @@ interface PropsCard {
 }
 const CreditCardService = ({ listar }: PropsCard) => {
   const router = useRouter();
+  const serviceId = useRouter().query.id as string;
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [isDisabled] = useState(false);
@@ -72,7 +73,7 @@ const CreditCardService = ({ listar }: PropsCard) => {
             if (listar) {
               router.push("/listar-servicios");
             } else {
-              router.push("/listar-servicios/pago");
+              router.push("/listar-servicios/pago/" + serviceId);
             }
             return response;
           })

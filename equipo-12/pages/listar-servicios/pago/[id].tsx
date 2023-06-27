@@ -4,8 +4,7 @@ import Layout from "../../../layout/layout";
 import { NextPageWithLayout } from "../../_app";
 import ArrowSubtitleMobile from "../../../components/ArrowSubtitleMobile";
 import SelectCardService from "../../../components/ListCard/selectCardService";
-import { useRouter } from "next/router";
-
+import Head from "next/head";
 interface PropsType {
   children?: ReactNode;
 }
@@ -13,6 +12,10 @@ interface PropsType {
 const ServiceCardList: NextPageWithLayout<PropsType> = () => {
   return (
     <>
+      <Head>
+        <title>Digital Money House</title>
+        <meta name="description" content="Digital Money House" />
+      </Head>
       <Box
         sx={{
           width: "276px",

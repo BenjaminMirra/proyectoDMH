@@ -14,7 +14,7 @@ const ErrorInfoBox = ({ titleError, textError }: Props) => {
   const router = useRouter();
 
   const handlerClick = () => {
-    router.push("/listar-servicios")
+    router.push("/listar-servicios");
   };
 
   return (

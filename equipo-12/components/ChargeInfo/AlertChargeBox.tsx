@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 const AlertChargeBox = () => {
   const router = useRouter();
-  const [succesText, setSuccesText] = useState("")
+  const [succesText, setSuccesText] = useState("");
 
   useEffect(() => {
     if (router.pathname === "/pago-realizado") {

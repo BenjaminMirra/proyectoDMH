@@ -7,6 +7,7 @@ import { ReactElement } from "react";
 import Layout from "../../../layout/layout";
 
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 interface PropsType {
   children?: ReactElement;
@@ -19,6 +20,10 @@ const addCardService: NextPageWithLayout<PropsType> = () => {
 
   return (
     <>
+      <Head>
+        <title>Digital Money House</title>
+        <meta name="description" content="Digital Money House" />
+      </Head>
       <Box
         sx={{
           width: "276px",
