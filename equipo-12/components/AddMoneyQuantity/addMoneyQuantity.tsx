@@ -109,13 +109,13 @@ const AddMoneyOption = () => {
           padding: "40px 45px 18px 35px",
           gap: "18px",
         },
-        
+
         "@media (max-width: 1024px)": {
           display: "flex",
           alignItems: "center",
           flexDirection: "colum",
-          width:"100%"
-        },            
+          width: "100%"
+        },
       }}
     >
       <FormControl onSubmit={handleClick}
@@ -135,7 +135,7 @@ const AddMoneyOption = () => {
             display: "flex",
             alignItems: "center",
             flexDirection: "colum",
-          },            
+          },
         }}
       >
         <Box
@@ -143,12 +143,12 @@ const AddMoneyOption = () => {
             "@media (max-width: 1024px)": {
               width: "100%",
               paddingTop: "10px",
-              alignItems:"center",
+              alignItems: "center",
             },
             "@media (max-width: 768px)": {
-              alignItems:"center",
-            }, 
-            flexDirection:"column"  ,         
+              alignItems: "center",
+            },
+            flexDirection: "column",
           }}
         >
 
@@ -159,9 +159,9 @@ const AddMoneyOption = () => {
                 color: "#C1FD35",
                 paddingBottom: "25px",
                 "@media (max-width: 1024px)": {
-                  textAlign:"center",
+                  textAlign: "center",
 
-                }, 
+                },
               }}
               variant="h6"
             >
@@ -175,9 +175,9 @@ const AddMoneyOption = () => {
               flexDirection: "row",
               alignContent: "flex-start",
               "@media (max-width: 1024px)": {
-                alignItems:"stretch",
+                alignItems: "stretch",
                 flexDirection: "column",
-              }, 
+              },
             }}>
               <Input
                 type="text"
@@ -196,10 +196,10 @@ const AddMoneyOption = () => {
                   justifyContent: "center",
                   alignItems: "flex-start",
                   paddingBottom: "10px",
-                  paddingTop:"10px",
-                  paddingLeft:"8px",
-                  paddingRight:"60px",
-                  textAlign:"center",
+                  paddingTop: "10px",
+                  paddingLeft: "8px",
+                  paddingRight: "60px",
+                  textAlign: "center",
                 }}
               />
               <Typography sx={{ width: "100", paddingLeft: "20px", color: "#C1FD35" }} variant="h6">
@@ -212,14 +212,14 @@ const AddMoneyOption = () => {
               display: "flex",
               alignItems: "center",
               paddingBottom: "25px",
-              paddingTop:"15px",
-              width:"100%",
+              paddingTop: "15px",
+              width: "100%",
               justifyContent: "flex-end",
               flexDirection: "colum",
               "@media (max-width: 1024px)": {
                 justifyContent: "center",
                 maxWidth: "100%",
-              },  
+              },
             }}
           >
             <Button
@@ -230,7 +230,7 @@ const AddMoneyOption = () => {
               size="large"
               sx={{
                 width: "100%",
-                paddingTop: "10px",             
+                paddingTop: "10px",
                 textTransform: "none",
                 borderColor: "transparent", // Desactivar el color del borde
                 backgroundColor: buttonDisabled ? "#CECECE" : "#C1FD35", // Cambiar el color del botón según la visibilidad del error
@@ -240,7 +240,7 @@ const AddMoneyOption = () => {
                     fontSize: "10px",
                     size: "medium",
                     display: "flex",
-                    alignItems:"stretch",
+                    alignItems: "stretch",
                     flexDirection: "colum",
                     maxWidth: "100%", 
                     width: "100%"
