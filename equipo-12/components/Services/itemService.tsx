@@ -16,7 +16,7 @@ type Props = {
 const ItemService = ({ service }: Props) => {
   return (
     <Link
-      href={`/listar-servicios/pago/${service.id}`}
+      href={`/ingresar-numero-cuenta/${service.id}`}
       style={{ textDecoration: "none", color: "unset" }}
     >
       <ListItem
