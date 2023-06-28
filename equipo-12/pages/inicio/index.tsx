@@ -1,13 +1,22 @@
 import { Box, Button } from "@mui/material";
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import Layout from "../../layout/layout";
 import AvailableAmount from "../../components/AvailableAmount";
 import Transferences from "../../components/Transferences";
 import Head from "next/head";
 import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Inicio = () => {
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      router.push("/");
+    }
+  });
 
   return (
     <>

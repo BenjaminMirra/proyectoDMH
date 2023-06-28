@@ -8,6 +8,7 @@ import UseContextProvider from "../provider/userProvider";
 import { UserProvider } from "../context/createContext";
 import { UserProviderNew } from "../context/userContext";
 import { AccountProviderNew } from "../context/accountContext";
+import { TransferencesProvider } from "../context/useTransferences";
 
 export type NextPageWithLayout<T> = NextPage<T> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -26,7 +27,9 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
         <AccountProviderNew>
           <UserProviderNew>
             <UseContextProvider>
-              {getLayout(<Component {...pageProps} />)}
+              <TransferencesProvider>
+                {getLayout(<Component {...pageProps} />)}
+              </TransferencesProvider>
             </UseContextProvider>
           </UserProviderNew>
         </AccountProviderNew>

@@ -9,9 +9,9 @@ const AlertChargeBox = () => {
   const [succesText, setSuccesText] = useState("");
 
   useEffect(() => {
-    if (router.pathname === "/pago-realizado") {
+    if (router.pathname.includes("/pago-realizado")) {
       return setSuccesText("Ya realizaste tu pago");
-    }else{
+    } else {
       return setSuccesText("Ya cargamos el dinero en tu cuenta");
     }
 

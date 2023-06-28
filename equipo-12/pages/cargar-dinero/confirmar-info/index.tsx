@@ -10,8 +10,8 @@ import Link from "next/link";
 
 const CheckInfo = () => {
 
-  const { accountInfo } = useAccountContext();
-  const [isLoading, setIsLoading] = useState(true);
+  const { accountInfo, isLoading } = useAccountContext();
+  const [isLoadingCard, setisLoadingCard] = useState(true);
   const [moneyToCharge, setMoneyToCharge] = useState<string | null>("");
   const [cardInfo, setCardInfo] = useState({
     account_id: "",
@@ -48,9 +48,9 @@ const CheckInfo = () => {
       } catch (err) {
         return err;
       }
-      setIsLoading(false);
+      setisLoadingCard(false);
     };
-    if (isLoading) {
+    if (isLoadingCard) {
       fetchData();
     }
   });
@@ -109,9 +109,6 @@ const CheckInfo = () => {
     return "hola";
   };
 
-
-
-
   return (
     <>
       <Head>
@@ -160,7 +157,9 @@ const CheckInfo = () => {
         }}>
           <ArrowSubtitleMobile title={"Cargar dinero"} />
         </Box>
-        <CheckInfoBox handleChargeMoney={handleChargeMoney} isLoading={isLoading} accountInfo={accountInfo} />
+        {!isLoading ?
+          <CheckInfoBox handleChargeMoney={handleChargeMoney} isLoading={isLoading} accountInfo={accountInfo} />
+          : ""}
         <Box sx={{
           display: "none",
           "@media (max-width: 767px)": {
