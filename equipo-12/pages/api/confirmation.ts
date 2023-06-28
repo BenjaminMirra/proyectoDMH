@@ -25,7 +25,7 @@ const handler = async (req: any, res: any) => {
         html: `<h1>Hola ${data.firstName} ${data.lastName}</h1>
         <p>Este es tu token ${authToken}</p>
         <p>Ingresa a este link para confirmar tu correo electrónico</p>
-        <a target="_blank" href="http://localhost:3000/confirmar-registro/paso-1">Confirmar correo electrónico</a>
+        <a target="_blank" href="${process.env.URL_PAGE}confirmar-registro/paso-1">Confirmar correo electrónico</a>
         `,
       });
       return res.status(200).json({ message: "Email sent" });

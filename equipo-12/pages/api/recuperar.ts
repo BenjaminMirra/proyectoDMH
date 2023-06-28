@@ -12,7 +12,7 @@ const handler = async (req: any, res: any) => {
         subject: "Recuperar contraseña",
         html: `<h1>Hola,</h1>
         <p>Para modificar tu contraseña ingresa al siguiente link:o</p>
-        <a target="_blank" href="http://localhost:3000/recuperar-clave/">Recuperar Contraseña</a>
+        <a target="_blank" href="${process.env.URL_PAGE}recuperar-clave/">Recuperar Contraseña</a>
         `,
       });
       return res.status(200).json({ message: "Email sent" });
