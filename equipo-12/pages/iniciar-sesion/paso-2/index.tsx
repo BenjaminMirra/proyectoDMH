@@ -81,9 +81,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
                 });
             });
           setErrorLogin(false);
-          setTimeout(() => {
-            router.push("/inicio");
-          }, 1000);
+          router.push("/inicio");
 
         });
     } catch (error) {
