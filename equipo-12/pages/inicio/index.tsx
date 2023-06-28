@@ -1,5 +1,5 @@
-import { Box, Button, Typography } from "@mui/material";
-import { ReactElement, useEffect, useState } from "react";
+import { Box, Button } from "@mui/material";
+import { ReactElement } from "react";
 import Layout from "../../layout/layout";
 import AvailableAmount from "../../components/AvailableAmount";
 import Transferences from "../../components/Transferences";

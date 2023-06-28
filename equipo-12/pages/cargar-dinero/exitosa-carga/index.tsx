@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import { ReactElement, useEffect, useState } from "react";
 import Head from "next/head";
 import AlertChargeBox from "../../../components/ChargeInfo/AlertChargeBox";
@@ -7,7 +7,6 @@ import { useAccountContext } from "../../../context/accountContext";
 import { NextPageWithLayout } from "../../_app";
 import Layout from "../../../layout/layout";
 import SuccessChargeBox from "../../../components/ChargeInfo/SuccessChargeBox";
-import Link from "next/link";
 
 const SuccessCharge: NextPageWithLayout<any> = () => {
 
@@ -15,11 +14,10 @@ const SuccessCharge: NextPageWithLayout<any> = () => {
   const [moneyToCharge, setMoneyToCharge] = useState<string | null>("");
 
   useEffect(() => {
-    if (localStorage.getItem("moneyToCharge") !== null) {
+    if (typeof window !== "undefined" && typeof localStorage !== "undefined" && localStorage.getItem("moneyToCharge") !== null) {
       setMoneyToCharge(localStorage.getItem("moneyToCharge"));
     }
-  });
-
+  }, []);
 
   return (
     <>

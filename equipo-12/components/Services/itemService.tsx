@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { IService } from "../../types";
-import { OndemandVideo } from '@mui/icons-material';
+import { OndemandVideo } from "@mui/icons-material";
 
 type Props = {
   service: IService;
@@ -29,7 +29,7 @@ const ItemService = ({ service }: Props) => {
         }}
       >
         <ListItemAvatar>
-          <OndemandVideo sx={{ color: "var(--dark-grey)"}} />
+          <OndemandVideo sx={{ color: "var(--dark-grey)" }} />
         </ListItemAvatar>
         <ListItemText
           sx={{
@@ -40,7 +40,7 @@ const ItemService = ({ service }: Props) => {
           primary={service.name}
         >
         </ListItemText>
-        <Button sx={{transition: "none", "&:hover": { backgroundColor: "#C1FD35", },}}>Seleccionar</Button>
+        <Button sx={{ transition: "none", "&:hover": { backgroundColor: "#C1FD35", }, }}>Seleccionar</Button>
       </ListItem>
     </Link>
   );

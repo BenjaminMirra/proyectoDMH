@@ -20,7 +20,7 @@ import Link from "next/link";
 import { useServices } from "../../hooks/useServices";
 
 const SelectCardService = () => {
-  
+
   const router = useRouter();
   const serviceId = useRouter().query.id as string;
   const [open, setOpen] = useState(false);
@@ -37,15 +37,15 @@ const SelectCardService = () => {
   );
 
   useEffect(() => {
-    setMoneyToCharge(getRandomInt(0, 10000));    
-  }, [])
+    setMoneyToCharge(getRandomInt(0, 10000));
+  }, []);
 
-  function getRandomInt(min :number, max:number) {
+  function getRandomInt(min: number, max: number) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min);
   }
-  
+
 
   const [vencimiento, setVencimiento] = useState("01/2000");
   useEffect(() => {
@@ -111,7 +111,7 @@ const SelectCardService = () => {
       }
     } else {
       setIsContinuar(true);
-      
+
     }
   };
   const handleClose = () => {

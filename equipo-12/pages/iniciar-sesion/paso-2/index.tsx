@@ -10,7 +10,6 @@ import ControlledInput from "../../../components/FormController/controlled-input
 import { NextPageWithLayout } from "../../_app";
 import { useUserContextPass } from "../../../provider/userProvider";
 import Layout from "../../../layout/layout";
-import { useUserData } from "../../../context/createContext";
 import { useUserContext } from "../../../context/userContext";
 
 const schema = yup
@@ -47,6 +46,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
         .then(function (response) {
           const token = response.data.token;
           localStorage.setItem("token", token);
+          document.cookie = `auth=${token}`;
 
           axios
             .request({
@@ -82,6 +82,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
             });
           setErrorLogin(false);
           router.push("/inicio");
+
         });
     } catch (error) {
       console.error(error);

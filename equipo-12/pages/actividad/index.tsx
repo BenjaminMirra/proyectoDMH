@@ -21,7 +21,6 @@ import FilterMenu from "../../components/Activity/filterMenu";
 import { Tune } from "@mui/icons-material";
 import FilterModal from "../../components/Activity/FilterModal/FilterModal";
 import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
-
 interface PropsType {
   children?: ReactNode;
 }

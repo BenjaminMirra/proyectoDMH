@@ -41,7 +41,7 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
         }}
         >
           <ArrowSubtitleMobile title="Tarjetas" />
-          <AddCard/>
+          <AddCard />
         </Box>
         <Box sx={{
           marginBottom: "1rem",
@@ -50,7 +50,7 @@ const ListCard: NextPageWithLayout<PropsType> = () => {
         </Box>
 
       </Box>
-    </>    
+    </>
   );
 };
 
