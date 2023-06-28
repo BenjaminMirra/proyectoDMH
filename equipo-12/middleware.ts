@@ -19,7 +19,7 @@ export function middleware(req: NextRequest) {
       return NextResponse.redirect(`${process.env.URL_PAGE}inicio`);
     }
   }
-  if (url.includes("registro-exitoso")) {
+  if (url.includes("registro-exitoso") || url.includes("iniciar-sesion") || url.includes("recuperar") || url.includes("recupero") || url.includes("registro")) {
     if (token) {
       return NextResponse.redirect(`${process.env.URL_PAGE}inicio`);
     }
