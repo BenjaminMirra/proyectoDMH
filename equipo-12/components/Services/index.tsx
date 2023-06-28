@@ -14,7 +14,21 @@ const Services = () => {
   };  
   return (
     <>
-   
+      <form style={{ width: "100%", borderRadius: "10px" }} onChange={handleSearch}>
+        <TextField
+          size="medium"
+          sx={{ width: "100%", maxWidth: "100%", backgroundColor: "#FFF", }}
+          className={classes.textFieldFilter}
+          placeholder="Buscar entre más de 5.000 empresas"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start" sx={{ backgroundColor: "#FFF" }}>
+                <Search />
+              </InputAdornment>
+            ),
+          }}
+        />
+      </form>
       <Box sx={{ width: "100%", backgroundColor: "#FFF", borderRadius: "10px", boxShadow: "0px 4px 4px #0000004c", }}>
         <List sx={{ width: "100%", }}>
           <ListItem sx={{ padding: "20px" }}>
