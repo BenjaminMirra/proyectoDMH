@@ -1,10 +1,8 @@
-import { ReactElement, ReactNode, useEffect, useState } from "react";
+import { ReactElement, ReactNode } from "react";
 import { Box, CircularProgress } from "@mui/material";
 import { NextPageWithLayout } from "../../_app";
 import AliasCVU from "../../../components/AliasCVU/alias-cvu";
 import Layout from "../../../layout/layout";
-import { useUserContext } from "../../../context/userContext";
-import useAccount from "../../../hooks/useAccount";
 import { useAccountContext } from "../../../context/accountContext";
 interface PropsType {
   children?: ReactNode;
@@ -12,7 +10,6 @@ interface PropsType {
 
 const TransferenceTransaction: NextPageWithLayout<PropsType> = () => {
   const { accountInfo, isLoading } = useAccountContext();
-
   return (
     <>
       <Box

@@ -3,14 +3,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { ReactElement, ReactNode, useState } from "react";
+import { ReactElement, ReactNode, useEffect, useState } from "react";
 import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
 import { NextPageWithLayout } from "../../_app";
 import { useUserContextPass } from "../../../provider/userProvider";
 import Layout from "../../../layout/layout";
-import { useUserData } from "../../../context/createContext";
 import { useUserContext } from "../../../context/userContext";
 
 const schema = yup
@@ -33,6 +32,12 @@ const Password: NextPageWithLayout<PropsType> = () => {
     resolver: yupResolver(schema),
   });
 
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      router.push("/dashboard");
+    }
+  }, []);
+
   const { user, setUser } = useUserContextPass();
   const { setUserInfo } = useUserContext();
 
@@ -47,6 +52,7 @@ const Password: NextPageWithLayout<PropsType> = () => {
         .then(function (response) {
           const token = response.data.token;
           localStorage.setItem("token", token);
+          document.cookie = `auth=${token}`;
 
           axios
             .request({

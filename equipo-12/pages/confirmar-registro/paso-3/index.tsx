@@ -66,6 +66,7 @@ const Token: NextPageWithLayout<PropsType> = () => {
                       })
                       .then(function (response) {
                         localStorage.setItem("token", response.data.token);
+                        document.cookie = `auth=${response.data.token}`;
                         axios
                           .request({
                             method: "GET",

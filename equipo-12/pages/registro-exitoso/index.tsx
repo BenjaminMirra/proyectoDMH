@@ -11,6 +11,7 @@ interface PropsType {
 }
 
 const SuccessRegister: NextPageWithLayout<PropsType> = () => {
+
   return (
     <>
       <Head>

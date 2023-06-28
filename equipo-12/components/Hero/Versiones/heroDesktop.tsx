@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import CardHero from "../../CardHero/cardHero";
 
-const HeroDesktop = ({ cards, texts }: any) => {
+const HeroDesktop = () => {
   return (
     <Grid className={styles.grid}
       sx={{
@@ -34,7 +34,7 @@ const HeroDesktop = ({ cards, texts }: any) => {
           lineHeight: "50px",
           color: "#FFFFFF",
         }}>
-          {texts ? texts[0]?.titles[0] : "hola"}
+          De ahora en adelante, hacés más con tu dinero
         </Typography>
         <Typography
           sx={{
@@ -61,12 +61,12 @@ const HeroDesktop = ({ cards, texts }: any) => {
         width: "100%",
       }}>
         <CardHero
-          title={cards ? cards[0].titles[0].title : ""}
-          description={cards ? cards[0].titles[0].description : ""}
+          title={"Transferí dinero"}
+          description={"Desde Digital Money House vas a poder transferir dinero a otras cuentas, asi como también recibir transferencias y nuclear tu capital en nuestra billetera virtual"}
         />
         <CardHero
-          title={cards ? cards[0].titles[1].title : ""}
-          description={cards ? cards[0].titles[1].description : ""}
+          title={"Pago de servicios"}
+          description={"Pagá mensualmente los servicios en 3 simples clicks. Facil, rápido y conveniente. Olvidate de las facturas en papel"}
         />
       </Box>
       <Box sx={{

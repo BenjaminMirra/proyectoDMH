@@ -1,4 +1,4 @@
-import {  ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 import { Box } from "@mui/material";
 import { NextPageWithLayout } from "../_app";
 import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";

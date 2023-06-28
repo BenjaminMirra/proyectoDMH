@@ -1,17 +1,16 @@
-import { ReactElement, ReactNode} from "react";
-import { Box} from "@mui/material";
+import { ReactElement, ReactNode } from "react";
+import { Box } from "@mui/material";
 import Layout from "../../../layout/layout";
 import { NextPageWithLayout } from "../../_app";
 import ArrowSubtitleMobile from "../../../components/ArrowSubtitleMobile";
 import SelectCard from "../../../components/ListCard/selectCard";
-
 interface PropsType {
   children?: ReactNode;
 }
-  
+
 
 const CardTransaction: NextPageWithLayout<PropsType> = () => {
-  
+
   return (
     <>
       <Box
@@ -23,7 +22,7 @@ const CardTransaction: NextPageWithLayout<PropsType> = () => {
             display: "none",
           },
         }}
-      ></Box>    
+      ></Box>
       <Box sx={{
         height: "100%",
         width: "100vw",
@@ -43,10 +42,10 @@ const CardTransaction: NextPageWithLayout<PropsType> = () => {
           marginBottom: "1rem",
         }}
         >
-          <ArrowSubtitleMobile title="Seleccionar Tarjetas" />      
-          <SelectCard/>
+          <ArrowSubtitleMobile title="Seleccionar Tarjetas" />
+          <SelectCard />
         </Box>
-      
+
 
       </Box>
     </>

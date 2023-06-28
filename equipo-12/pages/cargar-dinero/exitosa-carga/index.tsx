@@ -20,7 +20,6 @@ const SuccessCharge: NextPageWithLayout<any> = () => {
     }
   });
 
-
   return (
     <>
       <Head>

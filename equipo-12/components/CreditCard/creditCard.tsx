@@ -77,7 +77,7 @@ const CreditCard = ({ listar }: PropsCard) => {
             return response;
           })
           .catch(function (error) {
-            setSuccess(false)
+            setSuccess(false);
             const errorMessage = catchError(error);
             setError(errorMessage);
           });

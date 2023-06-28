@@ -7,13 +7,12 @@ import { DensityMedium } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-import useUser from "../../hooks/useUser";
 import { useUserContext } from "../../context/userContext";
 
 const HeaderHome = (props: any) => {
   const { setVisibility } = props;
   const [logged, setLogged] = useState(false);
-  const { userInfo, isLoading, setIsLoading } = useUserContext();
+  const { userInfo, isLoading } = useUserContext();
 
   const router = useRouter();
 
@@ -59,6 +58,7 @@ const HeaderHome = (props: any) => {
     localStorage.removeItem("expirationDate");
     localStorage.removeItem("moneyToCharge");
     router.push("/");
+    document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
     setLogged(false);
   };
 
@@ -86,7 +86,7 @@ const HeaderHome = (props: any) => {
         >
           <Box>
             <Link
-              href={"/"}
+              href={localStorage.getItem("token") ? "/inicio" : "/"}
               style={{
                 display: "flex",
                 alignItems: "center",

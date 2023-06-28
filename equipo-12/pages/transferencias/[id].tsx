@@ -15,6 +15,12 @@ const Transference = () => {
   const [transference, setTransference] = useState<ITransference>();
 
   useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      router.push("/");
+    }
+  }, []);
+
+  useEffect(() => {
     const token = localStorage.getItem("token");
     const account = localStorage.getItem("accountId");
     const configTransference = {

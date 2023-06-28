@@ -9,14 +9,13 @@ import { CircularProgress } from "@mui/material";
 import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
 import useAccount from "../../hooks/useAccount";
 import Head from "next/head";
-import useUser from "../../hooks/useUser";
 import { useUserContext } from "../../context/userContext";
 interface PropsType {
   children?: ReactNode;
 }
 
 const Perfil: NextPageWithLayout<PropsType> = () => {
-  const { userInfo, isLoading, setIsLoading } = useUserContext();
+  const { userInfo, setIsLoading } = useUserContext();
   const { userAccount } = useAccount();
 
   return (

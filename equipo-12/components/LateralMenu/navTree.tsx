@@ -34,6 +34,7 @@ const NavTree = (props: any) => {
     localStorage.removeItem("expirationDate");
     localStorage.removeItem("moneyToCharge");
     setLogged ? setLogged(false) : "";
+    document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
     router.push("/");
   };
 

@@ -1,9 +1,8 @@
-import { Box} from "@mui/material";
-import { ReactElement} from "react";
+import { Box } from "@mui/material";
+import { ReactElement } from "react";
 import Layout from "../../layout/layout";
 import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
 import Services from "../../components/Services";
-
 const ListService = () => {
 
   return (

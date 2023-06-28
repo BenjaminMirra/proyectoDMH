@@ -4,22 +4,22 @@ import HeroMobile from "./Versiones/heroMobile";
 import HeroTablet from "./Versiones/heroTablet";
 import useDeviceSize from "../../hooks/useDeviceSize";
 
-export const Hero = ({ texts, images, cards }: any) => {
+export const Hero = () => {
 
   const [heroDisplayed, setHeroDisplayed] = useState(<HeroDesktop />);
   const [width] = useDeviceSize();
 
   useEffect(() => {
     if (width <= 768) {
-      setHeroDisplayed(<HeroMobile cards={cards} />);
+      setHeroDisplayed(<HeroMobile />);
     } else if (width < 1025) {
-      setHeroDisplayed(<HeroTablet texts={texts} cards={cards} />);
+      setHeroDisplayed(<HeroTablet />);
     } else {
       setHeroDisplayed(
-        <HeroDesktop texts={texts} cards={cards} images={images} />
+        <HeroDesktop />
       );
     }
-  }, [width, texts, images, cards]);
+  }, [width]);
   return (
     <>{heroDisplayed}</>
     //

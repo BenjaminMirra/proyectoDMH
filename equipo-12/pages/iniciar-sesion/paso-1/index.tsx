@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
-import { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode, useEffect } from "react";
 import { NextPageWithLayout } from "../../_app";
 import Link from "next/link";
 import { useUserContextPass } from "../../../provider/userProvider";
@@ -34,6 +34,12 @@ const Username: NextPageWithLayout<PropsType> = () => {
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      router.push("/inicio");
+    }
+  }, []);
 
   const { setUser } = useUserContextPass();
 
