@@ -10,7 +10,7 @@ type Props = {
 
 const ItemService = ({ service }: Props) => {
   return (
-    <Link href={`/?/${service.id}`}
+    <Link href={`/inicio`/*`/page juli/${service.id}`*/}
       style={{ textDecoration: "none", color: "unset" }}>
       <ListItem alignItems="flex-start"
         sx={{ display: "flex", alignItems: "center", "&:hover": { backgroundColor: "#C1FD35", }, }}>
