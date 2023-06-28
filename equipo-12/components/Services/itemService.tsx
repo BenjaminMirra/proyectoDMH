@@ -25,7 +25,7 @@ const ItemService = ({ service }: Props) => {
         sx={{
           display: "flex",
           alignItems: "center",
-          "&:hover": { backgroundColor: "#EEEAEA" },
+          "&:hover": { backgroundColor: "#C1FD35" },
         }}
       >
         <ListItemAvatar>
