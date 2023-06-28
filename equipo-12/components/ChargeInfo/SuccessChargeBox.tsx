@@ -181,7 +181,7 @@ const CheckInfoBox = ({ money, info, handleChargeMoney }: any) => {
           {router.pathname === "/listar-servicios/pago/pago-realizado" ? (
             <Typography sx={{ color: "white" }} variant="subtitle2">
               {typeCard !== "Desde cuenta terminada en "
-                ? `${typeCard} ************${card?.number_id
+                ? `${typeCard} ************${info?.number_id
                   .toString()
                   .slice(-4)}`
                 : `${typeCard} ${info?.cvu.slice(-4)}`}

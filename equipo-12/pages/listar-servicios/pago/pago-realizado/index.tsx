@@ -33,7 +33,8 @@ const PaymentMade: NextPageWithLayout<any> = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const accountId = localStorage.getItem("accountId");
-    const cardId = localStorage.getItem("cardId");
+
+    const cardId =  localStorage.getItem("cardId") && localStorage.getItem("cardId");
 
 
 
@@ -54,8 +55,11 @@ const PaymentMade: NextPageWithLayout<any> = () => {
       }
       setIsLoad(false);
     };
-    if (isLoad) {
-      fetchData();
+    if (cardId)
+    {
+      if (isLoad) {
+        fetchData();
+      }
     }
   });
 
@@ -192,7 +196,7 @@ const PaymentMade: NextPageWithLayout<any> = () => {
         ) : (
           <>
             <AlertChargeBox />
-            <SuccessChargeBox info={userAccount} money={moneyToCharge} handleChargeMoney={handleChargeMoney} />
+            <SuccessChargeBox info={cardInfo} money={moneyToCharge} handleChargeMoney={handleChargeMoney} />
           </>
         )}
 
