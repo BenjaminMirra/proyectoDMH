@@ -9,7 +9,7 @@ export function middleware(req: NextRequest) {
   console.log(token);
 
 
-  if (url.includes("inicio") || url.includes("transferencias") || url.includes("perfil") || url.includes("actividad") || url.includes("agregar-tarjeta") || url.includes("cargar-dinero") || url.includes("depositos") || url.includes("listar-servicios") || url.includes("listar-tarjetas") || url.includes("ingresar-numero-cuenta")) {
+  if (url.includes("transferencias") || url.includes("perfil") || url.includes("actividad") || url.includes("agregar-tarjeta") || url.includes("cargar-dinero") || url.includes("depositos") || url.includes("listar-servicios") || url.includes("listar-tarjetas") || url.includes("ingresar-numero-cuenta")) {
     if (!token) {
       return NextResponse.redirect(`${process.env.URL_PAGE}iniciar-sesion/paso-1`);
     }
