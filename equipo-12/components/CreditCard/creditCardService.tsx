@@ -10,8 +10,9 @@ import { useRouter } from "next/router";
 interface PropsCard {
   listar: boolean;
 }
-const CreditCard = ({ listar }: PropsCard) => {
+const CreditCardService = ({ listar }: PropsCard) => {
   const router = useRouter();
+  const serviceId = useRouter().query.id as string;
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [isDisabled] = useState(false);
@@ -70,9 +71,9 @@ const CreditCard = ({ listar }: PropsCard) => {
           .then((response) => {
             setSuccess(true);
             if (listar) {
-              router.push("/listar-tarjetas");
+              router.push("/listar-servicios");
             } else {
-              router.push("/cargar-dinero/cargar-dinero-tarjeta");
+              router.push("/listar-servicios/pago/" + serviceId);
             }
             return response;
           })
@@ -263,4 +264,4 @@ const CreditCard = ({ listar }: PropsCard) => {
   );
 };
 
-export default CreditCard;
+export default CreditCardService;

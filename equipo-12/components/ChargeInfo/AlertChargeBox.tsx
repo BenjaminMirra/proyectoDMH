@@ -1,8 +1,23 @@
 import { Box, Typography } from "@mui/material";
 import checkCharge from "../../utils/icons/checkCharge.png";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const AlertChargeBox = () => {
+  const router = useRouter();
+  const [succesText, setSuccesText] = useState("");
+
+  useEffect(() => {
+    if (router.pathname === "/pago-realizado") {
+      return setSuccesText("Ya realizaste tu pago");
+    }else{
+      return setSuccesText("Ya cargamos el dinero en tu cuenta");
+    }
+
+
+  }, [router.pathname, succesText]);
+
   return (
     <Box sx={{
       width: "100%",
@@ -29,7 +44,7 @@ const AlertChargeBox = () => {
           fontSize: "16px",
         }
       }}>
-        Ya cargamos el dinero en tu cuenta
+        {succesText}
       </Typography>
     </Box>
   );

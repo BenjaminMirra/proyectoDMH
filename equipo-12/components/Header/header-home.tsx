@@ -58,6 +58,7 @@ const HeaderHome = (props: any) => {
     localStorage.removeItem("cardId");
     localStorage.removeItem("expirationDate");
     localStorage.removeItem("moneyToCharge");
+    localStorage.removeItem("ServiceName");
     router.push("/");
     setLogged(false);
   };
