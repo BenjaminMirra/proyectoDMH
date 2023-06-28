@@ -9,7 +9,6 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useTransferences } from "../../context/useTransferences";
 import Layout from "../../layout/layout";
 import { NextPageWithLayout } from "../_app";
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
@@ -21,6 +20,7 @@ import FilterMenu from "../../components/Activity/filterMenu";
 import { Tune } from "@mui/icons-material";
 import FilterModal from "../../components/Activity/FilterModal/FilterModal";
 import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
+import { useTransferencesContext } from "../../context/useTransferences";
 interface PropsType {
   children?: ReactNode;
 }
@@ -35,7 +35,7 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
   const [offset, setOffset] = useState(1);
   const PAGINATION_LIMIT = 10;
 
-  const [transferences] = useTransferences();
+  const { transferencesInfo, isLoadingTransferences } = useTransferencesContext();
   const classes = useStyles();
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
@@ -133,20 +133,20 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
     let array;
     // eslint-disable-next-line no-constant-condition
     if (true) {
-      array = sortByDate(transferences);
+      array = sortByDate(transferencesInfo && transferencesInfo);
     }
     if (search != "") {
       array = filterBySearch(array);
     }
     setOffset(1);
     setActivity(array);
-  }, [search, transferences]);
+  }, [search, transferencesInfo]);
 
   const handleSubmitFilter = () => {
     let array;
     // eslint-disable-next-line no-constant-condition
     if (true) {
-      array = sortByDate(transferences);
+      array = sortByDate(transferencesInfo && transferencesInfo);
     }
     if (period != -1) {
       array = filterByPeriod(array);
@@ -166,7 +166,7 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
     let array;
     // eslint-disable-next-line no-constant-condition
     if (true) {
-      array = sortByDate(transferences);
+      array = sortByDate(transferencesInfo);
     }
     setActivity(array);
     setOpenModal(false);
