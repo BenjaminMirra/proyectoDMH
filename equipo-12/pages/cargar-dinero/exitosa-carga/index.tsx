@@ -74,68 +74,7 @@ const SuccessCharge: NextPageWithLayout<any> = () => {
           <ArrowSubtitleMobile title={"Cargar dinero"} />
         </Box>
         <AlertChargeBox />
-        <SuccessChargeBox accountInfo={accountInfo} moneyToCharge={moneyToCharge} />
-        <Box sx={{
-          display: "flex",
-          width: "100%",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          flexDirection: "row",
-          gap: "20px",
-          paddingTop: "10px",
-          "@media only screen and (max-width: 1098px)": {
-            justifyContent: "center",
-          },
-          "@media only screen and (max-width: 768px)": {
-            flexDirection: "column-reverse",
-            paddingBottom: "30px",
-
-          },
-        }}>
-          <Link
-            href="/inicio"
-          >
-            <Button
-              variant="primary"
-              sx={{
-                textTransform: "none",
-                backgroundColor: "#CECECE",
-                borderColor: "#CECECE",
-                color: "black",
-                width: "233px",
-                height: "65px",
-                fontSize: "16px",
-                "&:hover": {
-                  backgroundColor: "#a5a5a5",
-                  borderColor: "#a5a5a5",
-                },
-                "@media only screen and (max-width: 1098px)": {
-                  width: "243px",
-                },
-                "@media only screen and (max-width: 768px)": {
-                  width: "100%"
-                }
-              }}
-            >
-
-              Ir al Inicio
-            </Button>
-          </Link>
-          <Button variant="primary" color="secondary" sx={{
-            width: "233px",
-            height: "65px",
-            fontSize: "16px",
-            "@media only screen and (max-width: 1098px)": {
-              width: "243px",
-            },
-            "@media only screen and (max-width: 768px)": {
-              width: "100%"
-            },
-          }
-          } >
-            Descargar comprobante
-          </Button>
-        </Box>
+        <SuccessChargeBox info={accountInfo} money={moneyToCharge} />
       </Box >
     </>
   );

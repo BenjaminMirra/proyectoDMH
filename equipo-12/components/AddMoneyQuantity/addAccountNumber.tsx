@@ -1,12 +1,22 @@
-import { Box, Typography, Button, Input, FormControl } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  TextField,
+  Input,
+  FormControl,
+} from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
-const AddMoneyOption = () => {
+
+const AddAccountNumber = () => {
   const router = useRouter();
+
   const [inputValue, setInputValue] = useState<string>("");
   const [validationError, setValidationError] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const serviceId = useRouter().query.id as string;
   const validationSchema = Yup.object().shape({
     number: Yup.string()
       .test("notEmpty", "*Este campo es requerido", (value: any) => {
@@ -18,38 +28,28 @@ const AddMoneyOption = () => {
         }
         return true;
       })
-      .test("decimalWithDigits", "*Ingrese números después de la coma", (value) => {
-        if (value && value !== "") {
-          const decimalPart = value.split(".")[1];
-          return decimalPart === undefined || decimalPart.length > 0;
-        }
-        return true;
-      })
-      .test("decimalDigits", "*Ingrese como máximo dos decimales", (value) => {
-        if (value && value !== "") {
-          const decimalPart = value.split(".")[1];
-          if (decimalPart === undefined) {
-            // Permitir un número sin coma decimal
-            return true;
-          }
-          return decimalPart.length >= 1 && decimalPart.length <= 2;
-        }
-        return true;
-      })
-      .test("noLetters", "*No ingrese letras", (value) => {
+      .test("noLetters", "*No ingrese letras ni espacios", (value) => {
         if (value && value !== "") {
           const transformedValue = value.replace(",", "."); // Reemplazar coma por punto
           return /^\d*\.?\d*$/.test(transformedValue);
         }
         return true;
       })
-      .required("*Ingrese la cantidad de dinero a transferir")
+      .test("firstNotAreTwo", "*No ingrese el primer 2", (value: any) => {
+        return value && value[0] != 2;
+      })
+      .test("elevenNumbers", "*Ingrese once números", (value: any) => {
+        return value && value.length == 11;
+      })
+      .required("*Ingrese solo numeros"),
   });
+
   useEffect(() => {
     if (inputValue === "") {
       setButtonDisabled(true);
     }
   }, [inputValue]);
+
   const handleChange = (e: any) => {
     setInputValue(`${e.target.value}`);
     if (inputValue === "") {
@@ -66,6 +66,7 @@ const AddMoneyOption = () => {
         setValidationError(error.message);
       });
   };
+
   const handleBlur = () => {
     validationSchema
       .validate({ number: inputValue })
@@ -76,18 +77,21 @@ const AddMoneyOption = () => {
         setValidationError(error.message);
       });
   };
+
   const handleClick = (e: any) => {
     e.preventDefault();
     validationSchema
       .validate({ number: inputValue })
       .then(() => {
-        localStorage.setItem("moneyToCharge", inputValue);
-        router.push("confirmar-info");
+        if (inputValue.slice(9) == "00") {
+          router.push(`/listar-servicios/pago/${serviceId}`);
+        } else router.push("/ingresar-numero-cuenta/errorPage");
       })
       .catch((error) => {
-        setValidationError(error.message);
+        router.push("/ingresar-numero-cuenta/errorPage");
       });
   };
+
   return (
     <Box
       sx={{
@@ -114,11 +118,12 @@ const AddMoneyOption = () => {
           display: "flex",
           alignItems: "center",
           flexDirection: "colum",
-          width: "100%"
+          width: "100%",
         },
       }}
     >
-      <FormControl onSubmit={handleClick}
+      <FormControl
+        onSubmit={handleClick}
         sx={{
           display: "flex",
           justifyContent: "center",
@@ -151,34 +156,33 @@ const AddMoneyOption = () => {
             flexDirection: "column",
           }}
         >
-
-          <Box
-          >
+          <Box>
             <Typography
               sx={{
                 color: "#C1FD35",
                 paddingBottom: "25px",
                 "@media (max-width: 1024px)": {
                   textAlign: "center",
-
                 },
               }}
-              variant="h6"
+              variant="h1"
             >
-              ¿Cuánto querés ingresar a la cuenta?
+              Numero de cuenta sin el primer 2
             </Typography>
-            <Box sx={{
-              display: "flex",
-              width: "100%",
-              justifyContent: "flex-start",
-              alignItems: "center",
-              flexDirection: "row",
-              alignContent: "flex-start",
-              "@media (max-width: 1024px)": {
-                alignItems: "stretch",
-                flexDirection: "column",
-              },
-            }}>
+            <Box
+              sx={{
+                display: "flex",
+                width: "100%",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                flexDirection: "row",
+                alignContent: "flex-start",
+                "@media (max-width: 1024px)": {
+                  alignItems: "stretch",
+                  flexDirection: "column",
+                },
+              }}
+            >
               <Input
                 type="text"
                 value={inputValue}
@@ -186,7 +190,12 @@ const AddMoneyOption = () => {
                 onBlur={handleBlur}
                 //variant="filled"
                 size="medium"
-                placeholder="$ 0"
+                placeholder=""
+                /*
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                */
                 margin={"none"}
                 sx={{
                   // width: "50%",
@@ -202,7 +211,10 @@ const AddMoneyOption = () => {
                   textAlign: "center",
                 }}
               />
-              <Typography sx={{ width: "100", paddingLeft: "20px", color: "#C1FD35" }} variant="h6">
+              <Typography
+                sx={{ width: "100", paddingLeft: "20px", color: "#C1FD35" }}
+                variant="h6"
+              >
                 {validationError}
               </Typography>
             </Box>
@@ -217,7 +229,11 @@ const AddMoneyOption = () => {
               justifyContent: "flex-end",
               flexDirection: "colum",
               "@media (max-width: 1024px)": {
+                width: "100%",
+                paddingTop: "10px",
+                display: "flex",
                 justifyContent: "center",
+                flexDirection: "colum",
                 maxWidth: "100%",
               },
             }}
@@ -226,8 +242,8 @@ const AddMoneyOption = () => {
               disabled={buttonDisabled}
               variant="primary"
               color="secondary"
-              type="submit"
               size="large"
+              type="submit"
               sx={{
                 width: "100%",
                 paddingTop: "10px",
@@ -237,31 +253,13 @@ const AddMoneyOption = () => {
                 "&:hover": {
                   backgroundColor: buttonDisabled ? "#CECECE" : "#C1FD35", // Cambiar el color del botón según la visibilidad del error,
                   "@media (max-width: 1024px)": {
-                    fontSize: "10px",
-                    size: "medium",
                     display: "flex",
                     alignItems: "stretch",
                     flexDirection: "colum",
-                    maxWidth: "100%", 
-                    width: "100%"
-                  },   
-                  "@media (min-width: 1025px)": {
-                    size: "large",
-                    display: "flex",
-                    alignItems:"stretch",
-                    flexDirection: "colum",
-                    maxWidth: "100%", 
-                    width: "100%"
-                  },   
+                    maxWidth: "100%",
+                    width: "100%",
+                  },
                 },
-                "@media (max-width: 1024px)": {
-                  size: "large",
-                  display: "flex",
-                  alignItems:"stretch",
-                  flexDirection: "colum",
-                  maxWidth: "100%", 
-                  width: "100%"
-                },   
               }}
               onClick={handleClick}
             >
@@ -269,10 +267,9 @@ const AddMoneyOption = () => {
             </Button>
           </Box>
         </Box>
-      </FormControl >
-    </Box >
-
+      </FormControl>
+    </Box>
   );
 };
 
-export default AddMoneyOption;
+export default AddAccountNumber;

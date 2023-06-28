@@ -6,12 +6,7 @@ import { useState } from "react";
 
 const Services = () => {
   const classes = useStyles();
-  
-  /* 
-  const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-  };
-  */
+
   const [search, setSearch] = useState("");
   
   const handleSearch = (event: any) => {

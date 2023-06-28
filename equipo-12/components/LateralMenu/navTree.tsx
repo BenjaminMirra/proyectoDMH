@@ -32,7 +32,7 @@ const NavTree = (props: any) => {
     localStorage.removeItem("userId");
     localStorage.removeItem("cardId");
     localStorage.removeItem("expirationDate");
-    localStorage.removeItem("moneyToCharge");
+    localStorage.removeItem("ServiceName");    
     setLogged ? setLogged(false) : "";
     router.push("/");
   };
