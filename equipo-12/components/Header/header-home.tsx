@@ -59,7 +59,7 @@ const HeaderHome = (props: any) => {
     localStorage.removeItem("moneyToCharge");
     localStorage.removeItem("ServiceName");
     router.push("/");
-    document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+    document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     setLogged(false);
   };
 
@@ -87,7 +87,7 @@ const HeaderHome = (props: any) => {
         >
           <Box>
             <Link
-              href={localStorage.getItem("token") ? "/inicio" : "/"}
+              href={logged ? "/inicio" : "/"}
               style={{
                 display: "flex",
                 alignItems: "center",

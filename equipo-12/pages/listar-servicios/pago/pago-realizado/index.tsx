@@ -19,7 +19,8 @@ const PaymentMade: NextPageWithLayout<any> = () => {
   const { accountInfo } = useAccountContext();
   const [isLoad, setIsLoad] = useState(true);
   const [moneyToCharge, setMoneyToCharge] = useState<string | null>("");
-  const serviceName = localStorage.getItem("ServiceName");
+  const [serviceName, setServiceName] = useState<string | null>("");
+
   const [cardInfo, setCardInfo] = useState({
     account_id: "",
     cod: 0,
@@ -29,14 +30,14 @@ const PaymentMade: NextPageWithLayout<any> = () => {
     number_id: 0,
   });
   const [titleError, setTitleError] = useState<string>("");
-  const [textError, setTextError] = useState<string>("");  
+  const [textError, setTextError] = useState<string>("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     const accountId = localStorage.getItem("accountId");
     const cardId = localStorage.getItem("cardId");
 
-    
+
 
     const fetchData = async () => {
       try {
@@ -61,8 +62,12 @@ const PaymentMade: NextPageWithLayout<any> = () => {
   });
 
   useEffect(() => {
-    if (localStorage.getItem("moneyToCharge") !== null) {
+    if (typeof window !== "undefined" && localStorage.getItem("moneyToCharge") && localStorage.getItem("moneyToCharge") !== null) {
       setMoneyToCharge(localStorage.getItem("moneyToCharge"));
+
+    }
+    if (typeof window !== "undefined" && localStorage.getItem("ServiceName") && localStorage.getItem("ServiceName") !== null) {
+      setServiceName(localStorage.getItem("ServiceName"));
     }
 
     if (moneyToCharge !== null) {
@@ -74,8 +79,8 @@ const PaymentMade: NextPageWithLayout<any> = () => {
       }
     }
     console.log("moneyToCharge: " + moneyToCharge);
-    
-  },[moneyToCharge]);
+
+  }, [moneyToCharge]);
 
 
 
@@ -98,13 +103,13 @@ const PaymentMade: NextPageWithLayout<any> = () => {
     const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}Z`;
 
     const infoData = {
-      account_id:`${cardInfo?.account_id}`,
-      type:"Transfer",
+      account_id: `${cardInfo?.account_id}`,
+      type: "Transfer",
       description: "Transferiu para Servicio",
       origin: accountInfo?.cvu,
-      destination:  `${serviceName}`,
+      destination: `${serviceName}`,
       amount: - parseInt(moneyToCharge),
-      dated: formattedDate      
+      dated: formattedDate
     };
     console.log("infoData: ");
     console.log(infoData);
@@ -189,10 +194,10 @@ const PaymentMade: NextPageWithLayout<any> = () => {
         ) : (
           <>
             <AlertChargeBox />
-            <SuccessChargeBox info={accountInfo} money={moneyToCharge} handleChargeMoney={handleChargeMoney}/>
+            <SuccessChargeBox info={accountInfo} money={moneyToCharge} handleChargeMoney={handleChargeMoney} />
           </>
         )}
-        
+
       </Box>
     </>
   );

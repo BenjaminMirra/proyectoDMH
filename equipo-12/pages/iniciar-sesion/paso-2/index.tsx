@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { ReactElement, ReactNode, useEffect, useState } from "react";
+import { ReactElement, ReactNode, useState } from "react";
 import Head from "next/head";
 import { Box, Button, Typography } from "@mui/material";
 import ControlledInput from "../../../components/FormController/controlled-input";
@@ -31,12 +31,6 @@ const Password: NextPageWithLayout<PropsType> = () => {
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
-
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      router.push("/dashboard");
-    }
-  }, []);
 
   const { user, setUser } = useUserContextPass();
   const { setUserInfo } = useUserContext();
@@ -87,7 +81,10 @@ const Password: NextPageWithLayout<PropsType> = () => {
                 });
             });
           setErrorLogin(false);
-          router.push("/inicio");
+          setTimeout(() => {
+            router.push("/inicio");
+          }, 1000);
+
         });
     } catch (error) {
       console.error(error);

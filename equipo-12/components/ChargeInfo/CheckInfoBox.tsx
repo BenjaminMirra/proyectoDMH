@@ -12,10 +12,14 @@ const CheckInfoBox = ({ accountInfo, handleChargeMoney }: any) => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("moneyToCharge") !== null) {
+    if (
+      typeof window !== "undefined" &&
+      localStorage.getItem("moneyToCharge") &&
+      localStorage.getItem("moneyToCharge") !== null
+    ) {
       setMoneyToCharge(localStorage.getItem("moneyToCharge"));
     }
-  });
+  }, [accountInfo]);
 
   return (
     <Box sx={{
@@ -98,7 +102,6 @@ const CheckInfoBox = ({ accountInfo, handleChargeMoney }: any) => {
         paddingRight: "45px",
         paddingBottom: "45px",
         marginTop: "-40px",
-        heigth: "100%",
         "@media (max-width: 1100px)": {
           marginTop: "0px",
           width: "100%",

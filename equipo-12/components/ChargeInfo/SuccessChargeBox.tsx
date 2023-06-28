@@ -11,9 +11,9 @@ const CheckInfoBox = ({ money, info, handleChargeMoney }: any) => {
   const [text, setText] = useState("");
   const [card, setCard] = useState<ICard>();
   const [typeCard, setTypeCard] = useState<string>("");
-  const serviceName = localStorage.getItem("ServiceName");
-  const carId = localStorage.getItem("cardId");
-  const idAccount = localStorage.getItem("accountId");
+  const [serviceName, setServiceName] = useState<string | null>("");
+  const [carId, setCardId] = useState<string | null>("");
+  const [idAccount, setIdAccount] = useState<string | null>("");
   const { userAccount } = useAccount();
 
   useEffect(() => {
@@ -26,13 +26,35 @@ const CheckInfoBox = ({ money, info, handleChargeMoney }: any) => {
   }, []);
 
   useEffect(() => {
+    if ((
+      typeof window !== "undefined" &&
+      localStorage.getItem("ServiceName") &&
+      localStorage.getItem("ServiceName") !== null
+    )) {
+      setServiceName(localStorage.getItem("ServiceName"));
+    }
+
+    if ((
+      typeof window !== "undefined" &&
+      localStorage.getItem("cardId") &&
+      localStorage.getItem("cardId") !== null
+    )) {
+      setCardId(localStorage.getItem("cardId"));
+    }
+    if ((
+      typeof window !== "undefined" &&
+      localStorage.getItem("accountId") &&
+      localStorage.getItem("accountId") !== null
+    )) {
+      setIdAccount(localStorage.getItem("accountId"));
+    }
     if (router.pathname === "/listar-servicios/pago/pago-realizado") {
       if (carId === "9") {
         return setText("Cuenta Propia");
-      }else{
+      } else {
         return setText("Tarjeta");
       }
-      
+
     } else {
       return setText("Brubank");
     }
@@ -161,8 +183,8 @@ const CheckInfoBox = ({ money, info, handleChargeMoney }: any) => {
             <Typography sx={{ color: "white" }} variant="subtitle2">
               {typeCard !== "Desde cuenta terminada en "
                 ? `${typeCard} ************${card?.number_id
-                    .toString()
-                    .slice(-4)}`
+                  .toString()
+                  .slice(-4)}`
                 : `${typeCard} ${userAccount.cvu.slice(-4)}`}
             </Typography>
           ) : (

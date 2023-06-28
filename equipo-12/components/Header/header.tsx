@@ -23,7 +23,7 @@ const Header = () => {
         }}
       >
         <Link
-          href={localStorage.getItem("token") ? "/inicio" : "/"}
+          href={"/"}
           style={{
             display: "flex",
             alignItems: "center",
