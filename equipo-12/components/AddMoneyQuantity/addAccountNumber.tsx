@@ -167,7 +167,7 @@ const AddAccountNumber = () => {
               }}
               variant="h1"
             >
-              Numero de cuenta sin el primer 2
+              Número de cuenta sin el primer 2
             </Typography>
             <Box
               sx={{

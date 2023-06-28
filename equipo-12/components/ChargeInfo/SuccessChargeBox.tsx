@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { ICard } from "../../types";
-import useAccount from "../../hooks/useAccount";
 
 const CheckInfoBox = ({ money, info, handleChargeMoney }: any) => {
   const router = useRouter();
@@ -14,7 +13,6 @@ const CheckInfoBox = ({ money, info, handleChargeMoney }: any) => {
   const [serviceName, setServiceName] = useState<string | null>("");
   const [carId, setCardId] = useState<string | null>("");
   const [idAccount, setIdAccount] = useState<string | null>("");
-  const { userAccount } = useAccount();
 
   useEffect(() => {
     if (carId !== null && idAccount !== null) {
@@ -58,7 +56,8 @@ const CheckInfoBox = ({ money, info, handleChargeMoney }: any) => {
     } else {
       return setText("Brubank");
     }
-  }, [router.pathname, text]);
+
+  }, [router.pathname, text, card]);
 
   const handleClick = () => {
     handleChargeMoney();
@@ -185,7 +184,7 @@ const CheckInfoBox = ({ money, info, handleChargeMoney }: any) => {
                 ? `${typeCard} ************${card?.number_id
                   .toString()
                   .slice(-4)}`
-                : `${typeCard} ${userAccount.cvu.slice(-4)}`}
+                : `${typeCard} ${info?.cvu.slice(-4)}`}
             </Typography>
           ) : (
             <Typography sx={{ color: "white" }} variant="subtitle2">

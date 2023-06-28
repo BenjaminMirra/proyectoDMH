@@ -242,26 +242,18 @@ const AddMoneyOption = () => {
                     display: "flex",
                     alignItems: "stretch",
                     flexDirection: "colum",
-                    maxWidth: "100%", 
+                    maxWidth: "100%",
                     width: "100%"
-                  },   
-                  "@media (min-width: 1025px)": {
-                    size: "large",
-                    display: "flex",
-                    alignItems:"stretch",
-                    flexDirection: "colum",
-                    maxWidth: "100%", 
-                    width: "100%"
-                  },   
+                  },
                 },
                 "@media (max-width: 1024px)": {
                   size: "large",
                   display: "flex",
-                  alignItems:"stretch",
+                  alignItems: "stretch",
                   flexDirection: "colum",
-                  maxWidth: "100%", 
+                  maxWidth: "100%",
                   width: "100%"
-                },   
+                },
               }}
               onClick={handleClick}
             >

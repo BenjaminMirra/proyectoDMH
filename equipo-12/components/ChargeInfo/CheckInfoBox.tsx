@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-const CheckInfoBox = ({ accountInfo, handleChargeMoney }: any) => {
+const CheckInfoBox = ({ accountInfo, handleChargeMoney, isLoading }: any) => {
 
   const [moneyToCharge, setMoneyToCharge] = useState<string | null>("");
   const handleContinuarClick = () => {
@@ -91,7 +91,7 @@ const CheckInfoBox = ({ accountInfo, handleChargeMoney }: any) => {
             Brubank
           </Typography>
           <Typography sx={{ color: "white" }} variant="subtitle2">
-            CVU: {accountInfo?.cvu}
+            CVU: {!isLoading && accountInfo?.cvu}
           </Typography>
         </Box>
       </Box>

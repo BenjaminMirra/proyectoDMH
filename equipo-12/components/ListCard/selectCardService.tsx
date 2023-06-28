@@ -172,18 +172,12 @@ const SelectCardService = () => {
             >
               {actualServices[0]?.name}
             </Typography>
-            <Link
-              href="/listar-servicios/detalle-pago"
-              style={{
-                textDecoration: "underline white",
-              }}
+
+            <Typography
+              sx={{ cursor: "pointer", textDecoration: "underline white", fontSize: "16px", fontWeight: "600", color: "white" }}
             >
-              <Typography
-                sx={{ fontSize: "16px", fontWeight: "600", color: "white" }}
-              >
-                Ver detalles del pago
-              </Typography>
-            </Link>
+              Ver detalles del pago
+            </Typography>
           </Box>
           <Divider
             sx={{

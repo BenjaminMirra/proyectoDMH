@@ -160,7 +160,7 @@ const CheckInfo = () => {
         }}>
           <ArrowSubtitleMobile title={"Cargar dinero"} />
         </Box>
-        <CheckInfoBox handleChargeMoney={handleChargeMoney} accountInfo={accountInfo} />
+        <CheckInfoBox handleChargeMoney={handleChargeMoney} isLoading={isLoading} accountInfo={accountInfo} />
         <Box sx={{
           display: "none",
           "@media (max-width: 767px)": {

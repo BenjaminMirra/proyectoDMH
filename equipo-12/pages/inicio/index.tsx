@@ -5,6 +5,7 @@ import AvailableAmount from "../../components/AvailableAmount";
 import Transferences from "../../components/Transferences";
 import Head from "next/head";
 import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
+import Link from "next/link";
 
 const Inicio = () => {
 
@@ -32,8 +33,12 @@ const Inicio = () => {
           <ArrowSubtitleMobile title="Inicio"></ArrowSubtitleMobile>
           <AvailableAmount></AvailableAmount>
           <Box sx={{ display: "flex", width: "100%", gap: "10px", "@media (max-width: 768px)": { flexDirection: "column" } }}>
-            <Button sx={{ width: "50%", "@media (max-width: 768px)": { width: "100%" } }} variant="xxl">Transferir Dinero</Button>
-            <Button sx={{ width: "50%", "@media (max-width: 768px)": { width: "100%" } }} variant="xxl">Ingresar dinero</Button>
+            <Link style={{ width: "100%" }} href="/cargar-dinero">
+              <Button sx={{ width: "100%", "@media (max-width: 768px)": { width: "100%" } }} variant="xxl">Cargar Dinero</Button>
+            </Link>
+            <Link style={{ width: "100%" }} href="/listar-servicios">
+              <Button sx={{ width: "100%", "@media (max-width: 768px)": { width: "100%" } }} variant="xxl">Pago de Servicios</Button>
+            </Link>
           </Box>
           <Transferences></Transferences>
         </Box>

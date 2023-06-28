@@ -1,25 +1,23 @@
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import { ReactElement, useEffect, useState } from "react";
 import Head from "next/head";
-
-import Link from "next/link";
 import { NextPageWithLayout } from "../../../_app";
 import ArrowSubtitleMobile from "../../../../components/ArrowSubtitleMobile";
 import AlertChargeBox from "../../../../components/ChargeInfo/AlertChargeBox";
 import SuccessChargeBox from "../../../../components/ChargeInfo/SuccessChargeBox";
 import Layout from "../../../../layout/layout";
-import SuccessCharge from "../../../cargar-dinero/exitosa-carga";
 import ErrorInfoBox from "../../../../components/ChargeInfo/ErrorInfoBox";
 import useAccount from "../../../../hooks/useAccount";
 import axios from "axios";
 import { useAccountContext } from "../../../../context/accountContext";
 
 const PaymentMade: NextPageWithLayout<any> = () => {
-  const { userAccount, isLoading } = useAccount();
+  const { userAccount } = useAccount();
   const { accountInfo } = useAccountContext();
   const [isLoad, setIsLoad] = useState(true);
   const [moneyToCharge, setMoneyToCharge] = useState<string | null>("");
   const [serviceName, setServiceName] = useState<string | null>("");
+
 
   const [cardInfo, setCardInfo] = useState({
     account_id: "",
@@ -56,7 +54,7 @@ const PaymentMade: NextPageWithLayout<any> = () => {
       }
       setIsLoad(false);
     };
-    if (isLoading) {
+    if (isLoad) {
       fetchData();
     }
   });
@@ -194,7 +192,7 @@ const PaymentMade: NextPageWithLayout<any> = () => {
         ) : (
           <>
             <AlertChargeBox />
-            <SuccessChargeBox info={accountInfo} money={moneyToCharge} handleChargeMoney={handleChargeMoney} />
+            <SuccessChargeBox info={userAccount} money={moneyToCharge} handleChargeMoney={handleChargeMoney} />
           </>
         )}
 
