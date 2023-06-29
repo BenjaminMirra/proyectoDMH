@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ItemTranference from "./itemTransference";
 import { Divider } from "@mui/material";
 import { useTransferencesContext } from "../../context/useTransferences";
+import useTransferences from "../../hooks/useTransference";
 
 const ListTranference = () => {
-  const { transferencesInfo, isLoadingTransferences } = useTransferencesContext();
+  const { isLoadingTransferences } = useTransferencesContext();
+
+  const { transferencesInfo, isLoadingTransferenceHook } = useTransferences();
+
+  useEffect(() => {
+    !isLoadingTransferences && console.log(transferencesInfo);
+  }, [transferencesInfo]);
+
   return (
     <>
       {
-        !isLoadingTransferences && transferencesInfo?.map((transference: any, idx: any) => {
+        !isLoadingTransferenceHook && transferencesInfo?.map((transference: any, idx: any) => {
           return (
             <React.Fragment key={idx}>
               <ItemTranference key={transference.id} transference={transference} />

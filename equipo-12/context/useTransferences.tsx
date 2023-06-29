@@ -49,8 +49,8 @@ export const TransferencesProvider: React.FC<TransferencesProviderProps> = ({ ch
   const [isLoadingTransferences, setIsLoadingTransferences] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem("token") && localStorage.getItem("token");
-    const account = localStorage.getItem("accountId") && localStorage.getItem("accountId");
+    const token = localStorage.getItem("token");
+    const account = localStorage.getItem("accountId");
 
     const fetchData = async () => {
       try {

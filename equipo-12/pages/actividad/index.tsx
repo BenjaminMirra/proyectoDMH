@@ -21,6 +21,7 @@ import { Tune } from "@mui/icons-material";
 import FilterModal from "../../components/Activity/FilterModal/FilterModal";
 import ArrowSubtitleMobile from "../../components/ArrowSubtitleMobile";
 import { useTransferencesContext } from "../../context/useTransferences";
+import useTransferences from "../../hooks/useTransference";
 interface PropsType {
   children?: ReactNode;
 }
@@ -35,7 +36,7 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
   const [offset, setOffset] = useState(1);
   const PAGINATION_LIMIT = 10;
 
-  const { transferencesInfo, isLoadingTransferences } = useTransferencesContext();
+  const { transferencesInfo, isLoadingTransferenceHook } = useTransferences();
   const classes = useStyles();
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
@@ -133,7 +134,7 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
     let array;
     // eslint-disable-next-line no-constant-condition
     if (true) {
-      array = sortByDate(transferencesInfo && transferencesInfo);
+      array = sortByDate(transferencesInfo);
     }
     if (search != "") {
       array = filterBySearch(array);
@@ -146,7 +147,7 @@ const Actividad: NextPageWithLayout<PropsType> = () => {
     let array;
     // eslint-disable-next-line no-constant-condition
     if (true) {
-      array = sortByDate(transferencesInfo && transferencesInfo);
+      array = sortByDate(transferencesInfo);
     }
     if (period != -1) {
       array = filterByPeriod(array);
