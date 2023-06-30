@@ -82,7 +82,7 @@ const SelectCardService = () => {
     }
   };
   const handleContinuarClick = () => {
-    const serviceName = localStorage.setItem("ServiceName", `${actualServices[0]?.name}`);
+    localStorage.setItem("ServiceName", `${actualServices[0]?.name}`);
     localStorage.setItem("moneyToCharge", moneyToCharge.toString());
     const carId = localStorage.getItem("cardId");
     setIsContinuarExpiredCard(false);

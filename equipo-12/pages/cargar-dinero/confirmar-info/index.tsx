@@ -7,10 +7,10 @@ import ArrowSubtitleMobile from "../../../components/ArrowSubtitleMobile";
 import { useAccountContext } from "../../../context/accountContext";
 import axios from "axios";
 import Link from "next/link";
+import useAccount from "../../../hooks/useAccount";
 
 const CheckInfo = () => {
-
-  const { accountInfo, isLoading } = useAccountContext();
+  const { userAccount, isLoading } = useAccount();
   const [isLoadingCard, setisLoadingCard] = useState(true);
   const [moneyToCharge, setMoneyToCharge] = useState<string | null>("");
   const [cardInfo, setCardInfo] = useState({
@@ -84,7 +84,7 @@ const CheckInfo = () => {
     const infoData = {
       amount: parseInt(moneyToCharge),
       dated: formattedDate,
-      destination: accountInfo?.cvu,
+      destination: userAccount?.cvu,
       origin: `${cardInfo?.account_id}`,
     };
     console.log(infoData);
@@ -111,6 +111,7 @@ const CheckInfo = () => {
 
   return (
     <>
+
       <Head>
         <title>Digital Money House</title>
         <meta name="description" content="Digital Money House" />
@@ -128,66 +129,65 @@ const CheckInfo = () => {
           },
         }}
       />
-
-      <Box sx={{
-        display: "flex",
-        paddingTop: "64px",
-        alignItems: "center",
-        paddingLeft: "80px",
-        paddingRight: "30px",
-        width: "100%",
-        backgroundColor: "#EEEAEA",
-        flexDirection: "column",
-        "@media (max-width: 767px)": {
-          paddingTop: "40px",
-          justifyContent: "flex-start",
-          paddingLeft: "20px",
-          paddingRight: "20px",
-        },
-      }}>
+      {userAccount ?
         <Box sx={{
-          display: "none",
-          "@media only screen and (max-width: 767px)": {
-            width: "100%",
-            paddingBottom: "20px",
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-          }
-        }}>
-          <ArrowSubtitleMobile title={"Cargar dinero"} />
-        </Box>
-        {!isLoading ?
-          <CheckInfoBox handleChargeMoney={handleChargeMoney} isLoading={isLoading} accountInfo={accountInfo} />
-          : ""}
-        <Box sx={{
-          display: "none",
+          display: "flex",
+          paddingTop: "64px",
+          alignItems: "center",
+          paddingLeft: "80px",
+          paddingRight: "30px",
+          width: "100%",
+          backgroundColor: "#EEEAEA",
+          flexDirection: "column",
           "@media (max-width: 767px)": {
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-            width: "100%",
-            paddingTop: "20px",
-            paddingBottom: "20px"
+            paddingTop: "40px",
+            justifyContent: "flex-start",
+            paddingLeft: "20px",
+            paddingRight: "20px",
           },
         }}>
-          <Link href={{
-            pathname: "exitosa-carga"
+          <Box sx={{
+            display: "none",
+            "@media only screen and (max-width: 767px)": {
+              width: "100%",
+              paddingBottom: "20px",
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "center",
+            }
           }}>
-            <Button variant="primary" color="secondary"
-              sx={{
-                width: "165px",
-                height: "50px",
-              }}
-              onClick={handleContinuarClick}
-            >
-              <Typography variant="button">
-                Continuar
-              </Typography>
-            </Button>
-          </Link>
+            <ArrowSubtitleMobile title={"Cargar dinero"} />
+          </Box>
+          <CheckInfoBox handleChargeMoney={handleChargeMoney} isLoading={isLoading} userAccount={userAccount} />
+          <Box sx={{
+            display: "none",
+            "@media (max-width: 767px)": {
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "center",
+              width: "100%",
+              paddingTop: "20px",
+              paddingBottom: "20px"
+            },
+          }}>
+            <Link href={{
+              pathname: "exitosa-carga"
+            }}>
+              <Button variant="primary" color="secondary"
+                sx={{
+                  width: "165px",
+                  height: "50px",
+                }}
+                onClick={handleContinuarClick}
+              >
+                <Typography variant="button">
+                  Continuar
+                </Typography>
+              </Button>
+            </Link>
+          </Box>
         </Box>
-      </Box>
+        : ""}
     </>
   );
 };

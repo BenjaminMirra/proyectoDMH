@@ -60,7 +60,7 @@ const CheckInfoBox = ({ money, info, handleChargeMoney }: any) => {
   }, [router.pathname, text, card]);
 
   const handleClick = () => {
-    handleChargeMoney();
+    handleChargeMoney && handleChargeMoney();
   };
 
   const getTypeCard = (num: number) => {
@@ -186,7 +186,7 @@ const CheckInfoBox = ({ money, info, handleChargeMoney }: any) => {
                   .slice(-4)}`
                 : `${typeCard} ${info?.cvu.slice(-4)}`}
             </Typography>
-          ) : (
+          ) : info && (
             <Typography sx={{ color: "white" }} variant="subtitle2">
               CVU: {info?.cvu}
             </Typography>

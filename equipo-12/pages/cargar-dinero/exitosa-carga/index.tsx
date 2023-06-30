@@ -7,9 +7,11 @@ import { useAccountContext } from "../../../context/accountContext";
 import { NextPageWithLayout } from "../../_app";
 import Layout from "../../../layout/layout";
 import SuccessChargeBox from "../../../components/ChargeInfo/SuccessChargeBox";
+import useAccount from "../../../hooks/useAccount";
 
 const SuccessCharge: NextPageWithLayout<any> = () => {
 
+  const { userAccount } = useAccount();
   const { accountInfo } = useAccountContext();
   const [moneyToCharge, setMoneyToCharge] = useState<string | null>("");
 
@@ -72,7 +74,7 @@ const SuccessCharge: NextPageWithLayout<any> = () => {
           <ArrowSubtitleMobile title={"Cargar dinero"} />
         </Box>
         <AlertChargeBox />
-        <SuccessChargeBox info={accountInfo} money={moneyToCharge} />
+        {userAccount && <SuccessChargeBox info={userAccount} money={moneyToCharge} />}
       </Box >
     </>
   );

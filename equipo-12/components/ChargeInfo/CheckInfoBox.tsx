@@ -3,9 +3,12 @@ import editIconChargeMoney from "../../utils/icons/editIconChargeMoney.png";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import useAccount from "../../hooks/useAccount";
 
-const CheckInfoBox = ({ accountInfo, handleChargeMoney, isLoading }: any) => {
+const CheckInfoBox = ({ accountInfo, handleChargeMoney }: any) => {
 
+  const { userAccount, isLoading } = useAccount();
   const [moneyToCharge, setMoneyToCharge] = useState<string | null>("");
   const handleContinuarClick = () => {
     handleChargeMoney();
@@ -19,7 +22,11 @@ const CheckInfoBox = ({ accountInfo, handleChargeMoney, isLoading }: any) => {
     ) {
       setMoneyToCharge(localStorage.getItem("moneyToCharge"));
     }
-  }, [accountInfo]);
+    console.log(accountInfo);
+
+  }, [userAccount]);
+
+  const router = useRouter();
 
   return (
     <Box sx={{
@@ -90,9 +97,9 @@ const CheckInfoBox = ({ accountInfo, handleChargeMoney, isLoading }: any) => {
           <Typography sx={{ color: "white", paddingBottom: "10px" }}>
             Brubank
           </Typography>
-          <Typography sx={{ color: "white" }} variant="subtitle2">
-            CVU: {!isLoading && accountInfo?.cvu}
-          </Typography>
+          {userAccount && <Typography sx={{ color: "white" }} variant="subtitle2">
+            CVU: {userAccount?.cvu}
+          </Typography>}
         </Box>
       </Box>
       <Box sx={{
